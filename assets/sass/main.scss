@@ -1,4 +1,14 @@
-@import './fonts.scss';
-@import './normalize.scss';
-@import './variables';
-@import './icons';
+@import "./fonts.scss";
+@import "./normalize.scss";
+@import "./variables";
+@import "./icons";
+@import "./buttons";
+
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-14);
+  background-color: var(--color-white);
+}
+

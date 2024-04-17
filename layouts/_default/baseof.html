@@ -48,8 +48,6 @@
 
   {{ end }}
 
-
-  {{ partial "header.html" . }}
   <main>
     <div class="wrapper">
       {{ block "main" . }}
@@ -57,7 +55,7 @@
       {{ end }}
     </div>
   </main>
-  {{ partial "footer.html" . }}
+ 
   {{ $js := resources.Get "js/main.js" | resources.Minify }}
   <script src="{{ $js.Permalink }}"></script>
 </body>
