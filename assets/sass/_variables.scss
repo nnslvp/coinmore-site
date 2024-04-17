@@ -16,7 +16,8 @@
   /* Градиенты */ 
   --linear-gradient-primary: linear-gradient(104.07deg, #A40DFF 16.94%, #8E3CC0 39.99%, #9339C9 65.72%, #723199 86.29%, #4B106E 100%); 
 
- --font-family: 'Poppins', sans-serif;
+  --font-family: 'Poppins', sans-serif;
+  --second-family: "Roboto Mono", sans-serif;
 
   /* Размеры шрифтов */
   --font-size-32: 32px;
@@ -28,10 +29,10 @@
   --font-size-12: 12px;
 
   /* Жирность шрифтов */
-  --font-weight-bold: 700; /* Обычно для 'bold' */
-  --font-weight-semibold: 600; /* Обычно для 'semibold' */
-  --font-weight-medium: 500; /* Обычно для 'medium' */
-  --font-weight-regular: 400; /* Обычно для 'regular' */
+  --font-weight-bold: 700; 
+  --font-weight-semibold: 600; 
+  --font-weight-medium: 500; 
+  --font-weight-regular: 400; 
 
   /* Межстрочные интервалы */
   --line-height-auto: auto;

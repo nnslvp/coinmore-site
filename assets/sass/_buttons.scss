@@ -1,10 +1,11 @@
 .btn {
+  display: inline-block;
 	color: var(--color-white);
 	background-color: inherit;
 	border: none;
-	border-radius: 1.875rem;
+	border-radius: 30px;
 	font-weight: var(--font-weight-medium);
-	line-height: 1.3125rem;
+	line-height: 21px;
 	cursor: pointer;
 	&:hover {
 		background-color: var(--color-primary-hover-0-05-opacity);
