@@ -33,3 +33,16 @@ title = 'My New Hugo Site'
     name = "quick-start"
     url = "/quick-start"
     weight = 5
+
+
+
+[languages]
+[languages.en]
+languageName = "English"
+weight = 1
+
+
+[languages.ru]
+languageName = "Русский"
+weight = 2
+
