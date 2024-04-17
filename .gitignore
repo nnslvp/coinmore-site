@@ -1,0 +1,16 @@
+# Ignore Hugo generated files
+/public/
+/resources/
+/cache/
+/resources/_gen/
+/tmp/
+
+# Ignore any local environment files
+.env
+
+# Ignore macOS specific files
+.DS_Store
+*.bak
+Thumbs.db
+.hugo_build
+.hugo_build.lock
