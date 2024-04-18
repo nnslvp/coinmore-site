@@ -10,33 +10,43 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-  gap: 100px;
+	gap: 100px;
 	padding: 18px 0rem 18px 0rem;
 }
 
 .header__logo {
-	width: 13.125rem;  
+	width: 98px;
 	z-index: 1;
 }
 
 .header__main-nav {
-  flex: 1;
-  gap: 100px;
+	flex: 1;
+	gap: 100px;
 }
 
 .header__main-nav-list {
-  display: flex;
+	display: flex;
 	justify-content: end;
 }
 
 .header__main-nav-link {
+	position: relative;
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -16px;
+		height: 3px;
+		background-color: var(--color-primary-hover);
+		opacity: 0;
+		transition: opacity 0.5s ease;
+	}
+	&:hover::after {
+		opacity: 1;
+	}
 }
 
-.header__contact-us-button {
-	background: inherit;
-	flex-basis: 11.75rem;
-	padding: 0.9063rem 0;
-}
 
 // @media (max-width: $breakpoint-lg) {
 // 	.header__inner {

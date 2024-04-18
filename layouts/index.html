@@ -1,3 +1,37 @@
-{{ define "main" }}
+{{ define "main" }} 
 {{partial "header.html" .}}
+<main class="main-home-page">
+  <section class="section-welcome section-welcome__page-home">
+    <div class="container">
+      <div class="section-welcome__inner">
+        <h1 class="heading-h1">Welcome to coinmore.io</h1>
+        <p class="section-welcome__text">
+          Where mining becomes easier and more profitable! Are you looking for a
+          reliable pool with low fees? Do you desire stability and transparent
+          statistics? Look no further! On our platform, you'll find everything
+          for efficient mining, as well as a warm community and tech support
+          ready to assist in any situation. Earn more with lower expenses.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section-start-mining">
+    <div class="container">
+      <div class="section-start-mining__inner">
+        <h2 class="heading-h1">Start mining with us</h2>
+        <ul class="coins-list">
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+{{partial "footer.html" .}}
 {{ end }}

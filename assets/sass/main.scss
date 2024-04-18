@@ -1,3 +1,4 @@
+
 @import './fonts';
 @import './normalize';
 @import './variables';
@@ -5,6 +6,8 @@
 @import './buttons';
 @import './components/coin-card';
 @import './header';
+@import './footer';
+@import './home-page';
 
 *,
 *::before,
@@ -28,6 +31,19 @@ body {
 	background-color: var(--color-white);
 }
 
+
+main {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
 .horizontal-line {
 	border: none;
 	border-top: 1px solid rgb(175, 184, 191);
@@ -35,6 +51,7 @@ body {
 
 .container {
 	max-width: 1340px;
+	height: 100%;
 	margin: 0 auto;
 }
 
@@ -46,6 +63,18 @@ a {
 	font-weight: var(--font-weight-semibold);
 	font-size: var(--font-size-16);
 }
+
+.heading-h1 {
+	font-weight: 700;
+	font-size: 32px;
+	margin: 0;
+}
+
+
+
+
+
+
 
 
 

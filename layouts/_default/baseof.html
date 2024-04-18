@@ -48,13 +48,11 @@
 
   {{ end }}
 
-  <main>
     <div class="wrapper">
       {{ block "main" . }}
 
       {{ end }}
     </div>
-  </main>
  
   {{ $js := resources.Get "js/main.js" | resources.Minify }}
   <script src="{{ $js.Permalink }}"></script>
