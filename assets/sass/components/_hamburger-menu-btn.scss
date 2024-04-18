@@ -1,7 +1,7 @@
 .hamburger-menu-btn {
 	width: 18px;
 	height: 12px;
-	// display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: space-between;
 	transition: transform 0.3s ease;
@@ -28,5 +28,5 @@
 @media (max-width: $breakpoint-sm) {
 .hamburger-menu-btn{
   display: flex;
-  gap: 30px;
+  gap: 3px;
 }}
