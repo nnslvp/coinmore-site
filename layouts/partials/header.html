@@ -1,16 +1,52 @@
 <header class="header">
-	<div class="container">
-		<div class="header__inner">
-			<div class="header__logo"></div>
-			{{ partial "navigation.html" .}}
-    {{ range .Translations }}
-    <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
-    {{ end}}
+  <div class="container">
+    <div class="header__inner">
+      <div class="header__logo">
+        <img src="/icons/logo.svg" alt="logo">
+      </div>
+      <nav class="header__main-nav">
+        <ul class="header__main-nav-list text--medium">
+          <li class="header__main-nav-item">
+            <a href
+              class="link header__main-nav-link">Calculator</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="language-switcher">
+        <div class="language-switcher__lang">
+          <img src="/icons/US.svg" alt="English" class="flag-icon">
+          <span class="language-name">English</span>
+        </div>
+
+        <ul class="dropdown">
+            <a class="dropdown__item" href="#english">
+              <img src="/icons/US.svg" alt="English" class="flag-icon">
+              <span>English</span>
+            </a>
+          </li>
+         
+            <a class="dropdown__item" href="#russian">
+              <img src="/icons/Russia.svg" alt="Russian" class="flag-icon">
+              <span>Russian</span>
+            </a>
+        </ul>
+      </div>
+
+      <div class="hamburger-menu-btn">
+        <div class="hamburger-menu-btn__line"></div>
+        <div class="hamburger-menu-btn__line"></div>
+        <div class="hamburger-menu-btn__line"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 
 			<button class="burger-menu-button" aria-label="Toggle menu">
 				<span class="line"></span>
 				<span class="line"></span>
 				<span class="line"></span>
-			</button>
-		</div>
-	</div>
-</header>
+			</button> -->
+<!-- {{ range .Translations }}
+        <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+        {{ end}} -->
