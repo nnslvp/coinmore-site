@@ -26,6 +26,13 @@ body {
 	background-color: var(--color-white);
 }
 
+
+.horizontal-line{
+    border:none;
+	  border-top: 1px solid rgb(175, 184, 191);
+}
+
+
 .card-coin {
 	width: 326px;
 	padding: 16px;
@@ -40,6 +47,8 @@ body {
 
 .card-coin__info {
 	display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .card-coin__info-text {
@@ -66,7 +75,6 @@ body {
 
 .card-coin__horizontal-line {
 	margin: 12px 0px;
-	border: 1px solid rgb(175, 184, 191);
 }
 
 .card-coin__stats {
