@@ -1,16 +1,15 @@
-.main-home-page section{
-  margin-bottom: 80px;
+.main-home-page section {
+	margin-bottom: 80px;
 }
 
-.section-welcome__page-home{
- background-image: url('/images/bg-top-section.png');
+.section-welcome__page-home {
+	background-image: url('/images/bg-top-section.png');
 }
-
 
 .section-welcome {
 	flex-basis: 640px;
 	color: var(--color-white);
-  background-position: center;
+	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -29,15 +28,56 @@
 	max-width: 500px;
 }
 
-.section-start-mining__inner{
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.section-start-mining__inner {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
 }
 
-.coins-list{
-  display: grid;
-  grid-template-columns: repeat(4, 326px);
-  gap: 12px;
+.coins-list {
+	display: grid;
+	grid-template-columns: repeat(4, 326px);
+	gap: 12px;
 }
 
+@media (max-width: $breakpoint-lg) {
+	.main-home-page section {
+		margin-bottom: 40px;
+	}
+
+	.section-welcome__page-home {
+		background: var(--linear-gradient-primary);
+	}
+
+	.section-welcome {
+		flex-basis: 400px;
+	}
+
+	.section-welcome__text {
+		font-size: var(--font-size-16);
+		line-height: var(--line-height-1-5);
+	}
+
+	.coins-list {
+		grid-template-columns: repeat(2, 338px);
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+  	.main-home-page section:last-child {
+		margin-bottom: 20px;
+	}
+
+	.section-welcome {
+		flex-basis: 305px;
+	}
+
+	.section-welcome__text {
+		font-size: var(--font-size-14);
+		line-height: 21px;
+	}
+
+	.coins-list {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

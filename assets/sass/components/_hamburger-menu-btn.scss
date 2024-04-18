@@ -1,5 +1,4 @@
 .hamburger-menu-btn {
-	display: none;
 	width: 18px;
 	height: 12px;
 	// display: flex;
@@ -25,3 +24,9 @@
 .hamburger-menu-btn.active .hamburger-menu-btn__line:nth-child(3) {
 	transform: translateY(-8px) rotate(-45deg);
 }
+
+@media (max-width: $breakpoint-sm) {
+.hamburger-menu-btn{
+  display: flex;
+  gap: 30px;
+}}
