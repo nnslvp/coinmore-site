@@ -4,6 +4,7 @@
 @import './icons';
 @import './buttons';
 @import './components/coin-card';
+@import './components/input';
 @import './header';
 @import './footer';
 @import './home-page';
@@ -74,12 +75,115 @@ a {
 	font-weight: 700;
 	font-size: 32px;
 	margin: 0;
-  @media (max-width: $breakpoint-lg) {
-		
+	@media (max-width: $breakpoint-lg) {
 	}
 
 	@media (max-width: $breakpoint-sm) {
-	font-size: var(--font-size-24);
-  line-height: 36px;
+		font-size: var(--font-size-24);
+		line-height: 36px;
 	}
+}
+
+.subtitle {
+	font-size: var(--font-size-18);
+	line-height: 32.4px;
+	max-width: 500px;
+}
+
+.benefits-container {
+	display: flex;
+	gap: 20px;
+}
+
+.benefit-item {
+	flex-basis: 203px;
+	padding: 10px 15px 10px 12px;
+	border: 1px solid rgb(255, 255, 255);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.benefit-item__text {
+	display: block;
+	text-align: center;
+	font-weight: var(--font-weight-medium);
+	line-height: 21px;
+
+	strong {
+		font-weight: var(--font-weight-bold);
+		display: block;
+	}
+}
+
+.section-start {
+	background: rgba(155, 77, 202, 0.05);
+	padding: 80px 0;
+}
+
+.section-start__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.section-start__subtitle {
+	max-width: 800px;
+	text-align: center;
+	color: var(--color-text-body);
+}
+
+.section-start__search {
+	padding-top: 40px;
+}
+
+.section-start__search-form {
+	display: flex;
+  gap: 20px;
+}
+
+.section-start__search-form .input {
+	width: 800px;
+}
+
+
+.section-coin__inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0 40px 0;
+}
+
+.section-coin__h1{
+  margin-bottom: 20px;
+}
+
+.section-coin__subtitle{
+  margin-bottom: 32px;
+}
+
+
+.table-servers {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.table-servers thead {
+  background-color: #eee;
+  text-align: left;
+}
+
+.table-servers th, .table-servers td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table-servers tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-servers tbody tr:nth-child(even) {
+  background-color: #ffffff;
 }

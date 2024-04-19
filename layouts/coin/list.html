@@ -1,15 +1,179 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href=""
-      rel="stylesheet"
-    />
-    <title></title>
-  </head>
-  <body>
-    <h1>COIN</h1>
-  </body>
-</html>
+{{ define "main" }}
+<main class="statistics-page">
+  <section class="section-welcome section-welcome__page-home">
+    <div class="container">
+      <div class="section-welcome__inner">
+        <h1 class="heading-h1">Welcome to coinmore.io</h1>
+        <p class="subtitle">
+          Where mining becomes easier and more profitable! Are you looking for a
+          reliable pool with low fees? Do you desire stability and transparent
+          statistics? Look no further! On our platform, you'll find everything
+          for efficient mining, as well as a warm community and tech support
+          ready to assist in any situation. Earn more with lower expenses.
+        </p>
+        <ul class="benefits-container">
+          <li class="benefit-item">
+            <p class="benefit-item__text">
+              <strong>Instant block unlocking</strong>
+              without 500-min delay
+            </p>
+          </li>
+          <li class="benefit-item">
+            <p class="benefit-item__text">
+              Payouts every
+              <strong>30 minutes</strong>
+            </p>
+          </li>
+          <li class="benefit-item">
+            <p class="benefit-item__text">
+              Minimum payout -
+              <strong>0.3 ALPH.</strong>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section-start">
+    <div class="container">
+      <div class="section-start__inner">
+        <h2 class="heading-h1">Quick start</h2>
+        <p class="subtitle section-start__subtitle">
+          Alephium is the first mineable layer 1 sharded blockchain scaling and improving on Bitcoin core technologies,
+          Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
+          efficiency.
+        </p>
+        <search class="section-start__search">
+          <form class="section-start__search-form">
+            <input class="input" name="search" placeholder="Wallet">
+            <button class="btn btn-filled-primary">View personal statistic</button>
+          </form>
+        </search>
+      </div>
+    </div>
+  </section>
+  <section class="section-coin">
+    <div class="container">
+      <div class="section-coin__inner">
+        <h2 class="heading-h1 section-coin__h1">Alephium pool</h2>
+        <p class="subtitle section-coin__subtitle">
+          Please use detailed <a class="link" href="">connection instructions.</a>
+          If you have any questions, please use the <a class="link" href="">FAQ</a>
+        </p>
+        <div class="table-container">
+          <table class="table-servers">
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>Address</th>
+                <th>Port</th>
+                <th>SSL Port</th>
+                <th>Ping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🌎 Region auto detection</td>
+                <td class="host">detect-my-region.alephium-pool.com</td>
+                <td>
+                  <span class="port">20032</span>
+                  <button class="btn   btn-copy">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td>
+                  <span class="port-ssl">20033</span>
+                  <button class="btn   btn-copy button-copy-port-ssl">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td class="ping">
+                  <span id="ping-RegionAutoDetection"></span>
+                </td>
+              </tr>
+              <tr>
+                <td>🇪🇺 Europe</td>
+                <td class="host">eu1.alephium-pool.com</td>
+                <td>
+                  <span class="port">20032</span>
+                  <button class="btn   btn-copy">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td>
+                  <span class="port-ssl">20033</span>
+                  <button class="btn   btn-copy button-copy-port-ssl">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td class="ping">
+                  <span id="ping-Europe" class="fade-in-animation faster">71 ms</span>
+                </td>
+              </tr>
+              <tr>
+                <td>🇷🇺 Russia</td>
+                <td>
+                  <span class="host">ru1.alephium-pool.com</span>
+                </td>
+                <td>
+                  <span class="port">20032</span>
+                  <button class="btn   btn-copy">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td>
+                  <span class="port-ssl">20033</span>
+                  <button class="btn   btn-copy button-copy-port-ssl">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td class="ping">
+                  <span id="ping-Russia" class="fade-in-animation">76 ms</span>
+                </td>
+              </tr>
+              <tr>
+                <td>🇺🇸 US</td>
+                <td class="host">us1.alephium-pool.com</td>
+                <td>
+                  <span class="port">20032</span>
+                  <button class="btn   btn-copy">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td>
+                  <span class="port-ssl">20033</span>
+                  <button class="btn   btn-copy button-copy-port-ssl">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td class="ping">
+                  <span id="ping-US" class="fade-in-animation">131 ms</span>
+                </td>
+              </tr>
+              <tr>
+                <td>🇸🇬 Asia</td>
+                <td class="host">asia1.alephium-pool.com</td>
+                <td>
+                  <span class="port">20032</span>
+                  <button class="btn   btn-copy">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td>
+                  <span class="port-ssl">20033</span>
+                  <button class="btn   btn-copy button-copy-port-ssl">
+                    <i class="icon copy-icon "></i>
+                  </button>
+                </td>
+                <td class="ping">
+                  <span id="ping-Asia" class="fade-in-animation">241 ms</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{ end }}

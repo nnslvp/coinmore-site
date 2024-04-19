@@ -47,13 +47,13 @@
   {{ with hugo.IsProduction }}
 
   {{ end }}
-
     <div class="wrapper">
+      {{partial "header.html" .}}
       {{ block "main" . }}
 
       {{ end }}
+      {{partial "footer.html" .}}
     </div>
- 
   {{ $js := resources.Get "js/main.js" | resources.Minify }}
   <script src="{{ $js.Permalink }}"></script>
 </body>
