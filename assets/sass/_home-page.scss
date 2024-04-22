@@ -43,13 +43,8 @@
 		background: var(--linear-gradient-primary);
 	}
 
-	.section-welcome {
+	.section-welcome__page-home.section-welcome {
 		flex-basis: 400px;
-	}
-
-	.section-welcome__text {
-		font-size: var(--font-size-16);
-		line-height: var(--line-height-1-5);
 	}
 
 	.coins-list {
@@ -58,17 +53,12 @@
 }
 
 @media (max-width: $breakpoint-sm) {
-  	.main-home-page section:last-child {
+	.main-home-page section:last-child {
 		margin-bottom: 20px;
 	}
 
 	.section-welcome {
 		flex-basis: 305px;
-	}
-
-	.section-welcome__text {
-		font-size: var(--font-size-14);
-		line-height: 21px;
 	}
 
 	.coins-list {

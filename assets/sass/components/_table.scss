@@ -3,7 +3,7 @@
 	border-collapse: collapse;
 	min-width: 100%;
 	font-size: 16px;
-	line-height: 24;
+	line-height: 24px;
 	thead,
 	tbody,
 	tr {
@@ -16,6 +16,7 @@
 
 	th,
 	td {
+    color: var(--color-text-body);
 		font-size: 16px;
 		line-height: 24px;
 		border: 1px solid var(--color-text-light-grey);
@@ -37,4 +38,26 @@
 	td:nth-child(odd) {
 		border-top: none;
 	}
+}
+
+
+
+@media (max-width: $breakpoint-lg) {
+.table {
+
+
+	th,
+	td {
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+
+}
+
+
+
+}
+
+@media (max-width: $breakpoint-sm) {
 }
