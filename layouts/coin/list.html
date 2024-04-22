@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main class="statistics-page">
-  <section class="section-welcome section-welcome__page-home">
+  <section class="section-welcome section-welcome__page-coin">
     <div class="container">
       <div class="section-welcome__inner">
         <h1 class="heading-h1">Welcome to coinmore.io</h1>
@@ -14,20 +14,20 @@
         <ul class="benefits-container">
           <li class="benefit-item">
             <p class="benefit-item__text">
-              <strong>Instant block unlocking</strong>
+              <strong class="stat-item__value">Instant block unlocking</strong>
               without 500-min delay
             </p>
           </li>
           <li class="benefit-item">
             <p class="benefit-item__text">
               Payouts every
-              <strong>30 minutes</strong>
+              <strong class="stat-item__value">30 minutes</strong>
             </p>
           </li>
           <li class="benefit-item">
             <p class="benefit-item__text">
               Minimum payout -
-              <strong>0.3 ALPH.</strong>
+              <strong class="stat-item__value">0.3 ALPH.</strong>
             </p>
           </li>
         </ul>
@@ -37,7 +37,7 @@
   <section class="section-start">
     <div class="container">
       <div class="section-start__inner">
-        <h2 class="heading-h1">Alephium pool</h2>
+        <h2 class="heading-h1">Quick start</h2>
         <p class="subtitle section-start__subtitle">
           Alephium is the first mineable layer 1 sharded blockchain scaling and improving on Bitcoin core technologies,
           Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
@@ -62,6 +62,81 @@
         </p>
         <div class="table-container">
          {{partial "table-servers.html" .}}
+        </div>
+      </div>
+      <ul class="stats-container">
+        <li class="stat-item">
+              <i class="icon speed-icon"></i>
+          <div class="stat-item__content">
+            <p class="stat-item__lable">Pool hashrate:</p>
+            <strong class="stat-item__value">4.83 TH/s</strong>
+          </div>
+        </li>
+        <li class="stat-item">
+          <i class="icon coins-icon"></i>
+          <div class="stat-item__content">
+            <p class="stat-item__lable">Profit per GH:</p>
+            <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+          </div>
+        </li>
+        <li class="stat-item">
+          <i class="icon grid-icon"></i>
+          <div class="stat-item__content">
+            <p class="stat-item__lable">24h Blocks:</p>
+            <strong class="stat-item__value">281</strong>
+          </div>
+        </li>
+        <li class="stat-item">
+          <i class="icon cube-icon"></i>
+          <div class="stat-item__content">
+            <p class="stat-item__lable">Latest Block at:</p>
+            <strong class="stat-item__value">1.42 hour(s)</strong>
+          </div>
+        </li>
+        <li class="stat-item">
+          <i class="icon people-icon"></i>
+          <div class="stat-item__content">
+            <p class="stat-item__lable">Workers Online:</p>
+            <strong class="stat-item__value">106</strong>
+          </div>
+        </li>
+      </ul>
+      <div class="chart-container chart-hashrate">
+        <div class="chart-header">
+          <h2 class="heading-h2">Pool hashrate</h2>
+          <div class="chart-interval">
+            <span class="tab tab-border-radius-around-left">1 hour</span>
+            <span class="tab tab-border-radius-around-right active">24 hours</span>
+          </div>
+        </div>
+        <div class="chart">
+          Тут будет график 
+        </div>
+      </div>
+      
+      <div class="chart-container chart-profit">
+        <div class="chart-header">
+          <h2 class="heading-h2">Profit per GH</h2>
+          <div class="chart-interval">
+            <button class="tab tab-border-radius-around-left">1 hour</button>
+            <button class="tab tab-border-radius-around-right active">24 hours</button>
+          </div>
+        </div>
+        <div class="chart">
+          Тут будет график
+        </div>
+      </div>
+      
+      <div class="chart-container chart-workers">
+        <div class="chart-header">
+          <h2 class="heading-h2">Workers activity</h2>
+          <div class="chart-interval">
+            <button class="tab tab-border-radius-around-left">1 hour</button>
+            <button class="tab tab-border-radius-around-right active">24 hours</button>
+          </div>
+        </div>
+        <div class="chart">
+          Тут будет график
         </div>
       </div>
     </div>
