@@ -15,6 +15,10 @@ $breakpoint-xxl: 1440px;
 	--color-primary: #9b4dca; /* Основной фиолетовый */
 	--color-primary-hover: #61148f;
 	--color-primary-hover-0-05-opacity: rgba(155, 77, 202, 0.05);
+	--color-box-shadow-card-coin: rgba(0, 0, 0, 0.25);
+	--color-box-shadow-card-coin-hover: rgba(0, 0, 0, 0.4);
+	--light-blue-semi-transparent: var(--light-blue-semi-transparent);
+	--semi-transparent-black-light: rgba(0, 0, 0, 0.2);
 
 	/* Стили текста и фона */
 	--color-white: #ffffff;
@@ -57,6 +61,7 @@ $breakpoint-xxl: 1440px;
 	--line-height-auto: auto;
 	--line-height-1-5: 1.5;
 	--line-height-1-8: 1.8;
+	--line-height-21: 21px;
 }
 
 /* Примеры использования переменных */

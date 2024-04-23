@@ -51,7 +51,6 @@ main {
 		max-width: calc(var(--container-width-1024) + var(--container-padding) * 2);
 	}
 
-  
 	@media (max-width: $breakpoint-lg) {
 		max-width: calc(var(--container-width-768) + var(--container-padding) * 2);
 	}
@@ -73,7 +72,7 @@ a {
 .heading-h1 {
 	font-weight: 700;
 	font-size: 32px;
-  line-height: 48px;
+	line-height: 48px;
 	margin: 0;
 	@media (max-width: $breakpoint-lg) {
 	}
@@ -107,7 +106,7 @@ a {
 
 	@media (max-width: $breakpoint-sm) {
 		font-size: var(--font-size-14);
-		line-height: 21px;
+		line-height: var(--line-height-21);
 	}
 }
 
