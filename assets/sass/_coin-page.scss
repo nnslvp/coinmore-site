@@ -75,30 +75,6 @@
 	margin-bottom: 32px;
 }
 
-.stats-container {
-	display: flex;
-	justify-content: space-around;
-	gap: 12px;
-	margin-bottom: 20px;
-}
-
-.stat-item {
-	flex: 1;
-	display: flex;
-	align-items: center;
-	gap: 16px;
-	padding: 12px;
-	border: 1px solid var(--color-text-light-grey);
-	border-radius: 10px;
-}
-
-.stat-item__content {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	line-height: 21px;
-}
-
 .chart-interval {
 	display: flex;
 }
@@ -159,22 +135,6 @@
 
 	.section-coin__inner {
 		padding: 40px 0 40px;
-	}
-
-	.stats-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 12px;
-		margin-bottom: 20px;
-	}
-
-	.stat-item {
-		flex-direction: column;
-		padding: 22.5px 11px 22.5px 11px;
-	}
-
-	.stat-item__content {
-		text-align: center;
 	}
 
 	.chart-hashrate {
