@@ -96,6 +96,8 @@ a {
 	line-height: 30px;
 
 	@media (max-width: $breakpoint-sm) {
+		font-size: var(--font-size-16);
+		line-height: 24px;
 	}
 }
 
@@ -246,10 +248,19 @@ a {
 .chart-workers,
 .chart-profit {
 	display: inline-block;
+	margin-right: -4px;
 	width: 660px;
 }
 
+.chart-workers {
+	margin-left: 20px;
+}
+
 @media (max-width: $breakpoint-lg) {
+	.section-welcome__page-coin {
+		background: var(--linear-gradient-primary);
+	}
+
 	.section-welcome__page-coin.section-welcome {
 		flex-basis: 434px;
 	}
@@ -268,7 +279,7 @@ a {
 
 	.stats-container {
 		display: flex;
-
+		flex-wrap: wrap;
 		gap: 12px;
 		margin-bottom: 20px;
 	}
@@ -329,5 +340,19 @@ a {
 
 	.section-start__search {
 		padding-top: 20px;
+	}
+
+	.chart-container {
+		padding: 20px;
+	}
+
+	.chart-workers,
+	.chart-profit {
+		display: block;
+		margin-right: 0px;
+	}
+
+	.chart-workers {
+		margin-left: 0px;
 	}
 }

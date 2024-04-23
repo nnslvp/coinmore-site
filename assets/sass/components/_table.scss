@@ -24,18 +24,18 @@
 		padding: 10px 12px;
 	}
 
-	:where(th:nth-child(even)) {
+	th:nth-child(even) {
 		border-left: none;
 		border-right: none;
 	}
 
-	:where(td:nth-child(even)) {
+	td:nth-child(even) {
 		border-left: none;
 		border-right: none;
 		border-top: none;
 	}
 
-	:where(td:nth-child(odd)) {
+	td:nth-child(odd) {
 		border-top: none;
 	}
 
@@ -93,7 +93,9 @@
 
 @media (max-width: $breakpoint-sm) {
 	.table.table-servers {
-		grid-template-columns: 1fr;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
 
 		th {
 			display: none;
@@ -107,11 +109,13 @@
 		.port-cell,
 		.ping-cell {
 			display: inline-block;
-			width: 33.33%;
+			margin-right: -4px;
+			width: 90.33px;
 		}
 
-		.ssl-port-cell {
-			margin: 0 20px;
+		.ssl-port-cell,
+		.ping-cell {
+			margin-left: 20px;
 		}
 
 		.region-cell {
@@ -133,12 +137,6 @@
 		td {
 			border: none;
 			padding: 0;
-		}
-
-		tbody {
-			display: flex;
-			flex-direction: column;
-			gap: 12px;
 		}
 
 		tbody tr {
