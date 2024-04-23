@@ -1,24 +1,41 @@
 .table.table-servers {
-		grid-template-columns:
-			minmax(240px, 1fr)
-			minmax(400px, 1fr)
-			minmax(154px, 1fr)
-			minmax(154px, 1fr)
-			minmax(154px, 1fr);
+	grid-template-columns:
+		minmax(240px, 1fr)
+		minmax(400px, 1fr)
+		minmax(154px, 1fr)
+		minmax(154px, 1fr)
+		minmax(154px, 1fr);
 
-		.ssl-port-cell,
-		.port-cell {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-
-		.region-cell {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-		}
+	.ssl-port-cell,
+	.port-cell {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
+
+	.region-cell {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+}
+
+@media (max-width: $breakpoint-xl) {
+	.table.table-servers {
+		grid-template-columns:
+			minmax(239px, 1fr)
+			minmax(347px, 1fr)
+			minmax(119px, 1fr)
+			minmax(119px, 1fr)
+			minmax(119px, 1fr);
+	}
+
+	.region-cell {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+}
 
 @media (max-width: $breakpoint-lg) {
 	.table.table-servers {

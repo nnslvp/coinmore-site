@@ -40,6 +40,12 @@
 	gap: 12px;
 }
 
+@media (max-width: $breakpoint-xl) {
+	.coins-list {
+		grid-template-columns: repeat(3, 306px);
+	}
+}
+
 @media (max-width: $breakpoint-lg) {
 	.main-home-page section {
 		margin-bottom: 40px;
