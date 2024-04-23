@@ -1,45 +1,4 @@
-.table {
-	display: grid;
-	border-collapse: collapse;
-	min-width: 100%;
-	font-size: 16px;
-	line-height: 24px;
-	thead,
-	tbody,
-	tr {
-		display: contents;
-	}
-
-	th {
-		background-color: var(--color-primary-hover-0-05-opacity);
-	}
-
-	th,
-	td {
-		color: var(--color-text-body);
-		font-size: 16px;
-		line-height: 24px;
-		border: 1px solid var(--color-text-light-grey);
-		text-align: left;
-		padding: 10px 12px;
-	}
-
-	:where(th:nth-child(even)) {
-		border-left: none;
-		border-right: none;
-	}
-
-	:where(td:nth-child(even)) {
-		border-left: none;
-		border-right: none;
-		border-top: none;
-	}
-
-	:where(td:nth-child(odd)) {
-		border-top: none;
-	}
-
-	&.table-servers {
+.table.table-servers {
 		grid-template-columns:
 			minmax(240px, 1fr)
 			minmax(400px, 1fr)
@@ -47,13 +6,34 @@
 			minmax(154px, 1fr)
 			minmax(154px, 1fr);
 
-		td:has(.btn-copy) {
+		.ssl-port-cell,
+		.port-cell {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 		}
 
-		:where(td:nth-child(1)) {
+		.region-cell {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+	}
+
+@media (max-width: $breakpoint-lg) {
+	.table.table-servers {
+		grid-template-columns:
+			minmax(149px, 1fr)
+			minmax(308px, 1fr)
+			minmax(75px, 1fr)
+			minmax(85px, 1fr)
+			minmax(75px, 1fr);
+
+		.btn-copy {
+			display: none;
+		}
+
+		.region-cell {
 			display: flex;
 			align-items: center;
 			gap: 12px;
@@ -61,66 +41,43 @@
 	}
 }
 
-@media (max-width: $breakpoint-lg) {
-	.table {
-		th,
-		td {
-			font-size: 14px;
-			line-height: 21px;
-		}
-
-		&.table-servers {
-			grid-template-columns:
-				minmax(149px, 1fr)
-				minmax(308px, 1fr)
-				minmax(75px, 1fr)
-				minmax(85px, 1fr)
-				minmax(75px, 1fr);
-
-			.btn-copy {
-				display: none;
-			}
-
-			:where(td:nth-child(1)) {
-				display: flex;
-				align-items: center;
-				gap: 12px;
-			}
-		}
-	}
-}
-
 @media (max-width: $breakpoint-sm) {
 	.table.table-servers {
-		grid-template-columns: 1fr;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
 
 		th {
 			display: none;
 		}
 
-		td:not(:nth-child(1)) {
+		td:not(.region-cell) {
 			font-weight: var(--font-weight-bold);
 		}
 
-		td:nth-child(n + 3) {
+		.ssl-port-cell,
+		.port-cell,
+		.ping-cell {
 			display: inline-block;
-			width: 28%;
+			margin-right: -4px;
+			width: 90.33px;
 		}
 
-		td[data='SSL Port'] {
-			margin: 0 20px;
+		.ssl-port-cell,
+		.ping-cell {
+			margin-left: 20px;
 		}
 
-		td:not([data]) {
+		.region-cell {
 			margin-bottom: 20px;
 		}
 
-		td[data='Address'] {
+		.address-cell {
 			display: block;
 			margin-bottom: 20px;
 		}
 
-		td:nth-child(n + 2)::before {
+		:where(.ssl-port-cell, .port-cell, .ping-cell)::before {
 			content: attr(data) ':';
 			display: block;
 			font-weight: initial;
@@ -130,12 +87,6 @@
 		td {
 			border: none;
 			padding: 0;
-		}
-
-		tbody {
-			display: flex;
-			flex-direction: column;
-			gap: 12px;
 		}
 
 		tbody tr {

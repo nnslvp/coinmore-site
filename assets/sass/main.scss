@@ -7,6 +7,7 @@
 @import './components/input';
 @import './components/table';
 @import './components/tab';
+@import './components/table-servers';
 @import './header';
 @import './footer';
 @import './home-page';
@@ -170,6 +171,7 @@ a {
 
 .section-start__search-form {
 	display: flex;
+	justify-content: center;
 	gap: 20px;
 }
 
@@ -254,6 +256,24 @@ a {
 
 .chart-workers {
 	margin-left: 20px;
+	margin-bottom: 40px;
+}
+
+@media (max-width: $breakpoint-xl) {
+	.chart-workers,
+	.chart-profit {
+		display: block;
+		width: 100%;
+		margin-right: 0px;
+	}
+
+	.chart-workers {
+		margin-left: 0px;
+	}
+
+	.chart-profit {
+		margin-bottom: 20px;
+	}
 }
 
 @media (max-width: $breakpoint-lg) {
@@ -340,19 +360,5 @@ a {
 
 	.section-start__search {
 		padding-top: 20px;
-	}
-
-	.chart-container {
-		padding: 20px;
-	}
-
-	.chart-workers,
-	.chart-profit {
-		display: block;
-		margin-right: 0px;
-	}
-
-	.chart-workers {
-		margin-left: 0px;
 	}
 }

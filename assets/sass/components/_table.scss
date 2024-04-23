@@ -38,28 +38,6 @@
 	td:nth-child(odd) {
 		border-top: none;
 	}
-
-	&.table-servers {
-		grid-template-columns:
-			minmax(240px, 1fr)
-			minmax(400px, 1fr)
-			minmax(154px, 1fr)
-			minmax(154px, 1fr)
-			minmax(154px, 1fr);
-
-		.ssl-port-cell,
-		.port-cell {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-
-		.region-cell {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-		}
-	}
 }
 
 @media (max-width: $breakpoint-lg) {
@@ -69,81 +47,10 @@
 			font-size: 14px;
 			line-height: 21px;
 		}
-
-		&.table-servers {
-			grid-template-columns:
-				minmax(149px, 1fr)
-				minmax(308px, 1fr)
-				minmax(75px, 1fr)
-				minmax(85px, 1fr)
-				minmax(75px, 1fr);
-
-			.btn-copy {
-				display: none;
-			}
-
-			.region-cell {
-				display: flex;
-				align-items: center;
-				gap: 12px;
-			}
-		}
 	}
 }
 
 @media (max-width: $breakpoint-sm) {
-	.table.table-servers {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-
-		th {
-			display: none;
-		}
-
-		td:not(.region-cell) {
-			font-weight: var(--font-weight-bold);
-		}
-
-		.ssl-port-cell,
-		.port-cell,
-		.ping-cell {
-			display: inline-block;
-			margin-right: -4px;
-			width: 90.33px;
-		}
-
-		.ssl-port-cell,
-		.ping-cell {
-			margin-left: 20px;
-		}
-
-		.region-cell {
-			margin-bottom: 20px;
-		}
-
-		.address-cell {
-			display: block;
-			margin-bottom: 20px;
-		}
-
-		:where(.ssl-port-cell, .port-cell, .ping-cell)::before {
-			content: attr(data) ':';
-			display: block;
-			font-weight: initial;
-			margin-bottom: 4px;
-		}
-
-		td {
-			border: none;
-			padding: 0;
-		}
-
-		tbody tr {
-			display: block;
-			box-shadow: 0px 4px 10px 0px #00000040;
-			border-radius: 10px;
-			padding: 16px;
-		}
+	.table {
 	}
 }
