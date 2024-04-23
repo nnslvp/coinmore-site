@@ -1,0 +1,223 @@
+.section-welcome__page-coin {
+	background-image: url('/images/bg-two-top-section.png');
+}
+
+.benefits-container {
+	display: flex;
+	gap: 20px;
+}
+
+.benefit-item {
+	flex-basis: 203px;
+	padding: 10px 12px 10px 12px;
+	border: 1px solid var(--color-white);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.benefit-item__text {
+	display: block;
+	text-align: center;
+	font-weight: var(--font-weight-medium);
+	line-height: 21px;
+
+	strong {
+		display: block;
+	}
+}
+
+.section-start {
+	background: var(--color-primary-hover-0-05-opacity);
+	padding: 80px 0;
+}
+
+.section-start__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.section-start__subtitle {
+	max-width: 800px;
+	text-align: center;
+	color: var(--color-text-body);
+}
+
+.section-start__search {
+	padding-top: 40px;
+}
+
+.section-start__search-form {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.section-start__search-form .input {
+	width: 800px;
+}
+
+.section-coin__inner {
+	display: flex;
+	flex-direction: column;
+	padding: 80px 0 40px 0;
+}
+
+.section-coin__h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.section-coin__subtitle {
+	text-align: center;
+	margin-bottom: 32px;
+}
+
+.stats-container {
+	display: flex;
+	justify-content: space-around;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.stat-item {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 12px;
+	border: 1px solid var(--color-text-light-grey);
+	border-radius: 10px;
+}
+
+.stat-item__content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	line-height: 21px;
+}
+
+.chart-interval {
+	display: flex;
+}
+
+.chart-hashrate {
+	margin-bottom: 20px;
+}
+
+.chart-profit {
+	margin-right: 15px;
+}
+
+.chart-workers,
+.chart-profit {
+	display: inline-block;
+	margin-right: -4px;
+	width: 660px;
+}
+
+.chart-workers {
+	margin-left: 20px;
+	margin-bottom: 40px;
+}
+
+@media (max-width: $breakpoint-xl) {
+	.chart-workers,
+	.chart-profit {
+		display: block;
+		width: 100%;
+		margin-right: 0px;
+	}
+
+	.chart-workers {
+		margin-left: 0px;
+	}
+
+	.chart-profit {
+		margin-bottom: 20px;
+	}
+}
+
+@media (max-width: $breakpoint-lg) {
+	.section-welcome__page-coin {
+		background: var(--linear-gradient-primary);
+	}
+
+	.section-welcome__page-coin.section-welcome {
+		flex-basis: 434px;
+	}
+
+	.section-start {
+		padding: 40px 0;
+	}
+
+	.section-start__search-form .input {
+		width: 461px;
+	}
+
+	.section-coin__inner {
+		padding: 40px 0 40px;
+	}
+
+	.stats-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-bottom: 20px;
+	}
+
+	.stat-item {
+		flex-direction: column;
+		padding: 22.5px 11px 22.5px 11px;
+	}
+
+	.stat-item__content {
+		text-align: center;
+	}
+
+	.chart-hashrate {
+		margin-bottom: 20px;
+	}
+
+	.chart-profit {
+		margin-right: 0;
+	}
+
+	.chart-workers,
+	.chart-profit {
+		display: block;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	.section-welcome__page-coin.section-welcome {
+		flex-basis: 490px;
+	}
+
+	.benefits-container {
+		gap: 12px;
+	}
+
+	.benefit-item {
+		align-content: center;
+	}
+
+	.section-start__search-form {
+		flex-direction: column;
+		.input {
+			width: 100%;
+		}
+	}
+
+	.section-start__inner {
+		gap: 12px;
+	}
+
+	.section-start__search {
+		padding-top: 20px;
+	}
+}
