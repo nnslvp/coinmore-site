@@ -1,6 +1,7 @@
 .btn {
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	color: var(--color-white);
 	background-color: inherit;
 	border: none;
@@ -8,6 +9,7 @@
 	font-weight: var(--font-weight-medium);
 	line-height: 21px;
 	cursor: pointer;
+	transition: all 0.3s ease;
 	&:hover {
 		background-color: var(--color-primary-hover-0-05-opacity);
 	}
