@@ -33,6 +33,10 @@ body {
 	background-color: var(--color-white);
 }
 
+search {
+	width: 100%;
+}
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -90,7 +94,7 @@ a {
 	font-size: var(--font-size-20);
 	font-weight: var(--font-weight-bold);
 	line-height: 30px;
-  
+
 	@media (max-width: $breakpoint-sm) {
 	}
 }
@@ -135,7 +139,6 @@ a {
 	line-height: 21px;
 
 	strong {
-		font-weight: var(--font-weight-bold);
 		display: block;
 	}
 }
@@ -175,37 +178,17 @@ a {
 .section-coin__inner {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	padding: 80px 0 40px 0;
 }
 
 .section-coin__h1 {
+	text-align: center;
 	margin-bottom: 20px;
 }
 
 .section-coin__subtitle {
+	text-align: center;
 	margin-bottom: 32px;
-}
-
-.table-servers {
-	grid-template-columns:
-		minmax(240px, 1fr)
-		minmax(400px, 1fr)
-		minmax(154px, 1fr)
-		minmax(154px, 1fr)
-		minmax(154px, 1fr);
-
-	td:has(.btn-copy) {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	td:nth-child(1) {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-	}
 }
 
 .stats-container {
@@ -267,10 +250,6 @@ a {
 }
 
 @media (max-width: $breakpoint-lg) {
-	.section-welcome__page-coin {
-		background: var(--linear-gradient-primary);
-	}
-
 	.section-welcome__page-coin.section-welcome {
 		flex-basis: 434px;
 	}
@@ -285,25 +264,6 @@ a {
 
 	.section-coin__inner {
 		padding: 40px 0 40px;
-	}
-
-	.table-servers {
-		grid-template-columns:
-			minmax(149px, 1fr)
-			minmax(308px, 1fr)
-			minmax(75px, 1fr)
-			minmax(85px, 1fr)
-			minmax(75px, 1fr);
-
-		.btn-copy {
-			display: none;
-		}
-
-		td:nth-child(1) {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-		}
 	}
 
 	.stats-container {
@@ -344,4 +304,30 @@ a {
 }
 
 @media (max-width: $breakpoint-sm) {
+	.section-welcome__page-coin.section-welcome {
+		flex-basis: 490px;
+	}
+
+	.benefits-container {
+		gap: 12px;
+	}
+
+	.benefit-item {
+		align-content: center;
+	}
+
+	.section-start__search-form {
+		flex-direction: column;
+		.input {
+			width: 100%;
+		}
+	}
+
+	.section-start__inner {
+		gap: 12px;
+	}
+
+	.section-start__search {
+		padding-top: 20px;
+	}
 }

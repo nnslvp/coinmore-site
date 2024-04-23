@@ -104,7 +104,7 @@
 
 		td:nth-child(n + 3) {
 			display: inline-block;
-			width: 90.33px;
+			width: 28%;
 		}
 
 		td[data='SSL Port'] {
@@ -119,10 +119,6 @@
 			display: block;
 			margin-bottom: 20px;
 		}
-
-		// .values-container{
-		//   dis
-		// }
 
 		td:nth-child(n + 2)::before {
 			content: attr(data) ':';
