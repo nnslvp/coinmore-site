@@ -1,4 +1,4 @@
-{{ define "main" }} 
+{{ define "main" }}
 <main class="main-home-page">
   <a href="{{ .Site.BaseURL }}/coin/alephium/">coion page</a>
   <section class="section-welcome section-welcome__page-home">
@@ -18,7 +18,12 @@
   <section class="section-start-mining">
     <div class="container">
       <div class="section-start-mining__inner">
-        <h2 class="heading-h1">Start mining with us</h2>
+        <header class="section-start-mining__header">
+          <h2 class="heading-h1">Start mining with us</h2>
+          <a href="#" class="btn btn-outline-primary">
+            <i class=" icon calculator-icon-primary"></i>
+            Mining calculator</a>
+        </header>
         <ul class="coins-list">
           <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
           <li class="coins-list__item">{{partial "coin-card.html" .}}</li>

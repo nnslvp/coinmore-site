@@ -28,6 +28,12 @@
 	gap: 32px;
 }
 
+.section-start-mining__header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
 .coins-list {
 	display: grid;
 	grid-template-columns: repeat(4, 326px);
@@ -59,6 +65,11 @@
 
 	.section-welcome {
 		flex-basis: 305px;
+	}
+
+	.section-start-mining__header {
+		gap: 20px;
+		justify-content: center;
 	}
 
 	.coins-list {

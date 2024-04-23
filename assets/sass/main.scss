@@ -2,6 +2,7 @@
 @import './normalize';
 @import './variables';
 @import './icons';
+@import './gloabal';
 @import './buttons';
 @import './components/coin-card';
 @import './components/input';
@@ -13,109 +14,3 @@
 @import './footer';
 @import './home-page';
 @import './coin-page';
-
-*,
-*::before,
-*::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-html,
-body {
-	scrollbar-gutter: stable;
-	scroll-behavior: smooth;
-	height: 100%;
-}
-
-body {
-	font-family: var(--font-family);
-	font-weight: var(--font-weight-regular);
-	font-size: var(--font-size-14);
-	background-color: var(--color-white);
-}
-
-search {
-	width: 100%;
-}
-
-main {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-}
-
-.wrapper {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.horizontal-line {
-	border: none;
-	border-top: 1px solid rgb(175, 184, 191);
-}
-
-.container {
-	width: calc(var(--container-width) + var(--container-padding) * 2);
-	padding: 0 var(--container-padding);
-	height: 100%;
-	margin: 0 auto;
-	@media (max-width: $breakpoint-lg) {
-		max-width: calc(var(--container-width-768) + var(--container-padding) * 2);
-	}
-
-	@media (max-width: $breakpoint-sm) {
-		max-width: calc(var(--container-width-375) + var(--container-padding) * 2);
-	}
-}
-
-a {
-	text-decoration: none;
-}
-
-.link {
-	font-weight: var(--font-weight-semibold);
-	font-size: var(--font-size-16);
-}
-
-.heading-h1 {
-	font-weight: 700;
-	font-size: 32px;
-	margin: 0;
-	@media (max-width: $breakpoint-lg) {
-	}
-
-	@media (max-width: $breakpoint-sm) {
-		font-size: var(--font-size-24);
-		line-height: 36px;
-	}
-}
-
-.heading-h2 {
-	font-size: var(--font-size-20);
-	font-weight: var(--font-weight-bold);
-	line-height: 30px;
-
-	@media (max-width: $breakpoint-sm) {
-		font-size: var(--font-size-16);
-		line-height: 24px;
-	}
-}
-
-.subtitle {
-	font-size: var(--font-size-18);
-	line-height: 32.4px;
-	max-width: 500px;
-
-	@media (max-width: $breakpoint-lg) {
-		font-size: var(--font-size-16);
-		line-height: var(--line-height-1-5);
-	}
-
-	@media (max-width: $breakpoint-sm) {
-		font-size: var(--font-size-14);
-		line-height: 21px;
-	}
-}

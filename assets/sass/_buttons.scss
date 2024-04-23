@@ -1,6 +1,6 @@
 .btn {
-	text-align: center;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	color: var(--color-white);
 	background-color: inherit;
 	border: none;
@@ -16,6 +16,9 @@
 	}
 	&:disabled {
 		opacity: 0.5;
+	}
+	&:has(.icon) {
+		gap: 10px;
 	}
 }
 
