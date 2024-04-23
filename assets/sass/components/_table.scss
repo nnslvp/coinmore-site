@@ -47,13 +47,14 @@
 			minmax(154px, 1fr)
 			minmax(154px, 1fr);
 
-		td:has(.btn-copy) {
+		.ssl-port-cell,
+		.port-cell {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 		}
 
-		:where(td:nth-child(1)) {
+		.region-cell {
 			display: flex;
 			align-items: center;
 			gap: 12px;
@@ -81,7 +82,7 @@
 				display: none;
 			}
 
-			:where(td:nth-child(1)) {
+			.region-cell {
 				display: flex;
 				align-items: center;
 				gap: 12px;
@@ -98,33 +99,31 @@
 			display: none;
 		}
 
-		td:not(:nth-child(1)) {
+		td:not(.region-cell) {
 			font-weight: var(--font-weight-bold);
 		}
 
-		td:nth-child(n + 3) {
+		.ssl-port-cell,
+		.port-cell,
+		.ping-cell {
 			display: inline-block;
-			width: 90.33px;
+			width: 33.33%;
 		}
 
-		td[data='SSL Port'] {
+		.ssl-port-cell {
 			margin: 0 20px;
 		}
 
-		td:not([data]) {
+		.region-cell {
 			margin-bottom: 20px;
 		}
 
-		td[data='Address'] {
+		.address-cell {
 			display: block;
 			margin-bottom: 20px;
 		}
 
-		// .values-container{
-		//   dis
-		// }
-
-		td:nth-child(n + 2)::before {
+		:where(.ssl-port-cell, .port-cell, .ping-cell)::before {
 			content: attr(data) ':';
 			display: block;
 			font-weight: initial;
