@@ -18,7 +18,7 @@
           <label class="label" for="currency">Currency *</label>
           <div class="custom-select">
             <select>
-              <option value="0">Select car:</option>
+              <option value="0">Select currency</option>
               <option value="1">Audi</option>
               <option value="2">BMW</option>
             </select>
@@ -26,15 +26,15 @@
         </li>
         <li class="input-container">
           <label class="label" for="hashrate">Hashrate (GH/s) *</label>
-          <input class="input" type="number" id="hashrate" name="hashrate">
+          <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate">
         </li>
         <li class="input-container">
           <label class="label" for="power-consumption">Power consumption (W) *</label>
-          <input class="input" type="number" id="power-consumption" name="power-consumption">
+          <input class="input" placeholder="12" type="number" id="power-consumption" name="power-consumption">
         </li>
         <li class="input-container">
           <label class="label" for="electricity-costs">Electricity costs (USD/kWh)</label>
-          <input class="input" type="number" id="electricity-costs" name="electricity-costs">
+          <input class="input" placeholder="1000" type="number" id="electricity-costs" name="electricity-costs">
         </li>
         <button class="btn btn-filled-primary calculate-btn">Calculate</button>
       </ul>
@@ -51,51 +51,52 @@
           </thead>
           <tbody>
             <tr>
-              <td class="period-cell">
-                1 hour
+              <td data="Period" class="period-cell">
+                <span class="period-value">1 hour
+                </span>
               </td>
-              <td class="reward-cell" data="Address">
-                <strong class="reward-value">0.0068 ALPH</strong>
+              <td class="reward-cell" data="Est. reward">
+                <span class="reward-value">0.0068 ALPH</span>
               </td>
-              <td class="income-cell" data="Port">
+              <td class="income-cell" data="Est. income">
                 <span class="income-value">0.0168 USD</span>
               </td>
-              <td class="electricity-costs-cell" data="SSL Port">
+              <td class="electricity-costs-cell" data="Electricity costs">
                 <span class="electricity-costs__value">- 0.0000 USD</span>
               </td>
-              <td class="profit-cell" data="profit">
-                <span id="profit-RegionAutoDetection">0.0168 USD</span>
+              <td class="profit-cell" data="Est. profit">
+                <span id="profit-value">0.0168 USD</span>
               </td>
             </tr>
             <tr>
-              <td class="period-cell">24 hour</td>
-              <td class="reward-cell" data="Address">
-                <strong class="reward-value">0.0068 ALPH</strong>
+              <td data="Period" class="period-cell">24 hour</td>
+              <td class="reward-cell" data="Est. reward">
+                <span class="reward-value">0.0068 ALPH</span>
               </td>
-              <td class="income-cell" data="Port">
+              <td class="income-cell" data="Est. income">
                 <span class="income-value">0.0168 USD</span>
               </td>
-              <td class="electricity-costs-cell" data="SSL Port">
+              <td class="electricity-costs-cell" data="Electricity costs">
                 <span class="electricity-costs__value">- 0.0000 USD</span>
               </td>
-              <td class="profit-cell" data="profit">
+              <td class="profit-cell" data="Est. profit">
                 <span id="profit-Europe" class="profit-value">0.0168 USD</span>
               </td>
             </tr>
             <tr>
-              <td class="period-cell">
+              <td data="Period" class="period-cell">
                 7 hour
               </td>
-              <td class="reward-cell" data="Address">
+              <td class="reward-cell" data="Est. reward">
                 <strong class="reward-value">0.0068 ALPH</strong>
               </td>
-              <td class="income-cell" data="Port">
+              <td class="income-cell" data="Est. income">
                 <span class="income-value">0.0168 USD</span>
               </td>
-              <td class="electricity-costs-cell" data="SSL Port">
+              <td class="electricity-costs-cell" data="Electricity costs">
                 <span class="electricity-costs__value">- 0.0000 USD</span>
               </td>
-              <td class="profit-cell" data="profit">
+              <td class="profit-cell" data="Est. profit">
                 <span id="profit-Russia" class="profit-value">0.0168 USD</span>
               </td>
             </tr>
