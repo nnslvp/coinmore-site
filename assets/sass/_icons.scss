@@ -12,6 +12,18 @@
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none'%3E%3Cg fill='%239B4DCA' clip-path='url(%23a)'%3E%3Cpath d='M19.5.75h-15A3.754 3.754 0 0 0 .75 4.5v15a3.754 3.754 0 0 0 3.75 3.75h15a3.754 3.754 0 0 0 3.75-3.75v-15A3.754 3.754 0 0 0 19.5.75Zm2.25 3.75v6.75h-9v-9h6.75c1.24 0 2.25 1.01 2.25 2.25ZM4.5 2.25h6.75v9h-9V4.5c0-1.24 1.01-2.25 2.25-2.25ZM2.25 19.5v-6.75h9v9H4.5c-1.24 0-2.25-1.01-2.25-2.25Zm17.25 2.25h-6.75v-9h9v6.75c0 1.24-1.01 2.25-2.25 2.25Z'/%3E%3Cpath d='M4.5 7.5H6V9a.75.75 0 0 0 1.5 0V7.5H9A.75.75 0 0 0 9 6H7.5V4.5a.75.75 0 0 0-1.5 0V6H4.5a.75.75 0 0 0 0 1.5Zm10.5 0h4.5a.75.75 0 1 0 0-1.5H15a.75.75 0 1 0 0 1.5ZM19.5 18H15a.75.75 0 1 0 0 1.5h4.5a.75.75 0 1 0 0-1.5Zm0-3H15a.75.75 0 1 0 0 1.5h4.5a.75.75 0 1 0 0-1.5ZM7.81 17.25l1.061-1.06a.75.75 0 1 0-1.06-1.061l-1.061 1.06-1.06-1.06a.75.75 0 0 0-1.061 1.06l1.06 1.061-1.06 1.061a.75.75 0 1 0 1.06 1.06l1.061-1.06 1.06 1.06a.747.747 0 0 0 1.224-.242.75.75 0 0 0-.163-.818l-1.06-1.061Z'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 0h24v24H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
 }
 
+.edit-icon {
+	width: 24px;
+	height: 24px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath fill='%23AFB8BF'  fill-rule='evenodd' d='M5.09 18H5a1.002 1.002 0 0 1-.944-.658A1 1 0 0 1 4 16.91l.43-4.17A2 2 0 0 1 5 11.53l9-9a2 2 0 0 1 2.66.07l2.74 2.74a1.92 1.92 0 0 1 .07 2.71l-9 9a2 2 0 0 1-1.21.57L5.09 18ZM18 6.73 15.27 4l-1.95 2L16 8.68l2-1.95Zm-6 .59-5.63 5.59-.27 2.99 3-.28 5.6-5.6-2.7-2.7Z' clip-rule='evenodd'/%3E%3Cpath fill='%23AFB8BF'  d='M5 20h14a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z'/%3E%3C/svg%3E");
+}
+
+.edit-icon-primary {
+	width: 24px;
+	height: 24px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath fill='%239B4DCA'  fill-rule='evenodd' d='M5.09 18H5a1.002 1.002 0 0 1-.944-.658A1 1 0 0 1 4 16.91l.43-4.17A2 2 0 0 1 5 11.53l9-9a2 2 0 0 1 2.66.07l2.74 2.74a1.92 1.92 0 0 1 .07 2.71l-9 9a2 2 0 0 1-1.21.57L5.09 18ZM18 6.73 15.27 4l-1.95 2L16 8.68l2-1.95Zm-6 .59-5.63 5.59-.27 2.99 3-.28 5.6-5.6-2.7-2.7Z' clip-rule='evenodd'/%3E%3Cpath fill='%239B4DCA'  d='M5 20h14a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z'/%3E%3C/svg%3E");
+}
+
 .balance-icon {
 	width: 32px;
 	height: 32px;

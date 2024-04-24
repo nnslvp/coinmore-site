@@ -20,6 +20,7 @@
 
 .statistics__inner {
 	padding-top: 60px;
+	padding-bottom: 40px;
 }
 
 .statistics__header {
@@ -58,4 +59,25 @@
 
 .statistics__stats-container .stat-item {
 	flex-basis: 321px;
+}
+
+.statistics__stats-container .stat-item__content {
+	flex: 1;
+}
+
+.statistics-table {
+	grid-template-columns:
+		minmax(120px, 1fr)
+		minmax(200px, 1fr)
+		minmax(400px, 1fr)
+		minmax(300px, 1fr)
+		minmax(300px, 1fr);
+
+	td {
+		align-content: center;
+	}
+
+	.history-cell {
+		height: 80px;
+	}
 }
