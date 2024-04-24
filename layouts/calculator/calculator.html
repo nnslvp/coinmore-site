@@ -1,3 +1,105 @@
 {{ define "main" }}
-<h1>calculator</h1>
+<main>
+  <div class="container">
+    <div class="calculator__inner">
+      <header class="calculator-header">
+        <h1 сlass="heading-h1">Calculator</h1>
+        <p class="subtitle calculator__subtitle">Alephium is the first mineable live layer 1 sharded blockchain scaling
+          and improving on
+          Bitcoin
+          core
+          technologies, Proof
+          of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
+          efficiency.
+        </p>
+      </header>
+      <ul class="input-group">
+        <li class="input-container">
+          <label class="label" for="currency">Currency *</label>
+          <select class="input" id="currency" name="currency">
+            <!-- Опции -->
+          </select>
+        </li>
+        <li class="input-container">
+          <label class="label" for="hashrate">Hashrate (GH/s) *</label>
+          <input class="input" type="number" id="hashrate" name="hashrate">
+        </li>
+        <li class="input-container">
+          <label class="label" for="power-consumption">Power consumption (W) *</label>
+          <input class="input" type="number" id="power-consumption" name="power-consumption">
+        </li>
+        <li class="input-container">
+          <label class="label" for="electricity-costs">Electricity costs (USD/kWh)</label>
+          <input class="input" type="number" id="electricity-costs" name="electricity-costs">
+        </li>
+        <button class="btn btn-filled-primary calculate-btn">Calculate</button>
+      </ul>
+      <div class="result-table__container">
+        <table class="table calculate-result-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Est. reward</th>
+              <th>Est. income</th>
+              <th>Electricity costs</th>
+              <th>Est. profit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="period-cell">
+                1 hour
+              </td>
+              <td class="reward-cell" data="Address">
+                <strong class="reward-value">0.0068 ALPH</strong>
+              </td>
+              <td class="income-cell" data="Port">
+                <span class="income-value">0.0168 USD</span>
+              </td>
+              <td class="electricity-costs-cell" data="SSL Port">
+                <span class="electricity-costs__value">- 0.0000 USD</span>
+              </td>
+              <td class="profit-cell" data="profit">
+                <span id="profit-RegionAutoDetection">0.0168 USD</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="period-cell">24 hour</td>
+              <td class="reward-cell" data="Address">
+                <strong class="reward-value">0.0068 ALPH</strong>
+              </td>
+              <td class="income-cell" data="Port">
+                <span class="income-value">0.0168 USD</span>
+              </td>
+              <td class="electricity-costs-cell" data="SSL Port">
+                <span class="electricity-costs__value">- 0.0000 USD</span>
+              </td>
+              <td class="profit-cell" data="profit">
+                <span id="profit-Europe" class="profit-value">0.0168 USD</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="period-cell">
+                7 hour
+              </td>
+              <td class="reward-cell" data="Address">
+                <strong class="reward-value">0.0068 ALPH</strong>
+              </td>
+              <td class="income-cell" data="Port">
+                <span class="income-value">0.0168 USD</span>
+              </td>
+              <td class="electricity-costs-cell" data="SSL Port">
+                <span class="electricity-costs__value">- 0.0000 USD</span>
+              </td>
+              <td class="profit-cell" data="profit">
+                <span id="profit-Russia" class="profit-value">0.0168 USD</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</main>
 {{ end }}

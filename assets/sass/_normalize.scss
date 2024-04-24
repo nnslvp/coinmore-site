@@ -168,6 +168,16 @@ textarea {
 	margin: 0; /* 2 */
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
 /**
    * Show the overflow in IE.
    * 1. Show the overflow in Edge.
@@ -227,7 +237,7 @@ button:-moz-focusring,
 [type='button']:-moz-focusring,
 [type='reset']:-moz-focusring,
 [type='submit']:-moz-focusring {
-	outline: .0625rem dotted ButtonText;
+	outline: 0.0625rem dotted ButtonText;
 }
 
 /**
@@ -356,9 +366,9 @@ template {
 	display: none;
 }
 
-
-ul, ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }

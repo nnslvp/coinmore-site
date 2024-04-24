@@ -6,22 +6,6 @@
 	background-image: url('/images/bg-top-section.png');
 }
 
-.section-welcome {
-	flex-basis: 640px;
-	color: var(--color-white);
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.section-welcome__inner {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 20px;
-}
-
 .section-start-mining__inner {
 	display: flex;
 	flex-direction: column;
