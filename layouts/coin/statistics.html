@@ -1,15 +1,150 @@
-<!DOCTYPE html>
-<html>
+{{ define "main" }}
+<main>
+  <div class="container">
+    <div class="statistics__inner">
+      <header class="statistics__header">
+        <h1 class="heading-h1">My statistics</h1>
+        <search class="statistics__search">
+          <form class="statistics__search-form">
+            <input class="input" name="search" placeholder="Wallet">
+            <button class="btn btn-filled-primary">View personal statistic</button>
+          </form>
+        </search>
+      </header>
+      <section class="section-statistics">
+        <header class="section-statistics__header">
+          <h2 class="heading-h2">Alephium wallet</h2>
+          <a href="#" class="btn btn-outline-primary">
+            <i class=" icon calculator-icon-primary"></i>
+            Mining calculator</a>
+        </header>
+        <ul class="stats-container statistics__stats-container">
+          <li class="stat-item">
+            <i class="icon balance-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Your balance:</p>
+              <strong class="stat-item__value">0.08288304 ~ 0.20 USD</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon speed-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Your hashrate 1h:</p>
+              <strong class="stat-item__value">0 H/s</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon speed-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Your hashrate 24h:</p>
+              <strong class="stat-item__value">0 H/s</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon coins-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Your payouts 1h:</p>
+              <strong class="stat-item__value">0.00000000 ~ 0.00 USD</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon coins-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Your payouts 24h:</p>
+              <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon coins-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Min payout:</p>
+              <strong class="stat-item__value">0.1 coin</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon timer-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Payouts every:</p>
+              <strong class="stat-item__value">30 minutes</strong>
+            </div>
+          </li>
+          <li class="stat-item">
+            <i class="icon fee-icon"></i>
+            <div class="stat-item__content">
+              <p class="stat-item__lable">Pool fee:</p>
+              <strong class="stat-item__value">0.5%</strong>
+            </div>
+          </li>
+        </ul>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="" rel="stylesheet" />
-  <title></title>
-</head>
+        <!-- <div class="result-table__container">
+                  <table class="table calculate-result-table">
+                    <thead>
+                      <tr>
+                        <th>Period</th> 
+                        <th>Est. reward</th>
+                        <th>Est. income</th>
+                        <th>Electricity costs</th>
+                        <th>Est. profit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td data="Period" class="period-cell">
+                          <span class="period-value">1 hour
+                          </span>
+                        </td>
+                        <td class="reward-cell" data="Est. reward">
+                          <span class="reward-value">0.0068 ALPH</span>
+                        </td>
+                        <td class="income-cell" data="Est. income">
+                          <span class="income-value">0.0168 USD</span>
+                        </td>
+                        <td class="electricity-costs-cell" data="Electricity costs">
+                          <span class="electricity-costs__value">- 0.0000 USD</span>
+                        </td>
+                        <td class="profit-cell" data="Est. profit">
+                          <span id="profit-value">0.0168 USD</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data="Period" class="period-cell">24 hour</td>
+                        <td class="reward-cell" data="Est. reward">
+                          <span class="reward-value">0.0068 ALPH</span>
+                        </td>
+                        <td class="income-cell" data="Est. income">
+                          <span class="income-value">0.0168 USD</span>
+                        </td>
+                        <td class="electricity-costs-cell" data="Electricity costs">
+                          <span class="electricity-costs__value">- 0.0000 USD</span>
+                        </td>
+                        <td class="profit-cell" data="Est. profit">
+                          <span id="profit-Europe" class="profit-value">0.0168 USD</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td data="Period" class="period-cell">
+                          7 hour
+                        </td>
+                        <td class="reward-cell" data="Est. reward">
+                          <strong class="reward-value">0.0068 ALPH</strong>
+                        </td>
+                        <td class="income-cell" data="Est. income">
+                          <span class="income-value">0.0168 USD</span>
+                        </td>
+                        <td class="electricity-costs-cell" data="Electricity costs">
+                          <span class="electricity-costs__value">- 0.0000 USD</span>
+                        </td>
+                        <td class="profit-cell" data="Est. profit">
+                          <span id="profit-Russia" class="profit-value">0.0168 USD</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> -->
+      </section>
+    </div>
+  </div>
 
-<body>
-  <h1>COIN STATISTICS</h1>
-</body>
-
-</html>
+</main>
+{{ end }}
