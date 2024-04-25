@@ -1,0 +1,254 @@
+:has(.tab-payouts.active) .select-interval-payouts {
+	visibility: visible;
+}
+
+:has(.tab-payouts.active) .statistics-payouts-table {
+	display: grid;
+}
+
+:has(.tab-workers.active) .statistics-workers-table {
+	display: grid;
+}
+
+.statistics__inner {
+	display: flex;
+	flex-direction: column;
+	padding-top: 60px;
+	padding-bottom: 40px;
+	height: 100%;
+}
+
+.section-statistics {
+	flex: 1;
+}
+
+.empty-statistics {
+	background-image: url('/images/stats-img-bg.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: inherit;
+}
+
+.statistics__header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 60px;
+	padding-bottom: 40px;
+}
+
+.statistics__search {
+	display: flex;
+	justify-content: center;
+}
+
+.statistics__search-form {
+	flex-basis: 800px;
+	display: flex;
+	gap: 20px;
+}
+
+.statistics__search-form .input {
+	flex: 1;
+}
+
+.section-statistics {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.section-statistics__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.statistics__stats-container {
+	display: grid;
+	grid-template-columns: repeat(4, 321px);
+}
+
+.statistics__stats-container .stat-item__content {
+	flex: 1;
+}
+
+.statistics-workers-table {
+	display: none;
+	grid-template-columns:
+		minmax(120px, 1fr)
+		minmax(200px, 1fr)
+		minmax(400px, 1fr)
+		minmax(300px, 1fr)
+		minmax(300px, 1fr);
+
+	td {
+		align-content: center;
+	}
+
+	.history-cell {
+		height: 80px;
+	}
+}
+
+.interval__inner {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.select-interval-payouts {
+	visibility: hidden;
+	flex-basis: 276px;
+}
+
+.statistics-payouts-table {
+	display: none;
+	grid-template-columns:
+		minmax(100px, 300px)
+		minmax(200px, 1fr);
+}
+
+@media (max-width: $breakpoint-xl) {
+	.statistics__stats-container {
+		grid-template-columns: repeat(4, 227px);
+	}
+	.statistics__stats-container .stat-item {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.statistics__stats-container .stat-item .edit-icon {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+	}
+
+	.statistics-workers-table {
+		grid-template-columns:
+			minmax(120px, 1fr)
+			minmax(200px, 1fr)
+			minmax(260px, 1fr)
+			minmax(182px, 1fr)
+			minmax(182px, 1fr);
+	}
+}
+
+@media (max-width: $breakpoint-lg) {
+	.empty-statistics {
+		background-size: 240px;
+	}
+
+	.statistics__inner {
+		padding-top: 40px;
+	}
+
+	.statistics__search-form .input {
+		flex: 1;
+	}
+
+	.statistics__stats-container {
+		grid-template-columns: repeat(4, 163px);
+	}
+
+	.statistics-workers-table {
+		grid-template-columns:
+			minmax(100px, 1fr)
+			minmax(150px, 1fr)
+			minmax(200px, 1fr)
+			minmax(119px, 1fr)
+			minmax(119px, 1fr);
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	.section-statistics__header {
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.statistics__search-form {
+		flex-direction: column;
+	}
+
+	.statistics__stats-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.chart-interval__workers-payouts-container {
+		justify-content: center;
+	}
+
+	.chart-interval__workers-payouts-container .tab {
+		padding: 6px 16px;
+		font-size: 16px;
+		line-height: 22px;
+	}
+
+	.statistics-workers-table tbody tr {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+		grid-column-gap: 0px;
+		grid-row-gap: 20px;
+
+		td:nth-child(1) {
+			grid-area: 1 / 1 / 2 / 2;
+		}
+
+		td:nth-child(2) {
+			grid-area: 1 / 2 / 2 / 3;
+		}
+
+		td:nth-child(3) {
+			grid-area: 3 / 1 / 4 / 3;
+		}
+
+		td:nth-child(4) {
+			grid-area: 2 / 1 / 3 / 2;
+		}
+
+		td:nth-child(5) {
+			grid-area: 2 / 2 / 3 / 3;
+		}
+	}
+
+	.statistics-workers-table.history-cell {
+		height: 60px;
+	}
+
+	.statistics-workers-table td {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.statistics-workers-table td::before {
+		content: attr(data) ':';
+		display: block;
+		font-weight: initial;
+		margin-bottom: 4px;
+	}
+
+	.statistics-payouts-table td::before {
+		content: attr(data) ':';
+		display: block;
+		font-weight: initial;
+		margin-bottom: 4px;
+	}
+
+	.statistics-payouts-table tbody tr {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.statistics-payouts-table span {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.interval__inner {
+		gap: 20px;
+		justify-content: center;
+	}
+}

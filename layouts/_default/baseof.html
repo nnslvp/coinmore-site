@@ -38,24 +38,24 @@
   <link rel="manifest" href="">
 
 
-{{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
-{{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
-<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-{{ end }}
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
 
 <body>
   {{ with hugo.IsProduction }}
 
   {{ end }}
-    <div class="wrapper">
-      {{partial "header.html" .}}
-      {{ block "main" . }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    {{ block "main" . }}
 
-      {{ end }}
-      {{partial "footer.html" .}}
-    </div>
+    {{ end }}
+    {{partial "footer.html" .}}
+  </div>
   {{ $js := resources.Get "js/main.js" | resources.Minify }}
-  <script src="{{ $js.Permalink }}"></script>
+  <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 
 </html>

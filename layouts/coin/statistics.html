@@ -14,7 +14,7 @@
       <section class="section-statistics">
         <header class="section-statistics__header">
           <h2 class="heading-h2">Alephium wallet</h2>
-          <a href="#" class="btn btn-outline-primary">
+          <a href="{{ .Site.BaseURL}}/calculator" class="btn btn-outline-primary">
             <i class=" icon edit-icon-primary"></i>
             Mining calculator</a>
         </header>
@@ -82,7 +82,7 @@
           <div class="chart-header">
             <h2 class="heading-h2">Your hashrate</h2>
             <div class="chart-interval">
-              <button class="tab tab-border-radius-around-left">3070-03</button>
+              <button class="tab tab-border-radius-around-left">1 hour</button>
               <button class="tab tab-border-radius-around-right active">24 hours</button>
             </div>
           </div>
@@ -92,8 +92,8 @@
         </div>
         <div class="interval__inner">
           <div class="chart-interval chart-interval__workers-payouts-container">
-            <button class="tab tab-border-radius-around-left">Workers</button>
-            <button class="tab tab-border-radius-around-right active">Payouts</button>
+            <button class="tab tab-border-radius-around-left tab-workers">Workers</button>
+            <button class="tab tab-border-radius-around-right  tab-payouts active">Payouts</button>
           </div>
           <div class="custom-select select-interval-payouts">
             <select>
@@ -151,7 +151,7 @@
               </tr>
             </tbody>
           </table>
-          <!-- <table class="table statistics-workers-table">
+          <table class="table statistics-workers-table">
             <thead>
               <tr>
                 <th>Worker</th>
@@ -253,7 +253,7 @@
                 </td>
               </tr>
             </tbody>
-          </table> -->
+          </table>
         </div>
       </section>
     </div>

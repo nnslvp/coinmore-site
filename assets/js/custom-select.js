@@ -85,33 +85,3 @@ export const initCustomSelect = params => {
 then close all select boxes: */
 	document.addEventListener('click', closeAllSelect);
 };
-
-initCustomSelect();
-
-const languageSwitcherElements = document.querySelectorAll(
-	'.language-switcher'
-);
-
-languageSwitcherElements.forEach(el =>
-	el.addEventListener('click', e => {
-		e.stopPropagation();
-		e.currentTarget.classList.toggle('open');
-	})
-);
-
-document.body.addEventListener('click', () => {
-	languageSwitcherElements.forEach(e => {
-		e.classList.remove('open');
-	});
-});
-
-const tabsWorkersAndPayouts = document
-	.querySelector('.chart-interval__workers-payouts-container')
-	.querySelectorAll('.tab');
-
-tabsWorkersAndPayouts.forEach(tab => {
-	tab.addEventListener('click', e => {
-		tabsWorkersAndPayouts.forEach(e => e.classList.remove('active'));
-		e.currentTarget.classList.toggle('active');
-	});
-});
