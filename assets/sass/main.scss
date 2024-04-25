@@ -60,12 +60,76 @@
 	display: grid;
 	grid-template-columns: repeat(2, 190px);
 	gap: 12px 100px;
-	list-style: initial;
+	list-style-type: disc;
 	list-style-position: inside;
 	li::marker {
-		margin: 0;
 		font-size: 20px;
 		line-height: 8px;
 		color: var(--color-text-light-grey);
 	}
+}
+
+.section-windows-examples .section__inner {
+	gap: 20px;
+}
+
+.tabs-miners-list {
+	display: flex;
+}
+
+.tabs-miners-item {
+	font-size: 16px;
+	text-align: center;
+	flex: 1;
+}
+
+.tabs-miners-item:not(:last-child) {
+	border-right: none;
+}
+
+.guide {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.steps-list {
+	list-style-type: space-counter;
+	list-style-position: inside;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 32.4px;
+}
+
+.code-wrapper {
+	line-height: initial;
+	margin: 12px;
+	position: relative;
+}
+
+.copy-code-btn {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.code-container {
+	border-radius: 10px;
+}
+
+pre {
+	background-color: var(--color-primary-hover-0-05-opacity);
+	border-left: 4px solid var(--color-primary);
+	overflow-y: hidden;
+}
+
+pre > code {
+	display: block;
+	padding: 1rem 1.5rem;
+}
+
+code {
+	white-space: pre-line;
+	font-size: var(--font-size-14);
+	line-height: var(--line-height-21);
 }
