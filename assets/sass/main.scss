@@ -18,3 +18,54 @@
 @import './pages/Coin-page';
 @import './pages/_Calculator-page';
 @import './pages/Statistics-page';
+
+.instructions__inner {
+	padding-top: 60px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.instructions-header__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.instructions__subtitle {
+	max-width: 800px;
+	text-align: center;
+}
+
+.section__inner {
+	display: flex;
+	flex-direction: column;
+}
+
+.section-pool-servers .section__inner {
+	gap: 12px;
+}
+
+.section-miners .section__inner {
+	gap: 12px;
+}
+
+.miners-list-about-other-container {
+	display: flex;
+	gap: 100px;
+}
+
+.miners-list {
+	display: grid;
+	grid-template-columns: repeat(2, 190px);
+	gap: 12px 100px;
+	list-style: initial;
+	list-style-position: inside;
+	li::marker {
+		margin: 0;
+		font-size: 20px;
+		line-height: 8px;
+		color: var(--color-text-light-grey);
+	}
+}

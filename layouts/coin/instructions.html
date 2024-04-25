@@ -1,15 +1,75 @@
-<!DOCTYPE html>
-<html>
+{{ define "main" }}
+<main>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="" rel="stylesheet" />
-  <title></title>
-</head>
+  <div class="instructions__inner">
+    <header class="instructions-header">
+      <div class="container">
+        <div class="instructions-header__inner">
+          <h1 class="heading-h1">Instructions</h1>
+          <p class="subtitle instructions__subtitle">Alephium is the first mineable live layer 1 If you have any
+            questions, please use the <a class="link" href="#"><strong>FAQ</strong></a>
+            Start by downloading <a class="link" href="#"><strong>Alephium Wallet</strong></a>
+          </p>
+        </div>
+      </div>
 
-<body>
-  <h1>COIN INSTRUCTION</h1>
-</body>
+    </header>
+    <section class="section section-pool-servers">
+      <div class="container">
+        <div class="section__inner">
+          <h2 class="heading-h2">Pool servers</h2>
+          {{partial "table-servers.html" .}}
+        </div>
+      </div>
+    </section>
+    <section class="section-miners">
+      <div class="container">
+        <div class="section__inner">
+          <h2 class="heading-h2">Miners</h2>
+          <p class="subtitle">You can use:</p>
+          <div class="miners-list-about-other-container">
+            <ul class="miners-list">
+              <li class="miners-item">
+                <a href="" class="link">SRBMiner</a>
+              </li>
+              <li class="miners-item">
+                <a href="" class="link">T-Rex</a>
+              </li>
+              <li class="miners-item">
+                <a href="" class="link">IolMiner</a>
+              </li>
+              <li class="miners-item">
+                <a href="" class="link">BzMiner</a>
+              </li>
+              <li class="miners-item">
+                <a href="" class="link">T-Rex</a>
+              </li>
+              <li class="miners-item">
+                <a href="" class="link">Rigel</a>
+              </li>
+            </ul>
+            <p class="subtitle">About other solutions you can ask in <a class="link subtitle" href="">telegram
+                community</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section__inner">
+          <h2 class="heading-h2"></h2>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section__inner">
+          <h2 class="heading-h2"></h2>
+        </div>
+      </div>
+    </section>
 
-</html>
+  </div>
+
+</main>
+{{ end }}
