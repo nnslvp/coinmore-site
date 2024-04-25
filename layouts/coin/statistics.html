@@ -90,12 +90,68 @@
             Тут будет график
           </div>
         </div>
-        <div class="chart-interval">
-          <button class="tab tab-border-radius-around-left">3070-03</button>
-          <button class="tab tab-border-radius-around-right active">24 hours</button>
+        <div class="interval__inner">
+          <div class="chart-interval chart-interval__workers-payouts-container">
+            <button class="tab tab-border-radius-around-left">Workers</button>
+            <button class="tab tab-border-radius-around-right active">Payouts</button>
+          </div>
+          <div class="custom-select select-interval-payouts">
+            <select>
+              <option value="0">Select currency</option>
+              <option selected value="1">24 hour</option>
+              <option value="2">Week</option>
+            </select>
+          </div>
         </div>
+
         <div class="statistics-table__container">
-          <table class="table statistics-table">
+          <table class="table statistics-payouts-table">
+            <thead>
+              <tr>
+                <th>Amount</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data="Amount" class="amount-cell">
+                  <span class="amount-value">0.00000000 ~ 0.00 USD
+                  </span>
+                </td>
+                <td class="timestamp-cell" data="Timestamp">
+                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                </td>
+              </tr>
+              <tr>
+                <td data="Amount" class="amount-cell">
+                  <span class="amount-value">0.00000000 ~ 0.00 USD
+                  </span>
+                </td>
+                <td class="timestamp-cell" data="Timestamp">
+                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                </td>
+              </tr>
+              <tr>
+                <td data="Amount" class="amount-cell">
+                  <span class="amount-value">0.00000000 ~ 0.00 USD
+                  </span>
+                </td>
+                <td class="timestamp-cell" data="Timestamp">
+                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                </td>
+              </tr>
+              <tr>
+                <td data="Amount" class="amount-cell">
+                  <span class="amount-value">0.00000000 ~ 0.00 USD
+                  </span>
+                </td>
+                <td class="timestamp-cell" data="Timestamp">
+                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <table class="table statistics-workers-table">
             <thead>
               <tr>
                 <th>Worker</th>
@@ -197,7 +253,7 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
       </section>
     </div>

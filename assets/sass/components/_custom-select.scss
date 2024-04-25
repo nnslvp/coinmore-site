@@ -15,23 +15,27 @@
 	color: var(--color-text-light-grey);
 }
 
+.select-interval-payouts .select-selected {
+	color: var(--color-black);
+}
+
 /* Style the arrow inside the select element: */
 .select-selected:after {
 	position: absolute;
+	display: block;
 	content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  fill='none'%3E%3Cpath fill='%23606C76' d='M9 6.5a1 1 0 0 1-.71-.29L5 2.9 1.7 6.08A1 1 0 1 1 .29 4.66l4-3.86a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.42A1 1 0 0 1 9 6.5Z'/%3E%3C/svg%3E");
 	transform: rotate(180deg);
-	top: 23px;
-	right: 12px;
-	width: 0;
-	height: 0;
-	border: 6px solid transparent;
-	border-color: #fff transparent transparent transparent;
+	overflow: hidden;
+	top: 17px;
+	right: 17px;
+	width: 10px;
+	height: 10px;
 }
 
 /* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
-	top: 12px;
-	right: 23px;
+	top: 17px;
+	right: 17px;
 	transform: rotate(0deg);
 }
 

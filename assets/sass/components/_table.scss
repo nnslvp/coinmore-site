@@ -24,14 +24,20 @@
 		padding: 10px 12px;
 	}
 
+	&:has(td:nth-child(3)) th:nth-child(even) {
+		border-right: none;
+	}
+
+	&:has(td:nth-child(3)) td:nth-child(even) {
+		border-right: none;
+	}
+
 	th:nth-child(even) {
 		border-left: none;
-		border-right: none;
 	}
 
 	td:nth-child(even) {
 		border-left: none;
-		border-right: none;
 		border-top: none;
 	}
 
