@@ -99,9 +99,12 @@ a {
 	font-size: var(--font-size-18);
 	line-height: 32.4px;
 
-	@media (max-width: $breakpoint-lg) {
+	@media (max-width: $breakpoint-xl) {
 		font-size: var(--font-size-16);
 		line-height: var(--line-height-1-5);
+	}
+
+	@media (max-width: $breakpoint-lg) {
 	}
 
 	@media (max-width: $breakpoint-sm) {

@@ -95,6 +95,9 @@
 }
 
 .steps-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
 	list-style-type: space-counter;
 	list-style-position: inside;
 	font-size: 18px;
@@ -141,7 +144,6 @@ code {
 }
 
 .section-faq .section__inner {
-	padding: 0 80px;
 	flex-direction: column;
 	gap: 40px;
 }
@@ -150,6 +152,7 @@ code {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	text-align: center;
 }
 
 .questions {
@@ -197,4 +200,50 @@ summary::before {
 
 details[open] > summary::before {
 	transform: rotate(0deg);
+}
+
+@media (max-width: $breakpoint-xl) {
+	.miners-list {
+		grid-template-columns: repeat(2, 140px);
+	}
+
+	.steps-list {
+		font-size: var(--font-size-16);
+		line-height: 24px;
+	}
+
+	.section-faq {
+		padding: 60px 0;
+	}
+}
+@media (max-width: $breakpoint-lg) {
+	.instructions__inner {
+		padding-top: 40px;
+	}
+
+	.miners-list-about-other-container {
+		gap: 0px;
+	}
+
+	.miners-list {
+		grid-template-columns: repeat(2, 110px);
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	.miners-list-about-other-container {
+		display: contents;
+	}
+	.miners-list {
+		font-size: var(--font-size-16);
+		line-height: 24px;
+	}
+	.steps-list {
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	.section-faq {
+		padding: 40px 0;
+	}
 }
