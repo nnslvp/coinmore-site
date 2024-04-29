@@ -19,7 +19,7 @@
 
 .filter-panel {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: 276px 276px 300px 1fr;
 	align-items: center;
 	gap: 20px;
 	padding: 10px 16px 10px 10px;
@@ -48,6 +48,10 @@
 }
 
 @media (max-width: $breakpoint-xl) {
+	.filter-panel {
+		grid-template-columns: 215px 215px 298px 1fr;
+		gap: 10px;
+	}
 }
 
 @media (max-width: $breakpoint-lg) {
