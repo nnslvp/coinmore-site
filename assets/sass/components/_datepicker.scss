@@ -1,0 +1,50 @@
+.datepicker-range {
+	width: 100%;
+	height: 100%;
+	border: none;
+	opacity: 0;
+	padding: 13.5px 0;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.datepicker-range__container {
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-radius: 50px;
+	border: 1px solid #afb8bf;
+	border-radius: 50px;
+	color: var(--color-text-body);
+	line-height: var(--line-height-21);
+	background-color: var(--color-white);
+	padding: 0 14.5px;
+	&.active {
+		.datepicker-range__text {
+			visibility: hidden;
+			pointer-events: none;
+		}
+		.datepicker-range {
+			opacity: 1;
+		}
+	}
+}
+
+.datepicker-range__text {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	visibility: visible;
+	gap: 10px;
+	color: var(--color-text-light-grey);
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
