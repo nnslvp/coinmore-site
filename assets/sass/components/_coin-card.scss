@@ -1,10 +1,10 @@
 .card-coin {
-	padding: 16px;
-	border-radius: 10px;
-	box-shadow: 0px 4px 10px 0px var(--color-box-shadow-card-coin);
+	padding: 1rem;
+	border-radius: 0.625rem;
+	box-shadow: 0rem 0.25rem 0.625rem 0rem var(--color-box-shadow-card-coin);
 	transition: box-shadow 0.3s ease;
 	&:hover {
-		box-shadow: 0px 4px 16px 0px var(--color-box-shadow-card-coin-hover);
+		box-shadow: 0rem 0.25rem 1rem 0rem var(--color-box-shadow-card-coin-hover);
 	}
 }
 
@@ -16,13 +16,13 @@
 .card-coin__info {
 	display: flex;
 	align-items: center;
-	gap: 14px;
+	gap: 0.875rem;
 }
 
 .card-coin__info-text {
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: 0.25rem;
 }
 
 .card-coin__info-name {
@@ -36,17 +36,17 @@
 }
 
 .card-coin__btn {
-	line-height: 11px;
+	line-height: 0.6875rem;
 }
 
 .card-coin__horizontal-line {
-	margin: 12px 0px;
+	margin: 0.75rem 0rem;
 }
 
 .card-coin__stats {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 0.5rem;
 }
 
 .card-coin__stat {

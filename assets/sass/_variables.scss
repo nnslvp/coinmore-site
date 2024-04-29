@@ -5,11 +5,11 @@ $breakpoint-xl: 1024px;
 $breakpoint-xxl: 1440px;
 
 :root {
-	--container-width: 1340px;
-	--container-width-1024: 944px;
-	--container-width-768: 688px;
-	--container-width-375: 343px;
-	--container-padding: 10px;
+	--container-width: 83.75rem;
+	--container-width-1024: 59rem;
+	--container-width-768: 43rem;
+	--container-width-375: 21.4375rem;
+	--container-padding: 0.625rem;
 
 	/* Основные цвета */
 	--color-primary: #9b4dca; /* Основной фиолетовый */
@@ -43,13 +43,13 @@ $breakpoint-xxl: 1440px;
 	--second-family: 'Roboto Mono', sans-serif;
 
 	/* Размеры шрифтов */
-	--font-size-32: 32px;
-	--font-size-24: 24px;
-	--font-size-20: 20px;
-	--font-size-18: 18px;
-	--font-size-16: 16px;
-	--font-size-14: 14px;
-	--font-size-12: 12px;
+	--font-size-32: 2rem;
+	--font-size-24: 1.5rem;
+	--font-size-20: 1.25rem;
+	--font-size-18: 1.125rem;
+	--font-size-16: 1rem;
+	--font-size-14: 0.875rem;
+	--font-size-12: 0.75rem;
 
 	/* Жирность шрифтов */
 	--font-weight-bold: 700;
@@ -61,7 +61,7 @@ $breakpoint-xxl: 1440px;
 	--line-height-auto: auto;
 	--line-height-1-5: 1.5;
 	--line-height-1-8: 1.8;
-	--line-height-21: 21px;
+	--line-height-21: 1.3125rem;
 }
 
 /* Примеры использования переменных */

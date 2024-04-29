@@ -1,6 +1,6 @@
 .hamburger-menu-btn {
-	width: 18px;
-	height: 12px;
+	width: 1.125rem;
+	height: 0.75rem;
 	display: none;
 	flex-direction: column;
 	justify-content: space-between;
@@ -8,14 +8,14 @@
 }
 
 .hamburger-menu-btn__line {
-	height: 2px;
+	height: 0.125rem;
 	background-color: var(--color-text-grey);
-	border-radius: 2px;
+	border-radius: 0.125rem;
 	transition: transform 0.3s ease;
 }
 
 .hamburger-menu-btn.active .hamburger-menu-btn__line:nth-child(1) {
-	transform: translateY(2px) rotate(45deg);
+	transform: translateY(0.125rem) rotate(45deg);
 }
 
 .hamburger-menu-btn.active .hamburger-menu-btn__line:nth-child(2) {
@@ -23,12 +23,12 @@
 }
 
 .hamburger-menu-btn.active .hamburger-menu-btn__line:nth-child(3) {
-	transform: translateY(-8px) rotate(-45deg);
+	transform: translateY(-0.5rem) rotate(-45deg);
 }
 
 @media (max-width: $breakpoint-sm) {
 	.hamburger-menu-btn {
 		display: flex;
-		gap: 3px;
+		gap: 0.1875rem;
 	}
 }

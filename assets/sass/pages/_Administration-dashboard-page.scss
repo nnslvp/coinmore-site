@@ -1,29 +1,29 @@
 .administration-dashboard-page__inner {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
-	padding: 40px 0;
+	gap: 1.25rem;
+	padding: 2.5rem 0;
 }
 
 .administration-dashboard-page .section {
-	box-shadow: 0px 4px 10px 0px #00000040;
-	border-radius: 10px;
+	box-shadow: 0rem .25rem .625rem 0rem #00000040;
+	border-radius: .625rem;
 }
 
 .section-statistics__inner {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
-	padding: 20px;
+	gap: .75rem;
+	padding: 1.25rem;
 }
 
 .filter-panel {
 	display: grid;
-	grid-template-columns: 276px 276px 300px 1fr;
+	grid-template-columns: 17.25rem 17.25rem 18.75rem 1fr;
 	align-items: center;
-	gap: 20px;
-	padding: 10px 16px 10px 10px;
-	border-radius: 30px;
+	gap: 1.25rem;
+	padding: .625rem 1rem .625rem .625rem;
+	border-radius: 1.875rem;
 	background-color: var(--color-primary);
 }
 
@@ -44,13 +44,13 @@
 .section-statistics__stats-list-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 12px;
+	gap: .75rem;
 }
 
 @media (max-width: $breakpoint-xl) {
 	.filter-panel {
-		grid-template-columns: 215px 215px 298px 1fr;
-		gap: 10px;
+		grid-template-columns: 13.4375rem 13.4375rem 18.625rem 1fr;
+		gap: .625rem;
 	}
 }
 

@@ -1,10 +1,10 @@
 .tab {
 	color: var(--color-primary);
 	background-color: var(--color-white);
-	padding: 6px 12px 6px 12px;
-	font-size: 12px;
-	line-height: 18px;
-	border: 1px solid var(--color-primary);
+	padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+	border: 0.0625rem solid var(--color-primary);
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 }
@@ -28,16 +28,16 @@
 }
 
 .tab-border-radius-around-right {
-	border-radius: 0px 20px 20px 0px;
+	border-radius: 0rem 1.25rem 1.25rem 0rem;
 }
 
 .tab-border-radius-around-left {
-	border-radius: 20px 0px 0px 20px;
+	border-radius: 1.25rem 0rem 0rem 1.25rem;
 }
 
 .tab-border-top-bottom {
-	border-bottom: 1px solid var(--color-primary);
-	border-top: 1px solid var(--color-primary);
+	border-bottom: 0.0625rem solid var(--color-primary);
+	border-top: 0.0625rem solid var(--color-primary);
 	border-right: none;
 	border-left: none;
 }

@@ -4,14 +4,14 @@
 
 .benefits-container {
 	display: flex;
-	gap: 20px;
+	gap: 1.25rem;
 }
 
 .benefit-item {
-	flex-basis: 203px;
-	padding: 10px 12px 10px 12px;
-	border: 1px solid var(--color-white);
-	border-radius: 10px;
+	flex-basis: 12.6875rem;
+	padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+	border: 0.0625rem solid var(--color-white);
+	border-radius: 0.625rem;
 	background: rgba(255, 255, 255, 0.3);
 }
 
@@ -27,11 +27,11 @@
 
 .section-start {
 	background: var(--color-primary-hover-0-05-opacity);
-	padding: 80px 0;
+	padding: 5rem 0;
 }
 
 .section-coin__stats-container {
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .section-coin__stats-container .stat-item {
@@ -43,42 +43,42 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 20px;
+	gap: 1.25rem;
 }
 
 .section-start__subtitle {
-	max-width: 800px;
+	max-width: 50rem;
 	text-align: center;
 }
 
 .section-start__search {
-	padding-top: 40px;
+	padding-top: 2.5rem;
 }
 
 .section-start__search-form {
 	display: flex;
 	justify-content: center;
-	gap: 20px;
+	gap: 1.25rem;
 }
 
 .section-start__search-form .input {
-	width: 800px;
+	width: 50rem;
 }
 
 .section-coin__inner {
 	display: flex;
 	flex-direction: column;
-	padding: 80px 0 40px 0;
+	padding: 5rem 0 2.5rem 0;
 }
 
 .section-coin__h1 {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .section-coin__subtitle {
 	margin: 0 auto;
-	margin-bottom: 32px;
+	margin-bottom: 2rem;
 }
 
 .chart-interval {
@@ -86,43 +86,43 @@
 }
 
 .chart-hashrate {
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .chart-profit {
-	margin-right: 15px;
+	margin-right: 0.9375rem;
 }
 
 .chart-workers,
 .chart-profit {
 	display: inline-block;
-	margin-right: -4px;
-	width: 660px;
+	margin-right: -0.25rem;
+	width: 41.25rem;
 }
 
 .chart-workers {
-	margin-left: 20px;
-	margin-bottom: 40px;
+	margin-left: 1.25rem;
+	margin-bottom: 2.5rem;
 }
 
 @media (max-width: $breakpoint-xl) {
 	.section-start__search-form .input {
-		width: 573px;
+		width: 35.8125rem;
 	}
 
 	.chart-workers,
 	.chart-profit {
 		display: block;
 		width: 100%;
-		margin-right: 0px;
+		margin-right: 0rem;
 	}
 
 	.chart-workers {
-		margin-left: 0px;
+		margin-left: 0rem;
 	}
 
 	.chart-profit {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 	}
 }
 
@@ -132,23 +132,23 @@
 	}
 
 	.section-welcome__page-coin.section-welcome {
-		flex-basis: 434px;
+		flex-basis: 27.125rem;
 	}
 
 	.section-start {
-		padding: 40px 0;
+		padding: 2.5rem 0;
 	}
 
 	.section-start__search-form .input {
-		width: 461px;
+		width: 28.8125rem;
 	}
 
 	.section-coin__inner {
-		padding: 40px 0 40px;
+		padding: 2.5rem 0 2.5rem;
 	}
 
 	.chart-hashrate {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 	}
 
 	.chart-profit {
@@ -159,17 +159,17 @@
 	.chart-profit {
 		display: block;
 		width: 100%;
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 	}
 }
 
 @media (max-width: $breakpoint-sm) {
 	.section-welcome__page-coin.section-welcome {
-		flex-basis: 490px;
+		flex-basis: 30.625rem;
 	}
 
 	.benefits-container {
-		gap: 12px;
+		gap: 0.75rem;
 	}
 
 	.benefit-item {
@@ -184,10 +184,10 @@
 	}
 
 	.section-start__inner {
-		gap: 12px;
+		gap: 0.75rem;
 	}
 
 	.section-start__search {
-		padding-top: 20px;
+		padding-top: 1.25rem;
 	}
 }
