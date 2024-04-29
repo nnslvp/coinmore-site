@@ -41,8 +41,8 @@
 }
 
 .filter-panel {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 	align-items: center;
 	gap: 20px;
 	padding: 10px 16px 10px 10px;
@@ -50,19 +50,69 @@
 	background-color: var(--color-primary);
 }
 
-:where(.administration-dashboard-page__inner) .custom-select,
 .datepicker-range__container {
-	flex-basis: 276px;
+	height: 40px;
 }
 
 .btn-clear {
 	color: var(--color-white);
 	margin-left: auto;
 	opacity: 0.5;
+
+	&:hover {
+		border-color: var(--color-primary);
+		opacity: 1;
+	}
 }
 
-.section-statistics__stats-container {
+.section-statistics__stats-list-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 12px;
+}
+
+@media (max-width: $breakpoint-xl) {
+}
+
+@media (max-width: $breakpoint-lg) {
+	.filter-panel {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.administration-dashboard-page__inner .custom-select:nth-child(1) {
+		grid-area: 1 / 1 / 2 / 2;
+	}
+
+	.administration-dashboard-page__inner .custom-select:nth-child(2) {
+		grid-area: 1 / 2 / 2 / 3;
+	}
+
+	.datepicker-range__container {
+		grid-area: 2 / 1 / 3 / 3;
+	}
+
+	.btn-clear {
+		grid-area: 1 / 3 / 3 / 4;
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	.filter-panel {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.administration-dashboard-page__inner .custom-select:nth-child(1),
+	.administration-dashboard-page__inner .custom-select:nth-child(2),
+	.datepicker-range__container,
+	.btn-clear {
+		grid-area: auto;
+	}
+
+	.btn-clear {
+		margin: 0 auto;
+	}
+
+	.section-statistics__stats-list-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
