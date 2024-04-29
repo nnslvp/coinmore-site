@@ -4,17 +4,18 @@
 	display: none;
 	flex-direction: column;
 	justify-content: space-between;
-	transition: transform 0.3s ease;
+	z-index: 2;
 }
 
 .hamburger-menu-btn__line {
 	height: 2px;
 	background-color: var(--color-text-grey);
 	border-radius: 2px;
+	transition: transform 0.3s ease;
 }
 
 .hamburger-menu-btn.active .hamburger-menu-btn__line:nth-child(1) {
-	transform: translateY(8px) rotate(45deg);
+	transform: translateY(2px) rotate(45deg);
 }
 
 .hamburger-menu-btn.active .hamburger-menu-btn__line:nth-child(2) {
@@ -26,7 +27,8 @@
 }
 
 @media (max-width: $breakpoint-sm) {
-.hamburger-menu-btn{
-  display: flex;
-  gap: 3px;
-}}
+	.hamburger-menu-btn {
+		display: flex;
+		gap: 3px;
+	}
+}

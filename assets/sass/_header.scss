@@ -3,6 +3,7 @@
 @import './components/language-switcher';
 
 .header {
+	position: relative;
 	flex: 0 0 auto;
 }
 
@@ -51,7 +52,20 @@
 	}
 }
 
+@media (max-width: $breakpoint-xl) {
+	.header__main-nav-list {
+		gap: 60px;
+	}
+}
+
 @media (max-width: $breakpoint-lg) {
+	.header__inner {
+		gap: 82px;
+	}
+
+	.header__main-nav-list {
+		gap: 40px;
+	}
 }
 
 @media (max-width: $breakpoint-sm) {
@@ -64,7 +78,37 @@
 		flex: 1;
 	}
 
-	.header__main-nav {
-		display: none;
+	.header__main-nav-list {
+		position: fixed;
+		z-index: 2;
+		top: 48px;
+		left: 0;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+		width: 100%;
+		background-color: var(--color-primary);
+		padding: 24px 0;
+		transform: translateX(100%);
+		transition: transform 0.3s ease;
+	}
+
+	.header__main-nav-item {
+		flex-basis: 41px;
+	}
+
+	.header__main-nav-link {
+		color: var(--color-white);
+		&:hover {
+			font-weight: var(--font-weight-bold);
+		}
+
+		&::after {
+			background-color: var(--color-white);
+		}
+	}
+
+	:has(.hamburger-menu-btn.active) .header__main-nav-list {
+		transform: translateX(0);
 	}
 }

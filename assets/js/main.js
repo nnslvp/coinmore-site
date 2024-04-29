@@ -104,3 +104,9 @@ document.body.addEventListener('click', () => {
 		e.classList.remove('open');
 	});
 });
+
+document
+	.querySelector('.hamburger-menu-btn')
+	.addEventListener('click', function (e) {
+		e.currentTarget.classList.toggle('active');
+	});

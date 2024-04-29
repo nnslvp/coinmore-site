@@ -8,18 +8,18 @@
         <ul class="header__main-nav-list text--medium">
           {{ if eq .Type "coin" }}
           <li class="header__main-nav-item">
-            <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/statistics"
-              class="link header__main-nav-link"><strong>My statistics</strong></a>
+            <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/statistics" class="link header__main-nav-link">My
+              statistics</a>
           </li>
           <li class="header__main-nav-item">
             <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions"
-              class="link header__main-nav-link"><strong>Instructions</strong></a>
+              class="link header__main-nav-link">Instructions</a>
           </li>
           {{ else }}
 
           {{ end }}
           <li class="header__main-nav-item">
-            <a href="{{ $.Site.BaseURL }}/calculator" class="link header__main-nav-link"><strong>Calculator</strong></a>
+            <a href="{{ $.Site.BaseURL }}/calculator" class="link header__main-nav-link">Calculator</a>
           </li>
         </ul>
       </nav>
