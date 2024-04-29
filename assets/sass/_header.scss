@@ -26,11 +26,14 @@
 
 .header__main-nav-list {
 	display: flex;
+	gap: 100px;
 	justify-content: end;
 }
 
 .header__main-nav-link {
+	color: var(--color-text-body);
 	position: relative;
+
 	&::after {
 		content: '';
 		position: absolute;
@@ -42,27 +45,26 @@
 		opacity: 0;
 		transition: opacity 0.5s ease;
 	}
+
 	&:hover::after {
 		opacity: 1;
 	}
 }
 
-
 @media (max-width: $breakpoint-lg) {
-
 }
 
 @media (max-width: $breakpoint-sm) {
-  .header__inner {
-	gap: 16px;
-	padding: 12px 0rem ;
-}
+	.header__inner {
+		gap: 16px;
+		padding: 12px 0rem;
+	}
 
-.header__logo {
-	flex: 1;
-}
+	.header__logo {
+		flex: 1;
+	}
 
-	.header__main-nav{
-    display: none ;
-  }
+	.header__main-nav {
+		display: none;
+	}
 }

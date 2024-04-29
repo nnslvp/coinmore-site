@@ -1,4 +1,4 @@
 ---
-title: "Как начать использовать монету [coin_name]"
-layout: "instructions"
+coin_name: 'alephium'
+layout: 'instructions'
 ---

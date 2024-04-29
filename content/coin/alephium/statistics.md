@@ -1,4 +1,4 @@
 ---
-title: "Как начать использовать монету "
-layout: "statistics"
+coin_name: 'alephium'
+layout: 'statistics'
 ---
