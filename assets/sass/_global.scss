@@ -31,6 +31,10 @@ main {
 	flex: 1;
 }
 
+body:has(.modal[open]) {
+	overflow: hidden;
+}
+
 .wrapper {
 	height: 100%;
 	display: flex;

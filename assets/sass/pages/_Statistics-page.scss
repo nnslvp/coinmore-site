@@ -6,6 +6,10 @@
 	display: grid;
 }
 
+:has(.tab-payouts.active) .statistics-workers-table {
+	display: none;
+}
+
 :has(.tab-workers.active) .statistics-workers-table {
 	display: grid;
 }
@@ -109,6 +113,61 @@
 		minmax(200px, 1fr);
 }
 
+.modal-dit-min-payouts {
+	width: 454px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: none;
+	border-radius: 20px;
+
+	&::backdrop {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	.modal__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		padding: 32px;
+	}
+
+	.heading-h2 {
+		text-align: center;
+	}
+
+	.form__dit-min-payouts {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+	}
+
+	.form-action {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.form-action button {
+		flex: 1;
+	}
+
+	@media (max-width: $breakpoint-sm) {
+		width: 443px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border: none;
+		border-radius: 20px;
+
+		.form-action {
+			display: contents;
+		}
+	}
+}
+
 @media (max-width: $breakpoint-xl) {
 	.statistics__stats-container {
 		grid-template-columns: repeat(4, 227px);
@@ -187,6 +246,11 @@
 		line-height: 22px;
 	}
 
+	.statistics-workers-table {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
 	.statistics-workers-table tbody tr {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -228,6 +292,10 @@
 		display: block;
 		font-weight: initial;
 		margin-bottom: 4px;
+	}
+
+	.statistics-payouts-table {
+		grid-template-columns: 1fr;
 	}
 
 	.statistics-payouts-table td::before {
