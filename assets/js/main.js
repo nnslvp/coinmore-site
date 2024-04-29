@@ -88,22 +88,22 @@ then close all select boxes: */
 
 initCustomSelect();
 
-// const languageSwitcherElements = document.querySelectorAll(
-// 	'.language-switcher'
-// );
+const languageSwitcherElements = document.querySelectorAll(
+	'.language-switcher'
+);
 
-// languageSwitcherElements.forEach(el =>
-// 	el.addEventListener('click', e => {
-// 		e.stopPropagation();
-// 		e.currentTarget.classList.toggle('open');
-// 	})
-// );
+languageSwitcherElements.forEach(el =>
+	el.addEventListener('click', e => {
+		e.stopPropagation();
+		e.currentTarget.classList.toggle('open');
+	})
+);
 
-// document.body.addEventListener('click', () => {
-// 	languageSwitcherElements.forEach(e => {
-// 		e.classList.remove('open');
-// 	});
-// });
+document.body.addEventListener('click', () => {
+	languageSwitcherElements.forEach(e => {
+		e.classList.remove('open');
+	});
+});
 
 // const tabsWorkersAndPayouts = document
 // 	.querySelector('.chart-interval__workers-payouts-container')

@@ -6,6 +6,13 @@
 	border: 1px solid #afb8bf;
 	color: var(--color-text-body);
 	line-height: var(--line-height-21);
+	&:hover {
+		border: 1px solid rgb(96, 108, 118);
+	}
+	&:focus {
+		border: 1px solid rgb(155, 77, 202);
+		box-shadow: 0px 0px 4px 4px var(--light-blue-semi-transparent);
+	}
 }
 
 .custom-select select {
@@ -40,6 +47,11 @@
 	transform: rotate(0deg);
 }
 
+.same-as-selected {
+	font-weight: var(--font-weight-bold);
+	background-color: var(--color-white);
+}
+
 /* style the items (options), including the selected item: */
 .select-items div,
 .select-selected {
@@ -50,14 +62,14 @@
 
 /* Style items (options): */
 .select-items {
+	width: 100%;
 	border: 1px solid #afb8bf;
 	border-radius: 23px;
 	overflow: hidden;
 	position: absolute;
 	background-color: var(--color-white);
-	top: 110%;
+	top: 0%;
 	left: 0;
-	right: 0;
 	z-index: 99;
 }
 

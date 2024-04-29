@@ -32,6 +32,14 @@
 			opacity: 1;
 		}
 	}
+
+	&:hover {
+		border: 1px solid var(--color-text-grey);
+	}
+	&:focus {
+		border: 1px solid var(--color-primary);
+		box-shadow: 0px 0px 4px 4px var(--light-blue-semi-transparent);
+	}
 }
 
 .datepicker-range__text {
