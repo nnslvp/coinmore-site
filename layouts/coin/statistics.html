@@ -1,263 +1,332 @@
-{{ define "main" }}
-<main>
-  <div class="container">
-    <div class="statistics__inner">
-      <header class="statistics__header">
-        <h1 class="heading-h1">My statistics</h1>
-        <search class="statistics__search">
-          <form class="statistics__search-form">
-            <input class="input" name="search" placeholder="Wallet">
-            <button class="btn btn-filled-primary">View personal statistic</button>
-          </form>
-        </search>
-      </header>
-      <section class="section-statistics">
-        <header class="section-statistics__header">
-          <h2 class="heading-h2">Alephium wallet</h2>
-          <a href="{{ .Site.BaseURL}}/calculator" class="btn btn-outline-primary">
-            <i class=" icon edit-icon-primary"></i>
-            Mining calculator</a>
-        </header>
-        <ul class="stats-container statistics__stats-container">
-          <li class="stat-item">
-            <i class="icon balance-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Your balance:</p>
-              <strong class="stat-item__value">0.08288304 ~ 0.20 USD</strong>
-            </div>
-          </li>
-          <li class="stat-item">
-            <i class="icon speed-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Your hashrate 1h:</p>
-              <strong class="stat-item__value">0 H/s</strong>
-            </div>
-          </li>
-          <li class="stat-item">
-            <i class="icon speed-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Your hashrate 24h:</p>
-              <strong class="stat-item__value">0 H/s</strong>
-            </div>
-          </li>
-          <li class="stat-item">
-            <i class="icon coins-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Your payouts 1h:</p>
-              <strong class="stat-item__value">0.00000000 ~ 0.00 USD</strong>
-            </div>
-          </li>
-          <li class="stat-item">
-            <i class="icon coins-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Your payouts 24h:</p>
-              <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
-            </div>
-          </li>
-          <li class="stat-item">
-            <i class="icon coins-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Min payout:</p>
-              <strong class="stat-item__value">0.1 coin</strong>
-            </div>
-            <i class="icon edit-icon"></i></a>
-          </li>
-          <li class="stat-item">
-            <i class="icon timer-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Payouts every:</p>
-              <strong class="stat-item__value">30 minutes</strong>
-            </div>
-          </li>
-          <li class="stat-item">
-            <i class="icon fee-icon"></i>
-            <div class="stat-item__content">
-              <p class="stat-item__lable">Pool fee:</p>
-              <strong class="stat-item__value">0.5%</strong>
-            </div>
-          </li>
-        </ul>
+<!DOCTYPE html>
+<html lang="en">
 
-        <div class="chart-container ">
-          <div class="chart-header">
-            <h2 class="heading-h2">Your hashrate</h2>
-            <div class="chart-interval">
-              <button class="tab tab-border-radius-around-left">1 hour</button>
-              <button class="tab tab-border-radius-around-right active">24 hours</button>
-            </div>
-          </div>
-          <div class="chart">
-            Тут будет график
-          </div>
-        </div>
-        <div class="interval__inner">
-          <div class="chart-interval chart-interval__workers-payouts-container">
-            <button class="tab tab-border-radius-around-left tab-workers">Workers</button>
-            <button class="tab tab-border-radius-around-right  tab-payouts active">Payouts</button>
-          </div>
-          <div class="custom-select select-interval-payouts">
-            <select>
-              <option value="0">Select currency</option>
-              <option selected value="1">24 hour</option>
-              <option value="2">Week</option>
-            </select>
-          </div>
-        </div>
+<head>
+  {{ with hugo.IsProduction }}
 
-        <div class="statistics-table__container">
-          <table class="table statistics-payouts-table">
-            <thead>
-              <tr>
-                <th>Amount</th>
-                <th>Timestamp</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data="Amount" class="amount-cell">
-                  <span class="amount-value">0.00000000 ~ 0.00 USD
-                  </span>
-                </td>
-                <td class="timestamp-cell" data="Timestamp">
-                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="Amount" class="amount-cell">
-                  <span class="amount-value">0.00000000 ~ 0.00 USD
-                  </span>
-                </td>
-                <td class="timestamp-cell" data="Timestamp">
-                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="Amount" class="amount-cell">
-                  <span class="amount-value">0.00000000 ~ 0.00 USD
-                  </span>
-                </td>
-                <td class="timestamp-cell" data="Timestamp">
-                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="Amount" class="amount-cell">
-                  <span class="amount-value">0.00000000 ~ 0.00 USD
-                  </span>
-                </td>
-                <td class="timestamp-cell" data="Timestamp">
-                  <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table statistics-workers-table">
-            <thead>
-              <tr>
-                <th>Worker</th>
-                <th>Hashrate 1h/24h</th>
-                <th>7 day history</th>
-                <th>Valid Shares 1h/24h</th>
-                <th>Last Share At</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data="worker" class="worker-cell">
-                  <span class="worker-value">3070-03
-                  </span>
-                </td>
-                <td class="hashrate-cell" data="Hashrate 1h/24h">
-                  <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                </td>
-                <td class="history-cell" data="7 day history">
-                  <span class="history-сhart">график</span>
-                </td>
-                <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                  <span class="electricity-costs__value">- 0.0000 USD</span>
-                </td>
-                <td class="last-share-cell" data="Last Share At">
-                  <span id="last-share-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="worker" class="worker-cell">
-                  <span class="worker-value">3070-03
-                  </span>
-                </td>
-                <td class="hashrate-cell" data="Hashrate 1h/24h">
-                  <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                </td>
-                <td class="history-cell" data="7 day history">
-                  <span class="history-сhart">график</span>
-                </td>
-                <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                  <span class="electricity-costs__value">- 0.0000 USD</span>
-                </td>
-                <td class="last-share-cell" data="Last Share At">
-                  <span id="last-share-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="worker" class="worker-cell">
-                  <span class="worker-value">3070-03
-                  </span>
-                </td>
-                <td class="hashrate-cell" data="Hashrate 1h/24h">
-                  <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                </td>
-                <td class="history-cell" data="7 day history">
-                  <span class="history-сhart">график</span>
-                </td>
-                <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                  <span class="electricity-costs__value">- 0.0000 USD</span>
-                </td>
-                <td class="last-share-cell" data="Last Share At">
-                  <span id="last-share-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="worker" class="worker-cell">
-                  <span class="worker-value">3070-03
-                  </span>
-                </td>
-                <td class="hashrate-cell" data="Hashrate 1h/24h">
-                  <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                </td>
-                <td class="history-cell" data="7 day history">
-                  <span class="history-сhart">график</span>
-                </td>
-                <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                  <span class="electricity-costs__value">- 0.0000 USD</span>
-                </td>
-                <td class="last-share-cell" data="Last Share At">
-                  <span id="last-share-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-              <tr>
-                <td data="worker" class="worker-cell">
-                  <span class="worker-value">3070-03
-                  </span>
-                </td>
-                <td class="hashrate-cell" data="Hashrate 1h/24h">
-                  <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                </td>
-                <td class="history-cell" data="7 day history">
-                  <span class="history-сhart">график</span>
-                </td>
-                <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                  <span class="electricity-costs__value">- 0.0000 USD</span>
-                </td>
-                <td class="last-share-cell" data="Last Share At">
-                  <span id="last-share-value">22/02/2024, 12:03:41</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  {{ end }}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+
+  <meta property="og:site_name" content="Lazy Bison">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="" />
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="">
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+  <link rel="icon" type="image/png" sizes="32x32" href="">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="manifest" href="">
+
+
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+
+<body>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    <main>
+      <div class="container">
+        <div class="statistics__inner">
+          <header class="statistics__header">
+            <h1 class="heading-h1">My statistics</h1>
+            <search class="statistics__search">
+              <form class="statistics__search-form">
+                <input class="input" name="search" placeholder="Wallet">
+                <button class="btn btn-filled-primary">View personal statistic</button>
+              </form>
+            </search>
+          </header>
+          <section class="section-statistics">
+            <header class="section-statistics__header">
+              <h2 class="heading-h2">Alephium wallet</h2>
+              <a href="{{ .Site.BaseURL}}/calculator" class="btn btn-outline-primary">
+                <i class=" icon edit-icon-primary"></i>
+                Mining calculator</a>
+            </header>
+            <ul class="stats-container statistics__stats-container">
+              <li class="stat-item">
+                <i class="icon balance-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Your balance:</p>
+                  <strong class="stat-item__value">0.08288304 ~ 0.20 USD</strong>
+                </div>
+              </li>
+              <li class="stat-item">
+                <i class="icon speed-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Your hashrate 1h:</p>
+                  <strong class="stat-item__value">0 H/s</strong>
+                </div>
+              </li>
+              <li class="stat-item">
+                <i class="icon speed-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Your hashrate 24h:</p>
+                  <strong class="stat-item__value">0 H/s</strong>
+                </div>
+              </li>
+              <li class="stat-item">
+                <i class="icon coins-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Your payouts 1h:</p>
+                  <strong class="stat-item__value">0.00000000 ~ 0.00 USD</strong>
+                </div>
+              </li>
+              <li class="stat-item">
+                <i class="icon coins-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Your payouts 24h:</p>
+                  <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+                </div>
+              </li>
+              <li class="stat-item">
+                <i class="icon coins-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Min payout:</p>
+                  <strong class="stat-item__value">0.1 coin</strong>
+                </div>
+                <i class="icon edit-icon"></i></a>
+              </li>
+              <li class="stat-item">
+                <i class="icon timer-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Payouts every:</p>
+                  <strong class="stat-item__value">30 minutes</strong>
+                </div>
+              </li>
+              <li class="stat-item">
+                <i class="icon fee-icon"></i>
+                <div class="stat-item__content">
+                  <p class="stat-item__lable">Pool fee:</p>
+                  <strong class="stat-item__value">0.5%</strong>
+                </div>
+              </li>
+            </ul>
+
+            <div class="chart-container ">
+              <div class="chart-header">
+                <h2 class="heading-h2">Your hashrate</h2>
+                <div class="chart-interval">
+                  <button class="tab tab-border-radius-around-left">1 hour</button>
+                  <button class="tab tab-border-radius-around-right active">24 hours</button>
+                </div>
+              </div>
+              <div class="chart">
+                Тут будет график
+              </div>
+            </div>
+            <div class="interval__inner">
+              <div class="chart-interval chart-interval__workers-payouts-container">
+                <button class="tab tab-border-radius-around-left tab-workers">Workers</button>
+                <button class="tab tab-border-radius-around-right  tab-payouts active">Payouts</button>
+              </div>
+              <div class="custom-select select-interval-payouts">
+                <select>
+                  <option value="0">Select currency</option>
+                  <option selected value="1">24 hour</option>
+                  <option value="2">Week</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="statistics-table__container">
+              <table class="table statistics-payouts-table">
+                <thead>
+                  <tr>
+                    <th>Amount</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table statistics-workers-table">
+                <thead>
+                  <tr>
+                    <th>Worker</th>
+                    <th>Hashrate 1h/24h</th>
+                    <th>7 day history</th>
+                    <th>Valid Shares 1h/24h</th>
+                    <th>Last Share At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <span class="history-сhart">график</span>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <span class="history-сhart">график</span>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <span class="history-сhart">график</span>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <span class="history-сhart">график</span>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <span class="history-сhart">график</span>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
+      </div>
+
+    </main>
+
+    {{partial "footer.html" .}}
   </div>
+  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  <script type="module" src="{{ $js.Permalink }}"></script>
+  <script>
+    const tabsWorkersAndPayouts = document
+      .querySelector('.chart-interval__workers-payouts-container')
+      .querySelectorAll('.tab');
 
-</main>
-{{ end }}
+    tabsWorkersAndPayouts.forEach(tab => {
+      tab.addEventListener('click', e => {
+        tabsWorkersAndPayouts.forEach(e => e.classList.remove('active'));
+        e.currentTarget.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+
+</html>
