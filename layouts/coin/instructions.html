@@ -1,180 +1,259 @@
-{{ define "main" }}
-<main>
+<!DOCTYPE html>
+<html lang="en">
 
-  <div class="instructions__inner">
-    <header class="instructions-header">
-      <div class="container">
-        <div class="instructions-header__inner">
-          <h1 class="heading-h1">Instructions</h1>
-          <p class="subtitle instructions__subtitle">Alephium is the first mineable live layer 1 If you have any
-            questions, please use the <a class="link" href="#"><strong>FAQ</strong></a>
-            Start by downloading <a class="link" href="#"><strong>Alephium Wallet</strong></a>
-          </p>
-        </div>
-      </div>
+<head>
+  {{ with hugo.IsProduction }}
 
-    </header>
-    <section class="section section-pool-servers">
-      <div class="container">
-        <div class="section__inner">
-          <h2 class="heading-h2">Pool servers</h2>
-          {{partial "table-servers.html" .}}
-        </div>
-      </div>
-    </section>
-    <section class="section-miners">
-      <div class="container">
-        <div class="section__inner">
-          <h2 class="heading-h2">Miners</h2>
-          <p class="subtitle">You can use:</p>
-          <div class="miners-list-about-other-container">
-            <ul class="miners-list">
-              <li class="miners-item">
-                <a href="" class="link">SRBMiner</a>
-              </li>
-              <li class="miners-item">
-                <a href="" class="link">T-Rex</a>
-              </li>
-              <li class="miners-item">
-                <a href="" class="link">IolMiner</a>
-              </li>
-              <li class="miners-item">
-                <a href="" class="link">BzMiner</a>
-              </li>
-              <li class="miners-item">
-                <a href="" class="link">T-Rex</a>
-              </li>
-              <li class="miners-item">
-                <a href="" class="link">Rigel</a>
-              </li>
-            </ul>
-            <p class="subtitle">About other solutions you can ask in <a class="link subtitle" href="">telegram
-                community</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section-windows-examples">
-      <div class="container">
-        <div class="section__inner">
-          <h2 class="heading-h2">Windows examples</h2>
-          <ul class="tabs-miners-list">
-            <li class="tab tab-border-radius-around-left  tabs-miners-item active">IolMiner</li>
-            <li class="tab tabs-miners-item">IolMiner</li>
-            <li class="tab tabs-miners-item">T-Rex</li>
-            <li class="tab tab-border-radius-around-right  tabs-miners-item">SRBMiner</li>
-          </ul>
-          <div class="guide">
-            <h1 class="heading-h2">lolMiner</h1>
-            <ol class="steps-list">
-              <li>
-                Download
-                <a href="https://github.com/Lolliedieb/lolMiner-releases/releases">
-                  last release of lolMiner</a>
-                and unzip files
-              </li>
-              <li>
-                Update <strong>alph</strong> file, for example: <strong>dual_mine_eth_aleph.bat</strong>
-                <div class="code-wrapper">
-                  <button class="btn  btn-copy copy-code-btn ">
-                    <i class="icon copy-icon"></i>
-                  </button>
-                  <pre class="code-container">
-                    <code>
-                      set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
-                      set "ALEPHWALLET=your_wallet"
-                      </code>
-                  </pre>
-                </div>
-              </li>
-              <li>
-                <p class=""></p> Run <strong>alph</strong> file, for example: <strong>dual_mine_eth_aleph.bat</strong>
-              </li>
-              <li>
-                <strong class="profit">PROFIT! </strong>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section-faq">
-      <div class="container">
-        <div class="section__inner">
-          <header class="section-faq__header">
-            <h2 class="heading-h1">FAQ</h2>
-            <p class="subtitle">Frequently Asked Questions for AlephiumPool.com</p>
-          </header>
-          <div class="questions">
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-            <details class="question">
-              <summary class="question-title">Question 1</summary>
-              <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                independently of
-                the
-                others. The block reward goes to only the miner who found it, others do not get anything. Block search
-                time depends on your hashrate and luck.</p>
-            </details>
-          </div>
-        </div>
-    </section>
+  {{ end }}
 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+
+  <meta property="og:site_name" content="Lazy Bison">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="" />
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="">
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+  <link rel="icon" type="image/png" sizes="32x32" href="">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="manifest" href="">
+
+
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+
+<body>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    <nav class="container">
+      <ul class="navigation-list">
+        <li class="navigation-item">
+          <a href="{{.Site.BaseURL}}" class="home-link">
+            <i class="icon home-icon"></i>
+          </a>
+        </li>
+        <li class="separator">/</li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
+            .Params.coin_name }}</a></li>
+        <li class="separator">/</li>
+        <li class="navigation-item">
+          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions"
+            class="statistics-link">Instructions</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <div class="instructions__inner">
+        <header class="instructions-header">
+          <div class="container">
+            <div class="instructions-header__inner">
+              <h1 class="heading-h1">Instructions</h1>
+              <p class="subtitle instructions__subtitle">Alephium is the first mineable live layer 1 If you have any
+                questions, please use the <a class="link" href="#"><strong>FAQ</strong></a>
+                Start by downloading <a class="link" href="#"><strong>Alephium Wallet</strong></a>
+              </p>
+            </div>
+          </div>
+
+        </header>
+        <section class="section section-pool-servers">
+          <div class="container">
+            <div class="section__inner">
+              <h2 class="heading-h2">Pool servers</h2>
+              {{partial "table-servers.html" .}}
+            </div>
+          </div>
+        </section>
+        <section class="section-miners">
+          <div class="container">
+            <div class="section__inner">
+              <h2 class="heading-h2">Miners</h2>
+              <p class="subtitle">You can use:</p>
+              <div class="miners-list-about-other-container">
+                <ul class="miners-list">
+                  <li class="miners-item">
+                    <a href="" class="link">SRBMiner</a>
+                  </li>
+                  <li class="miners-item">
+                    <a href="" class="link">T-Rex</a>
+                  </li>
+                  <li class="miners-item">
+                    <a href="" class="link">IolMiner</a>
+                  </li>
+                  <li class="miners-item">
+                    <a href="" class="link">BzMiner</a>
+                  </li>
+                  <li class="miners-item">
+                    <a href="" class="link">T-Rex</a>
+                  </li>
+                  <li class="miners-item">
+                    <a href="" class="link">Rigel</a>
+                  </li>
+                </ul>
+                <p class="subtitle">About other solutions you can ask in <a class="link subtitle" href="">telegram
+                    community</a></p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-windows-examples">
+          <div class="container">
+            <div class="section__inner">
+              <h2 class="heading-h2">Windows examples</h2>
+              <ul class="tabs-miners-list">
+                <li class="tab tab-border-radius-around-left  tabs-miners-item active">IolMiner</li>
+                <li class="tab tabs-miners-item">IolMiner</li>
+                <li class="tab tabs-miners-item">T-Rex</li>
+                <li class="tab tab-border-radius-around-right  tabs-miners-item">SRBMiner</li>
+              </ul>
+              <div class="guide">
+                <h1 class="heading-h2">lolMiner</h1>
+                <ol class="steps-list">
+                  <li>
+                    Download
+                    <a href="https://github.com/Lolliedieb/lolMiner-releases/releases">
+                      last release of lolMiner</a>
+                    and unzip files
+                  </li>
+                  <li>
+                    Update <strong>alph</strong> file, for example: <strong>dual_mine_eth_aleph.bat</strong>
+                    <div class="code-wrapper">
+                      <button class="btn  btn-copy copy-code-btn ">
+                        <i class="icon copy-icon"></i>
+                      </button>
+                      <pre class="code-container">
+                      <code>
+                        set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
+                        set "ALEPHWALLET=your_wallet"
+                        </code>
+                    </pre>
+                    </div>
+                  </li>
+                  <li>
+                    <p class=""></p> Run <strong>alph</strong> file, for example:
+                    <strong>dual_mine_eth_aleph.bat</strong>
+                  </li>
+                  <li>
+                    <strong class="profit">PROFIT! </strong>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-faq">
+          <div class="container">
+            <div class="section__inner">
+              <header class="section-faq__header">
+                <h2 class="heading-h1">FAQ</h2>
+                <p class="subtitle">Frequently Asked Questions for AlephiumPool.com</p>
+              </header>
+              <div class="questions">
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+                <details class="question">
+                  <summary class="question-title">Question 1</summary>
+                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
+                    independently of
+                    the
+                    others. The block reward goes to only the miner who found it, others do not get anything. Block
+                    search
+                    time depends on your hashrate and luck.</p>
+                </details>
+              </div>
+            </div>
+        </section>
+      </div>
+    </main>
+    {{partial "footer.html" .}}
   </div>
+  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  <script type="module" src="{{ $js.Permalink }}"></script>
+</body>
 
-</main>
-{{ end }}
+</html>

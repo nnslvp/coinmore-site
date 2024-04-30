@@ -49,6 +49,23 @@
   {{ end }}
   <div class="wrapper">
     {{partial "header.html" .}}
+    <nav class="container">
+      <ul class="navigation-list">
+        <li class="navigation-item">
+          <a href="{{.Site.BaseURL}}" class="home-link">
+            <i class="icon home-icon"></i>
+          </a>
+        </li>
+        <li class="separator">/</li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
+            .Params.coin_name }}</a></li>
+        <li class="separator">/</li>
+        <li class="navigation-item">
+          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/statistics" class="statistics-link">My
+            statistics</a>
+        </li>
+      </ul>
+    </nav>
     <main class="administration-dashboard-page">
       <div class="container">
         <div class="statistics__inner">

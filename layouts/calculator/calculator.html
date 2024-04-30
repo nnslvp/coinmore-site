@@ -1,110 +1,179 @@
-{{ define "main" }}
-<main>
-  <div class="container">
-    <div class="calculator__inner">
-      <header class="calculator-header">
-        <h1 class="heading-h1">Calculator</h1>
-        <p class="subtitle calculator__subtitle">Alephium is the first mineable live layer 1 sharded blockchain scaling
-          and improving on
-          Bitcoin
-          core
-          technologies, Proof
-          of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
-          efficiency.
-        </p>
-      </header>
-      <ul class="input-group">
-        <li class="input-container">
-          <label class="label" for="currency">Currency *</label>
-          <div class="custom-select">
-            <select>
-              <option value="0">Select currency</option>
-              <option value="1">Audi</option>
-              <option value="2">BMW</option>
-            </select>
-          </div>
-        </li>
-        <li class="input-container">
-          <label class="label" for="hashrate">Hashrate (GH/s) *</label>
-          <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate">
-        </li>
-        <li class="input-container">
-          <label class="label" for="power-consumption">Power consumption (W) *</label>
-          <input class="input" placeholder="12" type="number" id="power-consumption" name="power-consumption">
-        </li>
-        <li class="input-container">
-          <label class="label" for="electricity-costs">Electricity costs (USD/kWh)</label>
-          <input class="input" placeholder="1000" type="number" id="electricity-costs" name="electricity-costs">
-        </li>
-        <button class="btn btn-filled-primary calculate-btn">Calculate</button>
-      </ul>
-      <div class="result-table__container">
-        <table class="table calculate-result-table">
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Est. reward</th>
-              <th>Est. income</th>
-              <th>Electricity costs</th>
-              <th>Est. profit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data="Period" class="period-cell">
-                <span class="period-value">1 hour
-                </span>
-              </td>
-              <td class="reward-cell" data="Est. reward">
-                <span class="reward-value">0.0068 ALPH</span>
-              </td>
-              <td class="income-cell" data="Est. income">
-                <span class="income-value">0.0168 USD</span>
-              </td>
-              <td class="electricity-costs-cell" data="Electricity costs">
-                <span class="electricity-costs__value">- 0.0000 USD</span>
-              </td>
-              <td class="profit-cell" data="Est. profit">
-                <span id="profit-value">0.0168 USD</span>
-              </td>
-            </tr>
-            <tr>
-              <td data="Period" class="period-cell">24 hour</td>
-              <td class="reward-cell" data="Est. reward">
-                <span class="reward-value">0.0068 ALPH</span>
-              </td>
-              <td class="income-cell" data="Est. income">
-                <span class="income-value">0.0168 USD</span>
-              </td>
-              <td class="electricity-costs-cell" data="Electricity costs">
-                <span class="electricity-costs__value">- 0.0000 USD</span>
-              </td>
-              <td class="profit-cell" data="Est. profit">
-                <span id="profit-Europe" class="profit-value">0.0168 USD</span>
-              </td>
-            </tr>
-            <tr>
-              <td data="Period" class="period-cell">
-                7 hour
-              </td>
-              <td class="reward-cell" data="Est. reward">
-                <strong class="reward-value">0.0068 ALPH</strong>
-              </td>
-              <td class="income-cell" data="Est. income">
-                <span class="income-value">0.0168 USD</span>
-              </td>
-              <td class="electricity-costs-cell" data="Electricity costs">
-                <span class="electricity-costs__value">- 0.0000 USD</span>
-              </td>
-              <td class="profit-cell" data="Est. profit">
-                <span id="profit-Russia" class="profit-value">0.0168 USD</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
 
-</main>
-{{ end }}
+<head>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+
+  <meta property="og:site_name" content="Lazy Bison">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="" />
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="">
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+  <link rel="icon" type="image/png" sizes="32x32" href="">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="manifest" href="">
+
+
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+
+<body>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    <nav class="container">
+      <ul class="navigation-list">
+        <li class="navigation-item">
+          <a href="{{.Site.BaseURL}}" class="home-link">
+            <i class="icon home-icon"></i>
+          </a>
+        </li>
+        <li class="separator">/</li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/calculator" class="currency-link">Calculator</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="calculator__inner">
+          <header class="calculator-header">
+            <h1 class="heading-h1">Calculator</h1>
+            <p class="subtitle calculator__subtitle">Alephium is the first mineable live layer 1 sharded blockchain
+              scaling
+              and improving on
+              Bitcoin
+              core
+              technologies, Proof
+              of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
+              efficiency.
+            </p>
+          </header>
+          <ul class="input-group">
+            <li class="input-container">
+              <label class="label" for="currency">Currency *</label>
+              <div class="custom-select">
+                <select>
+                  <option value="0">Select currency</option>
+                  <option value="1">Audi</option>
+                  <option value="2">BMW</option>
+                </select>
+              </div>
+            </li>
+            <li class="input-container">
+              <label class="label" for="hashrate">Hashrate (GH/s) *</label>
+              <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate">
+            </li>
+            <li class="input-container">
+              <label class="label" for="power-consumption">Power consumption (W) *</label>
+              <input class="input" placeholder="12" type="number" id="power-consumption" name="power-consumption">
+            </li>
+            <li class="input-container">
+              <label class="label" for="electricity-costs">Electricity costs (USD/kWh)</label>
+              <input class="input" placeholder="1000" type="number" id="electricity-costs" name="electricity-costs">
+            </li>
+            <button class="btn btn-filled-primary calculate-btn">Calculate</button>
+          </ul>
+          <div class="result-table__container">
+            <table class="table calculate-result-table">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>Est. reward</th>
+                  <th>Est. income</th>
+                  <th>Electricity costs</th>
+                  <th>Est. profit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data="Period" class="period-cell">
+                    <span class="period-value">1 hour
+                    </span>
+                  </td>
+                  <td class="reward-cell" data="Est. reward">
+                    <span class="reward-value">0.0068 ALPH</span>
+                  </td>
+                  <td class="income-cell" data="Est. income">
+                    <span class="income-value">0.0168 USD</span>
+                  </td>
+                  <td class="electricity-costs-cell" data="Electricity costs">
+                    <span class="electricity-costs__value">- 0.0000 USD</span>
+                  </td>
+                  <td class="profit-cell" data="Est. profit">
+                    <span id="profit-value">0.0168 USD</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td data="Period" class="period-cell">24 hour</td>
+                  <td class="reward-cell" data="Est. reward">
+                    <span class="reward-value">0.0068 ALPH</span>
+                  </td>
+                  <td class="income-cell" data="Est. income">
+                    <span class="income-value">0.0168 USD</span>
+                  </td>
+                  <td class="electricity-costs-cell" data="Electricity costs">
+                    <span class="electricity-costs__value">- 0.0000 USD</span>
+                  </td>
+                  <td class="profit-cell" data="Est. profit">
+                    <span id="profit-Europe" class="profit-value">0.0168 USD</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td data="Period" class="period-cell">
+                    7 hour
+                  </td>
+                  <td class="reward-cell" data="Est. reward">
+                    <strong class="reward-value">0.0068 ALPH</strong>
+                  </td>
+                  <td class="income-cell" data="Est. income">
+                    <span class="income-value">0.0168 USD</span>
+                  </td>
+                  <td class="electricity-costs-cell" data="Electricity costs">
+                    <span class="electricity-costs__value">- 0.0000 USD</span>
+                  </td>
+                  <td class="profit-cell" data="Est. profit">
+                    <span id="profit-Russia" class="profit-value">0.0168 USD</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    {{partial "footer.html" .}}
+  </div>
+  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  <script type="module" src="{{ $js.Permalink }}"></script>
+</body>
+
+</html>

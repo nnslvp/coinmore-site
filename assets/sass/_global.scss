@@ -186,3 +186,14 @@ a {
 	@media (max-width: $breakpoint-sm) {
 	}
 }
+
+.navigation-list {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 1.25rem 0;
+	color: var(--color-text-grey);
+	@media (max-width: $breakpoint-sm) {
+		display: none;
+	}
+}
