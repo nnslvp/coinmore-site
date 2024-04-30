@@ -149,12 +149,12 @@
               <div class="chart-header">
                 <h2 class="heading-h2">Your hashrate</h2>
                 <div class="chart-interval">
-                  <button class="tab tab-border-radius-around-left">1 hour</button>
-                  <button class="tab tab-border-radius-around-right active">24 hours</button>
+                  <button class="tab tab-border-radius-around-left hourButton ">1 hour</button>
+                  <button class="tab tab-border-radius-around-right active dayButton">24 hours</button>
                 </div>
               </div>
-              <div class="chart">
-                Тут будет график
+              <div class="chart__chart-container">
+                <div id="chart"></div>
               </div>
             </div>
             <div class="interval__inner">
@@ -345,44 +345,12 @@
       </form>
     </div>
   </dialog>
-
-  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $statisticsPage := resources.Get "js/statistics-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/statistics-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
-  <script>
-    const tabsWorkersAndPayouts = document
-      .querySelector('.chart-interval__workers-payouts-container')
-      .querySelectorAll('.tab');
-
-    tabsWorkersAndPayouts.forEach(tab => {
-      tab.addEventListener('click', e => {
-        tabsWorkersAndPayouts.forEach(e => e.classList.remove('active'));
-        e.currentTarget.classList.toggle('active');
-      });
-    });
-
-    const modal = document.querySelector('.modal');
-    const openButton = document.querySelector('.open-button');
-
-
-    openButton.addEventListener('click', () => {
-      modal.showModal();
-    });
-
-
-
-
-    modal.addEventListener("click", e => {
-      const dialogDimensions = modal.getBoundingClientRect()
-      if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-      ) {
-        modal.close()
-      }
-    })
-  </script>
 </body>
 
 </html>
