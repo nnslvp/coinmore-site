@@ -49,7 +49,7 @@
   {{ end }}
   <div class="wrapper">
     {{partial "header.html" .}}
-    <nav class="container">
+    <nav class="nav-page__container container">
       <ul class="navigation-list">
         <li class="navigation-item">
           <a href="{{.Site.BaseURL}}" class="home-link">
@@ -169,7 +169,7 @@
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
   {{ $statisticsPage := resources.Get "js/calculator-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/calculator-page-build.js" }}
+  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/build/calculator-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 

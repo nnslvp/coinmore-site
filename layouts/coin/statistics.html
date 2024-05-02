@@ -355,7 +355,7 @@
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
   {{ $statisticsPage := resources.Get "js/statistics-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/statistics-build.js" }}
+  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/build/statistics-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 
