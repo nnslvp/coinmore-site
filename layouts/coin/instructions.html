@@ -252,7 +252,10 @@
     </main>
     {{partial "footer.html" .}}
   </div>
-  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $page := resources.Get "js/instructions-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $customSelect $page | resources.Concat "js/build/instructions-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 
