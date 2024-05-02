@@ -150,9 +150,14 @@ function updateChartData(chart, newData) {
 	chart.update();
 }
 
-function activateTabsOnClick(containerSelector) {
+function getTabs(containerSelector) {
 	const container = document.querySelector(containerSelector);
 	const tabs = container.querySelectorAll('.tab');
+	return tabs;
+}
+
+function activateTabsOnClick(containerSelector) {
+	const tabs = getTabs(containerSelector);
 
 	tabs.forEach(tab => {
 		tab.addEventListener('click', e => {
@@ -162,15 +167,12 @@ function activateTabsOnClick(containerSelector) {
 	});
 }
 
-activateTabsOnClick('.tabs__chart-hashrate-interval-hour-day');
+activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
-const [
-	tabHourChartHashrate,
-	tabDayButtonChartHashrate,
-] = document
-	.querySelector('.tabs__chart-hashrate-interval-hour-day')
-	.querySelectorAll('.hourButton, .dayButton');
+const [tabHourChartHashrate, tabDayButtonChartHashrate] = getTabs(
+	'.tabs__chart-hashrate'
+);
 
 tabHourChartHashrate.addEventListener('click', function (e) {
 	updateChartData(hashRateChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);

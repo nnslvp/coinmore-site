@@ -76,6 +76,10 @@
 	flex: 1;
 }
 
+.statistics-workers-table .history-cell #chartYourHashrate {
+	height: 3.75rem;
+}
+
 .statistics-workers-table {
 	display: none;
 	grid-template-columns:

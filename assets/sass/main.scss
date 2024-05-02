@@ -21,22 +21,3 @@
 @import './pages/Statistics-page';
 @import './pages/Instructions-page';
 @import './pages/Administration-dashboard-page';
-
-.nav-page__container {
-	height: auto;
-}
-
-.chart-container {
-	height: 100%;
-}
-.chart__chart-container {
-	height: 395px;
-}
-
-#chart {
-	width: 100%;
-}
-
-.statistics-workers-table .history-cell #chartYourHashrate {
-	height: 60px;
-}

@@ -87,7 +87,6 @@ body:has(.hamburger-menu-btn.active) {
 .container {
 	width: calc(var(--container-width) + var(--container-padding) * 2);
 	padding: 0 var(--container-padding);
-	height: 100%;
 	margin: 0 auto;
 
 	@media (max-width: $breakpoint-xl) {
@@ -156,6 +155,7 @@ a {
 }
 
 .section-welcome {
+	display: flex;
 	flex-basis: 40rem;
 	color: var(--color-white);
 	background-position: center;
@@ -196,4 +196,8 @@ a {
 	@media (max-width: $breakpoint-sm) {
 		display: none;
 	}
+}
+
+.nav-page__container {
+	height: auto;
 }

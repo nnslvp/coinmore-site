@@ -172,39 +172,39 @@
           <div class="chart-container chart-hashrate">
             <div class="chart-header">
               <h2 class="heading-h2">Pool hashrate</h2>
-              <div class="chart-interval">
+              <div class="chart-interval chart-interval__pool-hashrate">
                 <span class="tab tab-border-radius-around-left">1 hour</span>
                 <span class="tab tab-border-radius-around-right active">24 hours</span>
               </div>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart chart__chart-container">
+              <canvas id="poolHashrateChart"></canvas>
             </div>
           </div>
 
           <div class="chart-container chart-profit">
             <div class="chart-header">
               <h2 class="heading-h2">Profit per GH</h2>
-              <div class="chart-interval">
+              <div class="chart-interval chart-interval__profit">
                 <button class="tab tab-border-radius-around-left">1 hour</button>
                 <button class="tab tab-border-radius-around-right active">24 hours</button>
               </div>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart  chart__chart-container">
+              <canvas id="profitChart"></canvas>
             </div>
           </div>
 
           <div class="chart-container chart-workers">
             <div class="chart-header">
               <h2 class="heading-h2">Workers activity</h2>
-              <div class="chart-interval">
+              <div class="chart-interval chart-interval__workers-activity">
                 <button class="tab tab-border-radius-around-left">1 hour</button>
                 <button class="tab tab-border-radius-around-right active">24 hours</button>
               </div>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart chart__chart-container">
+              <canvas id="workersActivityChart"></canvas>
             </div>
           </div>
         </div>
@@ -212,6 +212,7 @@
     </main>
     {{partial "footer.html" .}}
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   {{ $page := resources.Get "js/coin-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
   {{ $js := slice $global $page | resources.Concat "js/build/coin-page-build.js" }}

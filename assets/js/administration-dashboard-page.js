@@ -69,13 +69,7 @@ const CHART_BASE_OPTIONS = {
 		maintainAspectRatio: false,
 	},
 };
-const [tabWorkersHour, tabWorkersDay] = getTabs(
-	'.chart-interval__workers-activity'
-);
-const [tabProfitHour, tabProfitDay] = getTabs('.chart-interval__profit');
-const [tabPoolHashrateHour, tabPoolHashrateDay] = getTabs(
-	'.chart-interval__pool-hashrate'
-);
+
 function initializeChart(chartElement, chartOptions) {
 	const ctx = chartElement.getContext('2d');
 	const gradient = ctx.createLinearGradient(0, 0, 0, 400);
@@ -145,48 +139,3 @@ const workersActivityChart = initializeChart(
 		},
 	})
 );
-
-function getTabs(containerSelector) {
-	const container = document.querySelector(containerSelector);
-	const tabs = container.querySelectorAll('.tab');
-	return tabs;
-}
-
-function activateTabsOnClick(containerSelector) {
-	const tabs = getTabs(containerSelector);
-
-	tabs.forEach(tab => {
-		tab.addEventListener('click', e => {
-			tabs.forEach(t => t.classList.remove('active'));
-			e.currentTarget.classList.add('active');
-		});
-	});
-}
-
-activateTabsOnClick('.chart-interval__workers-activity');
-activateTabsOnClick('.chart-interval__profit');
-activateTabsOnClick('.chart-interval__pool-hashrate');
-
-tabWorkersHour.addEventListener('click', function (e) {
-	updateChartData(workersActivityChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
-});
-
-tabWorkersDay.addEventListener('click', function (e) {
-	updateChartData(workersActivityChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
-});
-
-tabProfitHour.addEventListener('click', function (e) {
-	updateChartData(profitChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
-});
-
-tabProfitDay.addEventListener('click', function (e) {
-	updateChartData(profitChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
-});
-
-tabPoolHashrateHour.addEventListener('click', function (e) {
-	updateChartData(poolHashRateChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
-});
-
-tabPoolHashrateDay.addEventListener('click', function (e) {
-	updateChartData(poolHashRateChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
-});

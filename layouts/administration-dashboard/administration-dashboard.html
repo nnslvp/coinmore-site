@@ -183,7 +183,11 @@
 
     {{partial "footer.html" .}}
   </div>
-  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $page := resources.Get "js/administration-dashboard-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $customSelect $page | resources.Concat "js/build/administration-dashboard-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
   <script>
     const datepickerContainer = document.querySelector('.datepicker-range__container')
