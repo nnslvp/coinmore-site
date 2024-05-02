@@ -1,5 +1,3 @@
-initCustomSelect();
-
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
 const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
 const CHART_BASE_OPTIONS = {
@@ -104,6 +102,9 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
+const MODAL = document.querySelector('.modal');
+const OPEN_MODAL_BTN = document.querySelector('.open-button');
+
 function initializeChart(chartElement, chartOptions) {
 	const ctx = chartElement.getContext('2d');
 	const gradient = ctx.createLinearGradient(0, 0, 0, 400);
@@ -149,46 +150,66 @@ function updateChartData(chart, newData) {
 	chart.update();
 }
 
-document.querySelector('.hourButton').addEventListener('click', function (e) {
+function activateTabsOnClick(containerSelector) {
+	const container = document.querySelector(containerSelector);
+	const tabs = container.querySelectorAll('.tab');
+
+	tabs.forEach(tab => {
+		tab.addEventListener('click', e => {
+			tabs.forEach(t => t.classList.remove('active'));
+			e.currentTarget.classList.add('active');
+		});
+	});
+}
+
+activateTabsOnClick('.tabs__chart-hashrate-interval-hour-day');
+activateTabsOnClick('.tabs-tables__workers-payouts');
+
+const [
+	tabHourChartHashrate,
+	tabDayButtonChartHashrate,
+] = document
+	.querySelector('.tabs__chart-hashrate-interval-hour-day')
+	.querySelectorAll('.hourButton, .dayButton');
+
+tabHourChartHashrate.addEventListener('click', function (e) {
 	updateChartData(hashRateChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
 });
 
-document.querySelector('.dayButton').addEventListener('click', function (e) {
+tabDayButtonChartHashrate.addEventListener('click', function (e) {
 	updateChartData(hashRateChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
 });
 
-const tabsWorkersAndPayouts = document
-	.querySelector('.chart-interval__workers-payouts-container')
-	.querySelectorAll('.tab');
-
-const tabsIntervalHourAndDay = document
-	.querySelector('.chart-interval__workers-payouts-container')
-	.querySelectorAll('.tab');
-
-tabsWorkersAndPayouts.forEach(tab => {
-	tab.addEventListener('click', e => {
-		tabsWorkersAndPayouts.forEach(e => e.classList.remove('active'));
-		e.currentTarget.classList.toggle('active');
-	});
+OPEN_MODAL_BTN.addEventListener('click', () => {
+	MODAL.showModal();
 });
 
-const modal = document.querySelector('.modal');
-const openButton = document.querySelector('.open-button');
-
-openButton.addEventListener('click', () => {
-	modal.showModal();
-});
-
-modal.addEventListener('click', e => {
-	const dialogDimensions = modal.getBoundingClientRect();
+MODAL.addEventListener('click', e => {
+	const dialogDimensions = MODAL.getBoundingClientRect();
 	if (
 		e.clientX < dialogDimensions.left ||
 		e.clientX > dialogDimensions.right ||
 		e.clientY < dialogDimensions.top ||
 		e.clientY > dialogDimensions.bottom
 	) {
-		modal.close();
+		MODAL.close();
 	}
 });
 
-// var ctx = document.getElementById('chart').getContext('2d');
+ItcCustomSelect.create('#select-payouts', {
+	name: 'interval',
+	targetValue: 'day',
+	options: [
+		['day', '24 hours'],
+		['week', 'Week'],
+	],
+	onSelected(select, option) {
+		// выбранное значение
+		console.log(`Выбранное значение: ${select.value}`);
+		// индекс выбранной опции
+		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
+		// выбранный текст опции
+		const text = option ? option.textContent : '';
+		console.log(`Выбранный текст опции: ${text}`);
+	},
+});

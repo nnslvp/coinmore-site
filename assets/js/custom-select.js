@@ -1,87 +1,166 @@
-export const initCustomSelect = params => {
-	var x, i, j, l, ll, selElmnt, a, b, c;
-	/* Look for any elements with the class "custom-select": */
-	x = document.getElementsByClassName('custom-select');
-	l = x.length;
-	for (i = 0; i < l; i++) {
-		selElmnt = x[i].getElementsByTagName('select')[0];
-		ll = selElmnt.length;
-		/* For each element, create a new DIV that will act as the selected item: */
-		a = document.createElement('DIV');
-		a.setAttribute('class', 'select-selected');
-		a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-		x[i].appendChild(a);
-		/* For each element, create a new DIV that will contain the option list: */
-		b = document.createElement('DIV');
-		b.setAttribute('class', 'select-items select-hide');
-		for (j = 1; j < ll; j++) {
-			/* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-			c = document.createElement('DIV');
-			c.innerHTML = selElmnt.options[j].innerHTML;
-			c.addEventListener('click', function (e) {
-				/* When an item is clicked, update the original select box,
-        and the selected item: */
-				var y, i, k, s, h, sl, yl;
-				s = this.parentNode.parentNode.getElementsByTagName('select')[0];
-				sl = s.length;
-				h = this.parentNode.previousSibling;
-				for (i = 0; i < sl; i++) {
-					if (s.options[i].innerHTML == this.innerHTML) {
-						s.selectedIndex = i;
-						h.innerHTML = this.innerHTML;
-						y = this.parentNode.getElementsByClassName('same-as-selected');
-						yl = y.length;
-						for (k = 0; k < yl; k++) {
-							y[k].removeAttribute('class');
-						}
-						this.setAttribute('class', 'same-as-selected');
-						break;
-					}
-				}
-				h.click();
-			});
-			b.appendChild(c);
-		}
-		x[i].appendChild(b);
-		a.addEventListener('click', function (e) {
-			/* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-			e.stopPropagation();
-			closeAllSelect(this);
-			this.nextSibling.classList.toggle('select-hide');
-			this.classList.toggle('select-arrow-active');
+class ItcCustomSelect {
+	static EL = 'itc-select';
+	static EL_SHOW = 'itc-select_show';
+	static EL_OPTION = 'itc-select__option';
+	static EL_OPTION_SELECTED = 'itc-select__option_selected';
+	static DATA = '[data-select]';
+	static DATA_TOGGLE = '[data-select="toggle"]';
+
+	static template(params) {
+		const { name, options, targetValue } = params;
+		const items = [];
+		let selectedIndex = -1;
+		let selectedValue = '';
+		let selectedContent = 'Выберите из списка';
+		options.forEach((option, index) => {
+			let selectedClass = '';
+			if (option[0] === targetValue) {
+				selectedClass = ` ${this.EL_OPTION_SELECTED}`;
+				selectedIndex = index;
+				selectedValue = option[0];
+				selectedContent = option[1];
+			}
+			items.push(`<li class="itc-select__option${selectedClass}" data-select="option"
+        data-value="${option[0]}" data-index="${index}">${option[1]}</li>`);
+		});
+		return `<button type="button" class="itc-select__toggle" name="${name}"
+      value="${selectedValue}" data-select="toggle" data-index="${selectedIndex}">
+      ${selectedContent}</button><div class="itc-select__dropdown">
+      <ul class="itc-select__options">${items.join('')}</ul></div>`;
+	}
+
+	static hideOpenSelect() {
+		document.addEventListener('click', e => {
+			if (!e.target.closest(`.${this.EL}`)) {
+				const elsActive = document.querySelectorAll(`.${this.EL_SHOW}`);
+				elsActive.forEach(el => {
+					el.classList.remove(this.EL_SHOW);
+				});
+			}
 		});
 	}
-
-	function closeAllSelect(elmnt) {
-		/* A function that will close all select boxes in the document,
-  except the current select box: */
-		var x,
-			y,
-			i,
-			xl,
-			yl,
-			arrNo = [];
-		x = document.getElementsByClassName('select-items');
-		y = document.getElementsByClassName('select-selected');
-		xl = x.length;
-		yl = y.length;
-		for (i = 0; i < yl; i++) {
-			if (elmnt == y[i]) {
-				arrNo.push(i);
-			} else {
-				y[i].classList.remove('select-arrow-active');
-			}
+	static create(target, params) {
+		this._el =
+			typeof target === 'string' ? document.querySelector(target) : target;
+		if (this._el) {
+			return new this(target, params);
 		}
-		for (i = 0; i < xl; i++) {
-			if (arrNo.indexOf(i)) {
-				x[i].classList.add('select-hide');
-			}
+		return null;
+	}
+	constructor(target, params) {
+		this._el =
+			typeof target === 'string' ? document.querySelector(target) : target;
+		this._params = params || {};
+		this._onClickFn = this._onClick.bind(this);
+		if (this._params.options) {
+			this._el.innerHTML = this.constructor.template(this._params);
+			this._el.classList.add(this.constructor.EL);
+		}
+		this._elToggle = this._el.querySelector(this.constructor.DATA_TOGGLE);
+		this._el.addEventListener('click', this._onClickFn);
+	}
+
+	_onClick(e) {
+		const { target } = e;
+		const type = target.closest(this.constructor.DATA).dataset.select;
+		if (type === 'toggle') {
+			this.toggle();
+		} else if (type === 'option') {
+			this._changeValue(target);
 		}
 	}
 
-	/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-	document.addEventListener('click', closeAllSelect);
-};
+	_updateOption(el) {
+		const elOption = el.closest(`.${this.constructor.EL_OPTION}`);
+		const elOptionSel = this._el.querySelector(
+			`.${this.constructor.EL_OPTION_SELECTED}`
+		);
+		if (elOptionSel) {
+			elOptionSel.classList.remove(this.constructor.EL_OPTION_SELECTED);
+		}
+		elOption.classList.add(this.constructor.EL_OPTION_SELECTED);
+		this._elToggle.textContent = elOption.textContent;
+		this._elToggle.value = elOption.dataset.value;
+		this._elToggle.dataset.index = elOption.dataset.index;
+		this._el.dispatchEvent(new CustomEvent('itc.select.change'));
+		this._params.onSelected ? this._params.onSelected(this, elOption) : null;
+		return elOption.dataset.value;
+	}
+
+	_reset() {
+		const selected = this._el.querySelector(
+			`.${this.constructor.EL_OPTION_SELECTED}`
+		);
+		if (selected) {
+			selected.classList.remove(this.constructor.EL_OPTION_SELECTED);
+		}
+		this._elToggle.textContent = 'Выберите из списка';
+		this._elToggle.value = '';
+		this._elToggle.dataset.index = '-1';
+		this._el.dispatchEvent(new CustomEvent('itc.select.change'));
+		this._params.onSelected ? this._params.onSelected(this, null) : null;
+		return '';
+	}
+
+	_changeValue(el) {
+		if (el.classList.contains(this.constructor.EL_OPTION_SELECTED)) {
+			return;
+		}
+		this._updateOption(el);
+		this.hide();
+	}
+
+	show() {
+		document.querySelectorAll(this.constructor.EL_SHOW).forEach(el => {
+			el.classList.remove(this.constructor.EL_SHOW);
+		});
+		this._el.classList.add(`${this.constructor.EL_SHOW}`);
+	}
+
+	hide() {
+		this._el.classList.remove(this.constructor.EL_SHOW);
+	}
+
+	toggle() {
+		this._el.classList.contains(this.constructor.EL_SHOW)
+			? this.hide()
+			: this.show();
+	}
+
+	dispose() {
+		this._el.removeEventListener('click', this._onClickFn);
+	}
+
+	get value() {
+		return this._elToggle.value;
+	}
+
+	set value(value) {
+		let isExists = false;
+		this._el.querySelectorAll('.select__option').forEach(option => {
+			if (option.dataset.value === value) {
+				isExists = true;
+				this._updateOption(option);
+			}
+		});
+		if (!isExists) {
+			this._reset();
+		}
+	}
+
+	get selectedIndex() {
+		return this._elToggle.dataset.index;
+	}
+
+	set selectedIndex(index) {
+		const option = this._el.querySelector(
+			`.select__option[data-index="${index}"]`
+		);
+		if (option) {
+			this._updateOption(option);
+		}
+		this._reset();
+	}
+}
+
+ItcCustomSelect.hideOpenSelect();

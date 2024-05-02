@@ -148,7 +148,7 @@
             <div class="chart-container ">
               <div class="chart-header">
                 <h2 class="heading-h2">Your hashrate</h2>
-                <div class="chart-interval">
+                <div class="chart-interval  tabs__chart-hashrate-interval-hour-day">
                   <button class="tab tab-border-radius-around-left hourButton ">1 hour</button>
                   <button class="tab tab-border-radius-around-right active dayButton">24 hours</button>
                 </div>
@@ -156,17 +156,14 @@
               <div class="chart__chart-container" style="position: relative;">
                 <canvas id="chartYourHashrate"></canvas>
               </div>
+
               <div class="interval__inner">
-                <div class="chart-interval chart-interval__workers-payouts-container">
+                <div class="chart-interval tabs-tables__workers-payouts">
                   <button class="tab tab-border-radius-around-left tab-workers">Workers</button>
                   <button class="tab tab-border-radius-around-right  tab-payouts active">Payouts</button>
                 </div>
                 <div class="custom-select select-interval-payouts">
-                  <select>
-                    <option value="0">Select currency</option>
-                    <option selected value="1">24 hour</option>
-                    <option value="2">Week</option>
-                  </select>
+                  <div id="select-payouts"></div>
                 </div>
               </div>
 
