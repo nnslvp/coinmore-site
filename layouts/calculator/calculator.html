@@ -78,13 +78,7 @@
           <ul class="input-group">
             <li class="input-container">
               <label class="label" for="currency">Currency *</label>
-              <div class="custom-select">
-                <select>
-                  <option value="0">Select currency</option>
-                  <option value="1">Audi</option>
-                  <option value="2">BMW</option>
-                </select>
-              </div>
+              <div id="select-currency"></div>
             </li>
             <li class="input-container">
               <label class="label" for="hashrate">Hashrate (GH/s) *</label>
@@ -172,7 +166,10 @@
 
     {{partial "footer.html" .}}
   </div>
-  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $statisticsPage := resources.Get "js/calculator-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/calculator-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 

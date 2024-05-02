@@ -122,6 +122,10 @@
 	}
 }
 
+.open-button {
+	cursor: pointer;
+}
+
 .modal-dit-min-payouts {
 	width: 28.375rem;
 	opacity: 0;
@@ -131,7 +135,6 @@
 	transform: translate(-50%, -50%);
 	border: none;
 	border-radius: 1.25rem;
-	animation: fadein 0.3s ease-in forwards;
 	&::backdrop {
 		background-color: rgba(0, 0, 0, 0.5);
 		animation: fadein 0.3s ease-in forwards;
@@ -139,6 +142,7 @@
 
 	&[open] {
 		opacity: 1;
+		animation: fadein 0.3s ease-in forwards;
 	}
 
 	.modal__inner {
