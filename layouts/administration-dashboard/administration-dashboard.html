@@ -59,19 +59,11 @@
           <h1>Administration dashboard</h1>
 
           <search class="section filter-panel">
-            <div class="custom-select select-currency">
-              <select>
-                <option value="0">Select currency</option>
-                <option value="1">24 hour</option>
-                <option value="2">Week</option>
-              </select>
+            <div id="select-currency" class="select-currency">
+
             </div>
-            <div class="custom-select select-interval-region">
-              <select>
-                <option value="0">Select region</option>
-                <option value="1">24 hour</option>
-                <option value="2">Week</option>
-              </select>
+            <div  id="select-region" class="select-interval-region">
+
             </div>
             <div class="datepicker-range__container">
               <i class="icon calendar-icon"></i>
@@ -85,9 +77,7 @@
           </search>
 
           <section class="section section-statistics">
-
             <div class="section-statistics__inner">
-
               <h2 class="heading-h2">Realtime statistics</h2>
               <ul class="stats-container section-statistics__stats-list-container">
                 <li class="stat-item">
@@ -141,40 +131,40 @@
             <div class="chart-header">
               <h2 class="heading-h2">Pool hashrate</h2>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart chart__chart-container">
+              <canvas id="poolHashrateChart"></canvas>
             </div>
           </section>
           <section class="chart-container">
             <div class="chart-header">
               <h2 class="heading-h2">Workers activity</h2>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart chart__chart-container">
+              <canvas id="workersActivityChart"></canvas>
             </div>
           </section>
           <section class="chart-container">
             <div class="chart-header">
               <h2 class="heading-h2">Blocks</h2>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart  chart__chart-container">
+              <canvas id="blocksChart"></canvas>
             </div>
           </section>
           <section class="chart-container">
             <div class="chart-header">
               <h2 class="heading-h2">Profit per GH</h2>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart  chart__chart-container">
+              <canvas id="profitPerGHChart"></canvas>
             </div>
           </section>
           <section class="chart-container">
             <div class="chart-header">
               <h2 class="heading-h2">Gross/Net profit</h2>
             </div>
-            <div class="chart">
-              Тут будет график
+            <div class="chart chart__chart-container">
+              <canvas id="grossNetProfitChart"></canvas>
             </div>
           </section>
         </div>
@@ -189,18 +179,6 @@
   {{ $global:= resources.Get "js/main.js" }}
   {{ $js := slice $global $customSelect $page | resources.Concat "js/build/administration-dashboard-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
-  <script>
-    const datepickerContainer = document.querySelector('.datepicker-range__container')
-    window.addEventListener("load", function (event) {
-      new DateRangePicker('date-time-range-input');
-    });
-
-    datepickerContainer.addEventListener('click', (e) => {
-      e.currentTarget.classList.add('active')
-    })
-
-
-  </script>
 </body>
 
 </html>

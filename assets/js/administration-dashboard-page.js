@@ -1,6 +1,8 @@
 const CHART_POOL_HASH_RATE = document.querySelector('#poolHashrateChart');
-const CHART_PROFIT = document.querySelector('#profitChart');
+const CHART_PROFIT_PER_GH = document.querySelector('#profitPerGHChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
+const CHART_BLOCKS = document.querySelector('#blocksChart');
+const CHART_GROSS_NET_PROFIT = document.querySelector('#grossNetProfitChart');
 const CHART_BASE_OPTIONS = {
 	type: 'line',
 	data: {
@@ -72,7 +74,7 @@ const CHART_BASE_OPTIONS = {
 
 function initializeChart(chartElement, chartOptions) {
 	const ctx = chartElement.getContext('2d');
-	const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+	const gradient = ctx.createLinearGradient(0, 0, 0, 300);
 	gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
 	gradient.addColorStop(1, 'rgba(155, 77, 202, 0)');
 
@@ -111,16 +113,24 @@ function updateChartData(chart, newData) {
 
 const poolHashRateChart = initializeChart(
 	CHART_POOL_HASH_RATE,
-	getChartOptions()
-);
-
-const profitChart = initializeChart(
-	CHART_PROFIT,
 	getChartOptions({
 		options: {
 			plugins: {
 				title: {
-					text: 'ALPH',
+					text: '',
+				},
+			},
+		},
+	})
+);
+
+const profitChart = initializeChart(
+	CHART_PROFIT_PER_GH,
+	getChartOptions({
+		options: {
+			plugins: {
+				title: {
+					text: '',
 				},
 			},
 		},
@@ -133,9 +143,84 @@ const workersActivityChart = initializeChart(
 		options: {
 			plugins: {
 				title: {
-					text: 'Workers',
+					text: '',
 				},
 			},
 		},
 	})
 );
+
+const grossNetProfitChart = initializeChart(
+	CHART_GROSS_NET_PROFIT,
+	getChartOptions({
+		options: {
+			plugins: {
+				title: {
+					text: '',
+				},
+			},
+		},
+	})
+);
+
+const blocksChart = initializeChart(
+	CHART_BLOCKS,
+	getChartOptions({
+		options: {
+			plugins: {
+				title: {
+					text: '',
+				},
+			},
+		},
+	})
+);
+
+ItcCustomSelect.create('#select-currency', {
+	name: 'interval',
+	placeholder: 'Select currency',
+	targetValue: '',
+	options: [
+		['day', '24 hours'],
+		['week', 'Week'],
+	],
+	onSelected(select, option) {
+		// выбранное значение
+		console.log(`Выбранное значение: ${select.value}`);
+		// индекс выбранной опции
+		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
+		// выбранный текст опции
+		const text = option ? option.textContent : '';
+		console.log(`Выбранный текст опции: ${text}`);
+	},
+});
+
+ItcCustomSelect.create('#select-region', {
+	name: 'interval',
+	placeholder: 'Select currency',
+	targetValue: '',
+	options: [
+		['day', '24 hours'],
+		['week', 'Week'],
+	],
+	onSelected(select, option) {
+		// выбранное значение
+		console.log(`Выбранное значение: ${select.value}`);
+		// индекс выбранной опции
+		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
+		// выбранный текст опции
+		const text = option ? option.textContent : '';
+		console.log(`Выбранный текст опции: ${text}`);
+	},
+});
+
+const datepickerContainer = document.querySelector(
+	'.datepicker-range__container'
+);
+window.addEventListener('load', function (event) {
+	new DateRangePicker('date-time-range-input');
+});
+
+datepickerContainer.addEventListener('click', e => {
+	e.currentTarget.classList.add('active');
+});
