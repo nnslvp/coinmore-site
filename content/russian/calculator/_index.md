@@ -1,9 +1,9 @@
 ---
 title: 'Калькулятор'
 subtitle: 'Alephium - это первая майнинговая шардированная блокчейн платформа...'
-currency_label: 'Валюта *'
-hashrate_label: 'Хешрейт (ГХ/с) *'
-power_consumption_label: 'Потребляемая мощность (Вт) *'
+currency_label: 'Валюта'
+hashrate_label: 'Хешрейт (ГХ/с)'
+power_consumption_label: 'Потребляемая мощность (Вт)'
 electricity_costs_label: 'Стоимость электроэнергии (USD/кВт·ч)'
 calculate_button: 'Рассчитать'
 period_header: 'Период'
