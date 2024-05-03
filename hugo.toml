@@ -35,14 +35,16 @@ title = 'My New Hugo Site'
     weight = 5
 
 
+defaultContentLanguage = 'en'
 
 [languages]
-[languages.en]
-languageName = "English"
-weight = 1
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    contentDir = "content/english"
 
 
-[languages.ru]
-languageName = "Русский"
-weight = 2
-
+  [languages.ru]
+    languageName = "Русский"
+    weight = 2
+    contentDir = "content/russian"

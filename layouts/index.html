@@ -1,40 +1,90 @@
-{{ define "main" }}
-<main class="main-home-page">
-  <section class="section-welcome section-welcome__page-home">
-    <div class="container">
-      <div class="section-welcome__inner">
-        <h1 class="heading-h1">Welcome to coinmore.io</h1>
-        <p class="subtitle section-welcome__subtitle ">
-          Where mining becomes easier and more profitable! Are you looking for a
-          reliable pool with low fees? Do you desire stability and transparent
-          statistics? Look no further! On our platform, you'll find everything
-          for efficient mining, as well as a warm community and tech support
-          ready to assist in any situation. Earn more with lower expenses.
-        </p>
-      </div>
-    </div>
-  </section>
-  <section class="section-start-mining">
-    <div class="container">
-      <div class="section-start-mining__inner">
-        <header class="section-start-mining__header">
-          <h2 class="heading-h1">Start mining with us</h2>
-          <a href="#" class="btn btn-outline-primary">
-            <i class=" icon calculator-icon-primary"></i>
-            Mining calculator</a>
-        </header>
-        <ul class="coins-list">
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-          <li class="coins-list__item">{{partial "coin-card.html" .}}</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</main>
-{{ end }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+
+  <meta property="og:site_name" content="Lazy Bison">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="" />
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="">
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+  <link rel="icon" type="image/png" sizes="32x32" href="">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="manifest" href="">
+
+
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+
+<body>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    <main class="main-home-page">
+      <section class="section-welcome section-welcome__page-home">
+        <div class="container">
+          <div class="section-welcome__inner">
+            <h1 class="heading-h1">{{ .Params.welcome_heading }}</h1>
+            <p class="subtitle section-welcome__subtitle ">
+              {{ .Params.welcome_text }}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section-start-mining">
+        <div class="container">
+          <div class="section-start-mining__inner">
+            <header class="section-start-mining__header">
+              <h2 class="heading-h1">{{ .Params.mining_heading }}</h2>
+              <a href="#" class="btn btn-outline-primary">
+                <i class="icon calculator-icon-primary"></i>
+                {{ .Params.mining_calculator_text }}
+              </a>
+            </header>
+            <ul class="coins-list">
+              {{ range where .Site.RegularPages "Type" "coin" }}
+              <li class="coins-list__item">
+                {{ partial "coin-card.html" . }}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    {{partial "footer.html" .}}
+  </div>
+  {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  <script type="module" src="{{ $js.Permalink }}"></script>
+</body>
+
+</html>

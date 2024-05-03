@@ -10,9 +10,16 @@
       <img src="/icons/US.svg" alt="English">
       <span>English</span>
     </a>
-    <a class="dropdown__item" href="#russian">
+    <a class="dropdown__item" href="/ru/">
       <img src="/icons/Russia.svg" alt="Russian">
       <span>Russian</span>
     </a>
   </ul>
 </div>
+
+
+<ul>
+  {{ range $.Site.Home.AllTranslations }}
+  <li><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a></li>
+  {{ end }}
+</ul>
