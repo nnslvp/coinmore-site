@@ -19,7 +19,7 @@
 
 
 <ul>
-  {{ range $.Site.Home.AllTranslations }}
-  <li><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a></li>
+  {{ range .Page.AllTranslations }}
+  <li><a href="{{ .Permalink  | absLangURL }}">{{ .Language.LanguageName }}</a></li>
   {{ end }}
 </ul>

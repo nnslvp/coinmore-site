@@ -1,2 +1,6 @@
-[welcome]
-other = "Welcome to my blog"
+
+[hour_singular]
+  other = "hour"
+
+[hour_many]
+  other = "hours"

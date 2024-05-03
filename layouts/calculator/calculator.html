@@ -57,58 +57,52 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/calculator" class="currency-link">Calculator</a></li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/calculator" class="currency-link">{{ .Title }}</a>
+        </li>
       </ul>
     </nav>
     <main>
       <div class="container">
         <div class="calculator__inner">
           <header class="calculator-header">
-            <h1 class="heading-h1">Calculator</h1>
-            <p class="subtitle calculator__subtitle">Alephium is the first mineable live layer 1 sharded blockchain
-              scaling
-              and improving on
-              Bitcoin
-              core
-              technologies, Proof
-              of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
-              efficiency.
+            <h1 class="heading-h1">{{ .Title }}</h1>
+            <p class="subtitle calculator__subtitle">{{ .Params.subtitle }}
             </p>
           </header>
           <ul class="input-group">
             <li class="input-container">
-              <label class="label" for="currency">Currency *</label>
+              <label class="label" for="currency">{{ .Params.currency_label }}*</label>
               <div id="select-currency"></div>
             </li>
             <li class="input-container">
-              <label class="label" for="hashrate">Hashrate (GH/s) *</label>
+              <label class="label" for="hashrate">{{ .Params.hashrate_label}}*</label>
               <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate">
             </li>
             <li class="input-container">
-              <label class="label" for="power-consumption">Power consumption (W) *</label>
+              <label class="label" for="power-consumption">{{ .Params.power_consumption_label}} *</label>
               <input class="input" placeholder="12" type="number" id="power-consumption" name="power-consumption">
             </li>
             <li class="input-container">
-              <label class="label" for="electricity-costs">Electricity costs (USD/kWh)</label>
+              <label class="label" for="electricity-costs">{{ .Params.electricity_costs_label}}</label>
               <input class="input" placeholder="1000" type="number" id="electricity-costs" name="electricity-costs">
             </li>
-            <button class="btn btn-filled-primary calculate-btn">Calculate</button>
+            <button class="btn btn-filled-primary calculate-btn">{{ .Params.calculate_button}}</button>
           </ul>
           <div class="result-table__container">
             <table class="table calculate-result-table">
               <thead>
                 <tr>
-                  <th>Period</th>
-                  <th>Est. reward</th>
-                  <th>Est. income</th>
-                  <th>Electricity costs</th>
-                  <th>Est. profit</th>
+                  <th>{{.Params.period_header}}</th>
+                  <th>{{.Params.est_reward_header}}</th>
+                  <th>{{.Params.est_income_header}}</th>
+                  <th>{{.Params.electricity_costs_header}}</th>
+                  <th>{{.Params.est_profit_header}}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td data="Period" class="period-cell">
-                    <span class="period-value">1 hour
+                    <span class="period-value">1 {{.Params.hour }}
                     </span>
                   </td>
                   <td class="reward-cell" data="Est. reward">
@@ -125,7 +119,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td data="Period" class="period-cell">24 hour</td>
+                  <td data="Period" class="period-cell">24 {{.Params.hour_24 }} </td>
                   <td class="reward-cell" data="Est. reward">
                     <span class="reward-value">0.0068 ALPH</span>
                   </td>
@@ -141,10 +135,10 @@
                 </tr>
                 <tr>
                   <td data="Period" class="period-cell">
-                    7 hour
+                    7 {{.Params.days }}
                   </td>
                   <td class="reward-cell" data="Est. reward">
-                    <strong class="reward-value">0.0068 ALPH</strong>
+                    <span class="reward-value">0.0068 ALPH</span>
                   </td>
                   <td class="income-cell" data="Est. income">
                     <span class="income-value">0.0168 USD</span>

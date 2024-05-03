@@ -1,2 +1,9 @@
-[welcome]
-other = "Добро пожаловать в мой блог"
+[hours_singular]
+  other = "час"
+
+[hour_many]
+  other = "часов"
+
+
+
+

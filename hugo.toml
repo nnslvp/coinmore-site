@@ -3,40 +3,8 @@ languageCode = 'en-us'
 title = 'My New Hugo Site'
 
 
-
-[[menu.main]]
-    identifier = "administration-dashboard"
-    name = "administration-dashboard"
-    url = "/administration-dashboard"
-    weight = 1
-
-[[menu.main]]
-    identifier = "calculator"
-    name = "calculator"
-    url = "/calculator"
-    weight = 2
-
-[[menu.main]]
-    identifier = "instructions"
-    name = "instructions"
-    url = "/instructions"
-    weight = 3
-
-[[menu.main]]
-    identifier = "my-statistics"
-    name = "my-statistics"
-    url = "/my-statistics"
-    weight = 4
-
-[[menu.main]]
-    identifier = "quick-start"
-    name = "quick-start"
-    url = "/quick-start"
-    weight = 5
-
-
 defaultContentLanguage = 'en'
-
+defaultContentLanguageInSubdir = true
 [languages]
   [languages.en]
     languageName = "English"
