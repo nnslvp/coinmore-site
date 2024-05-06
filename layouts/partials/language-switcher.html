@@ -1,6 +1,6 @@
 <div class="language-switcher">
   <div class="language-switcher__lang">
-    <img src="/icons/US.svg" alt="English">
+    <img src="/icons/US.svg" alt="English" />
     <span class="language-name"></span>
     <i class="icon chevron-icon-bottom"></i>
   </div>
@@ -10,9 +10,8 @@
     {{ $iconFlag := "" }}
     {{ if eq .Language.LanguageName "Русский" }}
     {{ $iconFlag = "russian-flag-icon" }}
-    {{ else }}
-    {{ $iconFlag = "usa-flag-icon" }}
-    {{ end }}
+    {{else }}
+    {{ $iconFlag = "usa-flag-icon" }} {{ end }}
     <a class="dropdown__item" href="{{ .Permalink | absLangURL }}">
       <i class="icon  {{$iconFlag}}"></i>
       <span>{{ .Language.LanguageName }}</span>

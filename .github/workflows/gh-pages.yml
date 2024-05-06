@@ -57,7 +57,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://thelazybison.com/"
+            --baseURL "https://coinmore.io/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
