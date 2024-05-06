@@ -8,7 +8,7 @@
   <div class="dropdown">
     {{ range .Page.AllTranslations }}
     {{ $iconFlag := "" }}
-    {{ if eq .Language.LanguageName "Русский" }}
+    {{ if eq .Language.LanguageName "Russian" }}
     {{ $iconFlag = "russian-flag-icon" }}
     {{else }}
     {{ $iconFlag = "usa-flag-icon" }} {{ end }}
