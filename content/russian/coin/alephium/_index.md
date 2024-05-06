@@ -1,5 +1,6 @@
 ---
 type: 'coin'
+layout: 'coin'
 coin_name: 'alephium'
 coin_symbol: 'ALH'
 start_mining: 'Начать майнинг'
