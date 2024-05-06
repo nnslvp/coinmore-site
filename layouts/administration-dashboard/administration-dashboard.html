@@ -56,13 +56,13 @@
     <main class="administration-dashboard-page">
       <div class="container">
         <div class="administration-dashboard-page__inner">
-          <h1>Administration dashboard</h1>
+          <h1>{{ .Params.title }}</h1>
 
           <search class="section filter-panel">
             <div id="select-currency" class="select-currency">
 
             </div>
-            <div  id="select-region" class="select-interval-region">
+            <div id="select-region" class="select-interval-region">
 
             </div>
             <div class="datepicker-range__container">
@@ -72,53 +72,55 @@
             </div>
             <button class="btn btn-clear btn-outline-primary">
               <i class="icon refresh-icon"></i>
-              Clear filters
+              {{ .Params.clear_filters}}
             </button>
           </search>
 
           <section class="section section-statistics">
             <div class="section-statistics__inner">
-              <h2 class="heading-h2">Realtime statistics</h2>
+              <h2 class="heading-h2">
+                {{ .Params.realtime_statistics}}
+              </h2>
               <ul class="stats-container section-statistics__stats-list-container">
                 <li class="stat-item">
                   <i class="icon speed-icon"></i>
                   <div class="stat-item__content">
-                    <p class="stat-item__lable">Pool hashrate:</p>
+                    <p class="stat-item__lable">{{ .Params.pool_hashrate_label}}</p>
                     <strong class="stat-item__value">4.83 TH/s</strong>
                   </div>
                 </li>
                 <li class="stat-item">
                   <i class="icon grid-icon"></i>
                   <div class="stat-item__content">
-                    <p class="stat-item__lable">24h Blocks:</p>
+                    <p class="stat-item__lable">{{ .Params.blocks_24h_label}}</p>
                     <strong class="stat-item__value">281</strong>
                   </div>
                 </li>
                 <li class="stat-item">
                   <i class="icon people-icon"></i>
                   <div class="stat-item__content">
-                    <p class="stat-item__lable">Workers Online:</p>
+                    <p class="stat-item__lable">{{ .Params.workers_online_label}}</p>
                     <strong class="stat-item__value">106</strong>
                   </div>
                 </li>
                 <li class="stat-item">
                   <i class="icon coins-icon"></i>
                   <div class="stat-item__content">
-                    <p class="stat-item__lable">Profit per GH:</p>
+                    <p class="stat-item__lable">{{ .Params.profit_per_gh_label}}</p>
                     <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
                   </div>
                 </li>
                 <li class="stat-item">
                   <i class="icon coins-icon"></i>
                   <div class="stat-item__content">
-                    <p class="stat-item__lable">Profit per GH:</p>
+                    <p class="stat-item__lable">{{ .Params.profit_gross_label}}</p>
                     <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
                   </div>
                 </li>
                 <li class="stat-item">
                   <i class="icon coins-icon"></i>
                   <div class="stat-item__content">
-                    <p class="stat-item__lable">Profit per GH:</p>
+                    <p class="stat-item__lable">{{ .Params.profit_net_label}}</p>
                     <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
                   </div>
                 </li>
@@ -129,7 +131,7 @@
           </section>
           <section class="chart-container">
             <div class="chart-header">
-              <h2 class="heading-h2">Pool hashrate</h2>
+              <h2 class="heading-h2">{{ .Params.pool_hashrate_chart}}</h2>
             </div>
             <div class="chart chart__chart-container">
               <canvas id="poolHashrateChart"></canvas>
@@ -137,7 +139,7 @@
           </section>
           <section class="chart-container">
             <div class="chart-header">
-              <h2 class="heading-h2">Workers activity</h2>
+              <h2 class="heading-h2">{{ .Params.workers_activity_chart}}</h2>
             </div>
             <div class="chart chart__chart-container">
               <canvas id="workersActivityChart"></canvas>
@@ -145,7 +147,7 @@
           </section>
           <section class="chart-container">
             <div class="chart-header">
-              <h2 class="heading-h2">Blocks</h2>
+              <h2 class="heading-h2">{{ .Params.blocks_chart}}</h2>
             </div>
             <div class="chart  chart__chart-container">
               <canvas id="blocksChart"></canvas>
@@ -153,7 +155,7 @@
           </section>
           <section class="chart-container">
             <div class="chart-header">
-              <h2 class="heading-h2">Profit per GH</h2>
+              <h2 class="heading-h2">{{ .Params.profit_per_gh_chart}}</h2>
             </div>
             <div class="chart  chart__chart-container">
               <canvas id="profitPerGHChart"></canvas>
@@ -161,7 +163,7 @@
           </section>
           <section class="chart-container">
             <div class="chart-header">
-              <h2 class="heading-h2">Gross/Net profit</h2>
+              <h2 class="heading-h2">{{ .Params.gross_net_profit_chart}}</h2>
             </div>
             <div class="chart chart__chart-container">
               <canvas id="grossNetProfitChart"></canvas>
