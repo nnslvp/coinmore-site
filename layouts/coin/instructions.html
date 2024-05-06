@@ -61,8 +61,8 @@
             .Params.coin_name }}</a></li>
         <li class="separator">/</li>
         <li class="navigation-item">
-          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions"
-            class="statistics-link">Instructions</a>
+          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions" class="statistics-link">{{
+            .Params.title }}</a>
         </li>
       </ul>
     </nav>
@@ -71,19 +71,30 @@
         <header class="instructions-header">
           <div class="container">
             <div class="instructions-header__inner">
-              <h1 class="heading-h1">Instructions</h1>
-              <p class="subtitle instructions__subtitle">Alephium is the first mineable live layer 1 If you have any
-                questions, please use the <a class="link" href="#"><strong>FAQ</strong></a>
-                Start by downloading <a class="link" href="#"><strong>Alephium Wallet</strong></a>
+              <h1 class="heading-h1">{{ .Params.title }}</h1>
+              <p class="subtitle instructions__subtitle">
+                {{ .Params.subtitle_text_1 }}
+
+                <a class="link" href="#faq">
+                  <strong>{{ .Params.faq_title}}</strong>
+                </a>
+                <span>
+                  {{ .Params.subtitle_text_2 }}
+                  <a class="link" href="#">
+                    <strong>
+                      {{ .Params.alephium_wallet }}.
+                    </strong>
+                  </a>
+                </span>
               </p>
             </div>
           </div>
-
         </header>
+
         <section class="section section-pool-servers">
           <div class="container">
             <div class="section__inner">
-              <h2 class="heading-h2">Pool servers</h2>
+              <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
               {{partial "table-servers.html" .}}
             </div>
           </div>
@@ -91,8 +102,8 @@
         <section class="section-miners">
           <div class="container">
             <div class="section__inner">
-              <h2 class="heading-h2">Miners</h2>
-              <p class="subtitle">You can use:</p>
+              <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
+              <p class="subtitle">{{ .Params.can_use }}:</p>
               <div class="miners-list-about-other-container">
                 <ul class="miners-list">
                   <li class="miners-item">
@@ -114,8 +125,8 @@
                     <a href="" class="link">Rigel</a>
                   </li>
                 </ul>
-                <p class="subtitle">About other solutions you can ask in <a class="link subtitle" href="">telegram
-                    community</a></p>
+                <p class="subtitle">{{ .Params.ask_in_telegram }} <a class="link subtitle" href="">{{
+                    .Params.telegram_community }}</a></p>
               </div>
             </div>
           </div>
@@ -123,7 +134,7 @@
         <section class="section-windows-examples">
           <div class="container">
             <div class="section__inner">
-              <h2 class="heading-h2">Windows examples</h2>
+              <h2 class="heading-h2">{{ .Params.windows_examples }}</h2>
               <ul class="tabs-miners-list">
                 <li class="tab tab-border-radius-around-left  tabs-miners-item active">IolMiner</li>
                 <li class="tab tabs-miners-item">IolMiner</li>
@@ -134,13 +145,14 @@
                 <h1 class="heading-h2">lolMiner</h1>
                 <ol class="steps-list">
                   <li>
-                    Download
-                    <a href="https://github.com/Lolliedieb/lolMiner-releases/releases">
-                      last release of lolMiner</a>
-                    and unzip files
+                    {{ .Params.download_word}}
+                    <a class="link" href="https://github.com/Lolliedieb/lolMiner-releases/releases">
+                      {{ .Params.download_lolminer_phrase}}</a>
+                    {{ .Params.unzip_phrase}}
                   </li>
                   <li>
-                    Update <strong>alph</strong> file, for example: <strong>dual_mine_eth_aleph.bat</strong>
+                    {{ .Params.update_file_phrase | safeHTML}}
+                    <strong>dual_mine_eth_aleph.bat</strong>
                     <div class="code-wrapper">
                       <button class="btn  btn-copy copy-code-btn ">
                         <i class="icon copy-icon"></i>
@@ -154,97 +166,33 @@
                     </div>
                   </li>
                   <li>
-                    <p class=""></p> Run <strong>alph</strong> file, for example:
-                    <strong>dual_mine_eth_aleph.bat</strong>
+                    <span>{{ .Params.run_alph_file_phrase | safeHTML}} <strong>dual_mine_eth_aleph.bat</strong>
+                    </span>
                   </li>
                   <li>
-                    <strong class="profit">PROFIT! </strong>
+                    <strong class="profit">{{ .Params.profit}} </strong>
                   </li>
                 </ol>
               </div>
             </div>
           </div>
         </section>
-        <section class="section-faq">
+        <section id="faq" class="section-faq">
           <div class="container">
             <div class="section__inner">
               <header class="section-faq__header">
-                <h2 class="heading-h1">FAQ</h2>
-                <p class="subtitle">Frequently Asked Questions for AlephiumPool.com</p>
+                <h2 class="heading-h1">{{ .Params.faq_title }}</h2>
+                <p class="subtitle">{{ .Params.faq_subtitle }}</p>
               </header>
               <div class="questions">
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
-                <details class="question">
-                  <summary class="question-title">Question 1</summary>
-                  <p class="answer">Alephium mining pool is a mining pool configured in such a way that each miner works
-                    independently of
-                    the
-                    others. The block reward goes to only the miner who found it, others do not get anything. Block
-                    search
-                    time depends on your hashrate and luck.</p>
-                </details>
+                <div class="questions">
+                  {{ range .Params.faq }}
+                  <details class="question">
+                    <summary class="question-title">{{ .question }}</summary>
+                    <p class="answer">{{ .answer }}</p>
+                  </details>
+                  {{ end }}
+                </div>
               </div>
             </div>
         </section>

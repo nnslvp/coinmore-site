@@ -15,6 +15,9 @@
 .instructions__subtitle {
 	max-width: 50rem;
 	text-align: center;
+	span {
+		display: block;
+	}
 }
 
 .section__inner {
