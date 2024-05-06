@@ -49,18 +49,6 @@
   {{ end }}
   <div class="wrapper">
     {{partial "header.html" .}}
-    <nav class="nav-page__container container">
-      <ul class="navigation-list">
-        <li class="navigation-item">
-          <a href="{{.Site.BaseURL}}" class="home-link">
-            <i class="icon home-icon"></i>
-          </a>
-        </li>
-        <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
-            .Params.coin_name }}</a></li>
-
-      </ul>
     </nav>
     <main class="statistics-page">
       <section class="section-welcome section-welcome__page-coin">
