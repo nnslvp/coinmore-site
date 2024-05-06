@@ -1,5 +1,6 @@
 ---
 coin_name: 'alephium'
 layout: 'instructions'
-type: 'instructions'
+show_card: false
+headless: true
 ---

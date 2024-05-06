@@ -1,5 +1,6 @@
 ---
 coin_name: 'alephium'
 layout: 'statistics'
-type: 'statistics'
+show_card: false
+headless: true
 ---

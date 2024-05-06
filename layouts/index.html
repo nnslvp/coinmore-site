@@ -65,16 +65,18 @@
           <div class="section-start-mining__inner">
             <header class="section-start-mining__header">
               <h2 class="heading-h1">{{ .Params.mining_heading }}</h2>
-              <a href="#" class="btn btn-outline-primary">
+              <a href="{{ $.Site.BaseURL }}/calculator" class="btn btn-outline-primary">
                 <i class="icon calculator-icon-primary"></i>
                 {{ .Params.mining_calculator_text }}
               </a>
             </header>
             <ul class="coins-list">
-              {{ range where .Site.RegularPages "Type" "coin" }}
+              {{ range where .Site.Pages "Type" "coin" }}
+              {{ if not .Params.headless }}
               <li class="coins-list__item">
                 {{ partial "coin-card.html" . }}
               </li>
+              {{ end }}
               {{ end }}
             </ul>
           </div>

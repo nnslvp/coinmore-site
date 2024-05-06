@@ -4,7 +4,6 @@ title = 'My New Hugo Site'
 
 
 defaultContentLanguage = 'en'
-defaultContentLanguageInSubdir = true
 [languages]
   [languages.en]
     languageName = "English"
