@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+
+
+  <meta property="og:site_name" content="Lazy Bison">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="" />
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="">
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+  <link rel="icon" type="image/png" sizes="32x32" href="">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="manifest" href="">
+
+
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+
+<body>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    <nav class="nav-page__container container">
+      <ul class="navigation-list">
+        <li class="navigation-item">
+          <a href="{{.Site.BaseURL}}" class="home-link">
+            <i class="icon home-icon"></i>
+          </a>
+        </li>
+        <li class="separator">/</li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
+            .Params.coin_name }}</a></li>
+
+      </ul>
+    </nav>
+    <main class="statistics-page">
+      <section class="section-welcome section-welcome__page-coin">
+        <div class="container">
+          <div class="section-welcome__inner">
+            <h1 class="heading-h1">{{
+              .Params.title }}</h1>
+            <p class="subtitle section-welcome__subtitle">
+              {{
+              .Params.subtitle }}
+            </p>
+            <ul class="benefits-container">
+              <li class="benefit-item">
+                <p class="benefit-item__text">
+                  <strong class="stat-item__value">{{ .Params.benefit1_title }}</strong>
+                  {{ .Params.benefit1_text }}
+                </p>
+              </li>
+              <li class="benefit-item">
+                <p class="benefit-item__text">
+                  <strong class="stat-item__value">{{ .Params.benefit2_title }}</strong>
+                  {{ .Params.benefit2_text }}
+                </p>
+              </li>
+              <li class="benefit-item">
+                <p class="benefit-item__text">
+                  <strong class="stat-item__value">{{ .Params.benefit3_title }}</strong>
+                  {{ .Params.benefit3_text }}
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="section-start">
+        <div class="container">
+          <div class="section-start__inner">
+            <h2 class="heading-h1">{{.Params.quick_start_title}}</h2>
+            <p class="subtitle section-start__subtitle">
+              {{.Params.quick_start_subtitle}}
+            </p>
+            <search class="section-start__search">
+              <form class="section-start__search-form">
+                <input class="input" name="search" placeholder="Wallet">
+                <button class="btn btn-filled-primary">{{.Params.button_view_statistic_text }}</button>
+              </form>
+            </search>
+          </div>
+        </div>
+      </section>
+      <section class="section-coin">
+        <div class="container">
+          <div class="section-coin__inner">
+            <h2 class="heading-h1 section-coin__h1">{{ .Params.pool_title }}</h2>
+            <p class="subtitle section-coin__subtitle">{{ .Params.pool_subtitle }}</p>
+
+            <div class="table-container">
+              {{partial "table-servers.html" .}}
+            </div>
+          </div>
+          <ul class="stats-container section-coin__stats-container">
+            <li class="stat-item">
+              <i class="icon speed-icon"></i>
+              <div class="stat-item__content">
+                <p class="stat-item__lable">{{ .Params.pool_hashrate_label }}:</p>
+                <strong class="stat-item__value">4.83 TH/s</strong>
+              </div>
+            </li>
+            <li class="stat-item">
+              <i class="icon coins-icon"></i>
+              <div class="stat-item__content">
+                <p class="stat-item__lable">{{ .Params.profit_per_gh_label }}:</p>
+                <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+              </div>
+            </li>
+            <li class="stat-item">
+              <i class="icon grid-icon"></i>
+              <div class="stat-item__content">
+                <p class="stat-item__lable">{{ .Params.blocks_24h_label }}:</p>
+                <strong class="stat-item__value">281</strong>
+              </div>
+            </li>
+            <li class="stat-item">
+              <i class="icon cube-icon"></i>
+              <div class="stat-item__content">
+                <p class="stat-item__lable">{{ .Params.latest_block_label }}:</p>
+                <strong class="stat-item__value">1.42 hour(s)</strong>
+              </div>
+            </li>
+            <li class="stat-item">
+              <i class="icon people-icon"></i>
+              <div class="stat-item__content">
+                <p class="stat-item__lable">{{ .Params.workers_online_label }}:</p>
+                <strong class="stat-item__value">106</strong>
+              </div>
+            </li>
+          </ul>
+          <div class="chart-container chart-hashrate">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.chart_headers.hashrate }}</h2>
+              <div class="chart-interval chart-interval__pool-hashrate">
+                <span class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</span>
+                <span class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
+                  }}</span>
+              </div>
+            </div>
+            <div class="chart chart__chart-container">
+              <canvas id="poolHashrateChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-container chart-profit">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.chart_headers.profit }}</h2>
+              <div class="chart-interval chart-interval__profit">
+                <button class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</button>
+                <button class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
+                  }}</button>
+              </div>
+            </div>
+            <div class="chart chart__chart-container">
+              <canvas id="profitChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-container chart-workers">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.chart_headers.workers_activity }}</h2>
+              <div class="chart-interval chart-interval__workers-activity">
+                <button class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</button>
+                <button class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
+                  }}</button>
+              </div>
+            </div>
+            <div class="chart chart__chart-container">
+              <canvas id="workersActivityChart"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+    {{partial "footer.html" .}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {{ $page := resources.Get "js/coin-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $page | resources.Concat "js/build/coin-page-build.js" }}
+  <script type="module" src="{{ $js.Permalink }}"></script>
+</body>
+
+</html>

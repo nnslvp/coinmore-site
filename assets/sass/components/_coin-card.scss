@@ -1,0 +1,60 @@
+.card-coin {
+	padding: 1rem;
+	border-radius: 0.625rem;
+	box-shadow: 0rem 0.25rem 0.625rem 0rem var(--color-box-shadow-card-coin);
+	transition: box-shadow 0.3s ease;
+	&:hover {
+		box-shadow: 0rem 0.25rem 1rem 0rem var(--color-box-shadow-card-coin-hover);
+	}
+}
+
+.card-coin-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.card-coin__info {
+	display: flex;
+	align-items: center;
+	gap: 0.875rem;
+}
+
+.card-coin__info-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.card-coin__info-name {
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-16);
+	line-height: var(--line-height-1-5);
+}
+
+.card-coin__info-symbol {
+	line-height: var(--line-height-21);
+}
+
+.card-coin__btn {
+	line-height: 0.6875rem;
+}
+
+.card-coin__horizontal-line {
+	margin: 0.75rem 0rem;
+}
+
+.card-coin__stats {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.card-coin__stat {
+	line-height: var(--line-height-21);
+	display: flex;
+	justify-content: space-between;
+}
+
+.card-coin__stat-value {
+	font-weight: var(--font-weight-bold);
+}

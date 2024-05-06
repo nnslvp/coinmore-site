@@ -1,0 +1,35 @@
+.chart-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	border-radius: 0.625rem;
+	padding: 1.25rem 1.25rem 2rem 1.25rem;
+	box-shadow: 0rem 0.25rem 0.625rem 0rem #00000040;
+}
+
+.chart-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.chart__chart-container {
+	height: 24.6875rem;
+}
+
+.chart-interval {
+	display: flex;
+}
+
+@media (max-width: $breakpoint-xl) {
+}
+
+@media (max-width: $breakpoint-lg) {
+	.chart-container {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+}

@@ -1,0 +1,25 @@
+<div class="language-switcher">
+  <div class="language-switcher__lang">
+    <img src="/icons/US.svg" alt="English">
+    <span class="language-name"></span>
+    <i class="icon chevron-icon-bottom"></i>
+  </div>
+
+  <ul class="dropdown">
+    <a class="dropdown__item" href="#english">
+      <img src="/icons/US.svg" alt="English">
+      <span>English</span>
+    </a>
+    <a class="dropdown__item" href="/ru/">
+      <img src="/icons/Russia.svg" alt="Russian">
+      <span>Russian</span>
+    </a>
+  </ul>
+</div>
+
+
+<ul>
+  {{ range .Page.AllTranslations }}
+  <li><a href="{{ .Permalink  | absLangURL }}">{{ .Language.LanguageName }}</a></li>
+  {{ end }}
+</ul>

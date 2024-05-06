@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <meta property="og:site_name" content="administration-dashboard-page">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="" />
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="">
+  <meta name="twitter:image:width" content="">
+  <meta name="twitter:image:height" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+  <link rel="icon" type="image/png" sizes="32x32" href="">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
+  <link rel="manifest" href="">
+
+
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+  <link type="text/css" rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/alumuko/vanilla-datetimerange-picker@latest/dist/vanilla-datetimerange-picker.css">
+
+  <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/alumuko/vanilla-datetimerange-picker@latest/dist/vanilla-datetimerange-picker.js"></script>
+
+<body>
+  {{ with hugo.IsProduction }}
+
+  {{ end }}
+  <div class="wrapper">
+    {{partial "header.html" .}}
+    <main class="administration-dashboard-page">
+      <div class="container">
+        <div class="administration-dashboard-page__inner">
+          <h1>{{ .Params.title }}</h1>
+
+          <search class="section filter-panel">
+            <div id="select-currency" class="select-currency">
+
+            </div>
+            <div id="select-region" class="select-interval-region">
+
+            </div>
+            <div class="datepicker-range__container">
+              <i class="icon calendar-icon"></i>
+              <p class="datepicker-range__text">Start date<span>-</span>End date</p>
+              <input type="text" class=" datepicker-range" id="date-time-range-input" size="24">
+            </div>
+            <button class="btn btn-clear btn-outline-primary">
+              <i class="icon refresh-icon"></i>
+              {{ .Params.clear_filters}}
+            </button>
+          </search>
+
+          <section class="section section-statistics">
+            <div class="section-statistics__inner">
+              <h2 class="heading-h2">
+                {{ .Params.realtime_statistics}}
+              </h2>
+              <ul class="stats-container section-statistics__stats-list-container">
+                <li class="stat-item">
+                  <i class="icon speed-icon"></i>
+                  <div class="stat-item__content">
+                    <p class="stat-item__lable">{{ .Params.pool_hashrate_label}}</p>
+                    <strong class="stat-item__value">4.83 TH/s</strong>
+                  </div>
+                </li>
+                <li class="stat-item">
+                  <i class="icon grid-icon"></i>
+                  <div class="stat-item__content">
+                    <p class="stat-item__lable">{{ .Params.blocks_24h_label}}</p>
+                    <strong class="stat-item__value">281</strong>
+                  </div>
+                </li>
+                <li class="stat-item">
+                  <i class="icon people-icon"></i>
+                  <div class="stat-item__content">
+                    <p class="stat-item__lable">{{ .Params.workers_online_label}}</p>
+                    <strong class="stat-item__value">106</strong>
+                  </div>
+                </li>
+                <li class="stat-item">
+                  <i class="icon coins-icon"></i>
+                  <div class="stat-item__content">
+                    <p class="stat-item__lable">{{ .Params.profit_per_gh_label}}</p>
+                    <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+                  </div>
+                </li>
+                <li class="stat-item">
+                  <i class="icon coins-icon"></i>
+                  <div class="stat-item__content">
+                    <p class="stat-item__lable">{{ .Params.profit_gross_label}}</p>
+                    <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+                  </div>
+                </li>
+                <li class="stat-item">
+                  <i class="icon coins-icon"></i>
+                  <div class="stat-item__content">
+                    <p class="stat-item__lable">{{ .Params.profit_net_label}}</p>
+                    <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+
+          </section>
+          <section class="chart-container">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.pool_hashrate_chart}}</h2>
+            </div>
+            <div class="chart chart__chart-container">
+              <canvas id="poolHashrateChart"></canvas>
+            </div>
+          </section>
+          <section class="chart-container">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.workers_activity_chart}}</h2>
+            </div>
+            <div class="chart chart__chart-container">
+              <canvas id="workersActivityChart"></canvas>
+            </div>
+          </section>
+          <section class="chart-container">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.blocks_chart}}</h2>
+            </div>
+            <div class="chart  chart__chart-container">
+              <canvas id="blocksChart"></canvas>
+            </div>
+          </section>
+          <section class="chart-container">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.profit_per_gh_chart}}</h2>
+            </div>
+            <div class="chart  chart__chart-container">
+              <canvas id="profitPerGHChart"></canvas>
+            </div>
+          </section>
+          <section class="chart-container">
+            <div class="chart-header">
+              <h2 class="heading-h2">{{ .Params.gross_net_profit_chart}}</h2>
+            </div>
+            <div class="chart chart__chart-container">
+              <canvas id="grossNetProfitChart"></canvas>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    {{partial "footer.html" .}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $page := resources.Get "js/administration-dashboard-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $customSelect $page | resources.Concat "js/build/administration-dashboard-page-build.js" }}
+  <script type="module" src="{{ $js.Permalink }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+.section-welcome__page-coin {
+	background-image: url('/images/bg-two-top-section.png');
+}
+
+.benefits-container {
+	display: flex;
+	gap: 1.25rem;
+}
+
+.benefit-item {
+	flex-basis: fit-content;
+	padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+	border: 0.0625rem solid var(--color-white);
+	border-radius: 0.625rem;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.benefit-item__text {
+	display: block;
+	text-align: center;
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-21);
+	strong {
+		display: block;
+	}
+}
+
+.section-start {
+	background: var(--color-primary-hover-0-05-opacity);
+	padding: 5rem 0;
+}
+
+.section-coin__stats-container {
+	margin-bottom: 1.25rem;
+}
+
+.section-coin__stats-container .stat-item {
+	flex: 1;
+}
+
+.section-start__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.25rem;
+}
+
+.section-start__subtitle {
+	max-width: 50rem;
+	text-align: center;
+}
+
+.section-start__search {
+	padding-top: 2.5rem;
+}
+
+.section-start__search-form {
+	display: flex;
+	justify-content: center;
+	gap: 1.25rem;
+}
+
+.section-start__search-form .input {
+	width: 50rem;
+}
+
+.section-coin__inner {
+	display: flex;
+	flex-direction: column;
+	padding: 5rem 0 2.5rem 0;
+}
+
+.section-coin__h1 {
+	text-align: center;
+	margin-bottom: 1.25rem;
+}
+
+.section-coin__subtitle {
+	margin: 0 auto;
+	margin-bottom: 2rem;
+}
+
+.chart-interval {
+	display: flex;
+}
+
+.chart-hashrate {
+	margin-bottom: 1.25rem;
+}
+
+.chart-profit {
+	margin-right: 0.9375rem;
+}
+
+.chart-workers,
+.chart-profit {
+	display: inline-block;
+	margin-right: -0.25rem;
+	width: 41.25rem;
+}
+
+.chart-workers {
+	margin-left: 1.25rem;
+	margin-bottom: 2.5rem;
+}
+
+@media (max-width: $breakpoint-xl) {
+	.section-start__search-form .input {
+		width: 35.8125rem;
+	}
+
+	.chart-workers,
+	.chart-profit {
+		display: block;
+		width: 100%;
+		margin-right: 0rem;
+	}
+
+	.chart-workers {
+		margin-left: 0rem;
+	}
+
+	.chart-profit {
+		margin-bottom: 1.25rem;
+	}
+}
+
+@media (max-width: $breakpoint-lg) {
+	.section-welcome__page-coin {
+		background: var(--linear-gradient-primary);
+	}
+
+	.section-welcome__page-coin.section-welcome {
+		flex-basis: 27.125rem;
+	}
+
+	.section-start {
+		padding: 2.5rem 0;
+	}
+
+	.section-start__search-form .input {
+		width: 28.8125rem;
+	}
+
+	.section-coin__inner {
+		padding: 2.5rem 0 2.5rem;
+	}
+
+	.chart-hashrate {
+		margin-bottom: 1.25rem;
+	}
+
+	.chart-profit {
+		margin-right: 0;
+	}
+
+	.chart-workers,
+	.chart-profit {
+		display: block;
+		width: 100%;
+		margin-bottom: 1.25rem;
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	.section-welcome__page-coin.section-welcome {
+		flex-basis: 30.625rem;
+	}
+
+	.benefits-container {
+		gap: 0.75rem;
+	}
+
+	.benefit-item {
+		align-content: center;
+	}
+
+	.section-start__search-form {
+		flex-direction: column;
+		.input {
+			width: 100%;
+		}
+	}
+
+	.section-start__inner {
+		gap: 0.75rem;
+	}
+
+	.section-start__search {
+		padding-top: 1.25rem;
+	}
+}

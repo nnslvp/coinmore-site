@@ -1,0 +1,96 @@
+.table.table-servers {
+	grid-template-columns:
+		minmax(15rem, 1fr)
+		minmax(25rem, 1fr)
+		minmax(9.625rem, 1fr)
+		minmax(9.625rem, 1fr)
+		minmax(9.625rem, 1fr);
+
+	.ssl-port-cell,
+	.port-cell {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.region-cell {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+}
+
+@media (max-width: $breakpoint-xl) {
+	.table.table-servers {
+		grid-template-columns:
+			minmax(14.9375rem, 1fr)
+			minmax(21.6875rem, 1fr)
+			minmax(7.4375rem, 1fr)
+			minmax(7.4375rem, 1fr)
+			minmax(7.4375rem, 1fr);
+	}
+
+	.region-cell {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+}
+
+@media (max-width: $breakpoint-lg) {
+	.table.table-servers {
+		grid-template-columns:
+			minmax(9.3125rem, 1fr)
+			minmax(19.25rem, 1fr)
+			minmax(4.6875rem, 1fr)
+			minmax(5.3125rem, 1fr)
+			minmax(4.6875rem, 1fr);
+
+		.btn-copy {
+			display: none;
+		}
+
+		.region-cell {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	.table.table-servers {
+		td:not(.region-cell) {
+			font-weight: var(--font-weight-bold);
+		}
+
+		.ssl-port-cell,
+		.port-cell,
+		.ping-cell {
+			display: inline-block;
+			margin-right: -0.25rem;
+			width: 5.6456rem;
+		}
+
+		.ssl-port-cell,
+		.ping-cell {
+			margin-left: 1.25rem;
+		}
+
+		.region-cell {
+			margin-bottom: 1.25rem;
+		}
+
+		.address-cell {
+			display: block;
+			margin-bottom: 1.25rem;
+		}
+
+		:where(.ssl-port-cell, .port-cell, .ping-cell)::before {
+			content: attr(data) ':';
+			display: block;
+			font-weight: initial;
+			margin-bottom: 0.25rem;
+		}
+	}
+}

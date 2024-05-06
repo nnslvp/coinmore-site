@@ -1,0 +1,43 @@
+.tab {
+	color: var(--color-primary);
+	background-color: var(--color-white);
+	padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+	border: 0.0625rem solid var(--color-primary);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+	background-color: var(--color-primary-hover-0-05-opacity);
+	color: var(--color-primary-hover);
+	border-color: var(--color-primary-hover);
+}
+
+.tab.active {
+	background-color: var(--color-primary);
+	color: var(--color-white);
+}
+
+.tab.disabled {
+	background-color: var(--color-primary-hover);
+	color: var(--color-white);
+	border: none;
+	cursor: initial;
+}
+
+.tab-border-radius-around-right {
+	border-radius: 0rem 1.25rem 1.25rem 0rem;
+}
+
+.tab-border-radius-around-left {
+	border-radius: 1.25rem 0rem 0rem 1.25rem;
+}
+
+.tab-border-top-bottom {
+	border-bottom: 0.0625rem solid var(--color-primary);
+	border-top: 0.0625rem solid var(--color-primary);
+	border-right: none;
+	border-left: none;
+}

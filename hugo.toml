@@ -1,3 +1,17 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
+
+
+defaultContentLanguage = 'en'
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    contentDir = "content/english"
+
+
+  [languages.ru]
+    languageName = "Русский"
+    weight = 2
+    contentDir = "content/russian"
