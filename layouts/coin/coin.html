@@ -59,37 +59,36 @@
         <li class="separator">/</li>
         <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
             .Params.coin_name }}</a></li>
+
       </ul>
     </nav>
     <main class="statistics-page">
       <section class="section-welcome section-welcome__page-coin">
         <div class="container">
           <div class="section-welcome__inner">
-            <h1 class="heading-h1">Welcome to coinmore.io</h1>
+            <h1 class="heading-h1">{{
+              .Params.title }}</h1>
             <p class="subtitle section-welcome__subtitle">
-              Where mining becomes easier and more profitable! Are you looking for a
-              reliable pool with low fees? Do you desire stability and transparent
-              statistics? Look no further! On our platform, you'll find everything
-              for efficient mining, as well as a warm community and tech support
-              ready to assist in any situation. Earn more with lower expenses.
+              {{
+              .Params.subtitle }}
             </p>
             <ul class="benefits-container">
               <li class="benefit-item">
                 <p class="benefit-item__text">
-                  <strong class="stat-item__value">Instant block unlocking</strong>
-                  without 500-min delay
+                  <strong class="stat-item__value">{{ .Params.benefit1_title }}</strong>
+                  {{ .Params.benefit1_text }}
                 </p>
               </li>
               <li class="benefit-item">
                 <p class="benefit-item__text">
-                  Payouts every
-                  <strong class="stat-item__value">30 minutes</strong>
+                  <strong class="stat-item__value">{{ .Params.benefit2_title }}</strong>
+                  {{ .Params.benefit2_text }}
                 </p>
               </li>
               <li class="benefit-item">
                 <p class="benefit-item__text">
-                  Minimum payout -
-                  <strong class="stat-item__value">0.3 ALPH.</strong>
+                  <strong class="stat-item__value">{{ .Params.benefit3_title }}</strong>
+                  {{ .Params.benefit3_text }}
                 </p>
               </li>
             </ul>
@@ -99,17 +98,14 @@
       <section class="section-start">
         <div class="container">
           <div class="section-start__inner">
-            <h2 class="heading-h1">Quick start</h2>
+            <h2 class="heading-h1">{{.Params.quick_start_title}}</h2>
             <p class="subtitle section-start__subtitle">
-              Alephium is the first mineable layer 1 sharded blockchain scaling and improving on Bitcoin core
-              technologies,
-              Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy
-              efficiency.
+              {{.Params.quick_start_subtitle}}
             </p>
             <search class="section-start__search">
               <form class="section-start__search-form">
                 <input class="input" name="search" placeholder="Wallet">
-                <button class="btn btn-filled-primary">View personal statistic</button>
+                <button class="btn btn-filled-primary">{{.Params.button_view_statistic_text }}</button>
               </form>
             </search>
           </div>
@@ -118,11 +114,9 @@
       <section class="section-coin">
         <div class="container">
           <div class="section-coin__inner">
-            <h2 class="heading-h1 section-coin__h1">Alephium pool</h2>
-            <p class="subtitle section-coin__subtitle">
-              Please use detailed <a class="link" href="">connection instructions.</a>
-              If you have any questions, please use the <a class="link" href="">FAQ</a>
-            </p>
+            <h2 class="heading-h1 section-coin__h1">{{ .Params.pool_title }}</h2>
+            <p class="subtitle section-coin__subtitle">{{ .Params.pool_subtitle }}</p>
+
             <div class="table-container">
               {{partial "table-servers.html" .}}
             </div>
@@ -131,45 +125,46 @@
             <li class="stat-item">
               <i class="icon speed-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">Pool hashrate:</p>
+                <p class="stat-item__lable">{{ .Params.pool_hashrate_label }}:</p>
                 <strong class="stat-item__value">4.83 TH/s</strong>
               </div>
             </li>
             <li class="stat-item">
               <i class="icon coins-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">Profit per GH:</p>
+                <p class="stat-item__lable">{{ .Params.profit_per_gh_label }}:</p>
                 <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
               </div>
             </li>
             <li class="stat-item">
               <i class="icon grid-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">24h Blocks:</p>
+                <p class="stat-item__lable">{{ .Params.blocks_24h_label }}:</p>
                 <strong class="stat-item__value">281</strong>
               </div>
             </li>
             <li class="stat-item">
               <i class="icon cube-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">Latest Block at:</p>
+                <p class="stat-item__lable">{{ .Params.latest_block_label }}:</p>
                 <strong class="stat-item__value">1.42 hour(s)</strong>
               </div>
             </li>
             <li class="stat-item">
               <i class="icon people-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">Workers Online:</p>
+                <p class="stat-item__lable">{{ .Params.workers_online_label }}:</p>
                 <strong class="stat-item__value">106</strong>
               </div>
             </li>
           </ul>
           <div class="chart-container chart-hashrate">
             <div class="chart-header">
-              <h2 class="heading-h2">Pool hashrate</h2>
+              <h2 class="heading-h2">{{ .Params.chart_headers.hashrate }}</h2>
               <div class="chart-interval chart-interval__pool-hashrate">
-                <span class="tab tab-border-radius-around-left">1 hour</span>
-                <span class="tab tab-border-radius-around-right active">24 hours</span>
+                <span class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</span>
+                <span class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
+                  }}</span>
               </div>
             </div>
             <div class="chart chart__chart-container">
@@ -179,29 +174,32 @@
 
           <div class="chart-container chart-profit">
             <div class="chart-header">
-              <h2 class="heading-h2">Profit per GH</h2>
+              <h2 class="heading-h2">{{ .Params.chart_headers.profit }}</h2>
               <div class="chart-interval chart-interval__profit">
-                <button class="tab tab-border-radius-around-left">1 hour</button>
-                <button class="tab tab-border-radius-around-right active">24 hours</button>
+                <button class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</button>
+                <button class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
+                  }}</button>
               </div>
             </div>
-            <div class="chart  chart__chart-container">
+            <div class="chart chart__chart-container">
               <canvas id="profitChart"></canvas>
             </div>
           </div>
 
           <div class="chart-container chart-workers">
             <div class="chart-header">
-              <h2 class="heading-h2">Workers activity</h2>
+              <h2 class="heading-h2">{{ .Params.chart_headers.workers_activity }}</h2>
               <div class="chart-interval chart-interval__workers-activity">
-                <button class="tab tab-border-radius-around-left">1 hour</button>
-                <button class="tab tab-border-radius-around-right active">24 hours</button>
+                <button class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</button>
+                <button class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
+                  }}</button>
               </div>
             </div>
             <div class="chart chart__chart-container">
               <canvas id="workersActivityChart"></canvas>
             </div>
           </div>
+
         </div>
       </section>
     </main>

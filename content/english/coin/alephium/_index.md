@@ -10,4 +10,42 @@ fee: 'Fee:'
 active_miners: 'Active miners:'
 min_payout: 'Min. payout:'
 layout: 'coin'
+title: 'Welcome to coinmore.io'
+subtitle: "Where mining becomes easier and more profitable! Are you looking for a reliable pool with low fees? Do you desire stability and transparent statistics? Look no further! On our platform, you'll find everything for efficient mining, as well as a warm community and tech support ready to assist in any situation. Earn more with lower expenses."
+benefit1_title: 'Instant block unlocking'
+benefit1_text: 'without 500-min delay'
+benefit2_title: 'Payouts every'
+benefit2_text: '30 minutes'
+benefit3_title: 'Minimum payout'
+benefit3_text: '0.3 ALPH.'
+quick_start_title: 'Quick start'
+quick_start_subtitle: 'Alephium is the first mineable layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.'
+button_view_statistic_text: 'View personal statistic'
+pool_subtitle: 'Please use detailed'
+pool_hashrate_label: 'Pool hashrate'
+profit_per_gh_label: 'Profit per GH'
+blocks_24h_label: '24h Blocks'
+latest_block_label: 'Latest Block at'
+workers_online_label: 'Workers Online'
+table_headers:
+  region: 'region'
+  address: 'address'
+  port: 'Port'
+  ssl_port: 'SSL Port'
+  ping: 'Ping'
+
+table_body:
+  region_auto: 'Region auto detection'
+  region_europe: 'Europe'
+  region_russian: 'Russia'
+  region_usa: 'US'
+  region_asia: 'Asia'
+
+chart_headers:
+  hashrate: 'Pool hashrate'
+  profit: 'Profit per GH'
+  workers_activity: 'Workers activity'
+chart_intervals:
+  one_hour: '1 hour'
+  twenty_four_hours: '24 hours'
 ---

@@ -1,18 +1,18 @@
 <table class="table table-servers">
   <thead>
     <tr>
-      <th>Region</th>
-      <th>Address</th>
-      <th>Port</th>
-      <th>SSL Port</th>
-      <th>Ping</th>
+      <th>{{ .Params.table_headers.region }}</th>
+      <th>{{ .Params.table_headers.address }}</th>
+      <th>{{ .Params.table_headers.port }}</th>
+      <th>{{ .Params.table_headers.ssl_port }}</th>
+      <th>{{ .Params.table_headers.ping }}</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="region-cell">
         <i class="icon globe-icon"></i>
-        Region auto detection
+        {{.Params.table_body.region_auto}}
       </td>
       <td class="address-cell" data="Address">
         <strong class="host">detect-my-region.alephium-pool.com</strong>
@@ -34,7 +34,10 @@
       </td>
     </tr>
     <tr>
-      <td class="region-cell"><i class="icon europa-flag-icon"></i> Europe</td>
+      <td class="region-cell">
+        <i class="icon europa-flag-icon"></i>
+        {{.Params.table_body.region_europe}}
+      </td>
       <td class="address-cell" data="Address">
         <strong class="host">eu1.alephium-pool.com</strong>
       </td>
@@ -57,10 +60,10 @@
     <tr>
       <td class="region-cell">
         <i class="icon russian-flag-icon"></i>
-        Russia
+        {{.Params.table_body.region_russian}}
       </td>
       <td class="address-cell" data="Address">
-        <strong>ru1.alephium-pool. class="host"com</strong>
+        <strong>ru1.alephium-pool.host.com</strong>
       </td>
       <td class="port-cell" data="Port">
         <span class="port">20032</span>
@@ -79,7 +82,10 @@
       </td>
     </tr>
     <tr>
-      <td class="region-cell"><i class="icon usa-flag-icon"></i>US</td>
+      <td class="region-cell">
+        <i class="icon usa-flag-icon"></i>
+        {{.Params.table_body.region_usa}}
+      </td>
       <td class="address-cell" data="Address">
         <strong class="host">us1.alephium-pool.com</strong>
       </td>
@@ -100,7 +106,10 @@
       </td>
     </tr>
     <tr>
-      <td class="region-cell"><i class="icon asia-flag-icon"></i> Asia</td>
+      <td class="region-cell">
+        <i class="icon asia-flag-icon"></i>
+        {{.Params.table_body.region_asia}}
+      </td>
       <td class="address-cell" data="Address">
         <strong class="host">asia1.alephium-pool.com</strong>
       </td>
