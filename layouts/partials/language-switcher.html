@@ -5,21 +5,18 @@
     <i class="icon chevron-icon-bottom"></i>
   </div>
 
-  <ul class="dropdown">
-    <a class="dropdown__item" href="#english">
-      <img src="/icons/US.svg" alt="English">
-      <span>English</span>
+  <div class="dropdown">
+    {{ range .Page.AllTranslations }}
+    {{ $iconFlag := "" }}
+    {{ if eq .Language.LanguageName "Русский" }}
+    {{ $iconFlag = "russian-flag-icon" }}
+    {{ else }}
+    {{ $iconFlag = "usa-flag-icon" }}
+    {{ end }}
+    <a class="dropdown__item" href="{{ .Permalink | absLangURL }}">
+      <i class="icon  {{$iconFlag}}"></i>
+      <span>{{ .Language.LanguageName }}</span>
     </a>
-    <a class="dropdown__item" href="/ru/">
-      <img src="/icons/Russia.svg" alt="Russian">
-      <span>Russian</span>
-    </a>
-  </ul>
+    {{ end }}
+  </div>
 </div>
-
-
-<ul>
-  {{ range .Page.AllTranslations }}
-  <li><a href="{{ .Permalink  | absLangURL }}">{{ .Language.LanguageName }}</a></li>
-  {{ end }}
-</ul>
