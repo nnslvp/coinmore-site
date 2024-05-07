@@ -1,5 +1,7 @@
-.section-welcome__page-coin {
-	background-image: url('/images/bg-two-top-section.png');
+.section-welcome__page-coin .section-welcome__inner {
+	background-image: url('/images/image-coin-page-coin.png');
+	background-size: 34.8125rem 36.625rem;
+	background-position: right bottom;
 }
 
 .benefits-container {
@@ -79,6 +81,9 @@
 .section-coin__subtitle {
 	margin: 0 auto;
 	margin-bottom: 2rem;
+	span {
+		display: block;
+	}
 }
 
 .chart-interval {
