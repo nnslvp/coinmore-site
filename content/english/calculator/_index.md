@@ -1,6 +1,6 @@
 ---
 title: 'Calculator'
-subtitle: 'Alephium is the first mineable live layer 1 sharded blockchain...'
+subtitle: 'Alephium is the first mineable live layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.'
 currency_label: 'Currency'
 hashrate_label: 'Hashrate (GH/s)'
 power_consumption_label: 'Power consumption (W)'
