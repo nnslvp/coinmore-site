@@ -1,5 +1,7 @@
-.section-welcome__page-coin {
-	background-image: url('/images/bg-two-top-section.png');
+.section-welcome__page-coin .section-welcome__inner {
+	background-image: url('/images/image-coin-page-coin.png');
+	background-size: 34.8125rem 36.625rem;
+	background-position: right bottom;
 }
 
 .benefits-container {
@@ -8,7 +10,7 @@
 }
 
 .benefit-item {
-	flex-basis: fit-content;
+	flex-basis: 12.75rem;
 	padding: 0.625rem 0.75rem 0.625rem 0.75rem;
 	border: 0.0625rem solid var(--color-white);
 	border-radius: 0.625rem;
@@ -79,6 +81,9 @@
 .section-coin__subtitle {
 	margin: 0 auto;
 	margin-bottom: 2rem;
+	span {
+		display: block;
+	}
 }
 
 .chart-interval {
@@ -131,6 +136,10 @@
 		background: var(--linear-gradient-primary);
 	}
 
+	.section-welcome__page-coin .section-welcome__inner {
+		background: none;
+	}
+
 	.section-welcome__page-coin.section-welcome {
 		flex-basis: 27.125rem;
 	}
@@ -163,7 +172,7 @@
 	}
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: $breakpoint-md) {
 	.section-welcome__page-coin.section-welcome {
 		flex-basis: 30.625rem;
 	}

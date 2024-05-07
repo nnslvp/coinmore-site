@@ -12,6 +12,6 @@ defaultContentLanguage = 'en'
 
 
   [languages.ru]
-    languageName = "Русский"
+    languageName = "Russian"
     weight = 2
     contentDir = "content/russian"

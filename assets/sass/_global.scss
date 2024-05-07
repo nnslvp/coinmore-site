@@ -30,7 +30,7 @@ html {
 	// 	font-size: 3.765vw;
 	// }
 
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 		font-size: 4.267vw;
 	}
 }
@@ -60,7 +60,7 @@ main {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: rgba(0, 0, 0, 0.5);
+	background: var(--color-primary-hover-0-05-opacity);
 	z-index: 1;
 	display: block;
 }
@@ -81,7 +81,7 @@ body:has(.hamburger-menu-btn.active) {
 
 .horizontal-line {
 	border: none;
-	border-top: 0.0625rem solid rgb(175, 184, 191);
+	border-top: 0.0625rem solid var(--color-text-light-grey);
 }
 
 .container {
@@ -97,7 +97,7 @@ body:has(.hamburger-menu-btn.active) {
 		max-width: calc(var(--container-width-768) + var(--container-padding) * 2);
 	}
 
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 		max-width: calc(var(--container-width-375) + var(--container-padding) * 2);
 	}
 }
@@ -119,7 +119,7 @@ a {
 	@media (max-width: $breakpoint-lg) {
 	}
 
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 		font-size: var(--font-size-24);
 		line-height: 2.25rem;
 	}
@@ -130,7 +130,7 @@ a {
 	font-weight: var(--font-weight-bold);
 	line-height: 1.875rem;
 
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 		font-size: var(--font-size-16);
 		line-height: 1.5rem;
 	}
@@ -148,7 +148,7 @@ a {
 	@media (max-width: $breakpoint-lg) {
 	}
 
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 		font-size: var(--font-size-14);
 		line-height: var(--line-height-21);
 	}
@@ -158,9 +158,7 @@ a {
 	display: flex;
 	flex-basis: 40rem;
 	color: var(--color-white);
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
+	background: var(--linear-gradient-primary);
 }
 
 .section-welcome__inner {
@@ -169,6 +167,9 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	gap: 1.25rem;
+	background-position: right;
+
+	background-repeat: no-repeat;
 }
 
 .section-welcome__subtitle {
@@ -183,7 +184,7 @@ a {
 	@media (max-width: $breakpoint-lg) {
 	}
 
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 	}
 }
 
@@ -193,7 +194,7 @@ a {
 	gap: 0.75rem;
 	padding: 1.25rem 0;
 	color: var(--color-text-grey);
-	@media (max-width: $breakpoint-sm) {
+	@media (max-width: $breakpoint-md) {
 		display: none;
 	}
 }

@@ -6,37 +6,35 @@
       </a>
       <nav class="header__main-nav">
         <ul class="header__main-nav-list text--medium">
-          <nav class="header__main-nav">
-            <ul class="header__main-nav-list text--medium">
-              {{ $currentPage := .RelPermalink }}
-              {{ $coinStatisticsUrl := print "/coin/" .Params.coin_name "/statistics" }}
-              {{ $coinInstructionsUrl := print "/coin/" .Params.coin_name "/instructions" }}
-              {{ $calculatorUrl := "/calculator" }}
-              {{ if eq .Type "coin" }}
-              <li class="header__main-nav-item">
-                <a href="{{ $.Site.BaseURL }}{{ $coinStatisticsUrl }}"
-                  class="link header__main-nav-link  {{ if strings.Contains $currentPage $coinStatisticsUrl }}active{{ end }}">My
-                  statistics</a>
-              </li>
-              <li class="header__main-nav-item ">
-                <a href="{{ $.Site.BaseURL }}{{ $coinInstructionsUrl }}"
-                  class="link header__main-nav-link {{ if strings.Contains $currentPage $coinInstructionsUrl }}active{{ end }}">Instructions</a>
-              </li>
-              {{ end }}
+          {{ $currentPage := .RelPermalink }}
+          {{ $coinStatisticsUrl := print "/coin/" .Params.coin_name "/statistics" }}
+          {{ $coinInstructionsUrl := print "/coin/" .Params.coin_name "/instructions" }}
+          {{ $calculatorUrl := "/calculator" }}
+          {{ if eq .Type "coin" }}
+          <li class="header__main-nav-item">
+            <a href="{{ $.Site.BaseURL }}{{ $coinStatisticsUrl }}"
+              class="link header__main-nav-link  {{ if strings.Contains $currentPage $coinStatisticsUrl }}active{{ end }}">My
+              statistics</a>
+          </li>
+          <li class="header__main-nav-item ">
+            <a href="{{ $.Site.BaseURL }}{{ $coinInstructionsUrl }}"
+              class="link header__main-nav-link {{ if strings.Contains $currentPage $coinInstructionsUrl }}active{{ end }}">Instructions</a>
+          </li>
+          {{ end }}
 
-              <li class="header__main-nav-item ">
-                <a href="{{ $.Site.BaseURL }}{{ $calculatorUrl }}"
-                  class="link header__main-nav-link {{ if strings.Contains $currentPage $calculatorUrl }}active{{ end }}">Calculator</a>
-              </li>
-            </ul>
-          </nav>
+          <li class="header__main-nav-item ">
+            <a href="{{ $.Site.BaseURL }}{{ $calculatorUrl }}"
+              class="link header__main-nav-link {{ if strings.Contains $currentPage $calculatorUrl }}active{{ end }}">Calculator</a>
+          </li>
+        </ul>
+      </nav>
 
-          {{partial "language-switcher.html" .}}
-          <div class="hamburger-menu-btn">
-            <div class="hamburger-menu-btn__line"></div>
-            <div class="hamburger-menu-btn__line"></div>
-            <div class="hamburger-menu-btn__line"></div>
-          </div>
+      {{partial "language-switcher.html" .}}
+      <div class="hamburger-menu-btn">
+        <div class="hamburger-menu-btn__line"></div>
+        <div class="hamburger-menu-btn__line"></div>
+        <div class="hamburger-menu-btn__line"></div>
+      </div>
     </div>
   </div>
 

@@ -213,7 +213,7 @@ details[open] > summary::before {
 	}
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: $breakpoint-md) {
 	.miners-list-about-other-container {
 		display: contents;
 	}

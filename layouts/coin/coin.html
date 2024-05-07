@@ -49,28 +49,16 @@
   {{ end }}
   <div class="wrapper">
     {{partial "header.html" .}}
-    <nav class="nav-page__container container">
-      <ul class="navigation-list">
-        <li class="navigation-item">
-          <a href="{{.Site.BaseURL}}" class="home-link">
-            <i class="icon home-icon"></i>
-          </a>
-        </li>
-        <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
-            .Params.coin_name }}</a></li>
-
-      </ul>
     </nav>
     <main class="statistics-page">
       <section class="section-welcome section-welcome__page-coin">
         <div class="container">
           <div class="section-welcome__inner">
             <h1 class="heading-h1">{{
-              .Params.title }}</h1>
+              .Params.welcome_title}}</h1>
             <p class="subtitle section-welcome__subtitle">
               {{
-              .Params.subtitle }}
+              .Params.welcome_subtitle }}
             </p>
             <ul class="benefits-container">
               <li class="benefit-item">
@@ -105,7 +93,9 @@
             <search class="section-start__search">
               <form class="section-start__search-form">
                 <input class="input" name="search" placeholder="Wallet">
-                <button class="btn btn-filled-primary">{{.Params.button_view_statistic_text }}</button>
+                <button class="btn btn-filled-primary">
+                  {{.Params.button_view_statistic_text }}
+                </button>
               </form>
             </search>
           </div>
@@ -114,9 +104,20 @@
       <section class="section-coin">
         <div class="container">
           <div class="section-coin__inner">
-            <h2 class="heading-h1 section-coin__h1">{{ .Params.pool_title }}</h2>
-            <p class="subtitle section-coin__subtitle">{{ .Params.pool_subtitle }}</p>
-
+            <h2 class="heading-h1 section-coin__h1">
+              {{ .Params.pool_title }}
+            </h2>
+            <p class="subtitle section-coin__subtitle">
+              {{ .Params.instruction_text }}
+              <a href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions/" class="link">
+                <strong>{{ .Params.instruction_link_text }}</strong>
+              </a>
+              <span>{{ .Params.faq_text }}
+                <a href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions/#faq" class="link">
+                  <strong>{{ .Params.faq_link_text }}</strong>
+                </a>
+              </span>
+            </p>
             <div class="table-container">
               {{partial "table-servers.html" .}}
             </div>
@@ -125,15 +126,21 @@
             <li class="stat-item">
               <i class="icon speed-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">{{ .Params.pool_hashrate_label }}:</p>
+                <p class="stat-item__lable">
+                  {{ .Params.pool_hashrate_label }}:
+                </p>
                 <strong class="stat-item__value">4.83 TH/s</strong>
               </div>
             </li>
             <li class="stat-item">
               <i class="icon coins-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">{{ .Params.profit_per_gh_label }}:</p>
-                <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+                <p class="stat-item__lable">
+                  {{ .Params.profit_per_gh_label }}:
+                </p>
+                <strong class="stat-item__value">
+                  0.0888 ALPH ~ 0.2925 USD
+                </strong>
               </div>
             </li>
             <li class="stat-item">
@@ -153,7 +160,9 @@
             <li class="stat-item">
               <i class="icon people-icon"></i>
               <div class="stat-item__content">
-                <p class="stat-item__lable">{{ .Params.workers_online_label }}:</p>
+                <p class="stat-item__lable">
+                  {{ .Params.workers_online_label }}:
+                </p>
                 <strong class="stat-item__value">106</strong>
               </div>
             </li>
@@ -163,8 +172,10 @@
               <h2 class="heading-h2">{{ .Params.chart_headers.hashrate }}</h2>
               <div class="chart-interval chart-interval__pool-hashrate">
                 <span class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</span>
-                <span class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
-                  }}</span>
+                <span class="tab tab-border-radius-around-right active">
+                  {{ .Params.chart_intervals.twenty_four_hours
+                  }}
+                </span>
               </div>
             </div>
             <div class="chart chart__chart-container">
@@ -176,9 +187,13 @@
             <div class="chart-header">
               <h2 class="heading-h2">{{ .Params.chart_headers.profit }}</h2>
               <div class="chart-interval chart-interval__profit">
-                <button class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</button>
-                <button class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
-                  }}</button>
+                <button class="tab tab-border-radius-around-left">
+                  {{ .Params.chart_intervals.one_hour }}
+                </button>
+                <button class="tab tab-border-radius-around-right active">
+                  {{ .Params.chart_intervals.twenty_four_hours
+                  }}
+                </button>
               </div>
             </div>
             <div class="chart chart__chart-container">
@@ -188,11 +203,17 @@
 
           <div class="chart-container chart-workers">
             <div class="chart-header">
-              <h2 class="heading-h2">{{ .Params.chart_headers.workers_activity }}</h2>
+              <h2 class="heading-h2">
+                {{ .Params.chart_headers.workers_activity }}
+              </h2>
               <div class="chart-interval chart-interval__workers-activity">
-                <button class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</button>
-                <button class="tab tab-border-radius-around-right active">{{ .Params.chart_intervals.twenty_four_hours
-                  }}</button>
+                <button class="tab tab-border-radius-around-left">
+                  {{ .Params.chart_intervals.one_hour }}
+                </button>
+                <button class="tab tab-border-radius-around-right active">
+                  {{ .Params.chart_intervals.twenty_four_hours
+                  }}
+                </button>
               </div>
             </div>
             <div class="chart chart__chart-container">

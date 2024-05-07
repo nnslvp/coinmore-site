@@ -2,8 +2,9 @@
 	margin-bottom: 5rem;
 }
 
-.section-welcome__page-home {
-	background-image: url('/images/bg-top-section.png');
+.section-welcome__page-home .section-welcome__inner {
+	background-image: url('/images/bg-top-section-home-page.png');
+	background-size: 32.6875rem 32.6875rem;
 }
 
 .section-start-mining__inner {
@@ -39,6 +40,10 @@
 		background: var(--linear-gradient-primary);
 	}
 
+	.section-welcome__page-home .section-welcome__inner {
+		background: none;
+	}
+
 	.section-welcome__page-home.section-welcome {
 		flex-basis: 25rem;
 	}
@@ -48,7 +53,7 @@
 	}
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: $breakpoint-md) {
 	.main-home-page section:last-child {
 		margin-bottom: 1.25rem;
 	}
