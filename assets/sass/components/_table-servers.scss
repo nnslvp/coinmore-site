@@ -58,7 +58,7 @@
 	}
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: $breakpoint-md) {
 	.table.table-servers {
 		td:not(.region-cell) {
 			font-weight: var(--font-weight-bold);
