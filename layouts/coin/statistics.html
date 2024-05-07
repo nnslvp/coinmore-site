@@ -159,180 +159,181 @@
               <div class=" chart chart__chart-container">
                 <canvas id="chartYourHashrate"></canvas>
               </div>
+            </div>
 
-              <div class="interval__inner">
-                <div class="chart-interval tabs-tables__workers-payouts">
-                  <button class="tab tab-border-radius-around-left tab-workers">{{ .Params.chart_titles.workers
-                    }}</button>
-                  <button class="tab tab-border-radius-around-right  tab-payouts active">{{ .Params.chart_titles.payouts
-                    }}</button>
-                </div>
-                <div class="custom-select select-interval-payouts">
-                  <div id="select-payouts"></div>
-                </div>
+            <div class="interval__inner">
+              <div class="chart-interval tabs-tables__workers-payouts">
+                <button class="tab tab-border-radius-around-left tab-workers">{{ .Params.chart_titles.workers
+                  }}</button>
+                <button class="tab tab-border-radius-around-right  tab-payouts active">{{ .Params.chart_titles.payouts
+                  }}</button>
               </div>
-
-              <div class="statistics-table__container">
-                <table class="table statistics-payouts-table">
-                  <thead>
-                    <tr>
-                      <th>{{ .Params.table_statistics_payouts_labels.amount }}</th>
-                      <th>{{ .Params.statistics_payouts_timestamp }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td data="Amount" class="amount-cell">
-                        <span class="amount-value">0.00000000 ~ 0.00 USD
-                        </span>
-                      </td>
-                      <td class="timestamp-cell" data="Timestamp">
-                        <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="Amount" class="amount-cell">
-                        <span class="amount-value">0.00000000 ~ 0.00 USD
-                        </span>
-                      </td>
-                      <td class="timestamp-cell" data="Timestamp">
-                        <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="Amount" class="amount-cell">
-                        <span class="amount-value">0.00000000 ~ 0.00 USD
-                        </span>
-                      </td>
-                      <td class="timestamp-cell" data="Timestamp">
-                        <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="Amount" class="amount-cell">
-                        <span class="amount-value">0.00000000 ~ 0.00 USD
-                        </span>
-                      </td>
-                      <td class="timestamp-cell" data="Timestamp">
-                        <span class="timestamp-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table class="table statistics-workers-table">
-                  <thead>
-                    <tr>
-                      <th>{{ .Params.workers_table_headers.worker }}</th>
-                      <th>{{ .Params.workers_table_headers.hashrate }}</th>
-                      <th>{{ .Params.workers_table_headers.history }}</th>
-                      <th>{{ .Params.workers_table_headers.valid_shares }}</th>
-                      <th>{{ .Params.workers_table_headers.last_share_at }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td data="worker" class="worker-cell">
-                        <span class="worker-value">3070-03
-                        </span>
-                      </td>
-                      <td class="hashrate-cell" data="Hashrate 1h/24h">
-                        <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                      </td>
-                      <td class="history-cell" data="7 day history">
-                        <canvas id="historyChart" class="history-сhart">
-
-                        </canvas>
-                      </td>
-                      <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                        <span class="electricity-costs__value">- 0.0000 USD</span>
-                      </td>
-                      <td class="last-share-cell" data="Last Share At">
-                        <span id="last-share-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="worker" class="worker-cell">
-                        <span class="worker-value">3070-03
-                        </span>
-                      </td>
-                      <td class="hashrate-cell" data="Hashrate 1h/24h">
-                        <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                      </td>
-                      <td class="history-cell" data="7 day history">
-                        <canvas id="historyChart" class="history-сhart">
-
-                        </canvas>
-                      </td>
-                      <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                        <span class="electricity-costs__value">- 0.0000 USD</span>
-                      </td>
-                      <td class="last-share-cell" data="Last Share At">
-                        <span id="last-share-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="worker" class="worker-cell">
-                        <span class="worker-value">3070-03
-                        </span>
-                      </td>
-                      <td class="hashrate-cell" data="Hashrate 1h/24h">
-                        <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                      </td>
-                      <td class="history-cell" data="7 day history">
-                        <canvas id="historyChart" class="history-сhart">
-
-                        </canvas>
-                      </td>
-                      <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                        <span class="electricity-costs__value">- 0.0000 USD</span>
-                      </td>
-                      <td class="last-share-cell" data="Last Share At">
-                        <span id="last-share-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="worker" class="worker-cell">
-                        <span class="worker-value">3070-03
-                        </span>
-                      </td>
-                      <td class="hashrate-cell" data="Hashrate 1h/24h">
-                        <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                      </td>
-                      <td class="history-cell" data="7 day history">
-                        <canvas id="historyChart" class="history-сhart">
-
-                        </canvas>
-                      </td>
-                      <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                        <span class="electricity-costs__value">- 0.0000 USD</span>
-                      </td>
-                      <td class="last-share-cell" data="Last Share At">
-                        <span id="last-share-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data="worker" class="worker-cell">
-                        <span class="worker-value">3070-03
-                        </span>
-                      </td>
-                      <td class="hashrate-cell" data="Hashrate 1h/24h">
-                        <span class="hashrate-value">1.18 GH / 1.15 GH</span>
-                      </td>
-                      <td class="history-cell" data="7 day history">
-                        <canvas id="historyChart" class="history-сhart">
-
-                        </canvas>
-                      </td>
-                      <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                        <span class="electricity-costs__value">- 0.0000 USD</span>
-                      </td>
-                      <td class="last-share-cell" data="Last Share At">
-                        <span id="last-share-value">22/02/2024, 12:03:41</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="custom-select select-interval-payouts">
+                <div id="select-payouts"></div>
               </div>
+            </div>
+
+            <div class="statistics-table__container">
+              <table class="table statistics-payouts-table">
+                <thead>
+                  <tr>
+                    <th>{{ .Params.table_statistics_payouts_labels.amount }}</th>
+                    <th>{{ .Params.statistics_payouts_timestamp }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="Amount" class="amount-cell">
+                      <span class="amount-value">0.00000000 ~ 0.00 USD
+                      </span>
+                    </td>
+                    <td class="timestamp-cell" data="Timestamp">
+                      <span class="timestamp-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table statistics-workers-table">
+                <thead>
+                  <tr>
+                    <th>{{ .Params.workers_table_headers.worker }}</th>
+                    <th>{{ .Params.workers_table_headers.hashrate }}</th>
+                    <th>{{ .Params.workers_table_headers.history }}</th>
+                    <th>{{ .Params.workers_table_headers.valid_shares }}</th>
+                    <th>{{ .Params.workers_table_headers.last_share_at }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">3070-03
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">1.18 GH / 1.15 GH</span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">- 0.0000 USD</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">22/02/2024, 12:03:41</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
         </div>
       </div>
