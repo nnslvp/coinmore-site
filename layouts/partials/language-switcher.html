@@ -12,7 +12,8 @@
     {{ $iconFlag = "russian-flag-icon" }}
     {{else }}
     {{ $iconFlag = "usa-flag-icon" }} {{ end }}
-    <a class="dropdown__item" href="{{ .Permalink | absLangURL }}">
+    <a class="dropdown__item {{ if eq .Language.LanguageName $.Site.Language.LanguageName }}active{{ end }}"
+      href="{{ .Permalink | absLangURL }}">
       <i class="icon  {{$iconFlag}}"></i>
       <span>{{ .Language.LanguageName }}</span>
     </a>
