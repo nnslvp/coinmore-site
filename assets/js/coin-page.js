@@ -190,3 +190,5 @@ tabPoolHashrateHour.addEventListener('click', function (e) {
 tabPoolHashrateDay.addEventListener('click', function (e) {
 	updateChartData(poolHashRateChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
 });
+
+showPings();

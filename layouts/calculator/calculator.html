@@ -69,25 +69,28 @@
             <p class="subtitle calculator__subtitle">{{ .Params.subtitle }}
             </p>
           </header>
-          <ul class="input-group">
-            <li class="input-container">
+          <form name="calculator_form" class="calculator_form">
+            <div class="input-container">
               <label class="label" for="currency">{{ .Params.currency_label }}*</label>
               <div id="select-currency"></div>
-            </li>
-            <li class="input-container">
+            </div>
+            <div class="input-container">
               <label class="label" for="hashrate">{{ .Params.hashrate_label}}*</label>
-              <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate">
-            </li>
-            <li class="input-container">
+              <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate" value="1" step="any">
+            </div>
+            <div class="input-container">
               <label class="label" for="power-consumption">{{ .Params.power_consumption_label}} *</label>
-              <input class="input" placeholder="12" type="number" id="power-consumption" name="power-consumption">
-            </li>
-            <li class="input-container">
+              <input class="input" placeholder="12" type="number" id="powerConsumption" name="power-consumption"
+                value="0" step="any">
+            </div>
+            <div class="input-container">
               <label class="label" for="electricity-costs">{{ .Params.electricity_costs_label}}</label>
-              <input class="input" placeholder="1000" type="number" id="electricity-costs" name="electricity-costs">
-            </li>
-            <button class="btn btn-filled-primary calculate-btn">{{ .Params.calculate_button}}</button>
-          </ul>
+              <input class="input" placeholder="1000" type="number" id="electricityCosts" name="electricityCosts"
+                value="0.1" step="any">
+            </div>
+            <button id="calculate-btn" type="submit" class="btn btn-filled-primary calculate-btn">{{
+              .Params.calculate_button}}</button>
+          </form>
           <div class="result-table__container">
             <table class="table calculate-result-table">
               <thead>
@@ -100,7 +103,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr id="period-hour">
                   <td data="Period" class="period-cell">
                     <span class="period-value">1 {{.Params.hour }}
                     </span>
@@ -115,10 +118,10 @@
                     <span class="electricity-costs__value">- 0.0000 USD</span>
                   </td>
                   <td class="profit-cell" data="Est. profit">
-                    <span id="profit-value">0.0168 USD</span>
+                    <span class="profit-value">0.0168 USD</span>
                   </td>
                 </tr>
-                <tr>
+                <tr id="period-day">
                   <td data="Period" class="period-cell">24 {{.Params.hour_24 }} </td>
                   <td class="reward-cell" data="Est. reward">
                     <span class="reward-value">0.0068 ALPH</span>
@@ -133,7 +136,7 @@
                     <span id="profit-Europe" class="profit-value">0.0168 USD</span>
                   </td>
                 </tr>
-                <tr>
+                <tr id="period-week">
                   <td data="Period" class="period-cell">
                     7 {{.Params.days }}
                   </td>

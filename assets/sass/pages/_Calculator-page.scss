@@ -15,7 +15,7 @@
 	text-align: center;
 }
 
-.input-group {
+.calculator_form {
 	max-width: 50rem;
 	display: flex;
 	flex-wrap: wrap;
@@ -28,7 +28,7 @@
 	gap: 0.25rem;
 }
 
-.input-group .input-container {
+.calculator_form .input-container {
 	flex-basis: 24.375rem;
 }
 
@@ -54,7 +54,7 @@
 		padding: 2.5rem 0;
 	}
 
-	.input-group .input-container {
+	.calculator_form .input-container {
 		flex-basis: 20.875rem;
 	}
 
@@ -72,7 +72,7 @@
 		gap: 0.75rem;
 	}
 
-	.input-group {
+	.calculator_form {
 		gap: 0.9375rem;
 	}
 
