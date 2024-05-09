@@ -39,10 +39,13 @@ function fetchPoolHashRate(coin) {
 function fetchNetworkHashRate(coin) {
 	return statsApiCall('/network_hashrate?coin=alephium');
 }
+function fetchMinersOnline(coin) {
+	return statsApiCall('/online?coin=alephium');
+}
 
-// function fetchPoolBlocks(period = 3600) {
-// 	return statsApiCall(`/blocks?coin=alephium&period=${period}`);
-// }
+function fetchPoolBlocks(period = 3600) {
+	return statsApiCall(`/blocks?coin=alephium&period=${period}`);
+}
 
 function shortenHm(hashRate, roundPlaces) {
 	const denominator = [
@@ -85,6 +88,9 @@ function showNetworkHashrate(hashrate) {
 		'network_hashrate'
 	).textContent = `${shortHashrate} ${units}/s`;
 }
+function showMinersOnline(workers_online) {
+	document.getElementById('miners').textContent = workers_online;
+}
 
 function init() {
 	// fetchPoolProfit().then(({ profit }) => {
@@ -100,6 +106,10 @@ function init() {
 
 	fetchNetworkHashRate().then(({ network_hashrate }) => {
 		showNetworkHashrate(network_hashrate.hashrate);
+	});
+
+	fetchMinersOnline().then(({ workers_online }) => {
+		showMinersOnline(workers_online);
 	});
 
 	// fetchPoolBlocks(86400).then(({ last_block_at, count }) => {
