@@ -85,8 +85,10 @@
     </main>
     {{partial "footer.html" .}}
   </div>
-  {{ $js := resources.Get "js/main.js" | resources.Minify }}
-  <script type="module" src="{{ $js.Permalink }}"></script>
+  {{ $statisticsPage := resources.Get "js/home-page.js" }}
+  {{ $global:= resources.Get "js/main.js" }}
+  {{ $js := slice $global $statisticsPage | resources.Concat "js/build/home-page-build.js" }}
+  <script type="module" src="{{ $js.Permalink }}"></script>{{ $js := resources.Get "js/main.js" | resources.Minify }}
 </body>
 
 </html>
