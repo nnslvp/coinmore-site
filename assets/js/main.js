@@ -46,6 +46,9 @@ function fetchMinersOnline(coin) {
 function fetchPoolBlocks(period = 3600) {
 	return statsApiCall(`/blocks?coin=alephium&period=${period}`);
 }
+function fetchRate(coin) {
+	return statsApiCall(`/rate?coin=alephium`);
+}
 
 function shortenHm(hashRate, roundPlaces) {
 	const denominator = [
@@ -91,6 +94,9 @@ function showNetworkHashrate(hashrate) {
 function showMinersOnline(workers_online) {
 	document.getElementById('miners').textContent = workers_online;
 }
+function showRate(rate) {
+	document.getElementById('coin-price').textContent = `$${rate.value}`;
+}
 
 function init() {
 	// fetchPoolProfit().then(({ profit }) => {
@@ -110,6 +116,10 @@ function init() {
 
 	fetchMinersOnline().then(({ workers_online }) => {
 		showMinersOnline(workers_online);
+	});
+
+	fetchRate().then(({ rate }) => {
+		showRate(rate);
 	});
 
 	// fetchPoolBlocks(86400).then(({ last_block_at, count }) => {
