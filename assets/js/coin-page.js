@@ -1,6 +1,7 @@
 const CHART_POOL_HASH_RATE = document.querySelector('#poolHashrateChart');
 const CHART_PROFIT = document.querySelector('#profitChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
+
 const CHART_BASE_OPTIONS = {
 	type: 'line',
 	data: {
@@ -193,83 +194,34 @@ tabPoolHashrateDay.addEventListener('click', function (e) {
 
 showPings();
 
-const statsApiUrl = 'https://api.coinmore.io';
-
-function statsApiCall(action) {
-	return fetch(`${statsApiUrl}${action}`).then(response => response.json());
-}
-
-function fetchCurrencyInfo(coin) {
-	return statsApiCall(`/rate?coin=alephium`);
-}
-
-function fetchPoolProfit(coin) {
-	return statsApiCall('/profit?coin=alephium');
-}
-
-function fetchPoolHashRate(coin) {
-	return statsApiCall('/hashrate?coin=alephium');
-}
-function fetchNetworkHashRate(coin) {
-	return statsApiCall('/network_hashrate?coin=alephium');
-}
-function fetchMinersOnline(coin) {
-	return statsApiCall('/online?coin=alephium');
-}
-
-function fetchPoolBlocks(period = 3600) {
-	return statsApiCall(`/blocks?coin=alephium&period=${period}`);
-}
-function fetchRate(coin) {
-	return statsApiCall(`/rate?coin=alephium`);
-}
-
-function shortenHm(hashRate, roundPlaces) {
-	const denominator = [
-		{ d: 1000000000000, unit: 'TH' },
-		{ d: 1000000000, unit: 'GH' },
-		{ d: 1000000, unit: 'MH' },
-		{ d: 1, unit: 'H' },
-	];
-
-	if (isNaN(hashRate)) {
-		return null;
-	} else {
-		const hashRateFactor = Math.log10(hashRate) > 0 ? Math.log10(hashRate) : 0;
-
-		const factor = denominator.find(
-			el => hashRateFactor - Math.log10(el.d) >= 0
-		);
-
-		const resultHashRateValue = Number(
-			(hashRate / factor.d).toFixed(roundPlaces)
-		);
-		const resultHashRateMeasure = factor.unit;
-
-		return {
-			hashrate: resultHashRateValue,
-			units: resultHashRateMeasure,
-		};
-	}
-}
-
 function showPoolHashrate(hashrate) {
 	const { hashrate: shortHashrate, units } = shortenHm(hashrate, 2);
 	document.getElementById(
 		'pool_hashrate'
 	).textContent = `${shortHashrate} ${units}/s`;
 }
-function showNetworkHashrate(hashrate) {
-	const { hashrate: shortHashrate, units } = shortenHm(hashrate, 2);
+
+function showPoolProfit(profit) {
+	const roundProfit = parseFloat(profit).toFixed(4);
 	document.getElementById(
-		'network_hashrate'
-	).textContent = `${shortHashrate} ${units}/s`;
+		'pool_profit'
+	).textContent = `${roundProfit} ${COIN_SYMBOL}`;
 }
+
 function showMinersOnline(workers_online) {
 	document.getElementById('miners').textContent = workers_online;
 }
-function showRate(rate) {
-	document.getElementById('coin-price').textContent = `$${rate.value}`;
+
+function showPool24hBlocks(blocksCount) {
+	document.getElementById('24h_blocks').textContent = blocksCount;
+}
+
+function showPoolLatestBlockAt(date) {
+	const current = new Date();
+	const at = new Date(date);
+	const hours = (Math.abs(current - at) / 36e5).toFixed(2);
+
+	document.getElementById('latest_block_at').textContent = `${hours} hour(s)`;
 }
 
 function showPoolProfitUSD(rate, profit) {
@@ -277,31 +229,29 @@ function showPoolProfitUSD(rate, profit) {
 	const floatRate = parseFloat(rate);
 	const profitUSD = (floatProfit * floatRate).toFixed(4);
 
-	document.getElementById('pool_profit_usd').textContent = `$${profitUSD}`;
+	document.getElementById('pool_profit_usd').textContent = `${profitUSD} USD`;
 }
 
-function init() {
-	fetchPoolProfit().then(({ profit }) => {
-		fetchCurrencyInfo().then(({ rate: { value } }) =>
+function init(coin) {
+	fetchPoolProfit(coin).then(({ profit, coin }) => {
+		showPoolProfit(profit);
+		fetchCurrencyInfo(coin).then(({ rate: { value } }) =>
 			showPoolProfitUSD(profit, value)
 		);
 	});
 
-	fetchPoolHashRate().then(({ hashrate }) => {
+	fetchPoolHashRate(coin).then(({ hashrate }) => {
 		showPoolHashrate(hashrate.hashrate);
 	});
 
-	fetchNetworkHashRate().then(({ network_hashrate }) => {
-		showNetworkHashrate(network_hashrate.hashrate);
-	});
-
-	fetchMinersOnline().then(({ workers_online }) => {
+	fetchMinersOnline(coin).then(({ workers_online }) => {
 		showMinersOnline(workers_online);
 	});
 
-	fetchRate().then(({ rate }) => {
-		showRate(rate);
+	fetchPoolBlocks(coin, 86400).then(({ count, last_block_at }) => {
+		showPool24hBlocks(count);
+		showPoolLatestBlockAt(last_block_at);
 	});
 }
 
-init();
+init(COIN);

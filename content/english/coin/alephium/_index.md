@@ -1,7 +1,7 @@
 ---
 layout: 'coin'
 coin_name: 'alephium'
-coin_symbol: 'ALH'
+coin_symbol: 'ALPH'
 start_mining: 'Start mining'
 pool_hashrate: 'Pool hashrate:'
 network_hashrate: 'Network hashrate:'
