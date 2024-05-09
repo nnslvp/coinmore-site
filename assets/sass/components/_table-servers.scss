@@ -18,6 +18,11 @@
 		align-items: center;
 		gap: 0.75rem;
 	}
+
+	tr:has(.faster) > td {
+		background-color: rgba(121, 234, 134, 0.1);
+		transition: background-color 0.3s ease-in;
+	}
 }
 
 @media (max-width: $breakpoint-xl) {
@@ -91,6 +96,15 @@
 			display: block;
 			font-weight: initial;
 			margin-bottom: 0.25rem;
+		}
+
+		tr:has(.faster) > td {
+			background-color: initial;
+		}
+
+		tr.faster {
+			background-color: rgba(121, 234, 134, 0.1);
+			transition: background-color 0.3s ease-in;
 		}
 	}
 }

@@ -1,6 +1,15 @@
+[telegram]
+other = "telegram"
 
-[view_personal_statistic]
-other = "View personal statistic"
+[community]
+other = "community"
 
-[hour_many]
-  other = "hours"
+[bot]
+other = "bot"
+
+
+[english]
+other = "english"
+
+[russian]
+other = "russian"

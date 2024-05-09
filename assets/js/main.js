@@ -1,23 +1,21 @@
-
-const languageSwitcherElements = document.querySelectorAll(
+const LANGUAGE_SWITCHER_ELEMENTS = document.querySelectorAll(
 	'.language-switcher'
 );
+const HAMBURGER_MENU_BTN = document.querySelector('.hamburger-menu-btn');
 
-languageSwitcherElements.forEach(el =>
+LANGUAGE_SWITCHER_ELEMENTS.forEach(el =>
 	el.addEventListener('click', e => {
 		e.stopPropagation();
 		e.currentTarget.classList.toggle('open');
 	})
 );
 
+HAMBURGER_MENU_BTN.addEventListener('click', e => {
+	e.currentTarget.classList.toggle('active');
+});
+
 document.body.addEventListener('click', () => {
-	languageSwitcherElements.forEach(e => {
+	LANGUAGE_SWITCHER_ELEMENTS.forEach(e => {
 		e.classList.remove('open');
 	});
 });
-
-document
-	.querySelector('.hamburger-menu-btn')
-	.addEventListener('click', function (e) {
-		e.currentTarget.classList.toggle('active');
-	});

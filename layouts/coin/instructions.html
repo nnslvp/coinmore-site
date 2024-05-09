@@ -107,25 +107,26 @@
               <div class="miners-list-about-other-container">
                 <ul class="miners-list">
                   <li class="miners-item">
-                    <a href="" class="link">SRBMiner</a>
+                    <a href="https://github.com/doktor83/SRBMiner-Multi/releases" class="link">SRBMiner</a>
                   </li>
                   <li class="miners-item">
-                    <a href="" class="link">T-Rex</a>
+                    <a href="https://github.com/Lolliedieb/lolMiner-releases/releases" class="link">IolMiner</a>
                   </li>
                   <li class="miners-item">
-                    <a href="" class="link">IolMiner</a>
+                    <a href="https://github.com/bzminer/bzminer/releases" class="link">BzMiner</a>
                   </li>
                   <li class="miners-item">
-                    <a href="" class="link">BzMiner</a>
+                    <a href="https://github.com/trexminer/T-Rex/releases" class="link">T-Rex</a>
                   </li>
                   <li class="miners-item">
-                    <a href="" class="link">T-Rex</a>
+                    <a href="https://github.com/rigelminer/rigel/releases" class="link">Rigel</a>
                   </li>
                   <li class="miners-item">
-                    <a href="" class="link">Rigel</a>
+                    <a href="https://github.com/andru-kun/wildrig-multi/releases" class="link">WildRig Multi</a>
                   </li>
                 </ul>
-                <p class="subtitle">{{ .Params.ask_in_telegram }} <a class="link subtitle" href="">{{
+                <p class="subtitle">{{ .Params.ask_in_telegram }} <a class="link subtitle"
+                    href="https://t.me/alephium_pool">{{
                     .Params.telegram_community }}</a></p>
               </div>
             </div>
@@ -136,12 +137,20 @@
             <div class="section__inner">
               <h2 class="heading-h2">{{ .Params.windows_examples }}</h2>
               <ul class="tabs-miners-list">
-                <li class="tab tab-border-radius-around-left  tabs-miners-item active">IolMiner</li>
-                <li class="tab tabs-miners-item">IolMiner</li>
-                <li class="tab tabs-miners-item">T-Rex</li>
-                <li class="tab tab-border-radius-around-right  tabs-miners-item">SRBMiner</li>
+                <li data-target="guide-iolminer"
+                  class="tab tabs-miners-item tab-border-radius-around-left  tabs-miners-item active">
+                  IolMiner
+                </li>
+                <li data-target="guide-trex" class="tab tabs-miners-item">
+                  T-Rex
+                </li>
+                <li data-target="guide-srbminer"
+                  class="tab tabs-miners-item tab-border-radius-around-right  tabs-miners-item">
+                  SRBMiner
+                </li>
               </ul>
-              <div class="guide">
+
+              <div id="guide-iolminer" class="guide active">
                 <h1 class="heading-h2">lolMiner</h1>
                 <ol class="steps-list">
                   <li>
@@ -158,11 +167,11 @@
                         <i class="icon copy-icon"></i>
                       </button>
                       <pre class="code-container">
-                      <code>
-                        set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
-                        set "ALEPHWALLET=your_wallet"
-                        </code>
-                    </pre>
+                                        <code>
+                                          set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
+                                          set "ALEPHWALLET=your_wallet"
+                                          </code>
+                                      </pre>
                     </div>
                   </li>
                   <li>
@@ -173,6 +182,12 @@
                     <strong class="profit">{{ .Params.profit}} </strong>
                   </li>
                 </ol>
+              </div>
+              <div id="guide-trex" class="guide">
+                Контент гайда для T-Rex
+              </div>
+              <div id="guide-srbminer" class="guide">
+                Контент гайда для SRBMiner
               </div>
             </div>
           </div>
@@ -201,9 +216,11 @@
     {{partial "footer.html" .}}
   </div>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $tableServers:= resources.Get "js/table-servers.js" }}
   {{ $page := resources.Get "js/instructions-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $global $customSelect $page | resources.Concat "js/build/instructions-page-build.js" }}
+  {{ $js := slice $global $customSelect $tableServers $page | resources.Concat "js/build/instructions-page-build.js" |
+  resources.Minify }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 

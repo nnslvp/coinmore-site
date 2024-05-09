@@ -11,13 +11,12 @@
 	align-items: center;
 	width: 100%;
 	height: 100%;
-
-	padding: 0.5938rem 1.25rem 0.5938rem 1.25rem;
+	padding: 0.9063rem 1.25rem;
 	font-size: 1rem;
 	line-height: var(--line-height-21);
 	background-color: var(--color-white);
 	color: var(--color-text-body);
-	border: 0.0625rem solid #afb8bf;
+	border: 0.0625rem solid var(--color-text-light-grey);
 	border-radius: 3.125rem;
 	cursor: pointer;
 	user-select: none;
@@ -30,7 +29,7 @@
 		border: 0.0625rem solid rgb(96, 108, 118);
 	}
 	&:focus {
-		border: 0.0625rem solid rgb(155, 77, 202);
+		border: 0.0625rem solid var(--color-primary);
 		box-shadow: 0rem 0rem 0.25rem 0.25rem var(--light-blue-semi-transparent);
 	}
 }
@@ -64,7 +63,7 @@
 	width: 100%;
 	max-height: 10rem;
 	overflow-y: auto;
-	background-color: #fff;
+	background-color: var(--color-white);
 	box-shadow: 0rem 0.25rem 1rem 0rem #00000066;
 	font-size: 1rem;
 	line-height: var(--line-height-21);

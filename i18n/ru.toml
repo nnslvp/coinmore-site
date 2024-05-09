@@ -1,8 +1,14 @@
-[hours_singular]
-  other = "час"
+[telegram]
+other = "телеграмм"
 
-[view_personal_statistic]
-other = "View personal statistic"
+[community]
+other = "комьюнити"
 
+[bot]
+other = "бот"
 
+[english]
+other = "английский"
 
+[russian]
+other = "русский"
