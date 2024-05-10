@@ -13,6 +13,9 @@
 :has(.tab-workers.active) .statistics-workers-table {
 	display: grid;
 }
+.statistics-page__container {
+	height: 100%;
+}
 
 .statistics__inner {
 	display: flex;
@@ -26,11 +29,20 @@
 	flex: 1;
 }
 
-.empty-statistics {
+.section-statistics > * {
+	visibility: hidden;
+	height: 0px;
+	opacity: 0;
+}
+
+.section-statistics {
 	background-image: url('/images/stats-img-bg.png');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: inherit;
+}
+
+.section-statistics.true-statistics > * {
 }
 
 .statistics__header {

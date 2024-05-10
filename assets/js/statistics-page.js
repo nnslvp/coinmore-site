@@ -454,9 +454,6 @@ function assignFormListener() {
 	document
 		.getElementById('payouts-tab')
 		.addEventListener('click', e => switchTab(e, 'payouts'));
-	document
-		.getElementById('events-tab')
-		.addEventListener('click', e => switchTab(e, 'events'));
 }
 
 function switchTab(event, tabId) {
@@ -484,10 +481,10 @@ function init() {
 		setWalletForm(walletFromParams);
 		drawData(walletFromParams);
 	} else {
-		const walletFromCookies = Cookies.get('wallet');
-		if (walletFromCookies) {
-			setWalletParam(walletFromCookies);
-		}
+		// const walletFromCookies = Cookies.get('wallet');
+		// if (walletFromCookies) {
+		// 	setWalletParam(walletFromCookies);
+		// }
 	}
 }
 

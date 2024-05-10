@@ -66,15 +66,16 @@
         </li>
       </ul>
     </nav>
-    <main class="administration-dashboard-page">
-      <div class="container">
+    <main class="statistics-page">
+      <div class="container statistics-page__container">
         <div class="statistics__inner">
           <header class="statistics__header">
             <h1 class="heading-h1">{{ .Title }}</h1>
             <search class="statistics__search">
-              <form class="statistics__search-form">
-                <input class="input" name="search" placeholder="{{ .Params.search_placeholder }}">
-                <button class="btn btn-filled-primary">{{ .Params.view_statistic_button }}</button>
+              <form id="wallet-form" class="statistics__search-form">
+                <input id="wallet-input" class="input" name="search" placeholder="{{ .Params.search_placeholder }}">
+                <button id="show" type="submit" class="btn btn-filled-primary">{{ .Params.view_statistic_button
+                  }}</button>
               </form>
             </search>
           </header>
@@ -98,28 +99,35 @@
                 <i class="icon speed-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.hashrate_1h }}</p>
-                  <strong class="stat-item__value">0 H/s</strong>
+                  <strong id="my_hashrate_1h" class="stat-item__value">0 H/s</strong>
                 </div>
               </li>
               <li class="stat-item">
                 <i class="icon speed-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.hashrate_24h }}</p>
-                  <strong class="stat-item__value">0 H/s</strong>
+                  <strong id="my_hashrate_24h" class="stat-item__value">0 H/s</strong>
                 </div>
               </li>
               <li class="stat-item">
                 <i class="icon coins-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_1h}}</p>
-                  <strong class="stat-item__value">0.00000000 ~ 0.00 USD</strong>
+                  <strong class="stat-item__value">
+                    <span id="my_payouts_1h">0.00000000</span> ~
+                    <span id="my_payouts_1h_usd">0.00 USD</span>
+                  </strong>
                 </div>
               </li>
               <li class="stat-item">
                 <i class="icon coins-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_24h}}</p>
-                  <strong class="stat-item__value">0.0888 ALPH ~ 0.2925 USD</strong>
+                  <strong class="stat-item__value">
+                    <span id="my_hashrate_24h">0.0888 ALPH</span>
+                    ~
+                    <span id="my_hashrate_24h_measure">0.2925 USD</span>
+                  </strong>
                 </div>
               </li>
               <li class="stat-item">
@@ -163,9 +171,11 @@
 
             <div class="interval__inner">
               <div class="chart-interval tabs-tables__workers-payouts">
-                <button class="tab tab-border-radius-around-left tab-workers">{{ .Params.chart_titles.workers
+                <button id="workers-tab" class="tab tab-border-radius-around-left tab-workers">{{
+                  .Params.chart_titles.workers
                   }}</button>
-                <button class="tab tab-border-radius-around-right  tab-payouts active">{{ .Params.chart_titles.payouts
+                <button id="payouts-tab" class="tab tab-border-radius-around-right  tab-payouts active">{{
+                  .Params.chart_titles.payouts
                   }}</button>
               </div>
               <div class="custom-select select-interval-payouts">
