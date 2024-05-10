@@ -189,11 +189,11 @@
             </div>
 
             <div class="statistics-table__container">
-              <table class="table statistics-payouts-table">
+              <table id="statistics-payouts-table" class="table statistics-payouts-table">
                 <thead>
                   <tr>
                     <th>{{ .Params.table_statistics_payouts_labels.amount }}</th>
-                    <th>{{ .Params.statistics_payouts_timestamp }}</th>
+                    <th>{{ .Params.table_statistics_payouts_labels.timestamp }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -202,7 +202,7 @@
                       <span class="amount-value">0.00000000 ~ 0.00 USD
                       </span>
                     </td>
-                    <td class="timestamp-cell" data="Timestamp">
+                    <td data="Timestamp" class="timestamp-cell">
                       <span class="timestamp-value">22/02/2024, 12:03:41</span>
                     </td>
                   </tr>
@@ -211,7 +211,7 @@
                       <span class="amount-value">0.00000000 ~ 0.00 USD
                       </span>
                     </td>
-                    <td class="timestamp-cell" data="Timestamp">
+                    <td data="Timestamp" class="timestamp-cell">
                       <span class="timestamp-value">22/02/2024, 12:03:41</span>
                     </td>
                   </tr>
@@ -220,7 +220,7 @@
                       <span class="amount-value">0.00000000 ~ 0.00 USD
                       </span>
                     </td>
-                    <td class="timestamp-cell" data="Timestamp">
+                    <td data="Timestamp" class="timestamp-cell">
                       <span class="timestamp-value">22/02/2024, 12:03:41</span>
                     </td>
                   </tr>
@@ -229,13 +229,13 @@
                       <span class="amount-value">0.00000000 ~ 0.00 USD
                       </span>
                     </td>
-                    <td class="timestamp-cell" data="Timestamp">
+                    <td data="Timestamp" class="timestamp-cell">
                       <span class="timestamp-value">22/02/2024, 12:03:41</span>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <table class="table statistics-workers-table">
+              <table id="statistics-workers-table" class="table statistics-workers-table">
                 <thead>
                   <tr>
                     <th>{{ .Params.workers_table_headers.worker }}</th>

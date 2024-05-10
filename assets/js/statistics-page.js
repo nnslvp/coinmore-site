@@ -312,30 +312,32 @@ function showMyBalance(myBalanceData, currencyRate) {
 }
 
 function showPayoutsTable(payouts) {
-	// const tableBody = document
-	// 	.getElementById('payouts-table')
-	// 	.getElementsByTagName('tbody')[0];
-	// tableBody.innerHTML = '';
-	// payouts.forEach(payout => {
-	// 	const row = tableBody.insertRow();
-	// 	row.insertCell(0).textContent = parseFloat(payout.amount).toFixed(8);
-	// 	row.insertCell(1).textContent = new Date(payout.timestamp).toLocaleString();
-	// });
+	const tableBody = document;
+	// .getElementById('statistics-payouts-table')
+	// .getElementsByTagName('tbody')[0];
+	tableBody.innerHTML = '';
+	payouts.forEach(payout => {
+		const row = tableBody.insertRow();
+		row.insertCell(0).dataset.data = 'Amount';
+		row.insertCell(1).dataset.data = 'Timestamp';
+		row.insertCell(0).textContent = parseFloat(payout.amount).toFixed(8);
+		row.insertCell(1).textContent = new Date(payout.timestamp).toLocaleString();
+	});
 }
 
-function showEventsTable(events) {
-	// const tableBody = document
-	// 	.getElementById('events-table')
-	// 	.getElementsByTagName('tbody')[0];
-	// tableBody.innerHTML = '';
-	// events.forEach(event => {
-	// 	const row = tableBody.insertRow();
-	// 	row.insertCell(0).textContent = event.worker ?? 'N/A';
-	// 	row.insertCell(1).textContent = event.message;
-	// 	row.insertCell(2).textContent = event.count;
-	// 	row.insertCell(3).textContent = new Date(event.latest).toLocaleString();
-	// });
-}
+// function showEventsTable(events) {
+// 	const tableBody = document
+// 		.getElementById('events-table')
+// 		.getElementsByTagName('tbody')[0];
+// 	tableBody.innerHTML = '';
+// 	events.forEach(event => {
+// 		const row = tableBody.insertRow();
+// 		row.insertCell(0).textContent = event.worker ?? 'N/A';
+// 		row.insertCell(1).textContent = event.message;
+// 		row.insertCell(2).textContent = event.count;
+// 		row.insertCell(3).textContent = new Date(event.latest).toLocaleString();
+// 	});
+// }
 
 function drawData(wallet) {
 	disableButton();
@@ -381,7 +383,7 @@ function drawData(wallet) {
 				{ hour: { amount: payouts1h }, day: { amount: payouts24h } },
 				currencyRate.rate.value
 			);
-			// showPayoutsTable(payouts24hResponse.payouts);
+			showPayoutsTable(payouts24hResponse.payouts);
 			showMyBalance(myBalanceResponse, currencyRate.rate.value);
 			// showEventsTable(myEventsResponse.events);
 			showStats();
@@ -450,18 +452,16 @@ function assignFormListener() {
 }
 
 function switchTab(event, tabId) {
-	document.querySelectorAll('.tab').forEach(tab => {
-		tab.classList.remove('active');
-	});
-
-	document.querySelectorAll('.tab-links .button').forEach(tab => {
-		tab.classList.remove('button-outline');
-		tab.classList.add('button-clear');
-	});
-
-	document.getElementById(tabId).classList.add('active');
-	event.currentTarget.classList.add('button-outline');
-	event.currentTarget.classList.remove('button-clear');
+	// document.querySelectorAll('.tab').forEach(tab => {
+	// 	tab.classList.remove('active');
+	// });
+	// document.querySelectorAll('.tab-links .button').forEach(tab => {
+	// 	tab.classList.remove('button-outline');
+	// 	tab.classList.add('button-clear');
+	// });
+	// document.getElementById(tabId).classList.add('active');
+	// event.currentTarget.classList.add('button-outline');
+	// event.currentTarget.classList.remove('button-clear');
 }
 
 function init() {
