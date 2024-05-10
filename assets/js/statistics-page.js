@@ -252,31 +252,59 @@ function showMyHashrate({ day, hour }) {
 }
 
 function showWorkersTable(workersDay, workersHour) {
-	// const tableBody = document
-	// 	.getElementById('workers-table')
-	// 	.getElementsByTagName('tbody')[0];
-	// tableBody.innerHTML = '';
-	// workersDay.forEach(workerDay => {
-	// 	const workerHour =
-	// 		workersHour.find(w => w.worker === workerDay.worker) || {};
-	// 	const row = tableBody.insertRow();
-	// 	const shortHashRateHour = workerHour.hashrate
-	// 		? shortenHm(workerHour.hashrate, 2)
-	// 		: { hashrate: 'N/A', units: '' };
-	// 	const shortHashRateDay = workerDay.hashrate
-	// 		? shortenHm(workerDay.hashrate, 2)
-	// 		: { hashrate: 'N/A', units: '' };
-	// 	row.insertCell(0).textContent = workerDay.worker || 'N/A';
-	// 	row.insertCell(
-	// 		1
-	// 	).textContent = `${shortHashRateHour.hashrate} ${shortHashRateHour.units} / ${shortHashRateDay.hashrate} ${shortHashRateDay.units}`;
-	// 	row.insertCell(
-	// 		2
-	// 	).textContent = `${workerHour.shares_count} / ${workerDay.shares_count}`;
-	// 	row.insertCell(3).textContent = workerDay.last_share_at
-	// 		? new Date(workerDay.last_share_at).toLocaleString()
-	// 		: 'N/A';
-	// });
+	const tableBody = document
+		.getElementById('statistics-workers-table')
+		.getElementsByTagName('tbody')[0];
+	let rowsHtml = '';
+
+	workersDay.forEach(workerDay => {
+		const workerHour =
+			workersHour.find(w => w.worker === workerDay.worker) || {};
+		const shortHashRateHour = workerHour.hashrate
+			? shortenHm(workerHour.hashrate, 2)
+			: { hashrate: 'N/A', units: '' };
+		const shortHashRateDay = workerDay.hashrate
+			? shortenHm(workerDay.hashrate, 2)
+			: { hashrate: 'N/A', units: '' };
+
+		rowsHtml += `
+                  <tr>
+                    <td data="worker" class="worker-cell">
+                      <span class="worker-value">
+                      ${workerDay.worker || 'N/A'}
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">
+                      ${shortHashRateHour.hashrate} 
+                      ${shortHashRateHour.units} / 
+                      ${shortHashRateDay.hashrate} 
+                      ${shortHashRateDay.units}
+                      </span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">
+                        ${workerHour.shares_count || 'N/A'} / 
+                        ${workerDay.shares_count || 'N/A'}</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">
+                        ${
+													workerDay.last_share_at
+														? new Date(workerDay.last_share_at).toLocaleString()
+														: 'N/A'
+												}
+                      </span>
+                    </td>
+                  </tr>`;
+	});
+
+	tableBody.innerHTML = rowsHtml;
 }
 
 function amountUSD(amountInAlph, currencyRate) {
@@ -312,17 +340,28 @@ function showMyBalance(myBalanceData, currencyRate) {
 }
 
 function showPayoutsTable(payouts) {
-	const tableBody = document;
-	// .getElementById('statistics-payouts-table')
-	// .getElementsByTagName('tbody')[0];
+	const tableBody = document
+		.getElementById('statistics-payouts-table')
+		.getElementsByTagName('tbody')[0];
 	tableBody.innerHTML = '';
+	let rowsHtml = '';
+
 	payouts.forEach(payout => {
-		const row = tableBody.insertRow();
-		row.insertCell(0).dataset.data = 'Amount';
-		row.insertCell(1).dataset.data = 'Timestamp';
-		row.insertCell(0).textContent = parseFloat(payout.amount).toFixed(8);
-		row.insertCell(1).textContent = new Date(payout.timestamp).toLocaleString();
+		rowsHtml += `
+    <tr>
+        <td data="Amount" class="amount-cell">
+            <span class="amount-value">
+            ${parseFloat(payout.amount).toFixed(8)}
+            </span>
+        </td>
+        <td data="Timestamp" class="timestamp-cell">
+            <span class="timestamp-value">
+            ${new Date(payout.timestamp).toLocaleString()}
+            </span>
+        </td>
+    </tr>`;
 	});
+	tableBody.innerHTML = rowsHtml;
 }
 
 // function showEventsTable(events) {
