@@ -337,7 +337,6 @@
           </section>
         </div>
       </div>
-
     </main>
 
     {{partial "footer.html" .}}
@@ -358,11 +357,19 @@
       </form>
     </div>
   </dialog>
+  <script>
+    const COIN = {{.Params.coin_name }}
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $api := resources.Get "js/api.js" }}
+  {{$helpers := resources.Get "js/helpers.js" }}
+  {{$showDataFunctions:= resources.Get "js/show-data-functions.js" }}
   {{ $page := resources.Get "js/statistics-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $global $customSelect $page | resources.Concat "js/build/statistics-page-build.js" }}
+  {{ $js := slice $api $showDataFunctions $helpers $customSelect $global $page | resources.Concat
+  "js/build/statistics-page-build.js" |
+  resources.Minify }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 
