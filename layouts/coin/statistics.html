@@ -79,7 +79,7 @@
               </form>
             </search>
           </header>
-          <section class="section-statistics">
+          <section id="stats" class="section-statistics ">
             <header class="section-statistics__header">
               <h2 class="heading-h2">{{ .Params.section_title }}</h2>
               <a href="{{ .Site.BaseURL}}/calculator" class="btn btn-outline-primary">
@@ -92,14 +92,19 @@
                 <i class="icon balance-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.balance }}</p>
-                  <strong class="stat-item__value">0.08288304 ~ 0.20 USD</strong>
+                  <strong class="stat-item__value">
+                    <span id="balance"></span>
+                    ~
+                    <span id="balance_usd"></span>
+                  </strong>
                 </div>
               </li>
               <li class="stat-item">
                 <i class="icon speed-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.hashrate_1h }}</p>
-                  <strong id="my_hashrate_1h" class="stat-item__value">0 H/s</strong>
+                  <strong id="my_hashrate_1h" class="stat-item__value">
+                    0 H/s</strong>
                 </div>
               </li>
               <li class="stat-item">
@@ -124,9 +129,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_24h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_hashrate_24h">0.0888 ALPH</span>
+                    <span id="my_payouts_24h">0.0888 ALPH</span>
                     ~
-                    <span id="my_hashrate_24h_measure">0.2925 USD</span>
+                    <span id="my_payouts_24h_usd">0.2925 USD</span>
                   </strong>
                 </div>
               </li>

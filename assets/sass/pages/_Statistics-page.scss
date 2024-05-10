@@ -29,20 +29,17 @@
 	flex: 1;
 }
 
-.section-statistics > * {
+.section-statistics.empty-statistics > * {
 	visibility: hidden;
 	height: 0px;
 	opacity: 0;
 }
 
-.section-statistics {
+.section-statistics.empty-statistics {
 	background-image: url('/images/stats-img-bg.png');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: inherit;
-}
-
-.section-statistics.true-statistics > * {
 }
 
 .statistics__header {

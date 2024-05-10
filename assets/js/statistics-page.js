@@ -242,46 +242,41 @@ function showMyHashrate({ day, hour }) {
 	const shortHourHashRate = shortenHm(hour.hashrate, 2);
 	const shortDayHashRate = shortenHm(day.hashrate, 2);
 
-	document.getElementById('my_hashrate_1h').textContent =
-		shortHourHashRate.hashrate;
-	document.getElementById('my_hashrate_1h_measure').textContent =
-		shortHourHashRate.units;
+	document.getElementById(
+		'my_hashrate_1h'
+	).textContent = `${shortHourHashRate.hashrate} ${shortHourHashRate.units}`;
 
-	document.getElementById('my_hashrate_24h').textContent =
-		shortDayHashRate.hashrate;
-	document.getElementById('my_hashrate_24h_measure').textContent =
-		shortDayHashRate.units;
+	document.getElementById(
+		'my_hashrate_24h'
+	).textContent = `${shortDayHashRate.hashrate} ${shortDayHashRate.units}`;
 }
 
 function showWorkersTable(workersDay, workersHour) {
-	const tableBody = document
-		.getElementById('workers-table')
-		.getElementsByTagName('tbody')[0];
-	tableBody.innerHTML = '';
-
-	workersDay.forEach(workerDay => {
-		const workerHour =
-			workersHour.find(w => w.worker === workerDay.worker) || {};
-
-		const row = tableBody.insertRow();
-		const shortHashRateHour = workerHour.hashrate
-			? shortenHm(workerHour.hashrate, 2)
-			: { hashrate: 'N/A', units: '' };
-		const shortHashRateDay = workerDay.hashrate
-			? shortenHm(workerDay.hashrate, 2)
-			: { hashrate: 'N/A', units: '' };
-
-		row.insertCell(0).textContent = workerDay.worker || 'N/A';
-		row.insertCell(
-			1
-		).textContent = `${shortHashRateHour.hashrate} ${shortHashRateHour.units} / ${shortHashRateDay.hashrate} ${shortHashRateDay.units}`;
-		row.insertCell(
-			2
-		).textContent = `${workerHour.shares_count} / ${workerDay.shares_count}`;
-		row.insertCell(3).textContent = workerDay.last_share_at
-			? new Date(workerDay.last_share_at).toLocaleString()
-			: 'N/A';
-	});
+	// const tableBody = document
+	// 	.getElementById('workers-table')
+	// 	.getElementsByTagName('tbody')[0];
+	// tableBody.innerHTML = '';
+	// workersDay.forEach(workerDay => {
+	// 	const workerHour =
+	// 		workersHour.find(w => w.worker === workerDay.worker) || {};
+	// 	const row = tableBody.insertRow();
+	// 	const shortHashRateHour = workerHour.hashrate
+	// 		? shortenHm(workerHour.hashrate, 2)
+	// 		: { hashrate: 'N/A', units: '' };
+	// 	const shortHashRateDay = workerDay.hashrate
+	// 		? shortenHm(workerDay.hashrate, 2)
+	// 		: { hashrate: 'N/A', units: '' };
+	// 	row.insertCell(0).textContent = workerDay.worker || 'N/A';
+	// 	row.insertCell(
+	// 		1
+	// 	).textContent = `${shortHashRateHour.hashrate} ${shortHashRateHour.units} / ${shortHashRateDay.hashrate} ${shortHashRateDay.units}`;
+	// 	row.insertCell(
+	// 		2
+	// 	).textContent = `${workerHour.shares_count} / ${workerDay.shares_count}`;
+	// 	row.insertCell(3).textContent = workerDay.last_share_at
+	// 		? new Date(workerDay.last_share_at).toLocaleString()
+	// 		: 'N/A';
+	// });
 }
 
 function amountUSD(amountInAlph, currencyRate) {
@@ -292,56 +287,54 @@ function showMyPayouts({ day, hour }, currencyRate) {
 	document.getElementById('my_payouts_1h').textContent = parseFloat(
 		hour.amount
 	).toFixed(8);
-	document.getElementById('my_payouts_1h_usd').textContent = amountUSD(
+	document.getElementById('my_payouts_1h_usd').textContent = `${amountUSD(
 		hour.amount,
 		currencyRate
-	);
+	)} USD`;
 
 	document.getElementById('my_payouts_24h').textContent = parseFloat(
 		day.amount
 	).toFixed(8);
-	document.getElementById('my_payouts_24h_usd').textContent = amountUSD(
+	document.getElementById('my_payouts_24h_usd').textContent = `${amountUSD(
 		day.amount,
 		currencyRate
-	);
+	)} USD`;
 }
 
 function showMyBalance(myBalanceData, currencyRate) {
 	document.getElementById('balance').textContent = parseFloat(
 		myBalanceData.amount
 	).toFixed(8);
-	document.getElementById('balance_usd').textContent = amountUSD(
+	document.getElementById('balance_usd').textContent = `${amountUSD(
 		myBalanceData.amount,
 		currencyRate
-	);
+	)} USD`;
 }
 
 function showPayoutsTable(payouts) {
-	const tableBody = document
-		.getElementById('payouts-table')
-		.getElementsByTagName('tbody')[0];
-	tableBody.innerHTML = '';
-
-	payouts.forEach(payout => {
-		const row = tableBody.insertRow();
-		row.insertCell(0).textContent = parseFloat(payout.amount).toFixed(8);
-		row.insertCell(1).textContent = new Date(payout.timestamp).toLocaleString();
-	});
+	// const tableBody = document
+	// 	.getElementById('payouts-table')
+	// 	.getElementsByTagName('tbody')[0];
+	// tableBody.innerHTML = '';
+	// payouts.forEach(payout => {
+	// 	const row = tableBody.insertRow();
+	// 	row.insertCell(0).textContent = parseFloat(payout.amount).toFixed(8);
+	// 	row.insertCell(1).textContent = new Date(payout.timestamp).toLocaleString();
+	// });
 }
 
 function showEventsTable(events) {
-	const tableBody = document
-		.getElementById('events-table')
-		.getElementsByTagName('tbody')[0];
-	tableBody.innerHTML = '';
-
-	events.forEach(event => {
-		const row = tableBody.insertRow();
-		row.insertCell(0).textContent = event.worker ?? 'N/A';
-		row.insertCell(1).textContent = event.message;
-		row.insertCell(2).textContent = event.count;
-		row.insertCell(3).textContent = new Date(event.latest).toLocaleString();
-	});
+	// const tableBody = document
+	// 	.getElementById('events-table')
+	// 	.getElementsByTagName('tbody')[0];
+	// tableBody.innerHTML = '';
+	// events.forEach(event => {
+	// 	const row = tableBody.insertRow();
+	// 	row.insertCell(0).textContent = event.worker ?? 'N/A';
+	// 	row.insertCell(1).textContent = event.message;
+	// 	row.insertCell(2).textContent = event.count;
+	// 	row.insertCell(3).textContent = new Date(event.latest).toLocaleString();
+	// });
 }
 
 function drawData(wallet) {
@@ -388,9 +381,9 @@ function drawData(wallet) {
 				{ hour: { amount: payouts1h }, day: { amount: payouts24h } },
 				currencyRate.rate.value
 			);
-			showPayoutsTable(payouts24hResponse.payouts);
+			// showPayoutsTable(payouts24hResponse.payouts);
 			showMyBalance(myBalanceResponse, currencyRate.rate.value);
-			showEventsTable(myEventsResponse.events);
+			// showEventsTable(myEventsResponse.events);
 			showStats();
 			enableButton();
 		}
@@ -399,18 +392,18 @@ function drawData(wallet) {
 
 function showStats() {
 	var element = document.getElementById('stats');
-	element.classList.remove('hidden');
+	element.classList.remove('empty-statistics');
 }
 
 function disableButton() {
 	const button = document.getElementById('show');
-	button.textContent = 'Loading..';
+	// button.textContent = 'Loading..';
 	button.disabled = true;
 }
 
 function enableButton() {
 	const button = document.getElementById('show');
-	button.textContent = 'Update';
+	// button.textContent = 'Update';
 	button.disabled = false;
 }
 
@@ -477,7 +470,7 @@ function init() {
 	const walletFromParams = getWalletParam();
 
 	if (walletFromParams) {
-		Cookies.set('wallet', walletFromParams, { expires: 365 });
+		// Cookies.set('wallet', walletFromParams, { expires: 365 });
 		setWalletForm(walletFromParams);
 		drawData(walletFromParams);
 	} else {
