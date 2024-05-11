@@ -194,43 +194,6 @@ tabPoolHashrateDay.addEventListener('click', function (e) {
 
 showPings();
 
-function showPoolHashrate(hashrate) {
-	const { hashrate: shortHashrate, units } = shortenHm(hashrate, 2);
-	document.getElementById(
-		'pool_hashrate'
-	).textContent = `${shortHashrate} ${units}/s`;
-}
-
-function showPoolProfit(profit) {
-	const roundProfit = parseFloat(profit).toFixed(4);
-	document.getElementById(
-		'pool_profit'
-	).textContent = `${roundProfit} ${COIN_SYMBOL}`;
-}
-
-function showMinersOnline(workers_online) {
-	document.getElementById('miners').textContent = workers_online;
-}
-
-function showPool24hBlocks(blocksCount) {
-	document.getElementById('24h_blocks').textContent = blocksCount;
-}
-
-function showPoolLatestBlockAt(date) {
-	const current = new Date();
-	const at = new Date(date);
-	const hours = (Math.abs(current - at) / 36e5).toFixed(2);
-
-	document.getElementById('latest_block_at').textContent = `${hours} hour(s)`;
-}
-
-function showPoolProfitUSD(rate, profit) {
-	const floatProfit = parseFloat(profit);
-	const floatRate = parseFloat(rate);
-	const profitUSD = (floatProfit * floatRate).toFixed(4);
-
-	document.getElementById('pool_profit_usd').textContent = `${profitUSD} USD`;
-}
 
 function init(coin) {
 	fetchPoolProfit(coin).then(({ profit, coin }) => {

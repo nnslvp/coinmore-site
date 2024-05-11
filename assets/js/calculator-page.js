@@ -18,22 +18,6 @@ const selectCurrency = ItcCustomSelect.create('#select-currency', {
 	},
 });
 
-function statsApiCall(action) {
-	return fetch(`${API_URL}${action}`).then(response => response.json());
-}
-
-function fetchPoolProfit() {
-	return statsApiCall('/profit?coin=alephium');
-}
-
-function fetchRate() {
-	return statsApiCall(`/rate?coin=alephium`);
-}
-
-function getPoolProfitUSD(rate, profit) {
-	return profit * rate;
-}
-
 function perHour(value) {
 	return value / 24;
 }
@@ -44,6 +28,10 @@ function costsPerTime(powerConsumption, electricityCosts, multiplier = 1) {
 
 function perWeek(value) {
 	return value * 7;
+}
+
+function getPoolProfitUSD(rate, profit) {
+	return profit * rate;
 }
 
 function addCell(td) {
@@ -71,7 +59,6 @@ function generateTable(calculatorForm) {
 	const powerConsumptionValue = calculatorForm.powerConsumption?.value;
 	const currencyValue = selectCurrency.value;
 	const electricityCostsValue = calculatorForm.electricityCosts?.value;
-	console.log(hashrateValue, powerConsumptionValue, electricityCostsValue);
 	Promise.all([fetchRate(), fetchPoolProfit()]).then(function ([
 		{ rate },
 		{ profit },

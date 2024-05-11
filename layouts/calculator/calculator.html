@@ -164,9 +164,10 @@
     {{partial "footer.html" .}}
   </div>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
+  {{ $api := resources.Get "js/api.js" }}
   {{ $statisticsPage := resources.Get "js/calculator-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $global $customSelect $statisticsPage | resources.Concat "js/build/calculator-page-build.js" }}
+  {{ $js := slice $api $global $customSelect $statisticsPage | resources.Concat "js/build/calculator-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>
 </body>
 
