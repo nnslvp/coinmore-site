@@ -5,74 +5,6 @@ const [tabHourChartHashrate, tabDayButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
 
-const CHART_BASE_OPTIONS = {
-	type: 'line',
-	data: {
-		labels: [
-			'Value 1',
-			'Value 2',
-			'Value 3',
-			'Value 4',
-			'Value 5',
-			'Value 6',
-			'Value 7',
-			'Value 8',
-			'Value 9',
-		],
-		datasets: [
-			{
-				label: 'Hashrate',
-				data: [30, 33, 29, 20, 28, 17, 18, 29, 30],
-				backgroundColor: 'rgba(155, 77, 202, 0.24)',
-				borderColor: '#9B4DCA',
-				borderWidth: 2,
-				fill: true,
-				pointRadius: 0,
-			},
-		],
-	},
-	options: {
-		scales: {
-			y: {
-				beginAtZero: true,
-				min: 0,
-				max: 40,
-				ticks: {
-					stepSize: 10,
-				},
-				grid: {
-					display: false,
-				},
-			},
-			x: {
-				grid: {
-					display: false,
-				},
-			},
-		},
-		plugins: {
-			legend: {
-				display: false,
-			},
-			tooltip: {
-				enabled: false,
-			},
-			title: {
-				display: true,
-				text: 'EH/s',
-				font: {
-					size: 14,
-				},
-				color: '#606C76',
-				position: 'top',
-				align: 'start',
-				font: { weight: 'normal' },
-			},
-		},
-		responsive: true,
-		maintainAspectRatio: false,
-	},
-};
 const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	options: {
 		scales: {
@@ -106,54 +38,6 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 		},
 	},
 });
-
-function initializeChart(chartElement, chartOptions, initialData) {
-	const ctx = chartElement.getContext('2d');
-	const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-	gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
-	gradient.addColorStop(1, 'rgba(155, 77, 202, 0)');
-
-	if (initialData) {
-		chartOptions.data.datasets[0].data = initialData;
-	}
-
-	chartOptions.data.datasets.forEach(dataset => {
-		dataset.backgroundColor = gradient;
-	});
-
-	let chart = new Chart(ctx, chartOptions);
-	return chart;
-}
-
-function getChartOptions(newOptions) {
-	if (!newOptions) {
-		return CHART_BASE_OPTIONS;
-	}
-	const options = JSON.parse(JSON.stringify(CHART_BASE_OPTIONS));
-	return deepMerge(options, newOptions);
-}
-
-function updateChartData(chart, newData) {
-	chart.data.datasets[0].data = newData;
-	chart.update();
-}
-
-function getTabs(containerSelector) {
-	const container = document.querySelector(containerSelector);
-	const tabs = container.querySelectorAll('.tab');
-	return tabs;
-}
-
-function activateTabsOnClick(containerSelector) {
-	const tabs = getTabs(containerSelector);
-
-	tabs.forEach(tab => {
-		tab.addEventListener('click', e => {
-			tabs.forEach(t => t.classList.remove('active'));
-			e.currentTarget.classList.add('active');
-		});
-	});
-}
 
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
@@ -322,8 +206,7 @@ function showSelectPayouts(payouts24hResponse, payoutsWeekResponse) {
 			['day', '24 hours'],
 			['week', 'Week'],
 		],
-		onSelected(select, option) {
-			console.log(`Выбранное значение: ${select.value}`);
+		onSelected(select) {
 			if (select.value === 'day') {
 				showPayoutsTable(payouts24hResponse.payouts);
 			} else {
@@ -446,26 +329,6 @@ function assignFormListener() {
 	} else {
 		form.addEventListener('submit', processForm);
 	}
-
-	document
-		.getElementById('workers-tab')
-		.addEventListener('click', e => switchTab(e, 'workers'));
-	document
-		.getElementById('payouts-tab')
-		.addEventListener('click', e => switchTab(e, 'payouts'));
-}
-
-function switchTab(event, tabId) {
-	// document.querySelectorAll('.tab').forEach(tab => {
-	// 	tab.classList.remove('active');
-	// });
-	// document.querySelectorAll('.tab-links .button').forEach(tab => {
-	// 	tab.classList.remove('button-outline');
-	// 	tab.classList.add('button-clear');
-	// });
-	// document.getElementById(tabId).classList.add('active');
-	// event.currentTarget.classList.add('button-outline');
-	// event.currentTarget.classList.remove('button-clear');
 }
 
 function init() {

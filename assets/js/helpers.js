@@ -57,3 +57,20 @@ function calculateTotalByKey(items, key) {
 		return accumulator + parseFloat(item[key] || 0);
 	}, 0);
 }
+
+function getTabs(containerSelector) {
+	const container = document.querySelector(containerSelector);
+	const tabs = container.querySelectorAll('.tab');
+	return tabs;
+}
+
+function activateTabsOnClick(containerSelector) {
+	const tabs = getTabs(containerSelector);
+
+	tabs.forEach(tab => {
+		tab.addEventListener('click', e => {
+			tabs.forEach(t => t.classList.remove('active'));
+			e.currentTarget.classList.add('active');
+		});
+	});
+}
