@@ -1,5 +1,5 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
-const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
+
 const CHART_BASE_OPTIONS = {
 	type: 'line',
 	data: {
@@ -141,10 +141,6 @@ function getChartOptions(newOptions) {
 
 const hashRateChart = initializeChart(CHART_HASH_RATE, getChartOptions());
 
-CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
-	initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
-});
-
 function updateChartData(chart, newData) {
 	chart.data.datasets[0].data = newData;
 	chart.update();
@@ -216,26 +212,26 @@ ItcCustomSelect.create('#select-payouts', {
 	},
 });
 
-function fetchMyHashrate(wallet) {
+function fetchMyHashrate(coin = 'alephium', wallet) {
 	return Promise.all([
-		statsApiCall(`/workers?coin=alephium&wallet=${wallet}&period=3600`),
-		statsApiCall(`/workers?coin=alephium&wallet=${wallet}&period=86400`),
+		statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=3600`),
+		statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=86400`),
 	]);
 }
 
-function fetchMyPayouts(wallet) {
+function fetchMyPayouts(coin = 'alephium', wallet) {
 	return Promise.all([
-		statsApiCall(`/payouts?coin=alephium&wallet=${wallet}&period=3600`),
-		statsApiCall(`/payouts?coin=alephium&wallet=${wallet}&period=86400`),
+		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=3600`),
+		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=86400`),
 	]);
 }
 
-function fetchMyBalance(wallet) {
-	return statsApiCall(`/balance?coin=alephium&wallet=${wallet}`);
+function fetchMyBalance(coin = 'alephium', wallet) {
+	return statsApiCall(`/balance?coin=${coin}&wallet=${wallet}`);
 }
 
-function fetchMyEvents(wallet) {
-	return statsApiCall(`/events?coin=alephium&wallet=${wallet}`);
+function fetchMyEvents(coin = 'alephium', wallet) {
+	return statsApiCall(`/events?coin=${coin}&wallet=${wallet}`);
 }
 
 function showMyHashrate({ day, hour }) {
@@ -269,7 +265,7 @@ function showWorkersTable(workersDay, workersHour) {
 
 		rowsHtml += `
                   <tr>
-                    <td data="worker" class="worker-cell">
+                    <td class="worker-cell" data="worker">
                       <span class="worker-value">
                       ${workerDay.worker || 'N/A'}
                       </span>
@@ -305,6 +301,10 @@ function showWorkersTable(workersDay, workersHour) {
 	});
 
 	tableBody.innerHTML = rowsHtml;
+	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
+	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
+		initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
+	});
 }
 
 function amountUSD(amountInAlph, currencyRate) {
@@ -331,10 +331,10 @@ function showMyPayouts({ day, hour }, currencyRate) {
 
 function showMyBalance(myBalanceData, currencyRate) {
 	document.getElementById('balance').textContent = parseFloat(
-		myBalanceData.amount
+		myBalanceData?.amount
 	).toFixed(8);
 	document.getElementById('balance_usd').textContent = `${amountUSD(
-		myBalanceData.amount,
+		myBalanceData?.amount,
 		currencyRate
 	)} USD`;
 }
@@ -364,71 +364,68 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
-// function showEventsTable(events) {
-// 	const tableBody = document
-// 		.getElementById('events-table')
-// 		.getElementsByTagName('tbody')[0];
-// 	tableBody.innerHTML = '';
-// 	events.forEach(event => {
-// 		const row = tableBody.insertRow();
-// 		row.insertCell(0).textContent = event.worker ?? 'N/A';
-// 		row.insertCell(1).textContent = event.message;
-// 		row.insertCell(2).textContent = event.count;
-// 		row.insertCell(3).textContent = new Date(event.latest).toLocaleString();
-// 	});
-// }
-
-function drawData(wallet) {
+function drawData(coin, wallet) {
 	disableButton();
 	Promise.all([
-		fetchMyHashrate(wallet),
-		fetchMyPayouts(wallet),
-		fetchMyBalance(wallet),
-		fetchMyEvents(wallet),
+		fetchMyHashrate(coin, wallet),
+		fetchMyPayouts(coin, wallet),
+		fetchMyBalance(coin, wallet),
+		fetchMyEvents(coin, wallet),
 		fetchCurrencyInfo(),
-	]).then(
-		([
-			[hashrate1hResponse, hashrate24hResponse],
-			[payouts1hResponse, payouts24hResponse],
-			myBalanceResponse,
-			myEventsResponse,
-			currencyRate,
-		]) => {
-			const hashrate1h = hashrate1hResponse.workers.reduce((accumulator, v) => {
-				return accumulator + parseFloat(v.hashrate);
-			}, 0);
+	])
+		.then(
+			([
+				[hashrate1hResponse, hashrate24hResponse],
+				[payouts1hResponse, payouts24hResponse],
+				myBalanceResponse,
+				myEventsResponse,
+				currencyRate,
+			]) => {
+				const hashrate1h = hashrate1hResponse.workers.reduce(
+					(accumulator, v) => {
+						return accumulator + parseFloat(v.hashrate);
+					},
+					0
+				);
 
-			const hashrate24h = hashrate24hResponse.workers.reduce(
-				(accumulator, v) => {
-					return accumulator + parseFloat(v.hashrate);
-				},
-				0
-			);
+				const hashrate24h = hashrate24hResponse.workers.reduce(
+					(accumulator, v) => {
+						return accumulator + parseFloat(v.hashrate);
+					},
+					0
+				);
 
-			const payouts1h = payouts1hResponse.payouts.reduce((accumulator, v) => {
-				return accumulator + parseFloat(v.amount);
-			}, 0);
+				const payouts1h = payouts1hResponse.payouts.reduce((accumulator, v) => {
+					return accumulator + parseFloat(v.amount);
+				}, 0);
 
-			const payouts24h = payouts24hResponse.payouts.reduce((accumulator, v) => {
-				return accumulator + parseFloat(v.amount);
-			}, 0);
+				const payouts24h = payouts24hResponse.payouts.reduce(
+					(accumulator, v) => {
+						return accumulator + parseFloat(v.amount);
+					},
+					0
+				);
 
-			showMyHashrate({
-				hour: { hashrate: hashrate1h, units: hashrate1hResponse.units },
-				day: { hashrate: hashrate24h, units: hashrate1hResponse.units },
-			});
-			showWorkersTable(hashrate1hResponse.workers, hashrate24hResponse.workers);
-			showMyPayouts(
-				{ hour: { amount: payouts1h }, day: { amount: payouts24h } },
-				currencyRate.rate.value
-			);
-			showPayoutsTable(payouts24hResponse.payouts);
-			showMyBalance(myBalanceResponse, currencyRate.rate.value);
-			// showEventsTable(myEventsResponse.events);
-			showStats();
-			enableButton();
-		}
-	);
+				showMyHashrate({
+					hour: { hashrate: hashrate1h, units: hashrate1hResponse.units },
+					day: { hashrate: hashrate24h, units: hashrate1hResponse.units },
+				});
+				showWorkersTable(
+					hashrate1hResponse.workers,
+					hashrate24hResponse.workers
+				);
+				showMyPayouts(
+					{ hour: { amount: payouts1h }, day: { amount: payouts24h } },
+					currencyRate.rate.value
+				);
+				showPayoutsTable(payouts24hResponse.payouts);
+				showMyBalance(myBalanceResponse, currencyRate.rate?.value);
+				// showEventsTable(myEventsResponse.events);
+				showStats();
+				enableButton();
+			}
+		)
+		.catch(e => console.log(e));
 }
 
 function showStats() {
@@ -511,7 +508,7 @@ function init() {
 	if (walletFromParams) {
 		// Cookies.set('wallet', walletFromParams, { expires: 365 });
 		setWalletForm(walletFromParams);
-		drawData(walletFromParams);
+		drawData(COIN, walletFromParams);
 	} else {
 		// const walletFromCookies = Cookies.get('wallet');
 		// if (walletFromCookies) {
