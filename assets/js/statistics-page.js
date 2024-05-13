@@ -220,16 +220,24 @@ function drawData(coin, wallet) {
 	disableButton();
 	Promise.all([
 		fetchMyHashrate(coin, wallet),
+		fetchMyHashrate(coin, wallet, 86400),
 		fetchMyPayouts(coin, wallet),
+		fetchMyPayouts(coin, wallet, 86400),
+		fetchMyPayouts(coin, wallet, 640800),
 		fetchMyBalance(coin, wallet),
+		fetchHistoryWallet(coin, wallet),
 		// fetchMyEvents(coin, wallet),
 		fetchCurrencyInfo(),
 	])
 		.then(
 			([
-				[hashrate1hResponse, hashrate24hResponse],
-				[payouts1hResponse, payouts24hResponse, payoutsWeekResponse],
+				hashrate1hResponse,
+				hashrate24hResponse,
+				payouts1hResponse,
+				payouts24hResponse,
+				payoutsWeekResponse,
 				myBalanceResponse,
+				historyWallet24hResponse,
 				// myEventsResponse,
 				currencyRate,
 			]) => {
@@ -250,6 +258,7 @@ function drawData(coin, wallet) {
 					'amount'
 				);
 
+				console.log(historyWallet24hResponse);
 				showChartYourHashrate(hashrate1h, hashrate24h);
 
 				showMyHashrate({

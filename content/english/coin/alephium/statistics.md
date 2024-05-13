@@ -35,8 +35,8 @@ chart_titles:
   payouts: 'Payouts'
 
 chart_intervals:
-  one_hour: '1 hour'
-  twenty_four_hours: '24 hours'
+  one_day: 'Day'
+  week: 'Week'
 
 select_labels:
   select_payout_interval: 'Select payout interval'

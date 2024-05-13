@@ -34,8 +34,8 @@ chart_titles:
   payouts: 'Выплаты'
 
 chart_intervals:
-  one_hour: '1 час'
-  twenty_four_hours: '24 часа'
+  one_day: 'День'
+  week: 'Неделя'
 
 select_labels:
   select_payout_interval: 'Выберите интервал выплат'

@@ -39,18 +39,13 @@ function fetchRate(coin = 'alephium') {
 }
 
 function fetchMyHashrate(coin = 'alephium', wallet) {
-	return Promise.all([
-		statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=3600`),
-		statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=86400`),
-	]);
+	return statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=3600`);
 }
 
-function fetchMyPayouts(coin = 'alephium', wallet) {
-	return Promise.all([
-		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=3600`),
-		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=86400`),
-		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=604800`),
-	]);
+function fetchMyPayouts(coin = 'alephium', wallet, period = '3600') {
+	return statsApiCall(
+		`/payouts?coin=${coin}&wallet=${wallet}&period=${period}`
+	);
 }
 
 function fetchMyBalance(coin = 'alephium', wallet) {
