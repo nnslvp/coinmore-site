@@ -1,4 +1,9 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
+const MODAL = document.querySelector('.modal');
+const OPEN_MODAL_BTN = document.querySelector('.open-button');
+const [tabHourChartHashrate, tabDayButtonChartHashrate] = getTabs(
+	'.tabs__chart-hashrate'
+);
 
 const CHART_BASE_OPTIONS = {
 	type: 'line',
@@ -102,14 +107,15 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
-const MODAL = document.querySelector('.modal');
-const OPEN_MODAL_BTN = document.querySelector('.open-button');
-
-function initializeChart(chartElement, chartOptions) {
+function initializeChart(chartElement, chartOptions, initialData) {
 	const ctx = chartElement.getContext('2d');
 	const gradient = ctx.createLinearGradient(0, 0, 0, 400);
 	gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
 	gradient.addColorStop(1, 'rgba(155, 77, 202, 0)');
+
+	if (initialData) {
+		chartOptions.data.datasets[0].data = initialData;
+	}
 
 	chartOptions.data.datasets.forEach(dataset => {
 		dataset.backgroundColor = gradient;
@@ -119,18 +125,6 @@ function initializeChart(chartElement, chartOptions) {
 	return chart;
 }
 
-function deepMerge(target, source) {
-	Object.keys(source).forEach(key => {
-		if (source[key] && typeof source[key] === 'object') {
-			target[key] = target[key] || (Array.isArray(source[key]) ? [] : {});
-			deepMerge(target[key], source[key]);
-		} else {
-			target[key] = source[key];
-		}
-	});
-	return target;
-}
-
 function getChartOptions(newOptions) {
 	if (!newOptions) {
 		return CHART_BASE_OPTIONS;
@@ -138,8 +132,6 @@ function getChartOptions(newOptions) {
 	const options = JSON.parse(JSON.stringify(CHART_BASE_OPTIONS));
 	return deepMerge(options, newOptions);
 }
-
-const hashRateChart = initializeChart(CHART_HASH_RATE, getChartOptions());
 
 function updateChartData(chart, newData) {
 	chart.data.datasets[0].data = newData;
@@ -166,18 +158,6 @@ function activateTabsOnClick(containerSelector) {
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
-const [tabHourChartHashrate, tabDayButtonChartHashrate] = getTabs(
-	'.tabs__chart-hashrate'
-);
-
-tabHourChartHashrate.addEventListener('click', function (e) {
-	updateChartData(hashRateChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
-});
-
-tabDayButtonChartHashrate.addEventListener('click', function (e) {
-	updateChartData(hashRateChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
-});
-
 OPEN_MODAL_BTN.addEventListener('click', () => {
 	MODAL.showModal();
 });
@@ -193,46 +173,6 @@ MODAL.addEventListener('click', e => {
 		MODAL.close();
 	}
 });
-
-ItcCustomSelect.create('#select-payouts', {
-	name: 'interval',
-	targetValue: 'day',
-	options: [
-		['day', '24 hours'],
-		['week', 'Week'],
-	],
-	onSelected(select, option) {
-		// выбранное значение
-		console.log(`Выбранное значение: ${select.value}`);
-		// индекс выбранной опции
-		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
-		// выбранный текст опции
-		const text = option ? option.textContent : '';
-		console.log(`Выбранный текст опции: ${text}`);
-	},
-});
-
-function fetchMyHashrate(coin = 'alephium', wallet) {
-	return Promise.all([
-		statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=3600`),
-		statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=86400`),
-	]);
-}
-
-function fetchMyPayouts(coin = 'alephium', wallet) {
-	return Promise.all([
-		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=3600`),
-		statsApiCall(`/payouts?coin=${coin}&wallet=${wallet}&period=86400`),
-	]);
-}
-
-function fetchMyBalance(coin = 'alephium', wallet) {
-	return statsApiCall(`/balance?coin=${coin}&wallet=${wallet}`);
-}
-
-function fetchMyEvents(coin = 'alephium', wallet) {
-	return statsApiCall(`/events?coin=${coin}&wallet=${wallet}`);
-}
 
 function showMyHashrate({ day, hour }) {
 	const shortHourHashRate = shortenHm(hour.hashrate, 2);
@@ -307,10 +247,6 @@ function showWorkersTable(workersDay, workersHour) {
 	});
 }
 
-function amountUSD(amountInAlph, currencyRate) {
-	return (parseFloat(amountInAlph) * currencyRate).toFixed(2);
-}
-
 function showMyPayouts({ day, hour }, currencyRate) {
 	document.getElementById('my_payouts_1h').textContent = parseFloat(
 		hour.amount
@@ -364,61 +300,94 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
+function showChartYourHashrate(hashrate1h, hashrate24h) {
+	const hashRateChart = initializeChart(CHART_HASH_RATE, getChartOptions(), [
+		hashrate1h,
+	]);
+
+	tabHourChartHashrate.addEventListener('click', function (e) {
+		updateChartData(hashRateChart, [hashrate1h]);
+	});
+
+	tabDayButtonChartHashrate.addEventListener('click', function (e) {
+		updateChartData(hashRateChart, [hashrate24h]);
+	});
+}
+
+function showSelectPayouts(payouts24hResponse, payoutsWeekResponse) {
+	const selectPayouts = ItcCustomSelect.create('#select-payouts', {
+		name: 'interval',
+		targetValue: 'day',
+		options: [
+			['day', '24 hours'],
+			['week', 'Week'],
+		],
+		onSelected(select, option) {
+			console.log(`Выбранное значение: ${select.value}`);
+			if (select.value === 'day') {
+				showPayoutsTable(payouts24hResponse.payouts);
+			} else {
+				showPayoutsTable(payoutsWeekResponse.payouts);
+			}
+		},
+	});
+}
+
 function drawData(coin, wallet) {
 	disableButton();
 	Promise.all([
 		fetchMyHashrate(coin, wallet),
 		fetchMyPayouts(coin, wallet),
 		fetchMyBalance(coin, wallet),
-		fetchMyEvents(coin, wallet),
+		// fetchMyEvents(coin, wallet),
 		fetchCurrencyInfo(),
 	])
 		.then(
 			([
 				[hashrate1hResponse, hashrate24hResponse],
-				[payouts1hResponse, payouts24hResponse],
+				[payouts1hResponse, payouts24hResponse, payoutsWeekResponse],
 				myBalanceResponse,
-				myEventsResponse,
+				// myEventsResponse,
 				currencyRate,
 			]) => {
-				const hashrate1h = hashrate1hResponse.workers.reduce(
-					(accumulator, v) => {
-						return accumulator + parseFloat(v.hashrate);
-					},
-					0
+				const hashrate1h = calculateTotalByKey(
+					hashrate1hResponse.workers,
+					'hashrate'
+				);
+				const hashrate24h = calculateTotalByKey(
+					hashrate24hResponse.workers,
+					'hashrate'
+				);
+				const payouts1h = calculateTotalByKey(
+					payouts1hResponse.payouts,
+					'amount'
+				);
+				const payouts24h = calculateTotalByKey(
+					payouts24hResponse.payouts,
+					'amount'
 				);
 
-				const hashrate24h = hashrate24hResponse.workers.reduce(
-					(accumulator, v) => {
-						return accumulator + parseFloat(v.hashrate);
-					},
-					0
-				);
-
-				const payouts1h = payouts1hResponse.payouts.reduce((accumulator, v) => {
-					return accumulator + parseFloat(v.amount);
-				}, 0);
-
-				const payouts24h = payouts24hResponse.payouts.reduce(
-					(accumulator, v) => {
-						return accumulator + parseFloat(v.amount);
-					},
-					0
-				);
+				showChartYourHashrate(hashrate1h, hashrate24h);
 
 				showMyHashrate({
 					hour: { hashrate: hashrate1h, units: hashrate1hResponse.units },
 					day: { hashrate: hashrate24h, units: hashrate1hResponse.units },
 				});
+
 				showWorkersTable(
 					hashrate1hResponse.workers,
 					hashrate24hResponse.workers
 				);
+
 				showMyPayouts(
 					{ hour: { amount: payouts1h }, day: { amount: payouts24h } },
 					currencyRate.rate.value
 				);
+
 				showPayoutsTable(payouts24hResponse.payouts);
+
+				showSelectPayouts(payouts24hResponse, payoutsWeekResponse);
+
 				showMyBalance(myBalanceResponse, currencyRate.rate?.value);
 				// showEventsTable(myEventsResponse.events);
 				showStats();
@@ -429,8 +398,7 @@ function drawData(coin, wallet) {
 }
 
 function showStats() {
-	var element = document.getElementById('stats');
-	element.classList.remove('empty-statistics');
+	document.getElementById('stats').classList.remove('empty-statistics');
 }
 
 function disableButton() {
