@@ -1,7 +1,7 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
 const MODAL = document.querySelector('.modal');
 const OPEN_MODAL_BTN = document.querySelector('.open-button');
-const [tabHourChartHashrate, tabDayButtonChartHashrate] = getTabs(
+const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
 
@@ -184,18 +184,17 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
-function showChartYourHashrate(hashrate1h, hashrate24h) {
-	const hashRateChart = initializeChart(CHART_HASH_RATE, getChartOptions(), [
-		hashrate1h,
-	]);
+function showChartYourHashrate({ labelsWeek, dataWeek }) {
+	const hashRateChart = initializeChart(
+		CHART_HASH_RATE,
+		getChartOptions(),
+		dataWeek,
+		labelsWeek
+	);
 
-	tabHourChartHashrate.addEventListener('click', function (e) {
-		updateChartData(hashRateChart, [hashrate1h]);
-	});
+	tabDayChartHashrate.addEventListener('click', function (e) {});
 
-	tabDayButtonChartHashrate.addEventListener('click', function (e) {
-		updateChartData(hashRateChart, [hashrate24h]);
-	});
+	tabWeekButtonChartHashrate.addEventListener('click', function (e) {});
 }
 
 function showSelectPayouts(payouts24hResponse, payoutsWeekResponse) {
@@ -203,7 +202,7 @@ function showSelectPayouts(payouts24hResponse, payoutsWeekResponse) {
 		name: 'interval',
 		targetValue: 'day',
 		options: [
-			['day', '24 hours'],
+			['day', 'Day'],
 			['week', 'Week'],
 		],
 		onSelected(select) {
@@ -237,7 +236,7 @@ function drawData(coin, wallet) {
 				payouts24hResponse,
 				payoutsWeekResponse,
 				myBalanceResponse,
-				historyWallet24hResponse,
+				historyWalletWeekResponse,
 				// myEventsResponse,
 				currencyRate,
 			]) => {
@@ -258,8 +257,14 @@ function drawData(coin, wallet) {
 					'amount'
 				);
 
-				console.log(historyWallet24hResponse);
-				showChartYourHashrate(hashrate1h, hashrate24h);
+				const labelsWeek = historyWalletWeekResponse.wallet_history.map(item =>
+					item.day.slice(0, 10)
+				);
+				const dataWeek = historyWalletWeekResponse.wallet_history.map(item =>
+					parseFloat(item.sum_difficulty)
+				);
+
+				showChartYourHashrate({ labelsWeek, dataWeek });
 
 				showMyHashrate({
 					hour: { hashrate: hashrate1h, units: hashrate1hResponse.units },
@@ -346,14 +351,14 @@ function init() {
 	const walletFromParams = getWalletParam();
 
 	if (walletFromParams) {
-		// Cookies.set('wallet', walletFromParams, { expires: 365 });
+		setCookie('wallet', walletFromParams, 365);
 		setWalletForm(walletFromParams);
 		drawData(COIN, walletFromParams);
 	} else {
-		// const walletFromCookies = Cookies.get('wallet');
-		// if (walletFromCookies) {
-		// 	setWalletParam(walletFromCookies);
-		// }
+		const walletFromCookies = getCookie('wallet');
+		if (walletFromCookies) {
+			setWalletParam(walletFromCookies);
+		}
 	}
 }
 

@@ -29,9 +29,12 @@ const CHART_BASE_OPTIONS = {
 			y: {
 				beginAtZero: true,
 				min: 0,
-				max: 40,
+				max: 400000,
 				ticks: {
-					stepSize: 10,
+					stepSize: 100000,
+					callback: function (value, index, values) {
+						return value / 10000;
+					},
 				},
 				grid: {
 					display: false,
@@ -67,7 +70,12 @@ const CHART_BASE_OPTIONS = {
 	},
 };
 
-function initializeChart(chartElement, chartOptions, initialData) {
+function initializeChart(
+	chartElement,
+	chartOptions,
+	initialData,
+	initialLabels
+) {
 	const ctx = chartElement.getContext('2d');
 	const gradient = ctx.createLinearGradient(0, 0, 0, 400);
 	gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
@@ -75,6 +83,10 @@ function initializeChart(chartElement, chartOptions, initialData) {
 
 	if (initialData) {
 		chartOptions.data.datasets[0].data = initialData;
+	}
+
+	if (initialLabels) {
+		chartOptions.data.labels = initialLabels;
 	}
 
 	chartOptions.data.datasets.forEach(dataset => {
