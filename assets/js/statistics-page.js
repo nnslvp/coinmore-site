@@ -14,6 +14,7 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	options: {
 		scales: {
 			y: {
+				display: false,
 				ticks: {
 					display: false,
 				},
