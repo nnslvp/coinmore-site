@@ -14,7 +14,7 @@
 }
 
 .dropdown {
-	width: 8.125rem;
+	flex-basis: 8.125rem;
 	display: none;
 	position: absolute;
 	background-color: var(--color-white);
@@ -43,7 +43,7 @@
 }
 
 .dropdown__item {
-	justify-content: space-between;
+  gap: .75rem;
 	padding: 0.625rem 1.25rem;
 	&:hover {
 		font-weight: var(--font-weight-bold);

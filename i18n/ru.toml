@@ -12,3 +12,22 @@ other = "английский"
 
 [russian]
 other = "русский"
+
+[day]
+other = "день"
+
+[week]
+other = "неделя"
+
+[my]
+other = "моя"
+
+[statistics]
+other = "статистика"
+
+[instructions]
+other = "инструкции"
+
+[calculator]
+other = "калькулятор"
+

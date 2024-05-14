@@ -79,7 +79,7 @@
               </form>
             </search>
           </header>
-          <section id="stats" class="section-statistics ">
+          <section id="stats" class="section-statistics empty-statistics">
             <header class="section-statistics__header">
               <h2 class="heading-h2">{{ .Params.section_title }}</h2>
               <a href="{{ .Site.BaseURL}}/calculator" class="btn btn-outline-primary">
@@ -139,7 +139,9 @@
                 <i class="icon coins-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.min_payout}}</p>
-                  <strong class="stat-item__value">0.1 coin</strong>
+                  <strong class="stat-item__value">
+                    <span id="stat-min-payouts-value">0.1</span> coin
+                  </strong>
                 </div>
                 <i class="icon edit-icon open-button"></i></a>
               </li>
@@ -163,10 +165,10 @@
               <div class="chart-header">
                 <h2 class="heading-h2">{{ .Params.chart_titles.hashrate }}</h2>
                 <div class="chart-interval  tabs__chart-hashrate">
-                  <button class="tab tab-border-radius-around-left hourButton ">{{ .Params.chart_intervals.one_hour
+                  <button class="tab tab-border-radius-around-left hourButton ">{{ .Params.chart_intervals.one_day
                     }}</button>
                   <button class="tab tab-border-radius-around-right active dayButton">{{
-                    .Params.chart_intervals.twenty_four_hours }}</button>
+                    .Params.chart_intervals.week }}</button>
                 </div>
               </div>
               <div class=" chart chart__chart-container">
@@ -359,11 +361,11 @@
   <dialog class="modal modal-dit-min-payouts">
     <div class="modal__inner">
       <h2 class="heading-h2">{{ .Params.modal.title }}</h2>
-      <form class="form__dit-min-payouts" action="">
+      <form id="form-min-payouts" class="form__dit-min-payouts" action="">
         <div class="input-container">
           <label class="label" for="min-payout">{{ .Params.modal.label }}</label>
-          <input class="input" placeholder="{{ .Params.modal.placeholder }}" type="number" id="min-payout"
-            name="min-payout">
+          <input id="input-min-payouts" class="input" name="min-payout" placeholder="{{ .Params.modal.placeholder }}" type="number" value="0.1"  step="any"  
+            >
         </div>
         <div class="form-action">
           <button formmethod="dialog" class="btn btn-outline-primary">{{ .Params.modal.cancel_button }}</button>
@@ -374,15 +376,20 @@
   </dialog>
   <script>
     const COIN = {{.Params.coin_name }}
+    const SELECT_PAYOUTS_NAME_OPTIONS = {
+     day: {{ i18n "day" | title }},
+     week: {{ i18n "week" | title}}
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
   {{ $api := resources.Get "js/api.js" }}
+  {{ $chart := resources.Get "js/chart.js" }}
   {{$helpers := resources.Get "js/helpers.js" }}
   {{$showDataFunctions:= resources.Get "js/show-data-functions.js" }}
   {{ $page := resources.Get "js/statistics-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $api $showDataFunctions $helpers $customSelect $global $page | resources.Concat
+  {{ $js := slice $api $showDataFunctions $helpers $chart $customSelect $global $page | resources.Concat
   "js/build/statistics-page-build.js" |
   resources.Minify }}
   <script type="module" src="{{ $js.Permalink }}"></script>

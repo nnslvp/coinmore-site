@@ -1,5 +1,5 @@
 ---
-coin_name: 'alephium'
+coin_name: 'raptoreum'
 layout: 'statistics'
 show_card: false
 headless: true

@@ -13,22 +13,22 @@
   <hr class="horizontal-line card-coin__horizontal-line">
   <ul class="card-coin__stats">
     <li class="card-coin__stat">{{ .Params.pool_hashrate }}
-      <span id="pool_hashrate" class="card-coin__stat-value">4.83 EH/s</span>
+      <span id="pool_hashrate_{{.Params.coin_name}}" class="card-coin__stat-value">4.83 EH/s</span>
     </li>
     <li class="card-coin__stat">{{ .Params.network_hashrate }}
-      <span id="network_hashrate" class="card-coin__stat-value">4.83 EH/s</span>
+      <span id="network_hashrate_{{.Params.coin_name}}" class="card-coin__stat-value">4.83 EH/s</span>
     </li>
     <li class="card-coin__stat">{{ .Params.coin_price }}
-      <span id="coin-price" class="card-coin__stat-value">$70,132.55</span>
+      <span id="coin-price_{{.Params.coin_name}}" class="card-coin__stat-value">$70,132.55</span>
     </li>
     <li class="card-coin__stat">{{ .Params.daily_revenue }}
-      <span id="pool_profit_usd" class="card-coin__stat-value">$0.1085/T</span>
+      <span id="pool_profit_usd_{{.Params.coin_name}}" class="card-coin__stat-value">$0.1085/T</span>
     </li>
     <li class="card-coin__stat">{{ .Params.fee }}
       <span class="card-coin__stat-value">0.5%</span>
     </li>
     <li class="card-coin__stat">{{ .Params.active_miners }}
-      <span id="miners" class="card-coin__stat-value">112</span>
+      <span id="miners_{{.Params.coin_name}}" class="card-coin__stat-value">112</span>
     </li>
     <li class="card-coin__stat">{{ .Params.min_payout }}
       <span class="card-coin__stat-value">0.1 USD</span>
