@@ -1,7 +1,7 @@
 ---
 layout: 'coin'
 coin_name: 'raptoreum'
-coin_symbol: 'ALPH'
+coin_symbol: 'RTM'
 start_mining: 'Start mining'
 pool_hashrate: 'Pool hashrate:'
 network_hashrate: 'Network hashrate:'
