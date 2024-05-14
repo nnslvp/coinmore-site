@@ -192,6 +192,8 @@ function showChartYourHashrate({ labelsWeek, dataWeek }) {
 		labelsWeek
 	);
 
+  console.log(getChartOptions());
+
 	tabDayChartHashrate.addEventListener('click', function (e) {});
 
 	tabWeekButtonChartHashrate.addEventListener('click', function (e) {});

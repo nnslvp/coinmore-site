@@ -28,6 +28,18 @@ const profitChart = initializeChart(
 	})
 );
 
+console.log(
+	getChartOptions({
+		options: {
+			plugins: {
+				title: {
+					text: 'ALPH',
+				},
+			},
+		},
+	})
+);
+
 const workersActivityChart = initializeChart(
 	CHART_WORKERS,
 	getChartOptions({
