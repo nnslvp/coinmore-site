@@ -35,8 +35,6 @@ function createUserValue(coin = 'alephium', wallet, kind = 'min_payout', value =
 	return statsApiPost(`/user_value?coin=${coin}&wallet=${wallet}&kind=${kind}&value=${value}`);
 }
 
-
-
 function fetchPoolProfit(coin = 'alephium') {
 	return statsApiCall(`/profit?coin=${coin}`);
 }

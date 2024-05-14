@@ -1,5 +1,3 @@
-
-
 function initializeChart(
 	chartElement,
 	chartOptions,
@@ -28,7 +26,7 @@ function initializeChart(
 }
 
 function getChartOptions(newOptions) {
-  const CHART_BASE_OPTIONS = {
+	const CHART_BASE_OPTIONS = {
 		type: 'line',
 		data: {
 			labels: [
@@ -99,14 +97,17 @@ function getChartOptions(newOptions) {
 			maintainAspectRatio: false,
 		},
 	};
-  
+
 	if (!newOptions) {
 		return CHART_BASE_OPTIONS;
 	}
 	return deepMerge(CHART_BASE_OPTIONS, newOptions);
 }
 
-function updateChartData(chart, newData) {
+function updateChartData(chart, newData, labels) {
+	if (labels) {
+		chart.data.labels = labels;
+	}
 	chart.data.datasets[0].data = newData;
 	chart.update();
 }

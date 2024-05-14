@@ -376,6 +376,10 @@
   </dialog>
   <script>
     const COIN = {{.Params.coin_name }}
+    const SELECT_PAYOUTS_NAME_OPTIONS = {
+     day: {{ i18n "day" | title }},
+     week: {{ i18n "week" | title}}
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}

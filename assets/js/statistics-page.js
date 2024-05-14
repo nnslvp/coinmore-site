@@ -3,7 +3,9 @@ const MODAL = document.querySelector('.modal');
 const OPEN_MODAL_BTN = document.querySelector('.open-button');
 const FORM_MIN_PAYOUTS = MODAL.querySelector('#form-min-payouts');
 const INPUT_MIN_PAYOUTS = FORM_MIN_PAYOUTS.querySelector('#input-min-payouts');
-const STAT_MIN_PAYOUTS_VALUE = document.querySelector('#stat-min-payouts-value');
+const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
+	'#stat-min-payouts-value'
+);
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
@@ -42,15 +44,14 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
-
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
-FORM_MIN_PAYOUTS.addEventListener('submit',(e) => {
-  e.preventDefault()
-  STAT_MIN_PAYOUTS_VALUE.textContent = INPUT_MIN_PAYOUTS.value
-  MODAL.close();
-})
+FORM_MIN_PAYOUTS.addEventListener('submit', e => {
+	e.preventDefault();
+	STAT_MIN_PAYOUTS_VALUE.textContent = INPUT_MIN_PAYOUTS.value;
+	MODAL.close();
+});
 
 OPEN_MODAL_BTN.addEventListener('click', () => {
 	MODAL.showModal();
@@ -194,7 +195,7 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
-function showChartYourHashrate({ labelsWeek, dataWeek }) {
+function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 	const hashRateChart = initializeChart(
 		CHART_HASH_RATE,
 		getChartOptions(),
@@ -202,9 +203,13 @@ function showChartYourHashrate({ labelsWeek, dataWeek }) {
 		labelsWeek
 	);
 
-	tabDayChartHashrate.addEventListener('click', function (e) {});
+	tabDayChartHashrate.addEventListener('click', function (e) {
+		updateChartData(hashRateChart, dataDay, labelsDay);
+	});
 
-	tabWeekButtonChartHashrate.addEventListener('click', function (e) {});
+	tabWeekButtonChartHashrate.addEventListener('click', function (e) {
+    updateChartData(hashRateChart, dataWeek, labelsWeek);
+  });
 }
 
 function showSelectPayouts(payouts24hResponse, payoutsWeekResponse) {
@@ -212,8 +217,8 @@ function showSelectPayouts(payouts24hResponse, payoutsWeekResponse) {
 		name: 'interval',
 		targetValue: 'day',
 		options: [
-			['day', 'Day'],
-			['week', 'Week'],
+			['day', SELECT_PAYOUTS_NAME_OPTIONS.day],
+			['week', SELECT_PAYOUTS_NAME_OPTIONS.week],
 		],
 		onSelected(select) {
 			if (select.value === 'day') {
@@ -235,6 +240,7 @@ function drawData(coin, wallet) {
 		fetchMyPayouts(coin, wallet, 640800),
 		fetchMyBalance(coin, wallet),
 		fetchHistoryWallet(coin, wallet),
+		fetchHistoryWallet(coin, wallet, 86400),
 		// fetchMyEvents(coin, wallet),
 		// createUserValue(coin, wallet),
 		// fetchUserValue(coin, wallet),
@@ -249,7 +255,8 @@ function drawData(coin, wallet) {
 				payoutsWeekResponse,
 				myBalanceResponse,
 				historyWalletWeekResponse,
-        // createUserValue,
+				historyWallet24hResponse,
+				// createUserValue,
 				// myEventsResponse,
 				// minPayoutsResponse,
 				currencyRate,
@@ -274,11 +281,20 @@ function drawData(coin, wallet) {
 				const labelsWeek = historyWalletWeekResponse.wallet_history.map(item =>
 					item.day.slice(0, 10)
 				);
+
 				const dataWeek = historyWalletWeekResponse.wallet_history.map(item =>
 					parseFloat(item.sum_difficulty)
 				);
 
-				showChartYourHashrate({ labelsWeek, dataWeek });
+				const labelsDay = historyWallet24hResponse.wallet_history.map(item =>
+					item.day.slice(0, 10)
+				);
+
+				const dataDay = historyWallet24hResponse.wallet_history.map(item =>
+					parseFloat(item.sum_difficulty)
+				);
+
+				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
 
 				showMyHashrate({
 					hour: { hashrate: hashrate1h, units: hashrate1hResponse.units },

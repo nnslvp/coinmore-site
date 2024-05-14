@@ -12,3 +12,9 @@ other = "английский"
 
 [russian]
 other = "русский"
+
+[day]
+other = "день"
+
+[week]
+other = "неделя"

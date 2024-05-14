@@ -13,3 +13,9 @@ other = "english"
 
 [russian]
 other = "russian"
+
+[day]
+other = "day"
+
+[week]
+other = "week"
