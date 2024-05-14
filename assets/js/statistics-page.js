@@ -1,6 +1,9 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
 const MODAL = document.querySelector('.modal');
 const OPEN_MODAL_BTN = document.querySelector('.open-button');
+const FORM_MIN_PAYOUTS = MODAL.querySelector('#form-min-payouts');
+const INPUT_MIN_PAYOUTS = FORM_MIN_PAYOUTS.querySelector('#input-min-payouts');
+const STAT_MIN_PAYOUTS_VALUE = document.querySelector('#stat-min-payouts-value');
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
@@ -39,8 +42,15 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
+
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
+
+FORM_MIN_PAYOUTS.addEventListener('submit',(e) => {
+  e.preventDefault()
+  STAT_MIN_PAYOUTS_VALUE.textContent = INPUT_MIN_PAYOUTS.value
+  MODAL.close();
+})
 
 OPEN_MODAL_BTN.addEventListener('click', () => {
 	MODAL.showModal();
@@ -192,8 +202,6 @@ function showChartYourHashrate({ labelsWeek, dataWeek }) {
 		labelsWeek
 	);
 
-  console.log(getChartOptions());
-
 	tabDayChartHashrate.addEventListener('click', function (e) {});
 
 	tabWeekButtonChartHashrate.addEventListener('click', function (e) {});
@@ -228,6 +236,8 @@ function drawData(coin, wallet) {
 		fetchMyBalance(coin, wallet),
 		fetchHistoryWallet(coin, wallet),
 		// fetchMyEvents(coin, wallet),
+		// createUserValue(coin, wallet),
+		// fetchUserValue(coin, wallet),
 		fetchCurrencyInfo(),
 	])
 		.then(
@@ -239,7 +249,9 @@ function drawData(coin, wallet) {
 				payoutsWeekResponse,
 				myBalanceResponse,
 				historyWalletWeekResponse,
+        // createUserValue,
 				// myEventsResponse,
+				// minPayoutsResponse,
 				currencyRate,
 			]) => {
 				const hashrate1h = calculateTotalByKey(

@@ -4,6 +4,15 @@ function statsApiCall(action) {
 	return fetch(`${statsApiUrl}${action}`).then(response => response.json());
 }
 
+function statsApiPost(action) {
+	return fetch(`${statsApiUrl}${action}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json', 
+		},
+	})
+}
+
 function fetchCurrencyInfo(coin = 'alephium') {
 	return statsApiCall(`/rate?coin=${coin}`);
 }
@@ -15,6 +24,18 @@ function fetchHistoryWallet(coin = 'alephium', wallet, period = 604800) {
 		`/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`
 	);
 }
+
+function fetchUserValue(coin = 'alephium', wallet, kind = 'min_payout') {
+	return statsApiCall(
+		`/user_value?coin=${coin}&wallet=${wallet}&kind=${kind}`
+	);
+}
+
+function createUserValue(coin = 'alephium', wallet, kind = 'min_payout', value = 1 ) {
+	return statsApiPost(`/user_value?coin=${coin}&wallet=${wallet}&kind=${kind}&value=${value}`);
+}
+
+
 
 function fetchPoolProfit(coin = 'alephium') {
 	return statsApiCall(`/profit?coin=${coin}`);

@@ -139,7 +139,9 @@
                 <i class="icon coins-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.min_payout}}</p>
-                  <strong class="stat-item__value">0.1 coin</strong>
+                  <strong class="stat-item__value">
+                    <span id="stat-min-payouts-value">0.1</span> coin
+                  </strong>
                 </div>
                 <i class="icon edit-icon open-button"></i></a>
               </li>
@@ -359,11 +361,11 @@
   <dialog class="modal modal-dit-min-payouts">
     <div class="modal__inner">
       <h2 class="heading-h2">{{ .Params.modal.title }}</h2>
-      <form class="form__dit-min-payouts" action="">
+      <form id="form-min-payouts" class="form__dit-min-payouts" action="">
         <div class="input-container">
           <label class="label" for="min-payout">{{ .Params.modal.label }}</label>
-          <input class="input" placeholder="{{ .Params.modal.placeholder }}" type="number" id="min-payout"
-            name="min-payout">
+          <input id="input-min-payouts" class="input" name="min-payout" placeholder="{{ .Params.modal.placeholder }}" type="number" value="0.1"  step="any"  
+            >
         </div>
         <div class="form-action">
           <button formmethod="dialog" class="btn btn-outline-primary">{{ .Params.modal.cancel_button }}</button>
