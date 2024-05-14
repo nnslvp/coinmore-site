@@ -70,9 +70,11 @@
                 {{ .Params.mining_calculator_text }}
               </a>
             </header>
+            {{ $coinNames := slice }}
             <ul class="coins-list">
               {{ range where .Site.Pages "Type" "coin" }}
               {{ if not .Params.headless }}
+              {{ $coinNames = $coinNames | append .Params.coin_name }}
               <li class="coins-list__item">
                 {{ partial "coin-card.html" . }}
               </li>
@@ -85,12 +87,15 @@
     </main>
     {{partial "footer.html" .}}
   </div>
-  {{ $statisticsPage := resources.Get "js/home-page.js" }}
+    <script>
+      const COINS = {{ $coinNames }}
+    </script>
+  {{ $homePage := resources.Get "js/home-page.js" }}
   {{ $showDataFunctions:= resources.Get "js/show-data-functions.js" }}
   {{ $api := resources.Get "js/api.js" }}
   {{ $helpers := resources.Get "js/helpers.js" }}
   {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $api $showDataFunctions $helpers $global $statisticsPage | resources.Concat
+  {{ $js := slice $api $showDataFunctions $helpers $global $homePage | resources.Concat
   "js/build/home-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>{{ $js := resources.Get "js/main.js" | resources.Minify }}
 </body>
