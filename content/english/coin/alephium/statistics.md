@@ -34,10 +34,6 @@ chart_titles:
   workers: 'Workers'
   payouts: 'Payouts'
 
-chart_intervals:
-  one_day: 'Day'
-  week: 'Week'
-
 select_labels:
   select_payout_interval: 'Select payout interval'
 
