@@ -48,7 +48,13 @@ function getChartOptions(newOptions) {
 					borderColor: '#9B4DCA',
 					borderWidth: 2,
 					fill: true,
-					pointRadius: 0,
+          pointRadius:0,
+					pointHitRadius: 10,
+					pointHoverRadius: 8,
+					pointHoverBackgroundColor: '#ffffff', 
+					pointHoverBorderColor: '#9B4DCA', 
+					pointHoverBorderWidth: 2, 
+					tension: 0.1,
 				},
 			],
 		},
@@ -65,7 +71,9 @@ function getChartOptions(newOptions) {
 						},
 					},
 					grid: {
-						display: false,
+						display: true,
+						drawTicks: false,
+						color: 'rgba(175, 184, 191, 1)',
 					},
 				},
 				x: {
@@ -79,7 +87,27 @@ function getChartOptions(newOptions) {
 					display: false,
 				},
 				tooltip: {
-					enabled: false,
+					enabled: true,
+					mode: 'index',
+					intersect: false,
+					backgroundColor: 'rgba(97, 20, 143, 1)',
+					bodyColor: '#FFFFFF',
+					padding: 12,
+					displayColors: false,
+					callbacks: {
+						title: function (tooltipItems) {
+							console.log(tooltipItems);
+							const date = tooltipItems[0].label.split(' ')[0];
+							const time = tooltipItems[0].label.split(' ')[1];
+							return `${date}  11:11:11`;
+						},
+						label: function (tooltipItem) {
+							console.log('Tooltip label item:', tooltipItem);
+							const label = tooltipItem.dataset.label || '';
+							const value = tooltipItem.raw;
+							return `${label}: ${Math.round(value)} EH/s`;
+						},
+					},
 				},
 				title: {
 					display: true,
