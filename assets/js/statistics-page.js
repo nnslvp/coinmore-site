@@ -247,11 +247,11 @@ function drawData(coin, wallet) {
 	const balancePromise = fetchMyBalance(coin, wallet);
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, 86400);
-	const userValueMinPayouts = fetchUserValue(coin, wallet);
+	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 
 	let currencyInfo = null;
 
-	userValueMinPayouts
+	userValueMinPayoutsPromise
 		.then(({ value }) => showMinPayouts(value))
 		.catch(_ => {
 			showMinPayouts(0.1);
@@ -331,6 +331,7 @@ function drawData(coin, wallet) {
 					'my_payouts_24h_usd'
 				);
 				showPayoutsTable(valuePayouts24hPromise.payouts);
+
 				if (statusPayoutsWeekPromise === 'fulfilled') {
 					showSelectPayouts(
 						valuePayouts24hPromise.payouts,
@@ -390,6 +391,10 @@ function drawData(coin, wallet) {
 			}
 
 			showStats();
+			enableButton();
+		})
+		.catch(error => {
+			console.error('Error in drawData:', error);
 			enableButton();
 		});
 }
