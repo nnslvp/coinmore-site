@@ -330,7 +330,7 @@ function showMyHashrate(hashrate, id = 'my_hashrate_1h') {
 	).textContent = `${shortHashRate.hashrate} ${shortHashRate.units}`;
 }
 function showMinPayouts(minPayoutsValue) {
-	STAT_MIN_PAYOUTS_VALUE.textContent = INPUT_MIN_PAYOUTS.value;
+	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
 }
 
 function showWorkersTable(workersDay, workersHour) {
