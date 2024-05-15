@@ -10,6 +10,15 @@ const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
 const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
+	data: {
+		datasets: [
+			{
+				pointRadius: 0,
+				pointHitRadius: 0,
+				pointHoverRadius: 0, 
+			},
+		],
+	},
 	options: {
 		scales: {
 			y: {
