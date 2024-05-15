@@ -48,192 +48,25 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
+function init() {
+	assignFormListener();
 
-function assignFormListenerMinPayoutsForm(wallet) {
-  FORM_MIN_PAYOUTS.addEventListener('submit', e => {
-		e.preventDefault();
-		const value = INPUT_MIN_PAYOUTS.value;
-		createUserValue(COIN, wallet,'min_payout', value)
-			.then(() => {
-				STAT_MIN_PAYOUTS_VALUE.textContent = value;
-				MODAL.close();
-			})
-			.catch(error => {
-				console.error('Error submitting form:', error);
-			});
-	});
-}
+	const walletFromParams = getWalletParam();
 
-
-OPEN_MODAL_BTN.addEventListener('click', () => {
-	MODAL.showModal();
-});
-
-MODAL.addEventListener('click', e => {
-	const dialogDimensions = MODAL.getBoundingClientRect();
-	if (
-		e.clientX < dialogDimensions.left ||
-		e.clientX > dialogDimensions.right ||
-		e.clientY < dialogDimensions.top ||
-		e.clientY > dialogDimensions.bottom
-	) {
-		MODAL.close();
+	if (walletFromParams) {
+		setCookie('wallet', walletFromParams, 365);
+		setWalletForm(walletFromParams);
+		drawData(COIN, walletFromParams);
+		assignFormListenerMinPayoutsForm(walletFromParams);
+	} else {
+		const walletFromCookies = getCookie('wallet');
+		if (walletFromCookies) {
+			setWalletParam(walletFromCookies);
+		}
 	}
-});
-
-function showMyHashrate(hashrate, id = 'my_hashrate_1h') {
-	const shortHashRate = shortenHm(hashrate, 2);
-	document.getElementById(
-		id
-	).textContent = `${shortHashRate.hashrate} ${shortHashRate.units}`;
-}
-function showMinPayouts(minPayoutsValue) {
-	STAT_MIN_PAYOUTS_VALUE.textContent = INPUT_MIN_PAYOUTS.value;
 }
 
-function showWorkersTable(workersDay, workersHour) {
-	const tableBody = document
-		.getElementById('statistics-workers-table')
-		.getElementsByTagName('tbody')[0];
-	let rowsHtml = '';
-
-	workersDay.forEach(workerDay => {
-		const workerHour =
-			workersHour.find(w => w.worker === workerDay.worker) || {};
-		const shortHashRateHour = workerHour.hashrate
-			? shortenHm(workerHour.hashrate, 2)
-			: { hashrate: 'N/A', units: '' };
-		const shortHashRateDay = workerDay.hashrate
-			? shortenHm(workerDay.hashrate, 2)
-			: { hashrate: 'N/A', units: '' };
-
-		rowsHtml += `
-                  <tr>
-                    <td class="worker-cell" data="worker">
-                      <span class="worker-value">
-                      ${workerDay.worker || 'N/A'}
-                      </span>
-                    </td>
-                    <td class="hashrate-cell" data="Hashrate 1h/24h">
-                      <span class="hashrate-value">
-                      ${shortHashRateHour.hashrate} 
-                      ${shortHashRateHour.units} / 
-                      ${shortHashRateDay.hashrate} 
-                      ${shortHashRateDay.units}
-                      </span>
-                    </td>
-                    <td class="history-cell" data="7 day history">
-                      <canvas id="historyChart" class="history-сhart">
-
-                      </canvas>
-                    </td>
-                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
-                      <span class="electricity-costs__value">
-                        ${workerHour.shares_count || 'N/A'} / 
-                        ${workerDay.shares_count || 'N/A'}</span>
-                    </td>
-                    <td class="last-share-cell" data="Last Share At">
-                      <span id="last-share-value">
-                        ${
-													workerDay.last_share_at
-														? new Date(workerDay.last_share_at).toLocaleString()
-														: 'N/A'
-												}
-                      </span>
-                    </td>
-                  </tr>`;
-	});
-
-	tableBody.innerHTML = rowsHtml;
-	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
-	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
-		initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
-	});
-}
-
-function showMyPayouts(amount, id = 'my_payouts_1h') {
-	document.getElementById(id).textContent = parseFloat(amount).toFixed(8);
-}
-
-function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
-	document.getElementById(id).textContent = `${amountUSD(
-		amount,
-		currencyRate
-	)} USD`;
-}
-
-function showMyBalance(myBalanceData,id = 'balance') {
-	document.getElementById(id).textContent = parseFloat(
-		myBalanceData?.amount
-	).toFixed(8);
-}
-
-function showMyBalanceUSD(myBalanceData, currencyRate, id = 'balance_usd') {
-	document.getElementById(id).textContent = `${amountUSD(
-		myBalanceData?.amount,
-		currencyRate
-	)} USD`;
-}
-
-function showPayoutsTable(payouts) {
-	const tableBody = document
-		.getElementById('statistics-payouts-table')
-		.getElementsByTagName('tbody')[0];
-	tableBody.innerHTML = '';
-	let rowsHtml = '';
-
-	payouts.forEach(payout => {
-		rowsHtml += `
-    <tr>
-        <td data="Amount" class="amount-cell">
-            <span class="amount-value">
-            ${parseFloat(payout.amount).toFixed(8)}
-            </span>
-        </td>
-        <td data="Timestamp" class="timestamp-cell">
-            <span class="timestamp-value">
-            ${new Date(payout.timestamp).toLocaleString()}
-            </span>
-        </td>
-    </tr>`;
-	});
-	tableBody.innerHTML = rowsHtml;
-}
-
-function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
-	const hashRateChart = initializeChart(
-		CHART_HASH_RATE,
-		getChartOptions(),
-		dataWeek,
-		labelsWeek
-	);
-
-	tabDayChartHashrate.addEventListener('click', function (e) {
-		updateChartData(hashRateChart, dataDay, labelsDay);
-	});
-
-	tabWeekButtonChartHashrate.addEventListener('click', function (e) {
-		updateChartData(hashRateChart, dataWeek, labelsWeek);
-	});
-}
-
-function showSelectPayouts(payoutsDay, payoutsWeek) {
-	const selectPayouts = ItcCustomSelect.create('#select-payouts', {
-		name: 'interval',
-		targetValue: 'day',
-		options: [
-			['day', SELECT_PAYOUTS_NAME_OPTIONS.day],
-			['week', SELECT_PAYOUTS_NAME_OPTIONS.week],
-		],
-		onSelected(select) {
-			if (select.value === 'day') {
-				showPayoutsTable(payoutsDay);
-			} else {
-				showPayoutsTable(payoutsWeek);
-			}
-		},
-	});
-}
+init();
 
 function drawData(coin, wallet) {
 	disableButton();
@@ -450,22 +283,190 @@ function assignFormListener() {
 	}
 }
 
-function init() {
-	assignFormListener();
-
-	const walletFromParams = getWalletParam();
-
-	if (walletFromParams) {
-		setCookie('wallet', walletFromParams, 365);
-		setWalletForm(walletFromParams);
-		drawData(COIN, walletFromParams);
-    assignFormListenerMinPayoutsForm(walletFromParams);
-	} else {
-		const walletFromCookies = getCookie('wallet');
-		if (walletFromCookies) {
-			setWalletParam(walletFromCookies);
-		}
-	}
+function assignFormListenerMinPayoutsForm(wallet) {
+	FORM_MIN_PAYOUTS.addEventListener('submit', e => {
+		e.preventDefault();
+		const value = INPUT_MIN_PAYOUTS.value;
+		createUserValue(COIN, wallet, 'min_payout', value)
+			.then(() => {
+				STAT_MIN_PAYOUTS_VALUE.textContent = value;
+				MODAL.close();
+			})
+			.catch(error => {
+				console.error('Error submitting form:', error);
+			});
+	});
 }
 
-init();
+OPEN_MODAL_BTN.addEventListener('click', () => {
+	MODAL.showModal();
+});
+
+MODAL.addEventListener('click', e => {
+	const dialogDimensions = MODAL.getBoundingClientRect();
+	if (
+		e.clientX < dialogDimensions.left ||
+		e.clientX > dialogDimensions.right ||
+		e.clientY < dialogDimensions.top ||
+		e.clientY > dialogDimensions.bottom
+	) {
+		MODAL.close();
+	}
+});
+
+function showMyHashrate(hashrate, id = 'my_hashrate_1h') {
+	const shortHashRate = shortenHm(hashrate, 2);
+	document.getElementById(
+		id
+	).textContent = `${shortHashRate.hashrate} ${shortHashRate.units}`;
+}
+function showMinPayouts(minPayoutsValue) {
+	STAT_MIN_PAYOUTS_VALUE.textContent = INPUT_MIN_PAYOUTS.value;
+}
+
+function showWorkersTable(workersDay, workersHour) {
+	const tableBody = document
+		.getElementById('statistics-workers-table')
+		.getElementsByTagName('tbody')[0];
+	let rowsHtml = '';
+
+	workersDay.forEach(workerDay => {
+		const workerHour =
+			workersHour.find(w => w.worker === workerDay.worker) || {};
+		const shortHashRateHour = workerHour.hashrate
+			? shortenHm(workerHour.hashrate, 2)
+			: { hashrate: 'N/A', units: '' };
+		const shortHashRateDay = workerDay.hashrate
+			? shortenHm(workerDay.hashrate, 2)
+			: { hashrate: 'N/A', units: '' };
+
+		rowsHtml += `
+                  <tr>
+                    <td class="worker-cell" data="worker">
+                      <span class="worker-value">
+                      ${workerDay.worker || 'N/A'}
+                      </span>
+                    </td>
+                    <td class="hashrate-cell" data="Hashrate 1h/24h">
+                      <span class="hashrate-value">
+                      ${shortHashRateHour.hashrate} 
+                      ${shortHashRateHour.units} / 
+                      ${shortHashRateDay.hashrate} 
+                      ${shortHashRateDay.units}
+                      </span>
+                    </td>
+                    <td class="history-cell" data="7 day history">
+                      <canvas id="historyChart" class="history-сhart">
+
+                      </canvas>
+                    </td>
+                    <td class="valid-shares-cell" data="Valid Shares 1h/24h">
+                      <span class="electricity-costs__value">
+                        ${workerHour.shares_count || 'N/A'} / 
+                        ${workerDay.shares_count || 'N/A'}</span>
+                    </td>
+                    <td class="last-share-cell" data="Last Share At">
+                      <span id="last-share-value">
+                        ${
+													workerDay.last_share_at
+														? new Date(workerDay.last_share_at).toLocaleString()
+														: 'N/A'
+												}
+                      </span>
+                    </td>
+                  </tr>`;
+	});
+
+	tableBody.innerHTML = rowsHtml;
+	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
+	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
+		initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
+	});
+}
+
+function showMyPayouts(amount, id = 'my_payouts_1h') {
+	document.getElementById(id).textContent = parseFloat(amount).toFixed(8);
+}
+
+function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
+	document.getElementById(id).textContent = `${amountUSD(
+		amount,
+		currencyRate
+	)} USD`;
+}
+
+function showMyBalance(myBalanceData, id = 'balance') {
+	document.getElementById(id).textContent = parseFloat(
+		myBalanceData?.amount 
+	).toFixed(8);
+}
+
+function showMyBalanceUSD(myBalanceData, currencyRate, id = 'balance_usd') {
+	document.getElementById(id).textContent = `${amountUSD(
+		myBalanceData?.amount ,
+		currencyRate
+	)} USD`;
+}
+
+function showPayoutsTable(payouts) {
+	const tableBody = document
+		.getElementById('statistics-payouts-table')
+		.getElementsByTagName('tbody')[0];
+	tableBody.innerHTML = '';
+	let rowsHtml = '';
+
+	payouts.forEach(payout => {
+		rowsHtml += `
+    <tr>
+        <td data="Amount" class="amount-cell">
+            <span class="amount-value">
+            ${parseFloat(payout.amount).toFixed(8)}
+            </span>
+        </td>
+        <td data="Timestamp" class="timestamp-cell">
+            <span class="timestamp-value">
+            ${new Date(payout.timestamp).toLocaleString()}
+            </span>
+        </td>
+    </tr>`;
+	});
+	tableBody.innerHTML = rowsHtml;
+}
+
+function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
+	const hashRateChart = initializeChart(
+		CHART_HASH_RATE,
+		getChartOptions(),
+		dataWeek,
+		labelsWeek
+	);
+
+	tabDayChartHashrate.addEventListener('click', function (e) {
+		updateChartData(hashRateChart, dataDay, labelsDay);
+	});
+
+	tabWeekButtonChartHashrate.addEventListener('click', function (e) {
+		updateChartData(hashRateChart, dataWeek, labelsWeek);
+	});
+}
+
+function showSelectPayouts(payoutsDay, payoutsWeek) {
+	const selectPayouts = ItcCustomSelect.create('#select-payouts', {
+		name: 'interval',
+		targetValue: 'day',
+		options: [
+			['day', SELECT_PAYOUTS_NAME_OPTIONS.day],
+			['week', SELECT_PAYOUTS_NAME_OPTIONS.week],
+		],
+		onSelected(select) {
+			if (select.value === 'day') {
+				showPayoutsTable(payoutsDay);
+			} else {
+				showPayoutsTable(payoutsWeek);
+			}
+		},
+	});
+}
+
+
+

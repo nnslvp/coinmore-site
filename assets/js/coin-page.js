@@ -1,6 +1,8 @@
 const CHART_POOL_HASH_RATE = document.querySelector('#poolHashrateChart');
 const CHART_PROFIT = document.querySelector('#profitChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
+const WALLET_FORM = document.querySelector('#wallet-form');
+const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
 
 const [tabWorkersHour, tabWorkersDay] = getTabs(
 	'.chart-interval__workers-activity'
@@ -9,6 +11,13 @@ const [tabProfitHour, tabProfitDay] = getTabs('.chart-interval__profit');
 const [tabPoolHashrateHour, tabPoolHashrateDay] = getTabs(
 	'.chart-interval__pool-hashrate'
 );
+
+WALLET_FORM.addEventListener('submit', event => {
+	event.preventDefault();
+  const wallet = WALLET_INPUT.value
+	const url = `/coin/${COIN}/statistics/?wallet=${wallet}`;
+	window.location.href = url;
+});
 
 const poolHashRateChart = initializeChart(
 	CHART_POOL_HASH_RATE,
