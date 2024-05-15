@@ -12,13 +12,6 @@ const [tabPoolHashrateHour, tabPoolHashrateDay] = getTabs(
 	'.chart-interval__pool-hashrate'
 );
 
-WALLET_FORM.addEventListener('submit', event => {
-	event.preventDefault();
-  const wallet = WALLET_INPUT.value
-	const url = `/coin/${COIN}/statistics/?wallet=${wallet}`;
-	window.location.href = url;
-});
-
 const poolHashRateChart = initializeChart(
 	CHART_POOL_HASH_RATE,
 	getChartOptions()
