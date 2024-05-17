@@ -127,10 +127,10 @@ function drawData(coin, wallet) {
 
 				showMyHashrate(hashrate1h, 'my_hashrate_1h');
 				showMyHashrate(hashrate24h, 'my_hashrate_24h');
-				showWorkersTable(
-					valueHashrate24hPromise.workers,
-					valueHashrate1hPromise.workers
-				);
+				// showWorkersTable(
+				// 	valueHashrate24hPromise.workers,
+				// 	valueHashrate1hPromise.workers
+				// );
 			}
 
 			return Promise.allSettled([
