@@ -387,7 +387,7 @@
   {{ $chart := resources.Get "js/chart.js" }}
   {{$helpers := resources.Get "js/helpers.js" }}
   {{$showDataFunctions:= resources.Get "js/show-data-functions.js" }}
-  {{ $page := resources.Get "js/statistics-page.js" }}
+  {{ $page := resources.Get "js/pages/statistics-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
   {{ $js := slice $api $showDataFunctions $helpers $chart $customSelect $global $page | resources.Concat
   "js/build/statistics-page-build.js" |
