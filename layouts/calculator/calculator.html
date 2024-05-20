@@ -165,7 +165,7 @@
   </div>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
   {{ $api := resources.Get "js/api.js" }}
-  {{ $statisticsPage := resources.Get "js/calculator-page.js" }}
+  {{ $statisticsPage := resources.Get "js/pages/calculator-page.js" }}
   {{ $global:= resources.Get "js/main.js" }}
   {{ $js := slice $api $global $customSelect $statisticsPage | resources.Concat "js/build/calculator-page-build.js" }}
   <script type="module" src="{{ $js.Permalink }}"></script>

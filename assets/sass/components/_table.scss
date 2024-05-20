@@ -24,7 +24,8 @@
 		padding: 0.625rem 0.75rem;
 	}
 
-	&:has(td:nth-child(3)) th:nth-child(even) {
+	&:has(th:nth-child(3)) th:nth-child(even) {
+		border-left: none;
 		border-right: none;
 	}
 

@@ -217,7 +217,7 @@
   </div>
   {{ $customSelect:= resources.Get "js/custom-select.js" }}
   {{ $tableServers:= resources.Get "js/table-servers.js" }}
-  {{ $page := resources.Get "js/instructions-page.js" }}
+  {{ $page := resources.Get "js/pages/instructions-pages/" }}
   {{ $global:= resources.Get "js/main.js" }}
   {{ $js := slice $global $customSelect $tableServers $page | resources.Concat "js/build/instructions-page-build.js" |
   resources.Minify }}

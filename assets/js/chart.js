@@ -21,7 +21,50 @@ function initializeChart(
 		dataset.backgroundColor = gradient;
 	});
 
+	Chart.Tooltip.positioners.myCustomPositioner = function (
+		elements,
+		eventPosition
+	) {
+		const tooltip = this;
+
+		if (!elements.length) {
+			return false;
+		}
+
+		const element = elements[0];
+
+		return {
+			x: element.element.x + 15,
+			y: element.element.y + 18,
+		};
+	};
+
+	if (!chartOptions.options.plugins.tooltip) {
+		chartOptions.options.plugins.tooltip = {};
+	}
+
+	chartOptions.options.plugins.tooltip.position = 'myCustomPositioner';
+
 	let chart = new Chart(ctx, chartOptions);
+
+	chartElement.addEventListener('mousemove', function (event) {
+		const points = chart.getElementsAtEventForMode(
+			event,
+			'nearest',
+			{ intersect: true },
+			false
+		);
+		const containsPointElement = points.some(
+			point => point.element instanceof Chart.elements.PointElement
+		);
+
+		if (containsPointElement) {
+			chartElement.style.cursor = 'pointer';
+		} else {
+			chartElement.style.cursor = 'default';
+		}
+	});
+
 	return chart;
 }
 
@@ -48,27 +91,32 @@ function getChartOptions(newOptions) {
 					borderColor: '#9B4DCA',
 					borderWidth: 2,
 					fill: true,
-          pointRadius:0,
+					pointRadius: 0,
 					pointHitRadius: 10,
 					pointHoverRadius: 8,
-					pointHoverBackgroundColor: '#ffffff', 
-					pointHoverBorderColor: '#9B4DCA', 
-					pointHoverBorderWidth: 2, 
+					pointHoverBackgroundColor: '#ffffff',
+					pointHoverBorderColor: '#9B4DCA',
+					pointHoverBorderWidth: 2,
 					tension: 0.1,
 				},
 			],
 		},
 		options: {
+			onHover: (event, chartElement) => {
+				if (chartElement[0]?.element) {
+					event.native.target.style.cursor = 'pointer';
+				}
+			},
 			scales: {
 				y: {
 					beginAtZero: true,
 					min: 0,
-					max: 400000,
+					max: 40,
 					ticks: {
-						stepSize: 100000,
-						callback: function (value, index, values) {
-							return value / 10000;
-						},
+						stepSize: 10,
+						// callback: function (value, index, values) {
+						// 	return value / 10000;
+						// },
 					},
 					grid: {
 						display: true,
@@ -86,23 +134,34 @@ function getChartOptions(newOptions) {
 				legend: {
 					display: false,
 				},
+
 				tooltip: {
 					enabled: true,
 					mode: 'index',
+					position: 'myCustomPositioner',
 					intersect: false,
 					backgroundColor: 'rgba(97, 20, 143, 1)',
 					bodyColor: '#FFFFFF',
 					padding: 12,
+					caretSize: 0,
+					bodyFont: {
+						weight: 'bold',
+						lineHeight: 1.2,
+					},
+					titleMarginBottom: 12,
+					cornerRadius: 10,
 					displayColors: false,
+					xAlign: 'left',
+					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-							console.log(tooltipItems);
+							// console.log(tooltipItems);
 							const date = tooltipItems[0].label.split(' ')[0];
 							const time = tooltipItems[0].label.split(' ')[1];
 							return `${date}  11:11:11`;
 						},
 						label: function (tooltipItem) {
-							console.log('Tooltip label item:', tooltipItem);
+							// console.log('Tooltip label item:', tooltipItem);
 							const label = tooltipItem.dataset.label || '';
 							const value = tooltipItem.raw;
 							return `${label}: ${Math.round(value)} EH/s`;
