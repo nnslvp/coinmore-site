@@ -99,10 +99,63 @@ function generateTable(calculatorForm) {
 	CALCULATE_BTN.classList.remove('disabled');
 }
 
-CALCULATOR_FORM.addEventListener('submit', function (event) {
-	event.preventDefault();
-	generateTable(CALCULATOR_FORM);
-});
+
+
+// document.querySelectorAll('input').forEach(e => {
+//   e.addEventListener('input',(e) => {
+//     const input = e.currentTarget;
+//     if(!input.validity.valid){
+//       showError(input)
+//       return
+//     }
+    
+//   })
+// })
+
+// CALCULATOR_FORM.addEventListener('submit', function (event) {
+// 	event.preventDefault();
+//   document.querySelectorAll('input').forEach(e => {
+// 			const input = e.currentTarget;
+// 			if (!input.validity.valid) {
+// 				showError(input);
+// 				return;
+// 			}
+// 	});
+  
+//     if (!this.checkValidity()) {
+//       CALCULATOR_FORM.querySelector('#calculate-btn').disabled = true;
+// 		}
+// 	generateTable(CALCULATOR_FORM);
+// });
+
+
+// function showError(input) {
+// 	const errorElement = document.querySelector('.error-message');
+// 	if (input.validity.valueMissing) {
+// 		errorElement.textContent = 'This field is required.';
+// 	} else if (input.validity.typeMismatch) {
+// 		errorElement.textContent = 'Please enter a valid value.';
+// 	} else if (input.validity.tooShort) {
+// 		errorElement.textContent = `Value must be at least ${input.minLength} characters long.`;
+// 	} else if (input.validity.tooLong) {
+// 		errorElement.textContent = `Value must be no more than ${input.maxLength} characters long.`;
+// 	} else if (input.validity.rangeUnderflow) {
+// 		errorElement.textContent = `Value must be at least ${input.min}.`;
+// 	} else if (input.validity.rangeOverflow) {
+// 		errorElement.textContent = `Value must be no more than ${input.max}.`;
+// 	} else if (input.validity.patternMismatch) {
+// 		errorElement.textContent = 'Please match the requested format.';
+// 	} else if (!Number.isInteger(input.value)) {
+// 		errorElement.textContent = 'Please enter a number.';
+// 	} else {
+// 		errorElement.textContent = 'Invalid value.';
+// 	}
+// }
+
+// function clearError(input) {
+// 	const errorElement = document.getElementById(`${input.id}Error`);
+// 	errorElement.textContent = '';
+// }
 
 function init(calculatorForm) {
 	generateTable(calculatorForm);
