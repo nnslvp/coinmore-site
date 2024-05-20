@@ -1,174 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  {{ with hugo.IsProduction }}
+  <head>
+    {{ with hugo.IsProduction }}
 
-  {{ end }}
+    {{ end }}
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title></title>
+    <title></title>
 
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
+    <meta name="description" content>
+    <meta name="keywords" content>
+    <meta name="author" content>
 
+    <meta property="og:site_name" content="Lazy Bison">
+    <meta property="og:title" content />
+    <meta property="og:description" content />
+    <meta property="og:image" content />
+    <meta name="twitter:image:width" content>
+    <meta name="twitter:image:height" content>
+    <meta property="og:url" content />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content />
+    <meta name="twitter:title" content />
+    <meta name="twitter:description" content />
+    <meta name="twitter:image" content>
+    <meta name="twitter:image:width" content>
+    <meta name="twitter:image:height" content>
 
+    <link rel="apple-touch-icon" sizes="180x180" href>
+    <link rel="icon" type="image/png" sizes="32x32" href>
+    <link rel="icon" type="image/png" sizes="16x16" href>
+    <link rel="manifest" href>
 
-  <meta property="og:site_name" content="Lazy Bison">
-  <meta property="og:title" content="" />
-  <meta property="og:description" content="" />
-  <meta property="og:image" content="" />
-  <meta name="twitter:image:width" content="">
-  <meta name="twitter:image:height" content="">
-  <meta property="og:url" content="" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="" />
-  <meta name="twitter:title" content="" />
-  <meta name="twitter:description" content="" />
-  <meta name="twitter:image" content="">
-  <meta name="twitter:image:width" content="">
-  <meta name="twitter:image:height" content="">
+    {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
+    {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint
+    }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}"
+      integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
 
-  <link rel="apple-touch-icon" sizes="180x180" href="">
-  <link rel="icon" type="image/png" sizes="32x32" href="">
-  <link rel="icon" type="image/png" sizes="16x16" href="">
-  <link rel="manifest" href="">
+    <body>
+      {{ with hugo.IsProduction }}
 
-
-  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
-  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-  {{ end }}
-
-<body>
-  {{ with hugo.IsProduction }}
-
-  {{ end }}
-  <div class="wrapper">
-    {{partial "header.html" .}}
-    <nav class="nav-page__container container">
-      <ul class="navigation-list">
-        <li class="navigation-item">
-          <a href="{{.Site.BaseURL}}" class="home-link">
-            <i class="icon home-icon"></i>
-          </a>
-        </li>
-        <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/calculator" class="currency-link">{{ .Title }}</a>
-        </li>
-      </ul>
-    </nav>
-    <main>
-      <div class="container">
-        <div class="calculator__inner">
-          <header class="calculator-header">
-            <h1 class="heading-h1">{{ .Title }}</h1>
-            <p class="subtitle calculator__subtitle">{{ .Params.subtitle }}
-            </p>
-          </header>
-          <form name="calculator_form" class="calculator_form">
-            <div class="input-container">
-              <label class="label" for="currency">{{ .Params.currency_label }}*</label>
-              <div id="select-currency"></div>
+      {{ end }}
+      <div class="wrapper">
+        {{partial "header.html" .}}
+        <nav class="nav-page__container container">
+          <ul class="navigation-list">
+            <li class="navigation-item">
+              <a href="{{.Site.BaseURL}}" class="home-link">
+                <i class="icon home-icon"></i>
+              </a>
+            </li>
+            <li class="separator">/</li>
+            <li class="navigation-item"><a
+                href="{{ $.Site.BaseURL }}/calculator" class="currency-link">{{
+                .Title }}</a>
+            </li>
+          </ul>
+        </nav>
+        <main>
+          <div class="container">
+            <div class="calculator__inner">
+              <header class="calculator-header">
+                <h1 class="heading-h1">{{ .Title }}</h1>
+                <p class="subtitle calculator__subtitle">{{ .Params.subtitle }}
+                </p>
+              </header>
+              <form name="calculator_form" class="calculator_form" novalidate>
+                <div class="input-container">
+                  <label class="label" for="currency">{{ .Params.currency_label
+                    }}*</label>
+                  <div id="select-currency"></div>
+                </div>
+                <div class="input-container">
+                  <label class="label" for="hashrate">{{
+                    .Params.hashrate_label}}*</label>
+                  <input
+                    id="hashrate"
+                    class="input"
+                    placeholder="1"
+                    required
+                    pattern="^\d+(\.\d+)?$"
+                    type="number"
+                    inputmode="decimal"
+                    name="hashrate"
+                    value="1"
+                    step="any">
+                    <span class="error-message">error</span>
+                </div>
+                <div class="input-container">
+                  <label class="label" for="power-consumption">{{
+                    .Params.power_consumption_label}} *</label>
+                  <input
+                    id="powerConsumption"
+                    class="input"
+                    placeholder="12"
+                    required
+                    pattern="^\d+(\.\d+)?$"
+                    type="number"
+                    inputmode="decimal"
+                    name="power-consumption"
+                    value="0"
+                    step="any">
+                  <span class="error-message">error</span>
+                </div>
+                <div class="input-container">
+                  <label class="label" for="electricity-costs">{{
+                    .Params.electricity_costs_label}}</label>
+                  <input
+                    id="electricityCosts"
+                    class="input"
+                    placeholder="1000"
+                    required
+                    pattern="^\d+(\.\d+)?$"
+                    type="number"
+                    inputmode="decimal" 
+                    name="electricityCosts"
+                    value="0.1"
+                    step="any">
+                    <span class="error-message">error</span>
+                </div>
+                <button id="calculate-btn" type="submit"
+                  class="btn btn-filled-primary calculate-btn">{{
+                  .Params.calculate_button}}</button>
+              </form>
+              <div class="result-table__container">
+                <table class="table calculate-result-table">
+                  <thead>
+                    <tr>
+                      <th>{{.Params.period_header}}</th>
+                      <th>{{.Params.est_reward_header}}</th>
+                      <th>{{.Params.est_income_header}}</th>
+                      <th>{{.Params.electricity_costs_header}}</th>
+                      <th>{{.Params.est_profit_header}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="period-hour">
+                      <td data="Period" class="period-cell">
+                        <span class="period-value">1 {{.Params.hour }}
+                        </span>
+                      </td>
+                      <td class="reward-cell" data="Est. reward">
+                        <span class="reward-value">0.0068 ALPH</span>
+                      </td>
+                      <td class="income-cell" data="Est. income">
+                        <span class="income-value">0.0168 USD</span>
+                      </td>
+                      <td class="electricity-costs-cell"
+                        data="Electricity costs">
+                        <span class="electricity-costs__value">- 0.0000
+                          USD</span>
+                      </td>
+                      <td class="profit-cell" data="Est. profit">
+                        <span class="profit-value">0.0168 USD</span>
+                      </td>
+                    </tr>
+                    <tr id="period-day">
+                      <td data="Period" class="period-cell">24 {{.Params.hour_24
+                        }} </td>
+                      <td class="reward-cell" data="Est. reward">
+                        <span class="reward-value">0.0068 ALPH</span>
+                      </td>
+                      <td class="income-cell" data="Est. income">
+                        <span class="income-value">0.0168 USD</span>
+                      </td>
+                      <td class="electricity-costs-cell"
+                        data="Electricity costs">
+                        <span class="electricity-costs__value">- 0.0000
+                          USD</span>
+                      </td>
+                      <td class="profit-cell" data="Est. profit">
+                        <span id="profit-Europe" class="profit-value">0.0168
+                          USD</span>
+                      </td>
+                    </tr>
+                    <tr id="period-week">
+                      <td data="Period" class="period-cell">
+                        7 {{.Params.days }}
+                      </td>
+                      <td class="reward-cell" data="Est. reward">
+                        <span class="reward-value">0.0068 ALPH</span>
+                      </td>
+                      <td class="income-cell" data="Est. income">
+                        <span class="income-value">0.0168 USD</span>
+                      </td>
+                      <td class="electricity-costs-cell"
+                        data="Electricity costs">
+                        <span class="electricity-costs__value">- 0.0000
+                          USD</span>
+                      </td>
+                      <td class="profit-cell" data="Est. profit">
+                        <span id="profit-Russia" class="profit-value">0.0168
+                          USD</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="input-container">
-              <label class="label" for="hashrate">{{ .Params.hashrate_label}}*</label>
-              <input class="input" placeholder="1" type="number" id="hashrate" name="hashrate" value="1" step="any">
-            </div>
-            <div class="input-container">
-              <label class="label" for="power-consumption">{{ .Params.power_consumption_label}} *</label>
-              <input class="input" placeholder="12" type="number" id="powerConsumption" name="power-consumption"
-                value="0" step="any">
-            </div>
-            <div class="input-container">
-              <label class="label" for="electricity-costs">{{ .Params.electricity_costs_label}}</label>
-              <input class="input" placeholder="1000" type="number" id="electricityCosts" name="electricityCosts"
-                value="0.1" step="any">
-            </div>
-            <button id="calculate-btn" type="submit" class="btn btn-filled-primary calculate-btn">{{
-              .Params.calculate_button}}</button>
-          </form>
-          <div class="result-table__container">
-            <table class="table calculate-result-table">
-              <thead>
-                <tr>
-                  <th>{{.Params.period_header}}</th>
-                  <th>{{.Params.est_reward_header}}</th>
-                  <th>{{.Params.est_income_header}}</th>
-                  <th>{{.Params.electricity_costs_header}}</th>
-                  <th>{{.Params.est_profit_header}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr id="period-hour">
-                  <td data="Period" class="period-cell">
-                    <span class="period-value">1 {{.Params.hour }}
-                    </span>
-                  </td>
-                  <td class="reward-cell" data="Est. reward">
-                    <span class="reward-value">0.0068 ALPH</span>
-                  </td>
-                  <td class="income-cell" data="Est. income">
-                    <span class="income-value">0.0168 USD</span>
-                  </td>
-                  <td class="electricity-costs-cell" data="Electricity costs">
-                    <span class="electricity-costs__value">- 0.0000 USD</span>
-                  </td>
-                  <td class="profit-cell" data="Est. profit">
-                    <span class="profit-value">0.0168 USD</span>
-                  </td>
-                </tr>
-                <tr id="period-day">
-                  <td data="Period" class="period-cell">24 {{.Params.hour_24 }} </td>
-                  <td class="reward-cell" data="Est. reward">
-                    <span class="reward-value">0.0068 ALPH</span>
-                  </td>
-                  <td class="income-cell" data="Est. income">
-                    <span class="income-value">0.0168 USD</span>
-                  </td>
-                  <td class="electricity-costs-cell" data="Electricity costs">
-                    <span class="electricity-costs__value">- 0.0000 USD</span>
-                  </td>
-                  <td class="profit-cell" data="Est. profit">
-                    <span id="profit-Europe" class="profit-value">0.0168 USD</span>
-                  </td>
-                </tr>
-                <tr id="period-week">
-                  <td data="Period" class="period-cell">
-                    7 {{.Params.days }}
-                  </td>
-                  <td class="reward-cell" data="Est. reward">
-                    <span class="reward-value">0.0068 ALPH</span>
-                  </td>
-                  <td class="income-cell" data="Est. income">
-                    <span class="income-value">0.0168 USD</span>
-                  </td>
-                  <td class="electricity-costs-cell" data="Electricity costs">
-                    <span class="electricity-costs__value">- 0.0000 USD</span>
-                  </td>
-                  <td class="profit-cell" data="Est. profit">
-                    <span id="profit-Russia" class="profit-value">0.0168 USD</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
-        </div>
+
+        </main>
+
+        {{partial "footer.html" .}}
       </div>
+      {{ $customSelect:= resources.Get "js/custom-select.js" }}
+      {{ $api := resources.Get "js/api.js" }}
+      {{ $statisticsPage := resources.Get "js/pages/calculator-page.js" }}
+      {{ $global:= resources.Get "js/main.js" }}
+      {{ $js := slice $api $global $customSelect $statisticsPage |
+      resources.Concat "js/build/calculator-page-build.js" }}
+      <script type="module" src="{{ $js.Permalink }}"></script>
+    </body>
 
-    </main>
-
-    {{partial "footer.html" .}}
-  </div>
-  {{ $customSelect:= resources.Get "js/custom-select.js" }}
-  {{ $api := resources.Get "js/api.js" }}
-  {{ $statisticsPage := resources.Get "js/pages/calculator-page.js" }}
-  {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $api $global $customSelect $statisticsPage | resources.Concat "js/build/calculator-page-build.js" }}
-  <script type="module" src="{{ $js.Permalink }}"></script>
-</body>
-
-</html>
+  </html>
