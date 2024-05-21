@@ -100,33 +100,17 @@ function generateTable(calculatorForm) {
 }
 
 
-
-// document.querySelectorAll('input').forEach(e => {
-//   e.addEventListener('input',(e) => {
-//     const input = e.currentTarget;
-//     if(!input.validity.valid){
-//       showError(input)
-//       return
-//     }
-    
-//   })
-// })
-
-// CALCULATOR_FORM.addEventListener('submit', function (event) {
-// 	event.preventDefault();
-//   document.querySelectorAll('input').forEach(e => {
-// 			const input = e.currentTarget;
-// 			if (!input.validity.valid) {
-// 				showError(input);
-// 				return;
-// 			}
-// 	});
-  
-//     if (!this.checkValidity()) {
-//       CALCULATOR_FORM.querySelector('#calculate-btn').disabled = true;
-// 		}
-// 	generateTable(CALCULATOR_FORM);
-// });
+CALCULATOR_FORM.addEventListener('submit', function (event) {
+	event.preventDefault();
+  document.querySelectorAll('input').forEach(input => {
+    input.nextElementSibling.classList.remove('show')
+			if (!input.validity.valid) {
+				showError(input);
+				return;
+			}
+	});
+	generateTable(CALCULATOR_FORM);
+});
 
 
 // function showError(input) {

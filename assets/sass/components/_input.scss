@@ -18,13 +18,29 @@
 		border: 0.0625rem solid rgb(96, 108, 118);
 	}
 	&:focus {
-		border: 0.0625rem solid rgb(155, 77, 202);
+		border: 0.0625rem solid rgb(148, 28, 224);
 		box-shadow: 0rem 0rem 0.25rem 0.25rem var(--light-blue-semi-transparent);
 	}
 }
 
-.error-message{
-  visibility: hidden;
-  padding-left: 1.5rem;
-  color:red ;
+#wallet-input{
+&:focus{
+  border-color: red;
+}
+
+&:user-invalid ~ .error-message{
+visibility: visible;
+opacity: 1;
+}
+}
+
+.error-message {
+	visibility: hidden;
+  opacity: 0;
+	padding-left: 1.5rem;
+	color: red;
+  transition: opacity 0.3s ease-in;
+	&.show {
+		visibility: visible;
+    opacity: 1;	}
 }

@@ -1,4 +1,7 @@
 const statsApiUrl = 'https://api.coinmore.io';
+const HOUR = 3600;
+const DAY = 86400;
+const WEEK = 604800;
 
 function statsApiCall(action) {
 	return fetch(`${statsApiUrl}${action}`).then(response => response.json());
@@ -16,10 +19,12 @@ function statsApiPost(action) {
 function fetchCurrencyInfo(coin = 'alephium') {
 	return statsApiCall(`/rate?coin=${coin}`);
 }
-function fetchHistoryPool(coin = 'alephium', period = 604800) {
+
+function fetchHistoryPool(coin = 'alephium', period = WEEK) {
 	return statsApiCall(`/pool_history?coin=${coin}&period=${period}`);
 }
-function fetchHistoryWallet(coin = 'alephium', wallet, period = 604800) {
+
+function fetchHistoryWallet(coin = 'alephium', wallet, period = WEEK) {
 	return statsApiCall(
 		`/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`
 	);
@@ -49,7 +54,7 @@ function fetchMinersOnline(coin = 'alephium') {
 	return statsApiCall(`/online?coin=${coin}`);
 }
 
-function fetchPoolBlocks(coin = 'alephium', period = 3600) {
+function fetchPoolBlocks(coin = 'alephium', period = HOUR) {
 	return statsApiCall(`/blocks?coin=${coin}&period=${period}`);
 }
 
@@ -57,11 +62,11 @@ function fetchRate(coin = 'alephium') {
 	return statsApiCall(`/rate?coin=${coin}`);
 }
 
-function fetchMyHashrate(coin = 'alephium', wallet) {
-	return statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=3600`);
+function fetchMyHashrate(coin = 'alephium', wallet, period = HOUR) {
+	return statsApiCall(`/workers?coin=${coin}&wallet=${wallet}&period=${period}`);
 }
 
-function fetchMyPayouts(coin = 'alephium', wallet, period = '3600') {
+function fetchMyPayouts(coin = 'alephium', wallet, period = HOUR) {
 	return statsApiCall(
 		`/payouts?coin=${coin}&wallet=${wallet}&period=${period}`
 	);
