@@ -184,11 +184,10 @@
             <div class="chart-header">
               <h2 class="heading-h2">{{ .Params.chart_headers.hashrate }}</h2>
               <div class="chart-interval chart-interval__pool-hashrate">
-                <span class="tab tab-border-radius-around-left">{{ .Params.chart_intervals.one_hour }}</span>
-                <span class="tab tab-border-radius-around-right active">
-                  {{ .Params.chart_intervals.twenty_four_hours
-                  }}
-                </span>
+                <button class="tab tab-border-radius-around-left hourButton ">{{ .Params.chart_intervals.one_day
+                  }}</button>
+                <button class="tab tab-border-radius-around-right active dayButton">{{
+                  .Params.chart_intervals.week }}</button>
               </div>
             </div>
             <div class="chart chart__chart-container">
@@ -200,13 +199,10 @@
             <div class="chart-header">
               <h2 class="heading-h2">{{ .Params.chart_headers.profit }}</h2>
               <div class="chart-interval chart-interval__profit">
-                <button class="tab tab-border-radius-around-left">
-                  {{ .Params.chart_intervals.one_hour }}
-                </button>
-                <button class="tab tab-border-radius-around-right active">
-                  {{ .Params.chart_intervals.twenty_four_hours
-                  }}
-                </button>
+                <button class="tab tab-border-radius-around-left hourButton ">{{ .Params.chart_intervals.one_day
+                  }}</button>
+                <button class="tab tab-border-radius-around-right active dayButton">{{
+                  .Params.chart_intervals.week }}</button>
               </div>
             </div>
             <div class="chart chart__chart-container">
@@ -220,13 +216,10 @@
                 {{ .Params.chart_headers.workers_activity }}
               </h2>
               <div class="chart-interval chart-interval__workers-activity">
-                <button class="tab tab-border-radius-around-left">
-                  {{ .Params.chart_intervals.one_hour }}
-                </button>
-                <button class="tab tab-border-radius-around-right active">
-                  {{ .Params.chart_intervals.twenty_four_hours
-                  }}
-                </button>
+                <button class="tab tab-border-radius-around-left hourButton ">{{ .Params.chart_intervals.one_day
+                  }}</button>
+                <button class="tab tab-border-radius-around-right active dayButton">{{
+                  .Params.chart_intervals.week }}</button>
               </div>
             </div>
             <div class="chart chart__chart-container">

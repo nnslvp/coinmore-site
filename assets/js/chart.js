@@ -109,13 +109,15 @@ function getChartOptions(newOptions) {
 			},
 			scales: {
 				y: {
-					beginAtZero: true,
-					min: 0,
-					max: 40,
+					beginAtZero: false,	
 					ticks: {
-						stepSize: 10,
 						// callback: function (value, index, values) {
-						// 	return value / 10000;
+						// 	   if (value >= 1000000) {
+						// 				return (value / 1000000).toFixed(1) + 'M';
+						// 			} else if (value >= 1000) {
+						// 				return (value / 1000).toFixed(1) + 'k';
+						// 			}
+						// 			return value.toString();
 						// },
 					},
 					grid: {

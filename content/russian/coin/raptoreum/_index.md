@@ -51,6 +51,6 @@ chart_headers:
   profit: 'Прибыль на ГГц'
   workers_activity: 'Активность рабочих'
 chart_intervals:
-  one_hour: '1 час'
-  twenty_four_hours: '24 часа'
+  one_day: 'День'
+  week: 'Неделя'
 ---
