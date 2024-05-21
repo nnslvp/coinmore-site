@@ -100,7 +100,6 @@ function generateTable(calculatorForm) {
 }
 
 
-
 CALCULATOR_FORM.addEventListener('submit', function (event) {
 	event.preventDefault();
   document.querySelectorAll('input').forEach(input => {

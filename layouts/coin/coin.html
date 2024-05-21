@@ -91,9 +91,22 @@
               {{.Params.quick_start_subtitle}}
             </p>
             <search class="section-start__search">
-              <form id="wallet-form" action="/coin/{{.Params.coin_name}}/statistics/" class="section-start__search-form">
-                <input required  id="wallet-input" class="input" name="search" placeholder="Wallet">
-                <button class="btn btn-filled-primary">
+              <form
+                action="/coin/{{.Params.coin_name}}/statistics/"
+                id="wallet-form" 
+                class="section-start__search-form">
+                <div class="input-container">
+                  <input type="text"
+                    class="input" 
+                    id="wallet-input" 
+                    name="wallet" 
+                    pattern="^[a-zA-Z0-9]+$"
+                    placeholder="Wallet"
+                    title="This field is required." 
+                    required>
+                  <span class="error-message"></span>
+                </div>
+                <button class="btn btn-filled-primary submit-btn">
                   {{.Params.button_view_statistic_text }}
                 </button>
               </form>

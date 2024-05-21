@@ -82,13 +82,13 @@ function drawData(coin, wallet) {
 
 	const currencyInfoPromise = fetchCurrencyInfo();
 	const payouts1hPromise = fetchMyPayouts(coin, wallet);
-	const payouts24hPromise = fetchMyPayouts(coin, wallet, 86400);
-	const payoutsWeekPromise = fetchMyPayouts(coin, wallet, 640800);
+	const payouts24hPromise = fetchMyPayouts(coin, wallet, DAY);
+	const payoutsWeekPromise = fetchMyPayouts(coin, wallet, WEEK);
 	const hashrate1hPromise = fetchMyHashrate(coin, wallet);
-	const hashrate24hPromise = fetchMyHashrate(coin, wallet, 86400);
+	const hashrate24hPromise = fetchMyHashrate(coin, wallet, DAY);
 	const balancePromise = fetchMyBalance(coin, wallet);
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
-	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, 86400);
+	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, DAY);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 
 	let currencyInfo = null;
@@ -166,6 +166,7 @@ function drawData(coin, wallet) {
 					currencyInfo.rate.value,
 					'my_payouts_1h_usd'
 				);
+
 				showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
 				showMyPayoutsUSD(
 					payoutsAmount24h,
