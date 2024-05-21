@@ -4,84 +4,23 @@ const CHART_WORKERS = document.querySelector('#workersActivityChart');
 const WALLET_FORM = document.querySelector('#wallet-form');
 const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
 
-const [tabWorkersHour, tabWorkersDay] = getTabs(
+const [tabWorkersDay, tabWorkersWeek] = getTabs(
 	'.chart-interval__workers-activity'
 );
-const [tabProfitHour, tabProfitDay] = getTabs('.chart-interval__profit');
+const [tabProfitDay, tabProfitWeek] = getTabs('.chart-interval__profit');
 const [tabPoolHashrateDay, tabPoolHashrateWeek] = getTabs(
 	'.chart-interval__pool-hashrate'
 );
 
-// const poolHashRateChart = initializeChart(
-// 	CHART_POOL_HASH_RATE,
-// 	getChartOptions()
-// );
-
-const profitChart = initializeChart(
-	CHART_PROFIT,
-	getChartOptions({
-		options: {
-			plugins: {
-				title: {
-					text: 'ALPH',
-				},
-			},
-		},
-	})
-);
-
-console.log(
-	getChartOptions({
-		options: {
-			plugins: {
-				title: {
-					text: 'ALPH',
-				},
-			},
-		},
-	})
-);
-
-const workersActivityChart = initializeChart(
-	CHART_WORKERS,
-	getChartOptions({
-		options: {
-			plugins: {
-				title: {
-					text: 'Workers',
-				},
-			},
-		},
-	})
-);
 
 activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
 activateTabsOnClick('.chart-interval__pool-hashrate');
 
-tabWorkersHour.addEventListener('click', function (e) {
-	updateChartData(workersActivityChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
-});
-
-tabWorkersDay.addEventListener('click', function (e) {
-	updateChartData(workersActivityChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
-});
-
-tabProfitHour.addEventListener('click', function (e) {
-	updateChartData(profitChart, [25, 26, 27, 30, 29, 28, 30, 32, 31]);
-});
-
-tabProfitDay.addEventListener('click', function (e) {
-	updateChartData(profitChart, [22, 23, 24, 26, 25, 25, 27, 28, 26]);
-});
 
 showPings();
 
 function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
-  console.log('====================================');
-  console.log(CHART_POOL_HASH_RATE);
-  console.log('====================================');
-
 	const hashRateChart = initializeChart(
 		CHART_POOL_HASH_RATE,
 		getChartOptions(),
@@ -89,15 +28,70 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 		labelsWeek
 	);
 
-	tabPoolHashrateDay.addEventListener('click', function (e) {
+	tabPoolHashrateDay.addEventListener('click', e => {
 		updateChartData(hashRateChart, dataDay, labelsDay);
 	});
 
-	tabPoolHashrateWeek.addEventListener('click', function (e) {
+	tabPoolHashrateWeek.addEventListener('click', e => {
 		updateChartData(hashRateChart, dataWeek, labelsWeek);
 	});
 }
 
+function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay }) {
+	const profitChart = initializeChart(
+		CHART_PROFIT,
+		getChartOptions({
+			options: {
+				plugins: {
+					title: {
+						text: 'ALPH',
+					},
+				},
+			},
+		}),
+		dataWeek,
+		labelsWeek
+	);
+
+	tabProfitDay.addEventListener('click', e => {
+		updateChartData(profitChart, dataDay, labelsDay);
+	});
+
+	tabProfitWeek.addEventListener('click', e => {
+		updateChartData(profitChart, dataWeek, labelsWeek);
+	});
+}
+
+function showChartWorkersActivity({
+	labelsWeek,
+	dataWeek,
+	labelsDay,
+	dataDay,
+}) {
+	const workersActivityChart = initializeChart(
+		CHART_WORKERS,
+		getChartOptions({
+			options: {
+				plugins: {
+					title: {
+						text: 'Workers',
+					},
+				},
+			},
+		}),
+		dataWeek,
+		labelsWeek
+	);
+
+
+	tabWorkersDay.addEventListener('click', e => {
+		updateChartData(workersActivityChart, dataDay, labelsDay);
+	});
+
+	tabWorkersWeek.addEventListener('click', e => {
+		updateChartData(workersActivityChart, dataWeek, labelsWeek);
+	});
+}
 
 function init(coin) {
 	fetchPoolProfit(coin).then(({ profit, coin }) => {
@@ -115,12 +109,10 @@ function init(coin) {
 		showMinersOnline(workers_online);
 	});
 
+	const fetchHistoryWeek = fetchHistoryPool(coin);
+	const fetchHistoryDay = fetchHistoryPool(coin, PERIOD_DAY, 'hour');
 
-const fetchHistoryWeek = fetchHistoryPool(coin);
-const fetchHistoryDay = fetchHistoryPool(coin, 86400);
-
-Promise.allSettled([fetchHistoryWeek, fetchHistoryDay])
-	.then(results => {
+	Promise.allSettled([fetchHistoryWeek, fetchHistoryDay]).then(results => {
 		const [poolHistoryWeekResult, poolHistoryDayResult] = results;
 
 		if (
@@ -130,28 +122,47 @@ Promise.allSettled([fetchHistoryWeek, fetchHistoryDay])
 			const poolHistoryWeek = poolHistoryWeekResult.value;
 			const poolHistoryDay = poolHistoryDayResult.value;
 
-			console.log('day',poolHistoryDay,'week', poolHistoryWeek);
+			console.log('day', poolHistoryDay, 'week', poolHistoryWeek);
 
 			const labelsWeek = poolHistoryWeek.pool_history.map(item =>
-				item.day.slice(0, 10)
-			);
-
-			const dataWeek = poolHistoryWeek.pool_history.map(item =>
-				parseFloat(item.sum_difficulty)
+				formatDate(item.day)
 			);
 
 			const labelsDay = poolHistoryDay.pool_history.map(item =>
-				item.day.slice(0, 10)
+				formatDate(item.hour)
 			);
 
-			const dataDay = poolHistoryDay.pool_history.map(item =>
+			const dataPoolHashrateWeek = poolHistoryWeek.pool_history.map(item => {
+				return parseFloat(item.sum_difficulty);
+			});
+
+			const dataPoolHashrateDay = poolHistoryDay.pool_history.map(item =>
 				parseFloat(item.sum_difficulty)
 			);
 
-			showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
-		} 
-	})
+			const dataWorkersActivityDay = poolHistoryDay.pool_history.map(
+				item => item.unique_wallet
+			);
 
+			const dataWorkersActivityWeek = poolHistoryWeek.pool_history.map(
+				item => item.unique_wallet
+			);
+
+			showChartPoolHashrate({
+				labelsWeek,
+				dataWeek: dataPoolHashrateWeek,
+				labelsDay,
+				dataDay: dataPoolHashrateDay,
+			});
+
+			showChartWorkersActivity({
+				labelsWeek,
+				dataWeek: dataWorkersActivityWeek,
+				labelsDay,
+				dataDay: dataWorkersActivityDay,
+			});
+		}
+	});
 
 	fetchPoolBlocks(coin, 86400).then(({ count, last_block_at }) => {
 		showPool24hBlocks(count);

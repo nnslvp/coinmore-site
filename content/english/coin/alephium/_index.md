@@ -50,6 +50,6 @@ chart_headers:
   profit: 'Profit per GH'
   workers_activity: 'Workers activity'
 chart_intervals:
-  one_hour: '1 hour'
-  twenty_four_hours: '24 hours'
+  one_day: 'Day'
+  week: 'Week'
 ---
