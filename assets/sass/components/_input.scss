@@ -5,11 +5,9 @@
 	padding: 0.9063rem 1.25rem 0.9063rem 1.25rem;
 	color: var(--color-text-body);
 	line-height: var(--line-height-21);
-  &:invalid {
-		border-color: red;
-	}
-  &:invalid ~ .error-message {
-		visibility: visible;
+  transition: border-color 0.3s ease-in;
+  &:has( ~ .error-message.show) {
+	border-color: red;
 	}
 	&::placeholder {
 		color: var(--color-text-light-grey);
@@ -18,13 +16,38 @@
 		border: 0.0625rem solid rgb(96, 108, 118);
 	}
 	&:focus {
-		border: 0.0625rem solid rgb(155, 77, 202);
+		border: 0.0625rem solid rgb(148, 28, 224);
 		box-shadow: 0rem 0rem 0.25rem 0.25rem var(--light-blue-semi-transparent);
 	}
 }
 
-.error-message{
-  visibility: hidden;
-  padding-left: 1.5rem;
-  color:red ;
+#wallet-input{
+&:focus{
+  border-color: red;
+}
+
+&:user-invalid ~ .error-message{
+visibility: visible;
+opacity: 1;
+}
+}
+
+.error-message {
+	visibility: hidden;
+  opacity: 0;
+	padding-left: 1.5rem;
+	color: red;
+  transition: opacity 0.3s ease-in;
+	&.show {
+		visibility: visible;
+    opacity: 1;	}
+.error-message {
+	visibility: hidden;
+  opacity: 0;
+	padding-left: 1.5rem;
+	color: red;
+  transition: opacity 0.3s ease-in;
+	&.show {
+		visibility: visible;
+      opacity: 1;	}
 }
