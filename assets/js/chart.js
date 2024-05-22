@@ -166,7 +166,8 @@ function getChartOptions(newOptions) {
 							// console.log('Tooltip label item:', tooltipItem);
 							const label = tooltipItem.dataset.label || '';
 							const value = tooltipItem.raw;
-							return `${label}: ${Math.round(value)} EH/s`;
+               const titleText = this.chart.options.plugins.title.text;
+							return `${label}: ${Math.round(value)} ${titleText}`;
 						},
 					},
 				},

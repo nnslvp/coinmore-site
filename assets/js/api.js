@@ -30,6 +30,10 @@ function fetchHistoryPool(
 	);
 }
 
+function fetchHistoryProfit(coin = 'alephium', period = PERIOD_DAY) {
+	return statsApiCall(`/profit_history?coin=${coin}&period=${period}`);
+}
+
 function fetchHistoryWallet(coin = 'alephium', wallet, period = PERIOD_WEEK) {
 	return statsApiCall(
 		`/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`
