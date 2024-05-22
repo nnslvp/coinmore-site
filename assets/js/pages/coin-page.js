@@ -104,44 +104,39 @@ function showChartWorkersActivity({
 	});
 }
 
-let poolHistoryWeek = [];
-let poolHistoryDay = [];
-let profitHistoryWeek = [];
-let profitHistoryDay = [];
-
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-		const labelsWeek = poolHistoryWeek.map(item => formatDate(item.day));
-		const labelsDay = poolHistoryDay.map(item => formatDate(item.hour));
-		const dataPoolHashrateWeek = poolHistoryWeek.map(item =>
-			parseFloat(item.sum_difficulty)
-		);
-		const dataPoolHashrateDay = poolHistoryDay.map(item =>
-			parseFloat(item.sum_difficulty)
-		);
-		const dataWorkersActivityDay = poolHistoryDay.map(
-			item => item.unique_wallets
-		);
-		const dataWorkersActivityWeek = poolHistoryWeek.map(
-			item => item.unique_wallets
-		);
+	const labelsWeek = poolHistoryWeek.map(item => formatDate(item.day));
+	const labelsDay = poolHistoryDay.map(item => formatDate(item.hour));
+	const dataPoolHashrateWeek = poolHistoryWeek.map(item =>
+		parseFloat(item.sum_difficulty)
+	);
+	const dataPoolHashrateDay = poolHistoryDay.map(item =>
+		parseFloat(item.sum_difficulty)
+	);
+	const dataWorkersActivityDay = poolHistoryDay.map(
+		item => item.unique_wallets
+	);
+	const dataWorkersActivityWeek = poolHistoryWeek.map(
+		item => item.unique_wallets
+	);
 
-		showChartPoolHashrate({
-			labelsWeek,
-			dataWeek: dataPoolHashrateWeek,
-			labelsDay,
-			dataDay: dataPoolHashrateDay,
-		});
+	showChartPoolHashrate({
+		labelsWeek,
+		dataWeek: dataPoolHashrateWeek,
+		labelsDay,
+		dataDay: dataPoolHashrateDay,
+	});
 
-		showChartWorkersActivity({
-			labelsWeek,
-			dataWeek: dataWorkersActivityWeek,
-			labelsDay,
-			dataDay: dataWorkersActivityDay,
-		});
+	showChartWorkersActivity({
+		labelsWeek,
+		dataWeek: dataWorkersActivityWeek,
+		labelsDay,
+		dataDay: dataWorkersActivityDay,
+	});
 }
 
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
-  console.log(profitHistoryWeek);
+	console.log(profitHistoryWeek);
 	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.day));
 	const labelsDay = profitHistoryDay.map(item => formatDate(item.hour));
 	const dataDay = profitHistoryDay.map(item =>
@@ -159,6 +154,11 @@ function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
 	});
 }
 
+let poolHistoryWeek = [];
+let poolHistoryDay = [];
+let profitHistoryWeek = [];
+let profitHistoryDay = [];
+
 function init(coin) {
 	const fetchHistoryWeekPromise = fetchHistoryPool(coin);
 	const fetchHistoryDayPromise = fetchHistoryPool(coin, PERIOD_DAY, 'hour');
@@ -170,7 +170,7 @@ function init(coin) {
 	const fetchPoolBlocksPromise = fetchPoolBlocks(coin, PERIOD_DAY);
 	const fetchCurrencyInfoPromise = fetchCurrencyInfo(coin);
 
-	fetchPoolProfitPromise.then(({ profit}) => {
+	fetchPoolProfitPromise.then(({ profit }) => {
 		showPoolProfit(profit);
 		fetchCurrencyInfoPromise.then(({ rate: { value } }) =>
 			showPoolProfitUSD(profit, value)
@@ -196,7 +196,7 @@ function init(coin) {
 			return fetchHistoryDayPromise;
 		})
 		.then(historyDay => (poolHistoryDay = historyDay.pool_history))
-		.then(() => drawPoolHistoryData(poolHistoryDay,poolHistoryWeek))
+		.then(() => drawPoolHistoryData(poolHistoryDay, poolHistoryWeek))
 		.catch(err => {
 			console.error('Error fetching poolHistory:', err);
 		});
@@ -204,15 +204,12 @@ function init(coin) {
 	fetchHistoryProfitWeekPromise
 		.then(historyWeek => {
 			profitHistoryWeek = historyWeek.profit_history;
-       console.log('====================================');
-				console.log(profitHistoryWeek);
-				console.log('====================================');
 			return fetchHistoryProfitDayPromise;
 		})
 		.then(historyDay => {
 			profitHistoryDay = historyDay.profit_history;
 		})
-		.then(() => drawProfitHistoryData(profitHistoryWeek,profitHistoryDay))
+		.then(() => drawProfitHistoryData(profitHistoryWeek, profitHistoryDay))
 		.catch(err => {
 			console.error('Error fetching profitHistory:', err);
 		});
