@@ -72,21 +72,11 @@ function getChartOptions(newOptions) {
 	const CHART_BASE_OPTIONS = {
 		type: 'line',
 		data: {
-			labels: [
-				'Value 1',
-				'Value 2',
-				'Value 3',
-				'Value 4',
-				'Value 5',
-				'Value 6',
-				'Value 7',
-				'Value 8',
-				'Value 9',
-			],
+			labels: [],
 			datasets: [
 				{
 					label: 'Hashrate',
-					data: [30, 33, 29, 20, 28, 17, 18, 29, 30],
+					data: [],
 					backgroundColor: 'rgba(155, 77, 202, 0.24)',
 					borderColor: '#9B4DCA',
 					borderWidth: 2,
@@ -111,14 +101,6 @@ function getChartOptions(newOptions) {
 				y: {
 					beginAtZero: false,	
 					ticks: {
-						// callback: function (value, index, values) {
-						// 	   if (value >= 1000000) {
-						// 				return (value / 1000000).toFixed(1) + 'M';
-						// 			} else if (value >= 1000) {
-						// 				return (value / 1000).toFixed(1) + 'k';
-						// 			}
-						// 			return value.toString();
-						// },
 					},
 					grid: {
 						display: true,
