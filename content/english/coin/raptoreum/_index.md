@@ -48,7 +48,7 @@ table_body:
 chart_headers:
   hashrate: 'Pool hashrate'
   profit: 'Profit per GH'
-  workers_activity: 'Workers activity'
+  workers_activity: 'Wallets activity'
 chart_intervals:
   one_day: 'Day'
   week: 'Week'

@@ -49,7 +49,7 @@ table_body:
 chart_headers:
   hashrate: 'Хешрейт пула'
   profit: 'Прибыль на ГГц'
-  workers_activity: 'Активность рабочих'
+  workers_activity: 'Активные кошельки'
 chart_intervals:
   one_day: 'День'
   week: 'Неделя'

@@ -3,14 +3,9 @@ const CHART_PROFIT = document.querySelector('#profitChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
 const WALLET_FORM = document.querySelector('#wallet-form');
 const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
-
-const [tabWorkersDay, tabWorkersWeek] = getTabs(
-	'.chart-interval__workers-activity'
-);
-const [tabProfitDay, tabProfitWeek] = getTabs('.chart-interval__profit');
-const [tabPoolHashrateDay, tabPoolHashrateWeek] = getTabs(
-	'.chart-interval__pool-hashrate'
-);
+const [TAB_WORKERS_DAY, TAB_WORKERS_WEEK] = getTabs('.chart-interval__workers-activity');
+const [TAB_PROFIT_DAY, TAB_PROFIT_WEEK] = getTabs('.chart-interval__profit');
+const [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs('.chart-interval__pool-hashrate');
 
 activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
@@ -26,11 +21,11 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 		labelsWeek
 	);
 
-	tabPoolHashrateDay.addEventListener('click', e => {
+	TAB_POOL_HASHRATE_DAY.addEventListener('click', e => {
 		updateChartData(hashRateChart, dataDay, labelsDay);
 	});
 
-	tabPoolHashrateWeek.addEventListener('click', e => {
+	TAB_POOL_HASHRATE_WEEK.addEventListener('click', e => {
 		updateChartData(hashRateChart, dataWeek, labelsWeek);
 	});
 }
@@ -58,11 +53,11 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 		labelsWeek
 	);
 
-	tabProfitDay.addEventListener('click', e => {
+	TAB_PROFIT_DAY.addEventListener('click', e => {
 		updateChartData(profitChart, dataDay, labelsDay);
 	});
 
-	tabProfitWeek.addEventListener('click', e => {
+	TAB_PROFIT_WEEK.addEventListener('click', e => {
 		updateChartData(profitChart, dataWeek, labelsWeek);
 	});
 }
@@ -95,11 +90,11 @@ function showChartWorkersActivity({
 		labelsWeek
 	);
 
-	tabWorkersDay.addEventListener('click', e => {
+	TAB_WORKERS_DAY.addEventListener('click', e => {
 		updateChartData(workersActivityChart, dataDay, labelsDay);
 	});
 
-	tabWorkersWeek.addEventListener('click', e => {
+	TAB_WORKERS_WEEK.addEventListener('click', e => {
 		updateChartData(workersActivityChart, dataWeek, labelsWeek);
 	});
 }
