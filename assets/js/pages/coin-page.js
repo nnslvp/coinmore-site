@@ -154,7 +154,6 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 }
 
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
-	console.log(profitHistoryWeek);
 	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
 	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
 	const dataDay = profitHistoryDay.map(item =>
