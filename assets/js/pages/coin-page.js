@@ -206,8 +206,8 @@ function init(coin) {
 		showPoolHashrate(hashrate.hashrate);
 	});
 
-	fetchMinersOnlinePromise.then(({ workers_online }) => {
-		showMinersOnline(workers_online);
+	fetchMinersOnlinePromise.then(({ wallets_online }) => {
+		showMinersOnline(wallets_online);
 	});
 
 	fetchPoolBlocksPromise.then(({ count, last_block_at }) => {
