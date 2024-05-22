@@ -107,4 +107,3 @@ function formatDate(dateString) {
 	const year = String(date.getUTCFullYear()).slice(-2);
 	return `${day}.${month}.${year}`;
 }
-	

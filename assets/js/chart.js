@@ -147,7 +147,7 @@ function getChartOptions(newOptions) {
 							const label = tooltipItem.dataset.label || '';
 							const value = tooltipItem.raw;
               const titleText = this.chart.options.plugins.title.text;
-							return `${label}: ${Math.round(value)} ${titleText}`;
+							return `${label}: ${value} ${titleText}`;
 						},
 					},
 				},
