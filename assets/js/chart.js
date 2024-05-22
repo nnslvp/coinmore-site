@@ -72,21 +72,11 @@ function getChartOptions(newOptions) {
 	const CHART_BASE_OPTIONS = {
 		type: 'line',
 		data: {
-			labels: [
-				'Value 1',
-				'Value 2',
-				'Value 3',
-				'Value 4',
-				'Value 5',
-				'Value 6',
-				'Value 7',
-				'Value 8',
-				'Value 9',
-			],
+			labels: [],
 			datasets: [
 				{
 					label: 'Hashrate',
-					data: [30, 33, 29, 20, 28, 17, 18, 29, 30],
+					data: [],
 					backgroundColor: 'rgba(155, 77, 202, 0.24)',
 					borderColor: '#9B4DCA',
 					borderWidth: 2,
@@ -109,14 +99,8 @@ function getChartOptions(newOptions) {
 			},
 			scales: {
 				y: {
-					beginAtZero: true,
-					min: 0,
-					max: 40,
+					beginAtZero: false,	
 					ticks: {
-						stepSize: 10,
-						// callback: function (value, index, values) {
-						// 	return value / 10000;
-						// },
 					},
 					grid: {
 						display: true,
@@ -155,16 +139,15 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-							// console.log(tooltipItems);
 							const date = tooltipItems[0].label.split(' ')[0];
 							const time = tooltipItems[0].label.split(' ')[1];
 							return `${date}  11:11:11`;
 						},
 						label: function (tooltipItem) {
-							// console.log('Tooltip label item:', tooltipItem);
 							const label = tooltipItem.dataset.label || '';
 							const value = tooltipItem.raw;
-							return `${label}: ${Math.round(value)} EH/s`;
+              const titleText = this.chart.options.plugins.title.text;
+							return `${label}: ${Math.round(value)} ${titleText}`;
 						},
 					},
 				},
