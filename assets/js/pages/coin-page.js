@@ -121,10 +121,10 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 	const labelsWeek = poolHistoryWeek.map(item => formatDate(item.bucket));
 	const labelsDay = poolHistoryDay.map(item => formatDate(item.bucket));
 	const dataPoolHashrateWeek = poolHistoryWeek.map(
-		item => shortenHm(item.hashrate).hashrate
+		item => shortenHm(item.hashrate, 2).hashrate
 	);
 	const dataPoolHashrateDay = poolHistoryDay.map(
-		item => shortenHm(item.hashrate).hashrate
+		item => shortenHm(item.hashrate, 2).hashrate
 	);
 
 	const dataWorkersActivityDay = poolHistoryDay.map(
