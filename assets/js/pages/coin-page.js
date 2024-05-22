@@ -17,10 +17,24 @@ activateTabsOnClick('.chart-interval__pool-hashrate');
 
 showPings();
 
-function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
+function showChartPoolHashrate({
+	labelsWeek,
+	dataWeek,
+	labelsDay,
+	dataDay,
+	units,
+}) {
 	const hashRateChart = initializeChart(
 		CHART_POOL_HASH_RATE,
-		getChartOptions(),
+		getChartOptions({
+			options: {
+				plugins: {
+					title: {
+						text: units,
+					},
+				},
+			},
+		}),
 		dataWeek,
 		labelsWeek
 	);
@@ -104,26 +118,31 @@ function showChartWorkersActivity({
 }
 
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-	const labelsWeek = poolHistoryWeek.map(item => formatDate(item.day));
-	const labelsDay = poolHistoryDay.map(item => formatDate(item.hour));
-	const dataPoolHashrateWeek = poolHistoryWeek.map(item =>
-		parseFloat(item.sum_difficulty)
+	const labelsWeek = poolHistoryWeek.map(item => formatDate(item.bucket));
+	const labelsDay = poolHistoryDay.map(item => formatDate(item.bucket));
+	const dataPoolHashrateWeek = poolHistoryWeek.map(
+		item => shortenHm(item.hashrate).hashrate
 	);
-	const dataPoolHashrateDay = poolHistoryDay.map(item =>
-		parseFloat(item.sum_difficulty)
+	const dataPoolHashrateDay = poolHistoryDay.map(
+		item => shortenHm(item.hashrate).hashrate
 	);
+
 	const dataWorkersActivityDay = poolHistoryDay.map(
 		item => item.unique_wallets
 	);
+
 	const dataWorkersActivityWeek = poolHistoryWeek.map(
 		item => item.unique_wallets
 	);
+
+	const { units } = shortenHm(poolHistoryWeek[1].hashrate);
 
 	showChartPoolHashrate({
 		labelsWeek,
 		dataWeek: dataPoolHashrateWeek,
 		labelsDay,
 		dataDay: dataPoolHashrateDay,
+		units,
 	});
 
 	showChartWorkersActivity({
