@@ -3,9 +3,13 @@ const CHART_PROFIT = document.querySelector('#profitChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
 const WALLET_FORM = document.querySelector('#wallet-form');
 const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
-const [TAB_WORKERS_DAY, TAB_WORKERS_WEEK] = getTabs('.chart-interval__workers-activity');
+const [TAB_WORKERS_DAY, TAB_WORKERS_WEEK] = getTabs(
+	'.chart-interval__workers-activity'
+);
 const [TAB_PROFIT_DAY, TAB_PROFIT_WEEK] = getTabs('.chart-interval__profit');
-const [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs('.chart-interval__pool-hashrate');
+const [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs(
+	'.chart-interval__pool-hashrate'
+);
 
 activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
@@ -132,8 +136,8 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
 	console.log(profitHistoryWeek);
-	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.day));
-	const labelsDay = profitHistoryDay.map(item => formatDate(item.hour));
+	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
+	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
 	const dataDay = profitHistoryDay.map(item =>
 		parseFloat(item.profit).toFixed(4)
 	);
@@ -156,9 +160,17 @@ let profitHistoryDay = [];
 
 function init(coin) {
 	const fetchHistoryWeekPromise = fetchHistoryPool(coin);
-	const fetchHistoryDayPromise = fetchHistoryPool(coin, PERIOD_DAY, 'hour');
+	const fetchHistoryDayPromise = fetchHistoryPool(
+		coin,
+		PERIOD_DAY,
+		GROUP_BY.hour
+	);
 	const fetchHistoryProfitDayPromise = fetchHistoryProfit(coin);
-	const fetchHistoryProfitWeekPromise = fetchHistoryProfit(coin, PERIOD_WEEK);
+	const fetchHistoryProfitWeekPromise = fetchHistoryProfit(
+		coin,
+		PERIOD_WEEK,
+		GROUP_BY.day
+	);
 	const fetchPoolProfitPromise = fetchPoolProfit(coin);
 	const fetchPoolHashRatePromise = fetchPoolHashRate(coin);
 	const fetchMinersOnlinePromise = fetchMinersOnline(coin);

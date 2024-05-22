@@ -139,16 +139,14 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-							// console.log(tooltipItems);
 							const date = tooltipItems[0].label.split(' ')[0];
 							const time = tooltipItems[0].label.split(' ')[1];
 							return `${date}  11:11:11`;
 						},
 						label: function (tooltipItem) {
-							// console.log('Tooltip label item:', tooltipItem);
 							const label = tooltipItem.dataset.label || '';
 							const value = tooltipItem.raw;
-               const titleText = this.chart.options.plugins.title.text;
+              const titleText = this.chart.options.plugins.title.text;
 							return `${label}: ${Math.round(value)} ${titleText}`;
 						},
 					},

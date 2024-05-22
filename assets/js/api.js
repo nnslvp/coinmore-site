@@ -2,6 +2,10 @@ const statsApiUrl = 'https://api.coinmore.io';
 const PERIOD_HOUR = 3600;
 const PERIOD_DAY = 86400;
 const PERIOD_WEEK = 604800;
+const GROUP_BY = {
+  hour:'hour',
+  day:'day',
+}
 
 function statsApiCall(action) {
 	return fetch(`${statsApiUrl}${action}`).then(response => response.json());
@@ -30,8 +34,10 @@ function fetchHistoryPool(
 	);
 }
 
-function fetchHistoryProfit(coin = 'alephium', period = PERIOD_DAY) {
-	return statsApiCall(`/profit_history?coin=${coin}&period=${period}`);
+function fetchHistoryProfit(coin = 'alephium', period = PERIOD_DAY, groupBy = 'hour') {
+	return statsApiCall(
+		`/profit_history?coin=${coin}&period=${period}&group_by=${groupBy}`
+	);
 }
 
 function fetchHistoryWallet(coin = 'alephium', wallet, period = PERIOD_WEEK) {
