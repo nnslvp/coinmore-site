@@ -74,14 +74,14 @@ function showChartWorkersActivity({
 			data: {
 				datasets: [
 					{
-						label: 'Workers',
+						label: 'Wallets',
 					},
 				],
 			},
 			options: {
 				plugins: {
 					title: {
-						text: 'Workers',
+						text: 'Wallets',
 					},
 				},
 			},
