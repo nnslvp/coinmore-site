@@ -1,7 +1,7 @@
 <article id="{{.Params.coin_name }}-card" class="card-coin">
   <header class="card-coin-header">
     <div class="card-coin__info">
-      <img class="card-coin__info-img" src="/icons/BTC.svg" alt="coin">
+      <img class="card-coin__info-img" src="{{.Params.coin_logo}}" alt="coin">
       <div class="card-coin__info-text">
         <strong class="card-coin__info-name">{{ title .Params.coin_name}}</strong>
         <span class="card-coin__info-symbol">{{ .Params.coin_symbol }}</span>

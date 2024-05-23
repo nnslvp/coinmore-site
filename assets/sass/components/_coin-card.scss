@@ -19,6 +19,12 @@
 	gap: 0.875rem;
 }
 
+.card-coin__info-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
 .card-coin__info-text {
 	display: flex;
 	flex-direction: column;
