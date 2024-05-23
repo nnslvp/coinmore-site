@@ -196,7 +196,7 @@ function init(coin) {
 	const fetchCurrencyInfoPromise = fetchCurrencyInfo(coin);
 
 	fetchPoolProfitPromise.then(({ profit }) => {
-		showPoolProfit(profit);
+		showPoolProfit(profit, 'pool_profit', COIN_SYMBOl);
 		fetchCurrencyInfoPromise.then(({ rate: { value } }) =>
 			showPoolProfitUSD(profit, value)
 		);

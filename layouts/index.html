@@ -70,16 +70,17 @@
                 {{ .Params.mining_calculator_text }}
               </a>
             </header>
-            {{ $coinNames := slice }}
+            {{ $coins := slice }}
             <ul class="coins-list">
               {{ range where .Site.Pages "Type" "coin" }}
               {{ if not .Params.headless }}
-              {{ $coinNames = $coinNames | append .Params.coin_name }}
+              {{ $coins = $coins | append (dict "name" .Params.coin_name "symbol" .Params.coin_symbol) }}
               <li class="coins-list__item">
                 {{ partial "coin-card.html" . }}
               </li>
               {{ end }}
               {{ end }}
+            </ul>
             </ul>
           </div>
         </div>
@@ -88,7 +89,7 @@
     {{partial "footer.html" .}}
   </div>
     <script>
-      const COINS = {{ $coinNames }}
+          const COINS = {{ $coins }};
     </script>
   {{ $homePage := resources.Get "js/pages/home-page.js" }}
   {{ $showDataFunctions:= resources.Get "js/show-data-functions.js" }}

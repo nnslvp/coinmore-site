@@ -6,6 +6,10 @@ const GROUP_BY = {
 	hour: 'hour',
 	day: 'day',
 };
+const KIND = {
+	minPayout: 'min_payout',
+	fee: 'fee',
+};
 
 function statsApiCall(action) {
 	return fetch(`${statsApiUrl}${action}`).then(response => response.json());
@@ -22,6 +26,9 @@ function statsApiPost(action) {
 
 function fetchCurrencyInfo(coin) {
 	return statsApiCall(`/rate?coin=${coin}`);
+}
+function fetchPoolValue(coin, kind) {
+	return statsApiCall(`/pool_value?coin=${coin}&kind=${kind}`);
 }
 
 function fetchHistoryPool(
