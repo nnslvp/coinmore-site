@@ -42,6 +42,9 @@ function showPoolMinPayoutUSD(rate, minPayout, id = 'pool_profit_usd') {
 function showPoolMinPayout(minPayout, id = 'pool_min_payout', symbol) {
 	document.getElementById(id).textContent = `${minPayout}  ${symbol}`;
 }
+function showPoolFee(fee, id = 'pool_fee') {
+	document.getElementById(id).textContent = `${fee}%`;
+}
 
 function showNetworkHashrate(hashrate, id = 'network_hashrate') {
 	const { hashrate: shortHashrate, units } = shortenHm(hashrate, 2);

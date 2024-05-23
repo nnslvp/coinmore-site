@@ -4,7 +4,8 @@ function init(coin, symbol) {
 	const poolHashRatePromise = fetchPoolHashRate(coin);
 	const networkHashRatePromise = fetchNetworkHashRate(coin);
 	const minersOnlinePromise = fetchMinersOnline(coin);
-	const poolValuePromise = fetchPoolValue(coin, KIND.minPayout);
+	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
+	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
 	const COIN_SYMBOL = symbol;
 
 	currencyInfoPromise
@@ -20,7 +21,7 @@ function init(coin, symbol) {
 			return rate;
 		})
 		.then(rate => {
-			poolValuePromise.then(({ value }) => {
+			poolValueMinPayoutsPromise.then(({ value }) => {
 				showPoolMinPayout(value, `pool_min_payout_${coin}`, COIN_SYMBOL);
 				showPoolMinPayoutUSD(rate, value, `pool_min_payout_usd_${coin}`);
 			});
@@ -36,6 +37,10 @@ function init(coin, symbol) {
 
 	minersOnlinePromise.then(({ workers_online }) => {
 		showMinersOnline(workers_online, `miners_${coin}`);
+	});
+
+  poolValueFeePromise.then(({ value }) => {
+		showPoolFee(value, `pool_fee_${coin}`);
 	});
 }
 
