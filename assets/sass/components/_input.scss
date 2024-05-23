@@ -22,14 +22,14 @@
 }
 
 #wallet-input{
-&:focus{
-  border-color: red;
-}
+// &:user-invalid {
+//   border-color: red;
+// }
 
-&:user-invalid ~ .error-message{
-visibility: visible;
-opacity: 1;
-}
+// &:user-invalid ~ .error-message{
+// visibility: visible;
+// opacity: 1;
+// }
 }
 
 .error-message {

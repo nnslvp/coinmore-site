@@ -15,7 +15,12 @@ activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
 activateTabsOnClick('.chart-interval__pool-hashrate');
 
-showPings();
+
+WALLET_INPUT.addEventListener('invalid', (e) => {
+	e.preventDefault();
+  const errorElement = e.currentTarget.nextElementSibling;
+  errorElement.classList.add('show');
+});
 
 function showChartPoolHashrate({
 	labelsWeek,
