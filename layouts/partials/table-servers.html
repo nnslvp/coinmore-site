@@ -1,10 +1,10 @@
 <table class="table table-servers">
   <thead>
     <tr>
-      <th>{{ .Params.table_headers.region }}</th>
-      <th>{{ .Params.table_headers.address }}</th>
-      <th>{{ .Params.table_headers.port }}</th>
-      <th>{{ .Params.table_headers.ssl_port }}</th>
+      <th>{{ title .Params.table_headers.region }}</th>
+      <th>{{ title .Params.table_headers.address }}</th>
+      <th>{{ title .Params.table_headers.port }}</th>
+      <th>{{ title .Params.table_headers.ssl_port }}</th>
       <!-- <th>{{ .Params.table_headers.ping }}</th> -->
     </tr>
   </thead>
