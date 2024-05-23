@@ -11,7 +11,7 @@ LANGUAGE_SWITCHER_ELEMENTS.forEach(el =>
 );
 
 HAMBURGER_MENU_BTN.addEventListener('click', e => {
-  e.stopPropagation();
+	e.stopPropagation();
 	e.currentTarget.classList.toggle('active');
 });
 
@@ -19,5 +19,5 @@ document.body.addEventListener('click', () => {
 	LANGUAGE_SWITCHER_ELEMENTS.forEach(e => {
 		e.classList.remove('open');
 	});
-  HAMBURGER_MENU_BTN.classList.remove('active')
+	HAMBURGER_MENU_BTN.classList.remove('active');
 });
