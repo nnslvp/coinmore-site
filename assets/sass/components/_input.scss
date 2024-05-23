@@ -5,9 +5,9 @@
 	padding: 0.9063rem 1.25rem 0.9063rem 1.25rem;
 	color: var(--color-text-body);
 	line-height: var(--line-height-21);
-  transition: border-color 0.3s ease-in;
-  &:has( ~ .error-message.show) {
-	border-color: red;
+	transition: border-color 0.3s ease-in;
+	&:has(~ .error-message.show) {
+		border-color: red;
 	}
 	&::placeholder {
 		color: var(--color-text-light-grey);
@@ -21,14 +21,14 @@
 	}
 }
 
-
 .error-message {
 	visibility: hidden;
-  opacity: 0;
+	opacity: 0;
 	padding-left: 1.5rem;
 	color: red;
-  transition: opacity 0.3s ease-in;
+	transition: opacity 0.3s ease-in;
 	&.show {
 		visibility: visible;
-    opacity: 1;	}
-  }
+		opacity: 1;
+	}
+}
