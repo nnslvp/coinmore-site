@@ -6,7 +6,7 @@ title: 'Моя статистика'
 search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'
 section_title: 'Кошелек Alephium'
-mining_calculator_button: 'Калькулятор майнинга'
+edit_min_payouts_button: 'Отредактировать мою мин. выплату'
 stat_labels:
   balance: 'Ваш баланс:'
   hashrate_1h: 'Ваш хешрейт за 1 час:'

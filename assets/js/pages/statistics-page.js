@@ -1,6 +1,6 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
 const MODAL = document.querySelector('.modal');
-const OPEN_MODAL_BTN = document.querySelector('.open-button');
+const OPEN_MODAL_BTNS = document.querySelectorAll('.open-modal-button');
 const FORM_MIN_PAYOUTS = MODAL.querySelector('#form-min-payouts');
 const INPUT_MIN_PAYOUTS = FORM_MIN_PAYOUTS.querySelector('#input-min-payouts');
 const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
@@ -223,9 +223,11 @@ function assignFormListenerMinPayoutsForm(wallet) {
 	});
 }
 
-OPEN_MODAL_BTN.addEventListener('click', () => {
-	MODAL.showModal();
-});
+OPEN_MODAL_BTNS.forEach(btn => {
+  btn.addEventListener('click', () => {
+    MODAL.showModal();
+  });
+})
 
 MODAL.addEventListener('click', e => {
 	const dialogDimensions = MODAL.getBoundingClientRect();

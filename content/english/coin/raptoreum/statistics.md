@@ -7,7 +7,7 @@ title: 'My statistics'
 search_placeholder: 'Wallet'
 view_statistic_button: 'View personal statistic'
 section_title: 'Alephium wallet'
-mining_calculator_button: 'Mining calculator'
+edit_min_payouts_button: 'Edit my min. payout'
 stat_labels:
   balance: 'Your balance:'
   hashrate_1h: 'Your hashrate 1h:'
