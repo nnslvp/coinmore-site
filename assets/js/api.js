@@ -27,6 +27,7 @@ function statsApiPost(action) {
 function fetchCurrencyInfo(coin) {
 	return statsApiCall(`/rate?coin=${coin}`);
 }
+
 function fetchPoolValue(coin, kind) {
 	return statsApiCall(`/pool_value?coin=${coin}&kind=${kind}`);
 }
