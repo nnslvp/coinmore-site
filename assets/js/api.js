@@ -74,9 +74,11 @@ function fetchPoolProfit(coin) {
 function fetchPoolHashRate(coin) {
 	return statsApiCall(`/hashrate?coin=${coin}`);
 }
+
 function fetchNetworkHashRate(coin) {
 	return statsApiCall(`/network_hashrate?coin=${coin}`);
 }
+
 function fetchMinersOnline(coin) {
 	return statsApiCall(`/online?coin=${coin}`);
 }
