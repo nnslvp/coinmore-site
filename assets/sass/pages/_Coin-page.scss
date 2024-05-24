@@ -1,7 +1,19 @@
 .section-welcome__page-coin .section-welcome__inner {
-	background-image: url('/images/image-coin-page-coin.png');
+	background-image: url('/images/loupe.svg');
 	background-size: 34.8125rem 36.625rem;
 	background-position: right bottom;
+}
+
+.section-welcome__page-coin .container {
+	position: relative;
+}
+
+.section-welcome__page-coin .coin-logo {
+	position: absolute;
+	width: 11.875rem;
+	height: 11.875rem;
+	right: 12rem;
+	top: 14.6875rem;
 }
 
 .benefits-container {
@@ -142,6 +154,10 @@
 
 	.section-welcome__page-coin .section-welcome__inner {
 		background: none;
+	}
+
+	.section-welcome__page-coin .coin-logo {
+		display: none;
 	}
 
 	.section-welcome__page-coin.section-welcome {

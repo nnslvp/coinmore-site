@@ -80,7 +80,7 @@ init();
 function drawData(coin, wallet) {
 	disableButton();
 
-	const currencyInfoPromise = fetchCurrencyInfo();
+	const currencyInfoPromise = fetchCurrencyInfo(coin);
 	const payouts1hPromise = fetchMyPayouts(coin, wallet);
 	const payouts24hPromise = fetchMyPayouts(coin, wallet, PERIOD_DAY);
 	const payoutsWeekPromise = fetchMyPayouts(coin, wallet, PERIOD_WEEK);

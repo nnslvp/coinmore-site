@@ -2,6 +2,8 @@
 layout: 'coin'
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
+coin_logo: '/images/raptoreum-logo-light.svg'
+
 start_mining: 'Start mining'
 pool_hashrate: 'Pool hashrate:'
 network_hashrate: 'Network hashrate:'

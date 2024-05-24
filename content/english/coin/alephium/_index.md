@@ -2,6 +2,7 @@
 layout: 'coin'
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
+coin_logo: '/images/alephium-logo-light.svg'
 start_mining: 'Start mining'
 pool_hashrate: 'Pool hashrate:'
 network_hashrate: 'Network hashrate:'

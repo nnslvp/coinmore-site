@@ -2,7 +2,9 @@
 type: 'coin'
 layout: 'coin'
 coin_name: 'alephium'
-coin_symbol: 'ALH'
+coin_symbol: 'ALPH'
+coin_logo: '/images/alephium-logo-light.svg'
+
 start_mining: 'Начать майнинг'
 pool_hashrate: 'Хешрейт пула:'
 network_hashrate: 'Хешрейт сети:'

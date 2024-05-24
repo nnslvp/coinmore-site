@@ -3,9 +3,9 @@ function showPoolHashrate(hashrate, id = 'pool_hashrate') {
 	document.getElementById(id).textContent = `${shortHashrate} ${units}/s`;
 }
 
-function showPoolProfit(profit, id = 'pool_profit') {
+function showPoolProfit(profit, id = 'pool_profit', symbol) {
 	const roundProfit = parseFloat(profit).toFixed(4);
-	document.getElementById(id).textContent = `${roundProfit} ${COIN_SYMBOL}`;
+	document.getElementById(id).textContent = `${roundProfit} ${symbol}`;
 }
 
 function showMinersOnline(workers_online, id = 'miners') {
@@ -32,11 +32,25 @@ function showPoolProfitUSD(rate, profit, id = 'pool_profit_usd') {
 	document.getElementById(id).textContent = `${profitUSD} USD`;
 }
 
+function showPoolMinPayoutUSD(rate, minPayout, id = 'pool_profit_usd') {
+	const floatProfit = parseFloat(minPayout);
+	const floatRate = parseFloat(rate);
+	const profitUSD = (floatProfit * floatRate).toFixed(4);
+	document.getElementById(id).textContent = `${profitUSD} USD`;
+}
+
+function showPoolMinPayout(minPayout, id = 'pool_min_payout', symbol) {
+	document.getElementById(id).textContent = `${minPayout}  ${symbol}`;
+}
+function showPoolFee(fee, id = 'pool_fee') {
+	document.getElementById(id).textContent = `${fee}%`;
+}
+
 function showNetworkHashrate(hashrate, id = 'network_hashrate') {
 	const { hashrate: shortHashrate, units } = shortenHm(hashrate, 2);
 	document.getElementById(id).textContent = `${shortHashrate} ${units}/s`;
 }
 
 function showRate(rate, id = 'coin-price') {
-	document.getElementById(id).textContent = `$${rate.value}`;
+	document.getElementById(id).textContent = `$${rate}`;
 }
