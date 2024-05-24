@@ -96,7 +96,9 @@ function drawData(coin, wallet) {
   userValueMinPayoutsPromise
     .then(({ value }) => showMinPayouts(value))
     .catch(_ => {
-      showMinPayouts(0.1);
+      poolValueMinPayoutsPromise.then((defaultValue) => {
+        showMinPayouts(defaultValue.value);
+      })
     });
 
   Promise.all([
