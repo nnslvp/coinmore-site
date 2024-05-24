@@ -154,17 +154,17 @@ function drawData(coin, wallet) {
 				const fee = feeResult.value;
 
 				showPoolFee(fee);
-				showMyPayouts(payoutsAmount1h);
+				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
-				showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
+				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
 				showPayoutsTable(payouts1h);
 				showSelectPayouts(payouts24h, payoutsWeek);
-				showMyBalance(balanceResults);
+				showMyBalance(balanceResults, 'balance', COIN_SYMBOL);
 				showMyBalanceUSD(balanceResults, rate);
 				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
-				showMyHashrate(hashrate1h, 'my_hashrate_1h');
-				showMyHashrate(hashrate24h, 'my_hashrate_24h');
+				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
+				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
 				showWorkersTable(workers24h, workers1h);
 				showStats();
 				enableButton();
@@ -260,13 +260,6 @@ MODAL.addEventListener('click', e => {
 	}
 });
 
-function showMyHashrate(hashrate, id = 'my_hashrate_1h') {
-	const shortHashRate = shortenHm(hashrate, 2);
-	document.getElementById(
-		id
-	).textContent = `${shortHashRate.hashrate} ${shortHashRate.units}`;
-}
-
 function showMinPayouts(minPayoutsValue) {
 	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
 }
@@ -331,29 +324,6 @@ function showWorkersTable(workersDay, workersHour) {
 	});
 }
 
-function showMyPayouts(amount, id = 'my_payouts_1h') {
-	document.getElementById(id).textContent = parseFloat(amount).toFixed(8);
-}
-
-function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
-	document.getElementById(id).textContent = `${amountUSD(
-		amount,
-		currencyRate
-	)} USD`;
-}
-
-function showMyBalance(myBalanceData, id = 'balance') {
-	document.getElementById(id).textContent = parseFloat(
-    myBalanceData?.amount
-	).toFixed(8);
-}
-
-function showMyBalanceUSD(myBalanceData, currencyRate, id = 'balance_usd') {
-	document.getElementById(id).textContent = `${amountUSD(
-    myBalanceData?.amount,
-		currencyRate
-	)} USD`;
-}
 
 function showPayoutsTable(payouts) {
 	const tableBody = document

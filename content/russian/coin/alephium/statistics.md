@@ -1,5 +1,6 @@
 ---
 coin_name: 'alephium'
+coin_symbol: 'ALPH'
 layout: 'statistics'
 headless: true
 title: 'Моя статистика'
