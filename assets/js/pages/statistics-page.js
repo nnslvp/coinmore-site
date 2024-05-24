@@ -89,7 +89,8 @@ function drawData(coin, wallet) {
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
-
+  const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
+  const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
 
 
   userValueMinPayoutsPromise
@@ -108,6 +109,7 @@ function drawData(coin, wallet) {
     balancePromise,
     historyWalletWeekPromise,
     historyWalletDayPromise,
+    poolValueFeePromise,
   ])
     .then(([currencyInfo,
       payouts1hResult,
@@ -117,7 +119,9 @@ function drawData(coin, wallet) {
       hashrate24hResults,
       balanceResults,
       historyWalletWeekResult,
-      historyWalletDayResult]) => {
+      historyWalletDayResult,
+      feeResult
+    ]) => {
       const rate = currencyInfo.rate.value;
       const payouts1h = payouts1hResult.payouts;
       const payouts24h = payouts24hResult.payouts;
@@ -134,7 +138,9 @@ function drawData(coin, wallet) {
       const workers24h = hashrate24hResults.workers;
       const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
       const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
+      const fee = feeResult.value
 
+      showPoolFee(fee)
       showMyPayouts(payoutsAmount1h);
       showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
       showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
