@@ -111,3 +111,151 @@ function fetchMyBalance(coin, wallet) {
 function fetchMyEvents(coin, wallet) {
 	return statsApiCall(`/events?coin=${coin}&wallet=${wallet}`);
 }
+// 	userValueMinPayoutsPromise
+// 		.then(({ value }) => showMinPayouts(value))
+// 		.catch(_ => {
+// 			showMinPayouts(0.1);
+// 		});
+
+// 	Promise.allSettled([currencyInfoPromise])
+// 		.then(([currencyInfoResult]) => {
+// 			if (currencyInfoResult.status === 'fulfilled') {
+// 				currencyInfo = currencyInfoResult.value;
+// 			}
+// 			return Promise.allSettled([hashrate1hPromise, hashrate24hPromise]);
+// 		})
+// 		.then(hashrateResults => {
+// 			const [
+// 				{ status: statusHashrate1hPromise, value: valueHashrate1hPromise },
+// 				{ status: statusHashrate24hPromise, value: valueHashrate24hPromise },
+// 			] = hashrateResults;
+
+// 			if (
+// 				statusHashrate1hPromise === 'fulfilled' &&
+// 				statusHashrate24hPromise === 'fulfilled'
+// 			) {
+// 				const hashrate24h = calculateTotalByKey(
+// 					valueHashrate24hPromise.workers,
+// 					'hashrate'
+// 				);
+// 				const hashrate1h = calculateTotalByKey(
+// 					valueHashrate1hPromise.workers,
+// 					'hashrate'
+// 				);
+
+// 				showMyHashrate(hashrate1h, 'my_hashrate_1h');
+// 				showMyHashrate(hashrate24h, 'my_hashrate_24h');
+// 				// showWorkersTable(
+// 				// 	valueHashrate24hPromise.workers,
+// 				// 	valueHashrate1hPromise.workers
+// 				// );
+// 			}
+
+// 			return Promise.allSettled([
+// 				payouts1hPromise,
+// 				payouts24hPromise,
+// 				payoutsWeekPromise,
+// 			]);
+// 		})
+// 		.then(payoutsResults => {
+// 			const [
+// 				{ status: statusPayouts1hPromise, value: valuePayouts1hPromise },
+// 				{ status: statusPayouts24hPromise, value: valuePayouts24hPromise },
+// 				{ status: statusPayoutsWeekPromise, value: valuePayoutsWeekPromise },
+// 			] = payoutsResults;
+
+// 			if (
+// 				statusPayouts1hPromise === 'fulfilled' &&
+// 				statusPayouts24hPromise === 'fulfilled' &&
+// 				currencyInfo
+// 			) {
+// 				const payoutsAmount1h = calculateTotalByKey(
+// 					valuePayouts1hPromise.payouts,
+// 					'amount'
+// 				);
+// 				const payoutsAmount24h = calculateTotalByKey(
+// 					valuePayouts24hPromise.payouts,
+// 					'amount'
+// 				);
+
+// 				showMyPayouts(payoutsAmount1h);
+// 				showMyPayoutsUSD(
+// 					payoutsAmount1h,
+// 					currencyInfo.rate.value,
+// 					'my_payouts_1h_usd'
+// 				);
+
+// 				showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
+// 				showMyPayoutsUSD(
+// 					payoutsAmount24h,
+// 					currencyInfo.rate.value,
+// 					'my_payouts_24h_usd'
+// 				);
+// 				showPayoutsTable(valuePayouts24hPromise.payouts);
+
+// 				if (statusPayoutsWeekPromise === 'fulfilled') {
+// 					showSelectPayouts(
+// 						valuePayouts24hPromise.payouts,
+// 						valuePayoutsWeekPromise.payouts
+// 					);
+// 				}
+// 			}
+
+// 			return Promise.allSettled([
+// 				historyWalletDayPromise,
+// 				historyWalletWeekPromise,
+// 			]);
+// 		})
+// 		.then(historyResults => {
+// 			const [
+// 				{
+// 					status: statusHistoryWalletDayPromise,
+// 					value: valueHistoryWalletDayPromise,
+// 				},
+// 				{
+// 					status: statusHistoryWalletWeekPromise,
+// 					value: valueHistoryWalletWeekPromise,
+// 				},
+// 			] = historyResults;
+
+// 			if (
+// 				statusHistoryWalletDayPromise === 'fulfilled' &&
+// 				statusHistoryWalletWeekPromise === 'fulfilled'
+// 			) {
+// 				const labelsWeek = valueHistoryWalletWeekPromise.wallet_history.map(
+// 					item => item.day.slice(0, 10)
+// 				);
+// 				const dataWeek = valueHistoryWalletWeekPromise.wallet_history.map(
+// 					item => parseFloat(item.sum_difficulty)
+// 				);
+
+// 				const labelsDay = valueHistoryWalletDayPromise.wallet_history.map(
+// 					item => item.day.slice(0, 10)
+// 				);
+// 				const dataDay = valueHistoryWalletDayPromise.wallet_history.map(item =>
+// 					parseFloat(item.sum_difficulty)
+// 				);
+
+// 				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+// 			}
+
+// 			return Promise.allSettled([balancePromise]);
+// 		})
+// 		.then(balanceResults => {
+// 			const [
+// 				{ status: statusBalancePromise, value: valueBalancePromise },
+// 			] = balanceResults;
+
+// 			if (statusBalancePromise === 'fulfilled' && currencyInfo) {
+// 				showMyBalance(valueBalancePromise);
+// 				showMyBalanceUSD(valueBalancePromise, currencyInfo.rate?.value);
+// 			}
+
+// 			showStats();
+// 			enableButton();
+// 		})
+// 		.catch(error => {
+// 			console.error('Error in drawData:', error);
+// 			enableButton();
+// 		});
+// }

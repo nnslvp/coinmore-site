@@ -15,7 +15,7 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 			{
 				pointRadius: 0,
 				pointHitRadius: 0,
-				pointHoverRadius: 0, 
+        pointHoverRadius: 0,
 			},
 		],
 	},
@@ -53,7 +53,6 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
-
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
@@ -78,7 +77,7 @@ function init() {
 init();
 
 function drawData(coin, wallet) {
-	disableButton();
+  disableButton();
 
 	const currencyInfoPromise = fetchCurrencyInfo(coin);
 	const payouts1hPromise = fetchMyPayouts(coin, wallet);
@@ -91,156 +90,72 @@ function drawData(coin, wallet) {
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 
-	let currencyInfo = null;
 
-	userValueMinPayoutsPromise
-		.then(({ value }) => showMinPayouts(value))
-		.catch(_ => {
-			showMinPayouts(0.1);
-		});
 
-	Promise.allSettled([currencyInfoPromise])
-		.then(([currencyInfoResult]) => {
-			if (currencyInfoResult.status === 'fulfilled') {
-				currencyInfo = currencyInfoResult.value;
-			}
-			return Promise.allSettled([hashrate1hPromise, hashrate24hPromise]);
-		})
-		.then(hashrateResults => {
-			const [
-				{ status: statusHashrate1hPromise, value: valueHashrate1hPromise },
-				{ status: statusHashrate24hPromise, value: valueHashrate24hPromise },
-			] = hashrateResults;
+  userValueMinPayoutsPromise
+    .then(({ value }) => showMinPayouts(value))
+    .catch(_ => {
+      showMinPayouts(0.1);
+    });
 
-			if (
-				statusHashrate1hPromise === 'fulfilled' &&
-				statusHashrate24hPromise === 'fulfilled'
-			) {
-				const hashrate24h = calculateTotalByKey(
-					valueHashrate24hPromise.workers,
-					'hashrate'
-				);
-				const hashrate1h = calculateTotalByKey(
-					valueHashrate1hPromise.workers,
-					'hashrate'
-				);
+  Promise.all([
+    currencyInfoPromise,
+    payouts1hPromise,
+    payouts24hPromise,
+    payoutsWeekPromise,
+    hashrate1hPromise,
+    hashrate24hPromise,
+    balancePromise,
+    historyWalletWeekPromise,
+    historyWalletDayPromise,
+  ])
+    .then(([currencyInfo,
+      payouts1hResult,
+      payouts24hResult,
+      payoutsWeekResult,
+      hashrate1hResults,
+      hashrate24hResults,
+      balanceResults,
+      historyWalletWeekResult,
+      historyWalletDayResult]) => {
+      const rate = currencyInfo.rate.value;
+      const payouts1h = payouts1hResult.payouts;
+      const payouts24h = payouts24hResult.payouts;
+      const payoutsWeek = payoutsWeekResult.payouts;
+      const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
+      const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
+      const historyWalletWeek = historyWalletWeekResult.wallet_history;
+      const historyWalletDay = historyWalletDayResult.wallet_history;
+      const labelsWeek = historyWalletWeek.map(item => item.day);
+      const dataWeek = historyWalletWeek.map(item => parseFloat(item.sum_difficulty));
+      const labelsDay = historyWalletDay.map(item => item.day);
+      const dataDay = historyWalletDay.map(item => parseFloat(item.sum_difficulty));
+      const workers1h = hashrate1hResults.workers;
+      const workers24h = hashrate24hResults.workers;
+      const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
+      const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
 
-				showMyHashrate(hashrate1h, 'my_hashrate_1h');
-				showMyHashrate(hashrate24h, 'my_hashrate_24h');
-				// showWorkersTable(
-				// 	valueHashrate24hPromise.workers,
-				// 	valueHashrate1hPromise.workers
-				// );
-			}
-
-			return Promise.allSettled([
-				payouts1hPromise,
-				payouts24hPromise,
-				payoutsWeekPromise,
-			]);
-		})
-		.then(payoutsResults => {
-			const [
-				{ status: statusPayouts1hPromise, value: valuePayouts1hPromise },
-				{ status: statusPayouts24hPromise, value: valuePayouts24hPromise },
-				{ status: statusPayoutsWeekPromise, value: valuePayoutsWeekPromise },
-			] = payoutsResults;
-
-			if (
-				statusPayouts1hPromise === 'fulfilled' &&
-				statusPayouts24hPromise === 'fulfilled' &&
-				currencyInfo
-			) {
-				const payoutsAmount1h = calculateTotalByKey(
-					valuePayouts1hPromise.payouts,
-					'amount'
-				);
-				const payoutsAmount24h = calculateTotalByKey(
-					valuePayouts24hPromise.payouts,
-					'amount'
-				);
-
-				showMyPayouts(payoutsAmount1h);
-				showMyPayoutsUSD(
-					payoutsAmount1h,
-					currencyInfo.rate.value,
-					'my_payouts_1h_usd'
-				);
-
-				showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
-				showMyPayoutsUSD(
-					payoutsAmount24h,
-					currencyInfo.rate.value,
-					'my_payouts_24h_usd'
-				);
-				showPayoutsTable(valuePayouts24hPromise.payouts);
-
-				if (statusPayoutsWeekPromise === 'fulfilled') {
-					showSelectPayouts(
-						valuePayouts24hPromise.payouts,
-						valuePayoutsWeekPromise.payouts
-					);
-				}
-			}
-
-			return Promise.allSettled([
-				historyWalletDayPromise,
-				historyWalletWeekPromise,
-			]);
-		})
-		.then(historyResults => {
-			const [
-				{
-					status: statusHistoryWalletDayPromise,
-					value: valueHistoryWalletDayPromise,
-				},
-				{
-					status: statusHistoryWalletWeekPromise,
-					value: valueHistoryWalletWeekPromise,
-				},
-			] = historyResults;
-
-			if (
-				statusHistoryWalletDayPromise === 'fulfilled' &&
-				statusHistoryWalletWeekPromise === 'fulfilled'
-			) {
-				const labelsWeek = valueHistoryWalletWeekPromise.wallet_history.map(
-					item => item.day.slice(0, 10)
-				);
-				const dataWeek = valueHistoryWalletWeekPromise.wallet_history.map(
-					item => parseFloat(item.sum_difficulty)
-				);
-
-				const labelsDay = valueHistoryWalletDayPromise.wallet_history.map(
-					item => item.day.slice(0, 10)
-				);
-				const dataDay = valueHistoryWalletDayPromise.wallet_history.map(item =>
-					parseFloat(item.sum_difficulty)
-				);
-
-				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
-			}
-
-			return Promise.allSettled([balancePromise]);
-		})
-		.then(balanceResults => {
-			const [
-				{ status: statusBalancePromise, value: valueBalancePromise },
-			] = balanceResults;
-
-			if (statusBalancePromise === 'fulfilled' && currencyInfo) {
-				showMyBalance(valueBalancePromise);
-				showMyBalanceUSD(valueBalancePromise, currencyInfo.rate?.value);
-			}
-
-			showStats();
-			enableButton();
-		})
-		.catch(error => {
-			console.error('Error in drawData:', error);
-			enableButton();
-		});
+      showMyPayouts(payoutsAmount1h);
+      showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
+      showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
+      showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
+      showPayoutsTable(payouts1h);
+      showSelectPayouts(payouts24h, payoutsWeek);
+      showMyBalance(balanceResults);
+      showMyBalanceUSD(balanceResults, rate);
+      showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+      showMyHashrate(hashrate1h, 'my_hashrate_1h');
+      showMyHashrate(hashrate24h, 'my_hashrate_24h');
+      showWorkersTable(workers24h, workers1h);
+      showStats();
+      enableButton();
+    })
+    .catch(error => {
+      console.error('Error in drawData:', error);
+      enableButton();
+    });
 }
+
 
 function showStats() {
 	document.getElementById('stats').classList.remove('empty-statistics');
@@ -330,6 +245,7 @@ function showMyHashrate(hashrate, id = 'my_hashrate_1h') {
 		id
 	).textContent = `${shortHashRate.hashrate} ${shortHashRate.units}`;
 }
+
 function showMinPayouts(minPayoutsValue) {
 	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
 }
@@ -407,13 +323,13 @@ function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
 
 function showMyBalance(myBalanceData, id = 'balance') {
 	document.getElementById(id).textContent = parseFloat(
-		myBalanceData?.amount 
+    myBalanceData?.amount
 	).toFixed(8);
 }
 
 function showMyBalanceUSD(myBalanceData, currencyRate, id = 'balance_usd') {
 	document.getElementById(id).textContent = `${amountUSD(
-		myBalanceData?.amount ,
+    myBalanceData?.amount,
 		currencyRate
 	)} USD`;
 }
@@ -477,6 +393,3 @@ function showSelectPayouts(payoutsDay, payoutsWeek) {
 		},
 	});
 }
-
-
-
