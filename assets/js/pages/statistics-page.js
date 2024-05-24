@@ -130,6 +130,7 @@ function drawData(coin, wallet) {
 				feeResult,
 			]) => {
 				const rate = currencyInfo.rate.value;
+        const balance = balanceResults;
 				const payouts1h = payouts1hResult.payouts;
 				const payouts24h = payouts24hResult.payouts;
 				const payoutsWeek = payoutsWeekResult.payouts;
@@ -152,7 +153,6 @@ function drawData(coin, wallet) {
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
 				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
 				const fee = feeResult.value;
-
 				showPoolFee(fee);
 				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
@@ -160,8 +160,8 @@ function drawData(coin, wallet) {
 				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
 				showPayoutsTable(payouts1h);
 				showSelectPayouts(payouts24h, payoutsWeek);
-				showMyBalance(balanceResults, 'balance', COIN_SYMBOL);
-				showMyBalanceUSD(balanceResults, rate);
+				showMyBalance(balance, 'balance', COIN_SYMBOL);
+				showMyBalanceUSD(balance, rate);
 				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
 				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
 				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
@@ -171,7 +171,7 @@ function drawData(coin, wallet) {
 			}
 		)
 		.catch(error => {
-			console.error('Error in drawData:', error);
+			console.error('Error in drawData', error);
 			enableButton();
 		});
 }
