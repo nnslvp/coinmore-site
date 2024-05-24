@@ -15,7 +15,7 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 			{
 				pointRadius: 0,
 				pointHitRadius: 0,
-        pointHoverRadius: 0,
+				pointHoverRadius: 0,
 			},
 		],
 	},
@@ -140,8 +140,8 @@ function drawData(coin, wallet) {
 				const labelsWeek = historyWalletWeek.map(item =>
 					formatDate(item.bucket)
 				);
-				const dataWeek = historyWalletWeek.map(item =>
-					parseFloat(item.sum_difficulty)
+				const dataWeek = historyWalletWeek.map(
+					item => shortenHm(parseFloat(item.sum_difficulty), 2).hashrate
 				);
 				const labelsDay = historyWalletDay.map(item => formatDate(item.bucket));
 				const dataDay = historyWalletDay.map(
@@ -323,7 +323,6 @@ function showWorkersTable(workersDay, workersHour) {
 		initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
 	});
 }
-
 
 function showPayoutsTable(payouts) {
 	const tableBody = document
