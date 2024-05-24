@@ -4,7 +4,8 @@
 		minmax(25rem, 1fr)
 		minmax(9.625rem, 1fr)
 		minmax(9.625rem, 1fr)
-		minmax(9.625rem, 1fr);
+		// minmax(9.625rem, 1fr)
+;
 
 	.ssl-port-cell,
 	.port-cell {
@@ -31,8 +32,8 @@
 			minmax(14.9375rem, 1fr)
 			minmax(21.6875rem, 1fr)
 			minmax(7.4375rem, 1fr)
-			minmax(7.4375rem, 1fr)
 			minmax(7.4375rem, 1fr);
+		// minmax(7.4375rem, 1fr);
 	}
 
 	.region-cell {
@@ -49,7 +50,8 @@
 			minmax(19.25rem, 1fr)
 			minmax(4.6875rem, 1fr)
 			minmax(5.3125rem, 1fr)
-			minmax(4.6875rem, 1fr);
+			// minmax(4.6875rem, 1fr)
+;
 
 		.btn-copy {
 			display: none;
