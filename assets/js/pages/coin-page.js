@@ -122,24 +122,24 @@ function showChartWorkersActivity({
 }
 
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-	const labelsWeek = poolHistoryWeek.map(item => formatDate(item.bucket));
-	const labelsDay = poolHistoryDay.map(item => formatDate(item.bucket));
-	const dataPoolHashrateWeek = poolHistoryWeek.map(
+  const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
+  const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
+  const dataPoolHashrateWeek = profitHistoryWeek.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
-	const dataPoolHashrateDay = poolHistoryDay.map(
+  const dataPoolHashrateDay = profitHistoryDay.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
 
-	const dataWorkersActivityDay = poolHistoryDay.map(
+  const dataWorkersActivityDay = profitHistoryDay.map(
 		item => item.unique_wallets
 	);
 
-	const dataWorkersActivityWeek = poolHistoryWeek.map(
+  const dataWorkersActivityWeek = profitHistoryWeek.map(
 		item => item.unique_wallets
 	);
 
-	const { units } = shortenHm(poolHistoryWeek[1].hashrate);
+  const { units } = shortenHm(profitHistoryWeek[1].hashrate);
 
 	showChartPoolHashrate({
 		labelsWeek,
