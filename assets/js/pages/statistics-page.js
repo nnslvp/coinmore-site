@@ -77,7 +77,7 @@ function init() {
 init();
 
 function drawData(coin, wallet) {
-  disableButton();
+	disableButton();
 
 	const currencyInfoPromise = fetchCurrencyInfo(coin);
 	const payouts1hPromise = fetchMyPayouts(coin, wallet);
@@ -89,81 +89,92 @@ function drawData(coin, wallet) {
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
-  const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
-  const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
+	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
+	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
 
+	userValueMinPayoutsPromise
+		.then(({ value }) => showMinPayouts(value))
+		.catch(error => {
+			if (error.status === 404) {
+				poolValueMinPayoutsPromise.then(defaultValue => {
+					showMinPayouts(defaultValue.value);
+				});
+			} else {
+				console.error('Error:', error);
+			}
+		});
 
-  userValueMinPayoutsPromise
-    .then(({ value }) => showMinPayouts(value))
-    .catch(_ => {
-      poolValueMinPayoutsPromise.then((defaultValue) => {
-        showMinPayouts(defaultValue.value);
-      })
-    });
+	Promise.all([
+		currencyInfoPromise,
+		payouts1hPromise,
+		payouts24hPromise,
+		payoutsWeekPromise,
+		hashrate1hPromise,
+		hashrate24hPromise,
+		balancePromise,
+		historyWalletWeekPromise,
+		historyWalletDayPromise,
+		poolValueFeePromise,
+	])
+		.then(
+			([
+				currencyInfo,
+				payouts1hResult,
+				payouts24hResult,
+				payoutsWeekResult,
+				hashrate1hResults,
+				hashrate24hResults,
+				balanceResults,
+				historyWalletWeekResult,
+				historyWalletDayResult,
+				feeResult,
+			]) => {
+				const rate = currencyInfo.rate.value;
+				const payouts1h = payouts1hResult.payouts;
+				const payouts24h = payouts24hResult.payouts;
+				const payoutsWeek = payoutsWeekResult.payouts;
+				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
+				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
+				const historyWalletWeek = historyWalletWeekResult.wallet_history;
+				const historyWalletDay = historyWalletDayResult.wallet_history;
+				const labelsWeek = historyWalletWeek.map(item =>
+					formatDate(item.bucket)
+				);
+				const dataWeek = historyWalletWeek.map(item =>
+					parseFloat(item.sum_difficulty)
+				);
+				const labelsDay = historyWalletDay.map(item => formatDate(item.bucket));
+				const dataDay = historyWalletDay.map(
+					item => shortenHm(parseFloat(item.sum_difficulty), 2).hashrate
+				);
+				const workers1h = hashrate1hResults.workers;
+				const workers24h = hashrate24hResults.workers;
+				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
+				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
+				const fee = feeResult.value;
 
-  Promise.all([
-    currencyInfoPromise,
-    payouts1hPromise,
-    payouts24hPromise,
-    payoutsWeekPromise,
-    hashrate1hPromise,
-    hashrate24hPromise,
-    balancePromise,
-    historyWalletWeekPromise,
-    historyWalletDayPromise,
-    poolValueFeePromise,
-  ])
-    .then(([currencyInfo,
-      payouts1hResult,
-      payouts24hResult,
-      payoutsWeekResult,
-      hashrate1hResults,
-      hashrate24hResults,
-      balanceResults,
-      historyWalletWeekResult,
-      historyWalletDayResult,
-      feeResult
-    ]) => {
-      const rate = currencyInfo.rate.value;
-      const payouts1h = payouts1hResult.payouts;
-      const payouts24h = payouts24hResult.payouts;
-      const payoutsWeek = payoutsWeekResult.payouts;
-      const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
-      const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
-      const historyWalletWeek = historyWalletWeekResult.wallet_history;
-      const historyWalletDay = historyWalletDayResult.wallet_history;
-      const labelsWeek = historyWalletWeek.map(item => formatDate(item.bucket));
-      const dataWeek = historyWalletWeek.map(item => parseFloat(item.sum_difficulty));
-      const labelsDay = historyWalletDay.map(item => formatDate(item.bucket));
-      const dataDay = historyWalletDay.map(item => parseFloat(item.sum_difficulty));
-      const workers1h = hashrate1hResults.workers;
-      const workers24h = hashrate24hResults.workers;
-      const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
-      const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
-      const fee = feeResult.value
-
-      showPoolFee(fee)
-      showMyPayouts(payoutsAmount1h);
-      showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
-      showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
-      showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
-      showPayoutsTable(payouts1h);
-      showSelectPayouts(payouts24h, payoutsWeek);
-      showMyBalance(balanceResults);
-      showMyBalanceUSD(balanceResults, rate);
-      showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
-      showMyHashrate(hashrate1h, 'my_hashrate_1h');
-      showMyHashrate(hashrate24h, 'my_hashrate_24h');
-      showWorkersTable(workers24h, workers1h);
-      showStats();
-      enableButton();
-    })
-    .catch(error => {
-      console.error('Error in drawData:', error);
-      enableButton();
-    });
+				showPoolFee(fee);
+				showMyPayouts(payoutsAmount1h);
+				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
+				showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
+				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
+				showPayoutsTable(payouts1h);
+				showSelectPayouts(payouts24h, payoutsWeek);
+				showMyBalance(balanceResults);
+				showMyBalanceUSD(balanceResults, rate);
+				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+				showMyHashrate(hashrate1h, 'my_hashrate_1h');
+				showMyHashrate(hashrate24h, 'my_hashrate_24h');
+				showWorkersTable(workers24h, workers1h);
+				showStats();
+				enableButton();
+			}
+		)
+		.catch(error => {
+			console.error('Error in drawData:', error);
+			enableButton();
+		});
 }
-
 
 function showStats() {
 	document.getElementById('stats').classList.remove('empty-statistics');
@@ -232,10 +243,10 @@ function assignFormListenerMinPayoutsForm(wallet) {
 }
 
 OPEN_MODAL_BTNS.forEach(btn => {
-  btn.addEventListener('click', () => {
-    MODAL.showModal();
-  });
-})
+	btn.addEventListener('click', () => {
+		MODAL.showModal();
+	});
+});
 
 MODAL.addEventListener('click', e => {
 	const dialogDimensions = MODAL.getBoundingClientRect();
