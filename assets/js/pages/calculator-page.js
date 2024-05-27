@@ -7,12 +7,6 @@ const selectCurrency = ItcCustomSelect.create('#select-currency', {
 	placeholder: 'Select coin',
 	targetValue: 'alephium',
 	options: COINS.map(coin => [coin.name, coin.symbol]),
-	onSelected(select, option) {
-		console.log(`Выбранное значение: ${select.value}`);
-		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
-		const text = option ? option.textContent : '';
-		console.log(`Выбранный текст опции: ${text}`);
-	},
 });
 
 function perHour(value) {
