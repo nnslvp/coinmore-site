@@ -52,7 +52,7 @@ function showChartPoolHashrate({
 	});
 }
 
-function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay }) {
+function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay, units }) {
 	const profitChart = initializeChart(
 		CHART_PROFIT,
 		getChartOptions({
@@ -66,7 +66,7 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 			options: {
 				plugins: {
 					title: {
-						text: 'ALPH',
+						text: units,
 					},
 				},
 			},
@@ -122,24 +122,26 @@ function showChartWorkersActivity({
 }
 
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-  const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
-  const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
-  const dataPoolHashrateWeek = profitHistoryWeek.map(
+	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
+	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
+	const dataPoolHashrateWeek = profitHistoryWeek.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
-  const dataPoolHashrateDay = profitHistoryDay.map(
+	const dataPoolHashrateDay = profitHistoryDay.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
 
-  const dataWorkersActivityDay = profitHistoryDay.map(
+	const dataWorkersActivityDay = profitHistoryDay.map(
 		item => item.unique_wallets
 	);
 
-  const dataWorkersActivityWeek = profitHistoryWeek.map(
+	const dataWorkersActivityWeek = profitHistoryWeek.map(
 		item => item.unique_wallets
 	);
 
-  const { units } = shortenHm(profitHistoryWeek[1].hashrate);
+	const { units } = profitHistoryWeek[1]?.hashrate
+		? shortenHm(profitHistoryWeek[1]?.hashrate)
+		: { units: '' };
 
 	showChartPoolHashrate({
 		labelsWeek,
@@ -158,6 +160,7 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 }
 
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
+	console.log(profitHistoryWeek, profitHistoryDay);
 	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
 	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
 	const dataDay = profitHistoryDay.map(item =>
@@ -172,6 +175,7 @@ function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
 		dataWeek,
 		labelsDay,
 		dataDay,
+		units: COIN_SYMBOL,
 	});
 }
 
@@ -200,7 +204,7 @@ function init(coin) {
 	const fetchCurrencyInfoPromise = fetchCurrencyInfo(coin);
 
 	fetchPoolProfitPromise.then(({ profit }) => {
-		showPoolProfit(profit, 'pool_profit', COIN_SYMBOl);
+		showPoolProfit(profit, 'pool_profit', COIN_SYMBOL);
 		fetchCurrencyInfoPromise.then(({ rate: { value } }) =>
 			showPoolProfitUSD(profit, value)
 		);
@@ -216,7 +220,9 @@ function init(coin) {
 
 	fetchPoolBlocksPromise.then(({ count, last_block_at }) => {
 		showPool24hBlocks(count);
-		showPoolLatestBlockAt(last_block_at);
+		if (last_block_at) {
+			showPoolLatestBlockAt(last_block_at);
+		}
 	});
 
 	fetchHistoryWeekPromise
