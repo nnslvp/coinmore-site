@@ -32,5 +32,8 @@ jobs:
           if [ ! -d "public" ]; then
             echo "Hugo build failed - public directory not found"
             exit 1
+          else
+            echo "Hugo build succeeded - public directory found"
+            echo "Listing files in public directory:"
+            find public
           fi
-          echo "Hugo build succeeded - public directory found"
