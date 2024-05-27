@@ -4,12 +4,9 @@ const CALCULATOR_FORM = document.forms.calculator_form;
 
 const selectCurrency = ItcCustomSelect.create('#select-currency', {
 	name: 'interval',
-	placeholder: 'Select currency',
-	targetValue: 'USD',
-	options: [
-		['USD', 'USD'],
-		['week', 'Week'],
-	],
+	placeholder: 'Select coin',
+	targetValue: 'alephium',
+	options: COINS.map(coin => [coin.name, coin.symbol]),
 	onSelected(select, option) {
 		console.log(`Выбранное значение: ${select.value}`);
 		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);

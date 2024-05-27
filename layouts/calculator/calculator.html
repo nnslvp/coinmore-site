@@ -72,7 +72,7 @@
               </header>
               <form name="calculator_form" class="calculator_form" novalidate>
                 <div class="input-container">
-                  <label class="label" for="currency">{{ .Params.currency_label
+                  <label class="label" for="currency">{{ .Params.select_label
                     }}*</label>
                   <div id="select-currency"></div>
                 </div>
@@ -204,11 +204,17 @@
               </div>
             </div>
           </div>
-
         </main>
-
-        {{partial "footer.html" .}}
+        {{ $coins := slice }}
+        {{ range where .Site.Pages "Type" "coin" }}
+        {{ if not .Params.headless }}
+        {{ $coins = $coins | append (dict "name" .Params.coin_name "symbol" .Params.coin_symbol) }}
+        {{ end }}
+        {{ end }}
       </div>
+      <script>
+        const COINS = {{ $coins }};
+      </script>
       {{ $customSelect:= resources.Get "js/custom-select.js" }}
       {{ $api := resources.Get "js/api.js" }}
       {{ $statisticsPage := resources.Get "js/pages/calculator-page.js" }}
