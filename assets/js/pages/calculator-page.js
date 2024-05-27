@@ -36,11 +36,11 @@ function addValue(tr, cell, value, currencyValue = '', sign = '') {
 		`${sign}` + ` ${parseFloat(value).toFixed(4)}` + ` ${currencyValue}`;
 }
 
-function addValuesRow(period, reward, income, costs, profit, currencyValue) {
-	addValue(period, 'reward-value', reward, 'ALPH');
-	addValue(period, 'income-value', income, currencyValue);
-	addValue(period, 'electricity-costs__value', costs, currencyValue, '-');
-	addValue(period, 'profit-value', profit, currencyValue);
+function addValuesRow(period, reward, income, costs, profit, coinSymbol) {
+	addValue(period, 'reward-value', reward, coinSymbol);
+	addValue(period, 'income-value', income, coinSymbol);
+	addValue(period, 'electricity-costs__value', costs, coinSymbol, '-');
+	addValue(period, 'profit-value', profit, coinSymbol);
 }
 
 function generateTable(calculatorForm) {
