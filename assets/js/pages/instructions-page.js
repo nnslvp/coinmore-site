@@ -32,5 +32,3 @@ TABS.forEach(tab => {
 		guide.classList.add('active');
 	});
 });
-
-showPings();
