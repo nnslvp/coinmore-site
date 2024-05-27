@@ -140,6 +140,10 @@ class ItcCustomSelect {
 		return this._elToggle.value;
 	}
 
+	get valueTextContent() {
+		return this._elToggle.textContent;
+	}
+
 	set value(value) {
 		let isExists = false;
 		this._el.querySelectorAll('.select__option').forEach(option => {

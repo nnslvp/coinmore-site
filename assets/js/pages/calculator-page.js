@@ -54,9 +54,10 @@ function generateTable(calculatorForm) {
 	CALCULATE_BTN.classList.add('disabled');
 	const hashrateValue = calculatorForm.hashrate?.value;
 	const powerConsumptionValue = calculatorForm.powerConsumption?.value;
-	const currencyValue = selectCurrency.value;
+	const coin = selectCurrency.value;
+	const coinSymbol = selectCurrency.valueTextContent;
 	const electricityCostsValue = calculatorForm.electricityCosts?.value;
-	Promise.all([fetchRate(), fetchPoolProfit()]).then(function ([
+	Promise.all([fetchRate(coin), fetchPoolProfit(coin)]).then(function ([
 		{ rate },
 		{ profit },
 	]) {
@@ -70,7 +71,7 @@ function generateTable(calculatorForm) {
 			costsPerTime(powerConsumptionValue, electricityCostsValue),
 			perHour(income) -
 				costsPerTime(powerConsumptionValue, electricityCostsValue),
-			currencyValue
+			coinSymbol
 		);
 
 		addValuesRow(
@@ -79,7 +80,7 @@ function generateTable(calculatorForm) {
 			income,
 			costsPerTime(powerConsumptionValue, electricityCostsValue, 24),
 			income - costsPerTime(powerConsumptionValue, electricityCostsValue, 24),
-			currencyValue
+			coinSymbol
 		);
 
 		addValuesRow(
@@ -89,7 +90,7 @@ function generateTable(calculatorForm) {
 			costsPerTime(powerConsumptionValue, electricityCostsValue, 168),
 			perWeek(income) -
 				costsPerTime(powerConsumptionValue, electricityCostsValue, 168),
-			currencyValue
+			coinSymbol
 		);
 	});
 	CALCULATE_BTN.disabled = false;
