@@ -1,11 +1,13 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
 const MODAL = document.querySelector('.modal');
 const OPEN_MODAL_BTNS = document.querySelectorAll('.open-modal-button');
+const CLOSE_MODAL_BTN = document.querySelector('.close-modal-btn');
 const FORM_MIN_PAYOUTS = MODAL.querySelector('#form-min-payouts');
 const INPUT_MIN_PAYOUTS = FORM_MIN_PAYOUTS.querySelector('#input-min-payouts');
 const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 	'#stat-min-payouts-value'
 );
+
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
@@ -130,7 +132,7 @@ function drawData(coin, wallet) {
 				feeResult,
 			]) => {
 				const rate = currencyInfo.rate.value;
-        const balance = balanceResults;
+				const balance = balanceResults;
 				const payouts1h = payouts1hResult.payouts;
 				const payouts24h = payouts24hResult.payouts;
 				const payoutsWeek = payoutsWeekResult.payouts;
@@ -229,6 +231,7 @@ function assignFormListener() {
 
 function assignFormListenerMinPayoutsForm(wallet) {
 	FORM_MIN_PAYOUTS.addEventListener('submit', e => {
+		console.log('submit');
 		e.preventDefault();
 		const value = INPUT_MIN_PAYOUTS.value;
 		createUserValue(COIN, wallet, 'min_payout', value)
@@ -247,6 +250,11 @@ OPEN_MODAL_BTNS.forEach(btn => {
 		MODAL.showModal();
 	});
 });
+
+CLOSE_MODAL_BTN.addEventListener('click', () => {
+		MODAL.close();
+	});; 
+
 
 MODAL.addEventListener('click', e => {
 	const dialogDimensions = MODAL.getBoundingClientRect();

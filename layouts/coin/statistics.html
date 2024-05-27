@@ -129,9 +129,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_24h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_payouts_24h">0.0888 ALPH</span>
+                    <span id="my_payouts_24h">0.0 ALPH</span>
                     ~
-                    <span id="my_payouts_24h_usd">0.2925 USD</span>
+                    <span id="my_payouts_24h_usd">0.0 USD</span>
                   </strong>
                 </div>
               </li>
@@ -143,7 +143,7 @@
                     <span id="stat-min-payouts-value">0.1</span> coin
                   </strong>
                 </div>
-                <i class="icon edit-icon open-button"></i></a>
+                <i class="icon edit-icon open-modal-button"></i></a>
               </li>
               <li class="stat-item">
                 <i class="icon timer-icon"></i>
@@ -368,7 +368,7 @@
             >
         </div>
         <div class="form-action">
-          <button formmethod="dialog" class="btn btn-outline-primary">{{ .Params.modal.cancel_button }}</button>
+          <button type="button" class="btn btn-outline-primary close-modal-btn">{{ .Params.modal.cancel_button }}</button>
           <button type="submit" class="btn btn-filled-primary">{{ .Params.modal.save_button }}</button>
         </div>
       </form>
