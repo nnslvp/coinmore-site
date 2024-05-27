@@ -231,7 +231,6 @@ function assignFormListener() {
 
 function assignFormListenerMinPayoutsForm(wallet) {
 	FORM_MIN_PAYOUTS.addEventListener('submit', e => {
-		console.log('submit');
 		e.preventDefault();
 		const value = INPUT_MIN_PAYOUTS.value;
 		createUserValue(COIN, wallet, 'min_payout', value)
