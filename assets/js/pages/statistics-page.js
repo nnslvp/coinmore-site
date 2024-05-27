@@ -102,7 +102,7 @@ function drawData(coin, wallet) {
 					showMinPayouts(defaultValue.value);
 				});
 			} else {
-				console.error('Error:', error);
+				console.info('Error:', error);
 			}
 		});
 
@@ -173,7 +173,7 @@ function drawData(coin, wallet) {
 			}
 		)
 		.catch(error => {
-			console.error('Error in drawData', error);
+			console.info('Error in drawData', error);
 			enableButton();
 		});
 }
@@ -239,7 +239,7 @@ function assignFormListenerMinPayoutsForm(wallet) {
 				MODAL.close();
 			})
 			.catch(error => {
-				console.error('Error submitting form:', error);
+				console.info('Error submitting form:', error);
 			});
 	});
 }

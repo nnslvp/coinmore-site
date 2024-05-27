@@ -160,7 +160,6 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 }
 
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
-	console.log(profitHistoryWeek, profitHistoryDay);
 	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
 	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
 	const dataDay = profitHistoryDay.map(item =>
@@ -233,7 +232,7 @@ function init(coin) {
 		.then(historyDay => (poolHistoryDay = historyDay.pool_history))
 		.then(() => drawPoolHistoryData(poolHistoryDay, poolHistoryWeek))
 		.catch(err => {
-			console.error('Error fetching poolHistory:', err);
+			console.info('Error fetching poolHistory:', err);
 		});
 
 	fetchHistoryProfitWeekPromise
@@ -246,7 +245,7 @@ function init(coin) {
 		})
 		.then(() => drawProfitHistoryData(profitHistoryWeek, profitHistoryDay))
 		.catch(err => {
-			console.error('Error fetching profitHistory:', err);
+			console.info('Error fetching profitHistory:', err);
 		});
 }
 
