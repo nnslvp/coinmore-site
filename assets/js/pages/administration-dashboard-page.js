@@ -184,15 +184,6 @@ ItcCustomSelect.create('#select-currency', {
 		['day', '24 hours'],
 		['week', 'Week'],
 	],
-	onSelected(select, option) {
-		// выбранное значение
-		console.log(`Выбранное значение: ${select.value}`);
-		// индекс выбранной опции
-		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
-		// выбранный текст опции
-		const text = option ? option.textContent : '';
-		console.log(`Выбранный текст опции: ${text}`);
-	},
 });
 
 ItcCustomSelect.create('#select-region', {
@@ -203,15 +194,6 @@ ItcCustomSelect.create('#select-region', {
 		['day', '24 hours'],
 		['week', 'Week'],
 	],
-	onSelected(select, option) {
-		// выбранное значение
-		console.log(`Выбранное значение: ${select.value}`);
-		// индекс выбранной опции
-		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
-		// выбранный текст опции
-		const text = option ? option.textContent : '';
-		console.log(`Выбранный текст опции: ${text}`);
-	},
 });
 
 const datepickerContainer = document.querySelector(

@@ -170,8 +170,7 @@ function drawData(coin, wallet) {
 				showWorkersTable(workers24h, workers1h);
 				showStats();
 				enableButton();
-			}
-		)
+			})
 		.catch(error => {
 			console.info('Error in drawData', error);
 			enableButton();
@@ -184,21 +183,17 @@ function showStats() {
 
 function disableButton() {
 	const button = document.getElementById('show');
-	// button.textContent = 'Loading..';
 	button.disabled = true;
 }
 
 function enableButton() {
 	const button = document.getElementById('show');
-	// button.textContent = 'Update';
 	button.disabled = false;
 }
 
 function setWalletParam(wallet) {
 	const urlParams = new URLSearchParams(window.location.search);
-
 	urlParams.set('wallet', wallet);
-
 	window.location.search = urlParams;
 }
 
