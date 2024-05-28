@@ -73,12 +73,10 @@
             {{ $coins := slice }}
             <ul class="coins-list">
               {{ range where .Site.Pages "Type" "coin" }}
-              {{ if not .Params.headless }}
               {{ $coins = $coins | append (dict "name" .Params.coin_name "symbol" .Params.coin_symbol) }}
               <li class="coins-list__item">
                 {{ partial "coin-card.html" . }}
               </li>
-              {{ end }}
               {{ end }}
             </ul>
             </ul>

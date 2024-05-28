@@ -1,6 +1,6 @@
 ---
 layout: 'statistics'
-headless: true
+type: 'statistics'
 title: 'My statistics'
 search_placeholder: 'Wallet'
 view_statistic_button: 'View personal statistic'

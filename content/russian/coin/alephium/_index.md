@@ -1,5 +1,4 @@
 ---
-type: 'coin'
 layout: 'coin'
 coin_name: 'alephium'
 coin_symbol: 'ALPH'

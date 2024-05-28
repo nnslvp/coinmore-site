@@ -1,10 +1,8 @@
 ---
-type: 'coin'
 layout: 'coin'
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
 coin_logo: '/images/raptoreum-logo-light.svg'
-
 start_mining: 'Начать майнинг'
 pool_hashrate: 'Хешрейт пула:'
 network_hashrate: 'Хешрейт сети:'

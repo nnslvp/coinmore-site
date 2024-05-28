@@ -1,6 +1,5 @@
 ---
 layout: 'instructions'
-headless: true
 title: 'Инструкции'
 subtitle_text_1: 'Если у вас есть вопросы, воспользуйтесь'
 subtitle_text_2: 'Начните с загрузки'

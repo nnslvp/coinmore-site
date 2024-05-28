@@ -2,7 +2,6 @@
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
 layout: 'statistics'
-headless: true
 title: 'Моя статистика'
 search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'
