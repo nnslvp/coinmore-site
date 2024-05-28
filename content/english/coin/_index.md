@@ -1,3 +1,3 @@
 ---
-type: 'hidden'
+headless: true
 ---

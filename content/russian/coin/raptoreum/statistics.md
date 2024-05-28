@@ -1,5 +1,6 @@
 ---
 layout: 'statistics'
+headless: true
 title: 'Моя статистика'
 search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'

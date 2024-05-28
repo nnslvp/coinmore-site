@@ -1,7 +1,6 @@
 ---
 layout: 'instructions'
-type: 'instructions'
- 
+headless: true
 title: 'Instructions'
 subtitle_text_1: 'If you have any questions, please use the'
 subtitle_text_2: 'Start by downloading'
