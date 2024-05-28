@@ -23,7 +23,7 @@ table_statistics_payouts_labels:
 workers_table_headers:
   worker: 'Работник'
   hashrate: 'Хешрейт 1ч/24ч'
-  history: 'История 7 дней'
+  history: 'История за 24ч'
   valid_shares: 'Действительные доли 1ч/24ч'
   last_share_at: 'Последняя доля'
 

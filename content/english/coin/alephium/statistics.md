@@ -23,7 +23,7 @@ table_statistics_payouts_labels:
 workers_table_headers:
   worker: 'Worker'
   hashrate: 'Hashrate 1h/24h'
-  history: '7 day history'
+  history: '24h history'
   valid_shares: 'Valid Shares 1h/24h'
   last_share_at: 'Last Share At'
 
