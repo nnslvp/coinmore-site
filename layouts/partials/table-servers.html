@@ -1,115 +1,34 @@
 <table class="table table-servers">
   <thead>
-    <tr>
-      <th>{{ title .Params.table_headers.region }}</th>
-      <th>{{ title .Params.table_headers.address }}</th>
-      <th>{{ title .Params.table_headers.port }}</th>
-      <th>{{ title .Params.table_headers.ssl_port }}</th>
-    </tr>
+  <tr>
+    {{ range .Params.table_headers }}
+    <th>{{ . }}</th>
+    {{ end }}
+  </tr>
   </thead>
   <tbody>
+    {{ range .Params.table_body }}
     <tr>
       <td class="region-cell">
-        <i class="icon globe-icon"></i>
-        {{.Params.table_body.region_auto}}
+        <i class="icon {{.icon}}"></i>
+        {{.region}}
       </td>
       <td class="address-cell" data="Address">
-        <strong class="host">detect-my-region.alephium-pool.com</strong>
+        <strong class="host">{{.address}}</strong>
       </td>
       <td class="port-cell" data="Port">
-        <span class="port">20032</span>
+        <span class="port">{{.port}}</span>
         <button class="btn btn-copy">
           <i class="icon copy-icon"></i>
         </button>
       </td>
       <td class="ssl-port-cell" data="SSL Port">
-        <span class="port-ssl">20033</span>
+        <span class="port-ssl">{{.ssl_port}}</span>
         <button class="btn btn-copy button-copy-port-ssl">
           <i class="icon copy-icon"></i>
         </button>
       </td>
     </tr>
-    <tr>
-      <td class="region-cell">
-        <i class="icon europa-flag-icon"></i>
-        {{.Params.table_body.region_europe}}
-      </td>
-      <td class="address-cell" data="Address">
-        <strong class="host">eu1.alephium-pool.com</strong>
-      </td>
-      <td class="port-cell" data="Port">
-        <span class="port">20032</span>
-        <button class="btn btn-copy">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-      <td class="ssl-port-cell" data="SSL Port">
-        <span class="port-ssl">20033</span>
-        <button class="btn btn-copy button-copy-port-ssl">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td class="region-cell">
-        <i class="icon russian-flag-icon"></i>
-        {{.Params.table_body.region_russian}}
-      </td>
-      <td class="address-cell" data="Address">
-        <strong class="host">ru1.alephium-pool.host.com</strong>
-      </td>
-      <td class="port-cell" data="Port">
-        <span class="port">20032</span>
-        <button class="btn btn-copy">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-      <td class="ssl-port-cell" data="SSL Port">
-        <span class="port-ssl">20033</span>
-        <button class="btn btn-copy button-copy-port-ssl">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td class="region-cell">
-        <i class="icon usa-flag-icon"></i>
-        {{.Params.table_body.region_usa}}
-      </td>
-      <td class="address-cell" data="Address">
-        <strong class="host">us1.alephium-pool.com</strong>
-      </td>
-      <td class="port-cell" data="Port">
-        <span class="port">20032</span>
-        <button class="btn btn-copy">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-      <td class="ssl-port-cell" data="SSL Port">
-        <span class="port-ssl">20033</span>
-        <button class="btn btn-copy button-copy-port-ssl">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-    <tr>
-      <td class="region-cell">
-        <i class="icon asia-flag-icon"></i>
-        {{.Params.table_body.region_asia}}
-      </td>
-      <td class="address-cell" data="Address">
-        <strong class="host">asia1.alephium-pool.com</strong>
-      </td>
-      <td class="port-cell" data="Port">
-        <span class="port">20032</span>
-        <button class="btn btn-copy">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
-      <td class="ssl-port-cell" data="SSL Port">
-        <span class="port-ssl">20033</span>
-        <button class="btn btn-copy button-copy-port-ssl">
-          <i class="icon copy-icon"></i>
-        </button>
-      </td>
+    {{ end }}
   </tbody>
 </table>

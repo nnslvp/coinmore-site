@@ -1,27 +1,10 @@
 ---
-coin_name: 'alephium'
 layout: 'instructions'
 headless: true
-
 title: 'Инструкции'
 subtitle_text_1: 'Если у вас есть вопросы, воспользуйтесь'
 subtitle_text_2: 'Начните с загрузки'
 telegram_community: 'телеграмм сообщество'
-
-table_headers:
-  region: 'Регион'
-  address: 'Адрес'
-  port: 'Порт'
-  ssl_port: 'SSL Порт'
-  ping: 'Пинг'
-
-table_body:
-  region_auto: 'Автоматическое определение региона'
-  region_europe: 'Европа'
-  region_russian: 'Россия'
-  region_usa: 'США'
-  region_asia: 'Азия'
-
 pool_servers: 'Серверы пула'
 miners: 'Майнеры'
 windows_examples: 'Примеры для Windows'

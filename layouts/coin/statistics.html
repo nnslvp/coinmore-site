@@ -1,3 +1,5 @@
+{{ $currentDir := .File.Dir }}
+{{ $pageCoin := .Site.GetPage $currentDir }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,11 +59,11 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
-            .Params.coin_name }}</a></li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">{{
+            $pageCoin.Params.coin_name }}</a></li>
         <li class="separator">/</li>
         <li class="navigation-item">
-          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/statistics" class="statistics-link">{{ .Title
+          <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}/statistics" class="statistics-link">{{ .Title
             }}</a>
         </li>
       </ul>
@@ -375,8 +377,8 @@
     </div>
   </dialog>
   <script>
-    const COIN = {{.Params.coin_name }}
-    const COIN_SYMBOL = {{.Params.coin_symbol }}
+    const COIN = {{$pageCoin.Params.coin_name }}
+    const COIN_SYMBOL = {{$pageCoin.Params.coin_symbol }}
     const SELECT_PAYOUTS_NAME_OPTIONS = {
           day: {{ i18n "day" | title }},
           week: {{ i18n "week" | title }}

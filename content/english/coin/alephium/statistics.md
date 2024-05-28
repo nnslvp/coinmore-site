@@ -1,8 +1,5 @@
 ---
-coin_name: 'alephium'
-coin_symbol: 'ALPH'
 layout: 'statistics'
-show_card: false
 headless: true
 title: 'My statistics'
 search_placeholder: 'Wallet'

@@ -1,6 +1,4 @@
 ---
-coin_name: 'alephium'
-coin_symbol: 'RTM'
 layout: 'statistics'
 headless: true
 title: 'Моя статистика'

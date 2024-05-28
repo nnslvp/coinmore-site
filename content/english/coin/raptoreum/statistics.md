@@ -1,6 +1,4 @@
 ---
-coin_name: 'raptoreum'
-coin_symbol: 'RTM'
 layout: 'statistics'
 show_card: false
 headless: true

@@ -1,26 +1,10 @@
 ---
-coin_name: 'raptoreum'
 layout: 'instructions'
 headless: true
-
 title: 'Instructions'
 subtitle_text_1: 'If you have any questions, please use the'
 subtitle_text_2: 'Start by downloading'
 telegram_community: 'telegram community'
-table_headers:
-  region: 'region'
-  address: 'address'
-  port: 'Port'
-  ssl_port: 'SSL Port'
-  ping: 'Ping'
-
-table_body:
-  region_auto: 'Region auto detection'
-  region_europe: 'Europe'
-  region_russian: 'Russia'
-  region_usa: 'US'
-  region_asia: 'Asia'
-
 pool_servers: 'Pool servers'
 miners: 'Miners'
 windows_examples: 'Windows examples'
