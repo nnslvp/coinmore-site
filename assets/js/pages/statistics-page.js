@@ -90,6 +90,7 @@ function drawData(coin, wallet) {
 	const balancePromise = fetchMyBalance(coin, wallet);
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
+	const historyWorkersDayPromise = fetchHistoryWorkers(coin, wallet);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
 	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
@@ -116,6 +117,7 @@ function drawData(coin, wallet) {
 		balancePromise,
 		historyWalletWeekPromise,
 		historyWalletDayPromise,
+    historyWorkersDayPromise,
 		poolValueFeePromise,
 	])
 		.then(
@@ -129,6 +131,7 @@ function drawData(coin, wallet) {
 				balanceResults,
 				historyWalletWeekResult,
 				historyWalletDayResult,
+				historyWorkersDayResult,
 				feeResult,
 			]) => {
 				const rate = currencyInfo.rate.value;
@@ -155,6 +158,13 @@ function drawData(coin, wallet) {
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
 				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
 				const fee = feeResult.value;
+        const workersHistory = historyWorkersDayResult.workers_history;
+
+				const workersHistoryDay = workersHistory.filter(({ bucket }) => {
+          const lastDayStart = new Date().setHours(0, 0, 0, 0);
+					return new Date(bucket) >= lastDayStart;
+				});
+        
 				showPoolFee(fee);
 				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
@@ -167,7 +177,7 @@ function drawData(coin, wallet) {
 				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
 				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
 				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
-				showWorkersTable(workers24h, workers1h);
+				showWorkersTable(workers24h, workers1h, workersHistoryDay);
 				showStats();
 				enableButton();
 			})
@@ -249,7 +259,6 @@ CLOSE_MODAL_BTN.addEventListener('click', () => {
 		MODAL.close();
 	});; 
 
-
 MODAL.addEventListener('click', e => {
 	const dialogDimensions = MODAL.getBoundingClientRect();
 	if (
@@ -266,7 +275,7 @@ function showMinPayouts(minPayoutsValue) {
 	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
 }
 
-function showWorkersTable(workersDay, workersHour) {
+function showWorkersTable(workersDay, workersHour,workersHistory) {
 	const tableBody = document
 		.getElementById('statistics-workers-table')
 		.getElementsByTagName('tbody')[0];
@@ -298,7 +307,7 @@ function showWorkersTable(workersDay, workersHour) {
                       </span>
                     </td>
                     <td class="history-cell" data="7 day history">
-                      <canvas id="historyChart" class="history-сhart">
+                      <canvas id="${workerDay.worker}" class="history-сhart">
 
                       </canvas>
                     </td>
@@ -318,11 +327,27 @@ function showWorkersTable(workersDay, workersHour) {
                     </td>
                   </tr>`;
 	});
-
+  
 	tableBody.innerHTML = rowsHtml;
-	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
+  const workersByGroupe = Object.groupBy(
+		workersHistory,
+		({ worker }) => worker
+	);
+
+	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('.history-сhart');
 	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
-		initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
+   const workerHistory = workersByGroupe[chart.id]
+   const chartLabels = workerHistory.map(item => formatDate(item.bucket));
+   const chartData = workerHistory.map(
+			item => shortenHm(parseFloat(item.sum_difficulty), 2).hashrate
+		);
+    
+		initializeChart(
+			chart,
+			getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS),
+			chartData,
+			chartLabels,
+		);
 	});
 }
 

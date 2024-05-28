@@ -62,6 +62,16 @@ function fetchHistoryWallet(coin, wallet, period = PERIOD_WEEK) {
 		`/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`
 	);
 }
+function fetchHistoryWorkers(
+	coin,
+	wallet,
+	period = PERIOD_WEEK,
+	groupeBy = GROUP_BY.hour
+) {
+	return statsApiCall(
+		`/workers_history?coin=${coin}&wallet=${wallet}&period=${period}&group_by=${groupeBy}`
+	);
+}
 
 function fetchUserValue(coin, wallet, kind = 'min_payout') {
 	return statsApiCall(`/user_value?coin=${coin}&wallet=${wallet}&kind=${kind}`);
