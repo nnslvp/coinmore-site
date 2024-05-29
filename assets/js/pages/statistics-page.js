@@ -117,7 +117,7 @@ function drawData(coin, wallet) {
 		balancePromise,
 		historyWalletWeekPromise,
 		historyWalletDayPromise,
-    historyWorkersDayPromise,
+		historyWorkersDayPromise,
 		poolValueFeePromise,
 	])
 		.then(
@@ -158,13 +158,13 @@ function drawData(coin, wallet) {
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
 				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
 				const fee = feeResult.value;
-        const workersHistory = historyWorkersDayResult.workers_history;
+				const workersHistory = historyWorkersDayResult.workers_history;
 
 				const workersHistoryDay = workersHistory.filter(({ bucket }) => {
-          const lastDayStart = new Date().setHours(0, 0, 0, 0);
+					const lastDayStart = new Date().setHours(0, 0, 0, 0);
 					return new Date(bucket) >= lastDayStart;
 				});
-        
+
 				showPoolFee(fee);
 				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
@@ -180,7 +180,8 @@ function drawData(coin, wallet) {
 				showWorkersTable(workers24h, workers1h, workersHistoryDay);
 				showStats();
 				enableButton();
-			})
+			}
+		)
 		.catch(error => {
 			console.info('Error in drawData', error);
 			enableButton();
@@ -256,8 +257,8 @@ OPEN_MODAL_BTNS.forEach(btn => {
 });
 
 CLOSE_MODAL_BTN.addEventListener('click', () => {
-		MODAL.close();
-	});; 
+	MODAL.close();
+});
 
 MODAL.addEventListener('click', e => {
 	const dialogDimensions = MODAL.getBoundingClientRect();
@@ -275,7 +276,7 @@ function showMinPayouts(minPayoutsValue) {
 	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
 }
 
-function showWorkersTable(workersDay, workersHour,workersHistory) {
+function showWorkersTable(workersDay, workersHour, workersHistory) {
 	const tableBody = document
 		.getElementById('statistics-workers-table')
 		.getElementsByTagName('tbody')[0];
@@ -327,26 +328,26 @@ function showWorkersTable(workersDay, workersHour,workersHistory) {
                     </td>
                   </tr>`;
 	});
-  
+
 	tableBody.innerHTML = rowsHtml;
-  const workersByGroupe = Object.groupBy(
+	const workersByGroupe = Object.groupBy(
 		workersHistory,
 		({ worker }) => worker
 	);
 
 	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('.history-сhart');
 	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
-   const workerHistory = workersByGroupe[chart.id]
-   const chartLabels = workerHistory.map(item => formatDate(item.bucket));
-   const chartData = workerHistory.map(
+		const workerHistory = workersByGroupe[chart.id];
+		const chartLabels = workerHistory.map(item => formatDate(item.bucket));
+		const chartData = workerHistory.map(
 			item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 		);
-    
+
 		initializeChart(
 			chart,
 			getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS),
 			chartData,
-			chartLabels,
+			chartLabels
 		);
 	});
 }
