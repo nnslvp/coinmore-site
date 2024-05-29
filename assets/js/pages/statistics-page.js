@@ -339,7 +339,7 @@ function showWorkersTable(workersDay, workersHour,workersHistory) {
    const workerHistory = workersByGroupe[chart.id]
    const chartLabels = workerHistory.map(item => formatDate(item.bucket));
    const chartData = workerHistory.map(
-			item => shortenHm(parseFloat(item.sum_difficulty), 2).hashrate
+			item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 		);
     
 		initializeChart(

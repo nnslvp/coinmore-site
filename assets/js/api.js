@@ -62,6 +62,7 @@ function fetchHistoryWallet(coin, wallet, period = PERIOD_WEEK) {
 		`/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`
 	);
 }
+
 function fetchHistoryWorkers(
 	coin,
 	wallet,
