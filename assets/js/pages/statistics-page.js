@@ -147,11 +147,11 @@ function drawData(coin, wallet) {
 					formatDate(item.bucket)
 				);
 				const dataWeek = historyWalletWeek.map(
-					item => shortenHm(parseFloat(item.sum_difficulty), 2).hashrate
+					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
 				const labelsDay = historyWalletDay.map(item => formatDate(item.bucket));
 				const dataDay = historyWalletDay.map(
-					item => shortenHm(parseFloat(item.sum_difficulty), 2).hashrate
+					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
 				const workers1h = hashrate1hResults.workers;
 				const workers24h = hashrate24hResults.workers;
