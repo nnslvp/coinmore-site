@@ -12,7 +12,12 @@ const KIND = {
 };
 
 function statsApiCall(action) {
-	return fetch(`${statsApiUrl}${action}`).then(response => response.json());
+	return fetch(`${statsApiUrl}${action}`).then(response => {
+		if (!response.ok) {
+			throw new Error('Network response was not ok ' + response.statusText);
+		}
+		return response.json();
+	});
 }
 
 function statsApiPost(action) {
@@ -55,6 +60,17 @@ function fetchHistoryProfit(
 function fetchHistoryWallet(coin, wallet, period = PERIOD_WEEK) {
 	return statsApiCall(
 		`/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`
+	);
+}
+
+function fetchHistoryWorkers(
+	coin,
+	wallet,
+	period = PERIOD_WEEK,
+	groupeBy = GROUP_BY.hour
+) {
+	return statsApiCall(
+		`/workers_history?coin=${coin}&wallet=${wallet}&period=${period}&group_by=${groupeBy}`
 	);
 }
 

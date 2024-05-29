@@ -1,11 +1,13 @@
 const CHART_HASH_RATE = document.querySelector('#chartYourHashrate');
 const MODAL = document.querySelector('.modal');
-const OPEN_MODAL_BTN = document.querySelector('.open-button');
+const OPEN_MODAL_BTNS = document.querySelectorAll('.open-modal-button');
+const CLOSE_MODAL_BTN = document.querySelector('.close-modal-btn');
 const FORM_MIN_PAYOUTS = MODAL.querySelector('#form-min-payouts');
 const INPUT_MIN_PAYOUTS = FORM_MIN_PAYOUTS.querySelector('#input-min-payouts');
 const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 	'#stat-min-payouts-value'
 );
+
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
@@ -15,7 +17,7 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 			{
 				pointRadius: 0,
 				pointHitRadius: 0,
-				pointHoverRadius: 0, 
+				pointHoverRadius: 0,
 			},
 		],
 	},
@@ -53,7 +55,6 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
-
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
@@ -89,155 +90,100 @@ function drawData(coin, wallet) {
 	const balancePromise = fetchMyBalance(coin, wallet);
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
+	const historyWorkersDayPromise = fetchHistoryWorkers(coin, wallet);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
-
-	let currencyInfo = null;
+	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
+	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
 
 	userValueMinPayoutsPromise
 		.then(({ value }) => showMinPayouts(value))
-		.catch(_ => {
-			showMinPayouts(0.1);
+		.catch(error => {
+			if (error.status === 404) {
+				poolValueMinPayoutsPromise.then(defaultValue => {
+					showMinPayouts(defaultValue.value);
+				});
+			} else {
+				console.info('Error:', error);
+			}
 		});
 
-	Promise.allSettled([currencyInfoPromise])
-		.then(([currencyInfoResult]) => {
-			if (currencyInfoResult.status === 'fulfilled') {
-				currencyInfo = currencyInfoResult.value;
-			}
-			return Promise.allSettled([hashrate1hPromise, hashrate24hPromise]);
-		})
-		.then(hashrateResults => {
-			const [
-				{ status: statusHashrate1hPromise, value: valueHashrate1hPromise },
-				{ status: statusHashrate24hPromise, value: valueHashrate24hPromise },
-			] = hashrateResults;
-
-			if (
-				statusHashrate1hPromise === 'fulfilled' &&
-				statusHashrate24hPromise === 'fulfilled'
-			) {
-				const hashrate24h = calculateTotalByKey(
-					valueHashrate24hPromise.workers,
-					'hashrate'
+	Promise.all([
+		currencyInfoPromise,
+		payouts1hPromise,
+		payouts24hPromise,
+		payoutsWeekPromise,
+		hashrate1hPromise,
+		hashrate24hPromise,
+		balancePromise,
+		historyWalletWeekPromise,
+		historyWalletDayPromise,
+		historyWorkersDayPromise,
+		poolValueFeePromise,
+	])
+		.then(
+			([
+				currencyInfo,
+				payouts1hResult,
+				payouts24hResult,
+				payoutsWeekResult,
+				hashrate1hResults,
+				hashrate24hResults,
+				balanceResults,
+				historyWalletWeekResult,
+				historyWalletDayResult,
+				historyWorkersDayResult,
+				feeResult,
+			]) => {
+				const rate = currencyInfo.rate.value;
+				const balance = balanceResults;
+				const payouts1h = payouts1hResult.payouts;
+				const payouts24h = payouts24hResult.payouts;
+				const payoutsWeek = payoutsWeekResult.payouts;
+				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
+				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
+				const historyWalletWeek = historyWalletWeekResult.wallet_history;
+				const historyWalletDay = historyWalletDayResult.wallet_history;
+				const labelsWeek = historyWalletWeek.map(item =>
+					formatDate(item.bucket)
 				);
-				const hashrate1h = calculateTotalByKey(
-					valueHashrate1hPromise.workers,
-					'hashrate'
+				const dataWeek = historyWalletWeek.map(
+					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
-
-				showMyHashrate(hashrate1h, 'my_hashrate_1h');
-				showMyHashrate(hashrate24h, 'my_hashrate_24h');
-				// showWorkersTable(
-				// 	valueHashrate24hPromise.workers,
-				// 	valueHashrate1hPromise.workers
-				// );
-			}
-
-			return Promise.allSettled([
-				payouts1hPromise,
-				payouts24hPromise,
-				payoutsWeekPromise,
-			]);
-		})
-		.then(payoutsResults => {
-			const [
-				{ status: statusPayouts1hPromise, value: valuePayouts1hPromise },
-				{ status: statusPayouts24hPromise, value: valuePayouts24hPromise },
-				{ status: statusPayoutsWeekPromise, value: valuePayoutsWeekPromise },
-			] = payoutsResults;
-
-			if (
-				statusPayouts1hPromise === 'fulfilled' &&
-				statusPayouts24hPromise === 'fulfilled' &&
-				currencyInfo
-			) {
-				const payoutsAmount1h = calculateTotalByKey(
-					valuePayouts1hPromise.payouts,
-					'amount'
+				const labelsDay = historyWalletDay.map(item => formatDate(item.bucket));
+				const dataDay = historyWalletDay.map(
+					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
-				const payoutsAmount24h = calculateTotalByKey(
-					valuePayouts24hPromise.payouts,
-					'amount'
-				);
+				const workers1h = hashrate1hResults.workers;
+				const workers24h = hashrate24hResults.workers;
+				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
+				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
+				const fee = feeResult.value;
+				const workersHistory = historyWorkersDayResult.workers_history;
 
-				showMyPayouts(payoutsAmount1h);
-				showMyPayoutsUSD(
-					payoutsAmount1h,
-					currencyInfo.rate.value,
-					'my_payouts_1h_usd'
-				);
+				const workersHistoryDay = workersHistory.filter(({ bucket }) => {
+					const lastDayStart = new Date().setHours(0, 0, 0, 0);
+					return new Date(bucket) >= lastDayStart;
+				});
 
-				showMyPayouts(payoutsAmount24h, 'my_payouts_24h');
-				showMyPayoutsUSD(
-					payoutsAmount24h,
-					currencyInfo.rate.value,
-					'my_payouts_24h_usd'
-				);
-				showPayoutsTable(valuePayouts24hPromise.payouts);
-
-				if (statusPayoutsWeekPromise === 'fulfilled') {
-					showSelectPayouts(
-						valuePayouts24hPromise.payouts,
-						valuePayoutsWeekPromise.payouts
-					);
-				}
-			}
-
-			return Promise.allSettled([
-				historyWalletDayPromise,
-				historyWalletWeekPromise,
-			]);
-		})
-		.then(historyResults => {
-			const [
-				{
-					status: statusHistoryWalletDayPromise,
-					value: valueHistoryWalletDayPromise,
-				},
-				{
-					status: statusHistoryWalletWeekPromise,
-					value: valueHistoryWalletWeekPromise,
-				},
-			] = historyResults;
-
-			if (
-				statusHistoryWalletDayPromise === 'fulfilled' &&
-				statusHistoryWalletWeekPromise === 'fulfilled'
-			) {
-				const labelsWeek = valueHistoryWalletWeekPromise.wallet_history.map(
-					item => item.day.slice(0, 10)
-				);
-				const dataWeek = valueHistoryWalletWeekPromise.wallet_history.map(
-					item => parseFloat(item.sum_difficulty)
-				);
-
-				const labelsDay = valueHistoryWalletDayPromise.wallet_history.map(
-					item => item.day.slice(0, 10)
-				);
-				const dataDay = valueHistoryWalletDayPromise.wallet_history.map(item =>
-					parseFloat(item.sum_difficulty)
-				);
-
+				showPoolFee(fee);
+				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
+				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
+				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
+				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
+				showPayoutsTable(payouts1h);
+				showSelectPayouts(payouts24h, payoutsWeek);
+				showMyBalance(balance, 'balance', COIN_SYMBOL);
+				showMyBalanceUSD(balance, rate);
 				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
+				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
+				showWorkersTable(workers24h, workers1h, workersHistoryDay);
+				showStats();
+				enableButton();
 			}
-
-			return Promise.allSettled([balancePromise]);
-		})
-		.then(balanceResults => {
-			const [
-				{ status: statusBalancePromise, value: valueBalancePromise },
-			] = balanceResults;
-
-			if (statusBalancePromise === 'fulfilled' && currencyInfo) {
-				showMyBalance(valueBalancePromise);
-				showMyBalanceUSD(valueBalancePromise, currencyInfo.rate?.value);
-			}
-
-			showStats();
-			enableButton();
-		})
+		)
 		.catch(error => {
-			console.error('Error in drawData:', error);
+			console.info('Error in drawData', error);
 			enableButton();
 		});
 }
@@ -248,21 +194,17 @@ function showStats() {
 
 function disableButton() {
 	const button = document.getElementById('show');
-	// button.textContent = 'Loading..';
 	button.disabled = true;
 }
 
 function enableButton() {
 	const button = document.getElementById('show');
-	// button.textContent = 'Update';
 	button.disabled = false;
 }
 
 function setWalletParam(wallet) {
 	const urlParams = new URLSearchParams(window.location.search);
-
 	urlParams.set('wallet', wallet);
-
 	window.location.search = urlParams;
 }
 
@@ -303,13 +245,19 @@ function assignFormListenerMinPayoutsForm(wallet) {
 				MODAL.close();
 			})
 			.catch(error => {
-				console.error('Error submitting form:', error);
+				console.info('Error submitting form:', error);
 			});
 	});
 }
 
-OPEN_MODAL_BTN.addEventListener('click', () => {
-	MODAL.showModal();
+OPEN_MODAL_BTNS.forEach(btn => {
+	btn.addEventListener('click', () => {
+		MODAL.showModal();
+	});
+});
+
+CLOSE_MODAL_BTN.addEventListener('click', () => {
+	MODAL.close();
 });
 
 MODAL.addEventListener('click', e => {
@@ -324,17 +272,11 @@ MODAL.addEventListener('click', e => {
 	}
 });
 
-function showMyHashrate(hashrate, id = 'my_hashrate_1h') {
-	const shortHashRate = shortenHm(hashrate, 2);
-	document.getElementById(
-		id
-	).textContent = `${shortHashRate.hashrate} ${shortHashRate.units}`;
-}
 function showMinPayouts(minPayoutsValue) {
 	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
 }
 
-function showWorkersTable(workersDay, workersHour) {
+function showWorkersTable(workersDay, workersHour, workersHistory) {
 	const tableBody = document
 		.getElementById('statistics-workers-table')
 		.getElementsByTagName('tbody')[0];
@@ -366,7 +308,7 @@ function showWorkersTable(workersDay, workersHour) {
                       </span>
                     </td>
                     <td class="history-cell" data="7 day history">
-                      <canvas id="historyChart" class="history-сhart">
+                      <canvas id="${workerDay.worker}" class="history-сhart">
 
                       </canvas>
                     </td>
@@ -388,34 +330,26 @@ function showWorkersTable(workersDay, workersHour) {
 	});
 
 	tableBody.innerHTML = rowsHtml;
-	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('#historyChart');
+	const workersByGroupe = Object.groupBy(
+		workersHistory,
+		({ worker }) => worker
+	);
+
+	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('.history-сhart');
 	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
-		initializeChart(chart, getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS));
+		const workerHistory = workersByGroupe[chart.id];
+		const chartLabels = workerHistory.map(item => formatDate(item.bucket));
+		const chartData = workerHistory.map(
+			item => shortenHm(parseFloat(item.hashrate), 2).hashrate
+		);
+
+		initializeChart(
+			chart,
+			getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS),
+			chartData,
+			chartLabels
+		);
 	});
-}
-
-function showMyPayouts(amount, id = 'my_payouts_1h') {
-	document.getElementById(id).textContent = parseFloat(amount).toFixed(8);
-}
-
-function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
-	document.getElementById(id).textContent = `${amountUSD(
-		amount,
-		currencyRate
-	)} USD`;
-}
-
-function showMyBalance(myBalanceData, id = 'balance') {
-	document.getElementById(id).textContent = parseFloat(
-		myBalanceData?.amount 
-	).toFixed(8);
-}
-
-function showMyBalanceUSD(myBalanceData, currencyRate, id = 'balance_usd') {
-	document.getElementById(id).textContent = `${amountUSD(
-		myBalanceData?.amount ,
-		currencyRate
-	)} USD`;
 }
 
 function showPayoutsTable(payouts) {
@@ -477,6 +411,3 @@ function showSelectPayouts(payoutsDay, payoutsWeek) {
 		},
 	});
 }
-
-
-

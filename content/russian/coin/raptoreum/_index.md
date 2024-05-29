@@ -1,10 +1,8 @@
 ---
-type: 'coin'
 layout: 'coin'
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
 coin_logo: '/images/raptoreum-logo-light.svg'
-
 start_mining: 'Начать майнинг'
 pool_hashrate: 'Хешрейт пула:'
 network_hashrate: 'Хешрейт сети:'
@@ -34,20 +32,6 @@ profit_per_gh_label: 'Прибыль на ГГц'
 blocks_24h_label: 'Блоки за 24 часа'
 latest_block_label: 'Последний блок'
 workers_online_label: 'Работники онлайн:'
-table_headers:
-  region: 'Регион'
-  address: 'Адрес'
-  port: 'Порт'
-  ssl_port: 'SSL Порт'
-  ping: 'Пинг'
-
-table_body:
-  region_auto: 'Автоопределение региона'
-  region_europe: 'Европа'
-  region_russian: 'Россия'
-  region_usa: 'США'
-  region_asia: 'Азия'
-
 chart_headers:
   hashrate: 'Хешрейт пула'
   profit: 'Прибыль на ГГц'
@@ -55,4 +39,17 @@ chart_headers:
 chart_intervals:
   one_day: 'День'
   week: 'Неделя'
+
+table_headers:
+  - "Регион"
+  - "Адрес"
+  - "Порт"
+  - "SSL Порт"
+
+table_body:
+  - region: "Автоопределение региона"
+    address: "auto-geo.raptoreum.coinmore.io:3002"
+    port: 20032
+    ssl_port: 20033
+    icon: "globe-icon"
 ---

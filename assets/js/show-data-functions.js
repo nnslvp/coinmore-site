@@ -54,3 +54,27 @@ function showNetworkHashrate(hashrate, id = 'network_hashrate') {
 function showRate(rate, id = 'coin-price') {
 	document.getElementById(id).textContent = `$${rate}`;
 }
+
+function showMyPayouts(amount, id = 'my_payouts_1h', symbol) {
+	const amountValue = parseFloat(amount).toFixed(8);
+	document.getElementById(id).textContent = `${amountValue} ${symbol}`;
+}
+
+function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
+	document.getElementById(id).textContent = `${amountUSD(
+		amount,
+		currencyRate
+	)} USD`;
+}
+
+function showMyBalance(myBalanceData, id = 'balance', symbol) {
+	const amount = parseFloat(myBalanceData?.amount).toFixed(8);
+	document.getElementById(id).textContent = `${amount} ${symbol}`;
+}
+
+function showMyBalanceUSD(myBalanceData, currencyRate, id = 'balance_usd') {
+	document.getElementById(id).textContent = `${amountUSD(
+		myBalanceData?.amount,
+		currencyRate
+	)} USD`;
+}

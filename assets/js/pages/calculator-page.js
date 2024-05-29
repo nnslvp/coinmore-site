@@ -4,18 +4,9 @@ const CALCULATOR_FORM = document.forms.calculator_form;
 
 const selectCurrency = ItcCustomSelect.create('#select-currency', {
 	name: 'interval',
-	placeholder: 'Select currency',
-	targetValue: 'USD',
-	options: [
-		['USD', 'USD'],
-		['week', 'Week'],
-	],
-	onSelected(select, option) {
-		console.log(`Выбранное значение: ${select.value}`);
-		console.log(`Индекс выбранной опции: ${select.selectedIndex}`);
-		const text = option ? option.textContent : '';
-		console.log(`Выбранный текст опции: ${text}`);
-	},
+	placeholder: 'Select coin',
+	targetValue: 'alephium',
+	options: COINS.map(coin => [coin.name, coin.symbol]),
 });
 
 function perHour(value) {
@@ -45,11 +36,11 @@ function addValue(tr, cell, value, currencyValue = '', sign = '') {
 		`${sign}` + ` ${parseFloat(value).toFixed(4)}` + ` ${currencyValue}`;
 }
 
-function addValuesRow(period, reward, income, costs, profit, currencyValue) {
-	addValue(period, 'reward-value', reward, 'ALPH');
-	addValue(period, 'income-value', income, currencyValue);
-	addValue(period, 'electricity-costs__value', costs, currencyValue, '-');
-	addValue(period, 'profit-value', profit, currencyValue);
+function addValuesRow(period, reward, income, costs, profit, coinSymbol) {
+	addValue(period, 'reward-value', reward, coinSymbol);
+	addValue(period, 'income-value', income, coinSymbol);
+	addValue(period, 'electricity-costs__value', costs, coinSymbol, '-');
+	addValue(period, 'profit-value', profit, coinSymbol);
 }
 
 function generateTable(calculatorForm) {
@@ -57,9 +48,10 @@ function generateTable(calculatorForm) {
 	CALCULATE_BTN.classList.add('disabled');
 	const hashrateValue = calculatorForm.hashrate?.value;
 	const powerConsumptionValue = calculatorForm.powerConsumption?.value;
-	const currencyValue = selectCurrency.value;
+	const coin = selectCurrency.value;
+	const coinSymbol = selectCurrency.valueTextContent;
 	const electricityCostsValue = calculatorForm.electricityCosts?.value;
-	Promise.all([fetchRate(), fetchPoolProfit()]).then(function ([
+	Promise.all([fetchRate(coin), fetchPoolProfit(coin)]).then(function ([
 		{ rate },
 		{ profit },
 	]) {
@@ -73,7 +65,7 @@ function generateTable(calculatorForm) {
 			costsPerTime(powerConsumptionValue, electricityCostsValue),
 			perHour(income) -
 				costsPerTime(powerConsumptionValue, electricityCostsValue),
-			currencyValue
+			coinSymbol
 		);
 
 		addValuesRow(
@@ -82,7 +74,7 @@ function generateTable(calculatorForm) {
 			income,
 			costsPerTime(powerConsumptionValue, electricityCostsValue, 24),
 			income - costsPerTime(powerConsumptionValue, electricityCostsValue, 24),
-			currencyValue
+			coinSymbol
 		);
 
 		addValuesRow(
@@ -92,7 +84,7 @@ function generateTable(calculatorForm) {
 			costsPerTime(powerConsumptionValue, electricityCostsValue, 168),
 			perWeek(income) -
 				costsPerTime(powerConsumptionValue, electricityCostsValue, 168),
-			currencyValue
+			coinSymbol
 		);
 	});
 	CALCULATE_BTN.disabled = false;

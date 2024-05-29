@@ -1,26 +1,10 @@
 ---
-coin_name: 'alephium'
 layout: 'instructions'
 headless: true
-
 title: 'Instructions'
 subtitle_text_1: 'If you have any questions, please use the'
 subtitle_text_2: 'Start by downloading'
 telegram_community: 'telegram community'
-table_headers:
-  region: 'region'
-  address: 'address'
-  port: 'Port'
-  ssl_port: 'SSL Port'
-  ping: 'Ping'
-
-table_body:
-  region_auto: 'Region auto detection'
-  region_europe: 'Europe'
-  region_russian: 'Russia'
-  region_usa: 'US'
-  region_asia: 'Asia'
-
 pool_servers: 'Pool servers'
 miners: 'Miners'
 windows_examples: 'Windows examples'
@@ -34,7 +18,8 @@ download_lolminer_phrase: 'last release of lolMiner'
 unzip_phrase: 'and unzip files'
 update_file_phrase: 'Update <strong>alph</strong> file, for example:'
 run_alph_file_phrase: 'Run <strong>alph</strong> file, for example:'
-alephium_wallet: 'Alephium Wallet'
+wallet: 'Alephium Wallet'
+dowland_wallet_link: 'https://github.com/alephium/desktop-wallet/releases'
 update_file: 'Update `alph` file, for example: `dual_mine_eth_aleph.bat`.'
 run_file: 'Run `alph` file, for example: `dual_mine_eth_aleph.bat`.'
 profit: 'PROFIT!'

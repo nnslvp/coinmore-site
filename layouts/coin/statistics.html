@@ -1,3 +1,5 @@
+{{ $currentDir := .File.Dir }}
+{{ $pageCoin := .Site.GetPage $currentDir }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,11 +59,11 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
-            .Params.coin_name }}</a></li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">{{
+            $pageCoin.Params.coin_name }}</a></li>
         <li class="separator">/</li>
         <li class="navigation-item">
-          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/statistics" class="statistics-link">{{ .Title
+          <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}/statistics" class="statistics-link">{{ .Title
             }}</a>
         </li>
       </ul>
@@ -82,10 +84,10 @@
           <section id="stats" class="section-statistics empty-statistics">
             <header class="section-statistics__header">
               <h2 class="heading-h2">{{ .Params.section_title }}</h2>
-              <a href="{{ .Site.BaseURL}}/calculator" class="btn btn-outline-primary">
+              <button class="btn btn-outline-primary open-modal-button">
                 <i class=" icon edit-icon-primary"></i>
-                {{ .Params.mining_calculator_button }}
-              </a>
+                {{ .Params.edit_min_payouts_button }}
+                </button>
             </header>
             <ul class="stats-container statistics__stats-container">
               <li class="stat-item">
@@ -129,9 +131,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_24h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_payouts_24h">0.0888 ALPH</span>
+                    <span id="my_payouts_24h">0.0 ALPH</span>
                     ~
-                    <span id="my_payouts_24h_usd">0.2925 USD</span>
+                    <span id="my_payouts_24h_usd">0.0 USD</span>
                   </strong>
                 </div>
               </li>
@@ -143,7 +145,7 @@
                     <span id="stat-min-payouts-value">0.1</span> coin
                   </strong>
                 </div>
-                <i class="icon edit-icon open-button"></i></a>
+                <i class="icon edit-icon open-modal-button"></i></a>
               </li>
               <li class="stat-item">
                 <i class="icon timer-icon"></i>
@@ -156,7 +158,7 @@
                 <i class="icon fee-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.pool_fee}}</p>
-                  <strong class="stat-item__value">0.5%</strong>
+                  <strong id="pool_fee" class="stat-item__value">0</strong>
                 </div>
               </li>
             </ul>
@@ -368,17 +370,18 @@
             >
         </div>
         <div class="form-action">
-          <button formmethod="dialog" class="btn btn-outline-primary">{{ .Params.modal.cancel_button }}</button>
+          <button type="button" class="btn btn-outline-primary close-modal-btn">{{ .Params.modal.cancel_button }}</button>
           <button type="submit" class="btn btn-filled-primary">{{ .Params.modal.save_button }}</button>
         </div>
       </form>
     </div>
   </dialog>
   <script>
-    const COIN = {{.Params.coin_name }}
+    const COIN = {{$pageCoin.Params.coin_name }}
+    const COIN_SYMBOL = {{$pageCoin.Params.coin_symbol }}
     const SELECT_PAYOUTS_NAME_OPTIONS = {
-     day: {{ i18n "day" | title }},
-     week: {{ i18n "week" | title}}
+          day: {{ i18n "day" | title }},
+          week: {{ i18n "week" | title }}
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

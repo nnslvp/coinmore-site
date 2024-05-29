@@ -3,7 +3,6 @@ layout: 'coin'
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
 coin_logo: '/images/raptoreum-logo-light.svg'
-
 start_mining: 'Start mining'
 pool_hashrate: 'Pool hashrate:'
 network_hashrate: 'Network hashrate:'
@@ -12,7 +11,7 @@ daily_revenue: 'Daily Revenue:'
 fee: 'Fee:'
 active_miners: 'Active miners:'
 min_payout: 'Min. payout:'
-pool_title: 'Alephium pool'
+pool_title: 'Raptoreum pool'
 instruction_text: 'Please use detailed'
 instruction_link_text: 'connection instructions.'
 faq_text: 'If you have any questions, please use the'
@@ -26,27 +25,13 @@ benefit2_text: '30 minutes'
 benefit3_title: 'Minimum payout'
 benefit3_text: '0.3 ALPH.'
 quick_start_title: 'Quick start'
-quick_start_subtitle: 'Alephium is the first mineable layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.'
+quick_start_subtitle: 'Raptoreum is the first mineable layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.'
 button_view_statistic_text: 'View personal statistic'
 pool_hashrate_label: 'Pool hashrate'
 profit_per_gh_label: 'Profit per GH'
 blocks_24h_label: '24h Blocks'
 latest_block_label: 'Latest Block at'
 workers_online_label: 'Workers Online'
-table_headers:
-  region: 'region'
-  address: 'address'
-  port: 'Port'
-  ssl_port: 'SSL Port'
-  ping: 'Ping'
-
-table_body:
-  region_auto: 'Region auto detection'
-  region_europe: 'Europe'
-  region_russian: 'Russia'
-  region_usa: 'US'
-  region_asia: 'Asia'
-
 chart_headers:
   hashrate: 'Pool hashrate'
   profit: 'Profit per GH'
@@ -54,4 +39,17 @@ chart_headers:
 chart_intervals:
   one_day: 'Day'
   week: 'Week'
+
+table_headers:
+  - "Region"
+  - "Address"
+  - "Port"
+  - "SSL Port"
+
+table_body:
+  - region: "Region auto detection"
+    address: "auto-geo.raptoreum.coinmore.io:3002"
+    port: 20032
+    ssl_port: 20033
+    icon: 'globe-icon'
 ---

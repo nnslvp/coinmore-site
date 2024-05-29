@@ -1,27 +1,10 @@
 ---
-coin_name: 'alephium'
 layout: 'instructions'
 headless: true
-
 title: 'Инструкции'
 subtitle_text_1: 'Если у вас есть вопросы, воспользуйтесь'
 subtitle_text_2: 'Начните с загрузки'
 telegram_community: 'телеграмм сообщество'
-
-table_headers:
-  region: 'Регион'
-  address: 'Адрес'
-  port: 'Порт'
-  ssl_port: 'SSL Порт'
-  ping: 'Пинг'
-
-table_body:
-  region_auto: 'Автоматическое определение региона'
-  region_europe: 'Европа'
-  region_russian: 'Россия'
-  region_usa: 'США'
-  region_asia: 'Азия'
-
 pool_servers: 'Серверы пула'
 miners: 'Майнеры'
 windows_examples: 'Примеры для Windows'
@@ -35,7 +18,8 @@ download_lolminer_phrase: 'последнюю версию lolMiner'
 unzip_phrase: 'и распакуйте файлы'
 update_file_phrase: 'Обновите <strong>alph</strong> файл, например:'
 run_alph_file_phrase: 'Запустите <strong>alph</strong> файл, например:'
-alephium_wallet: 'Кошелек Alephium'
+wallet: 'Кошелек Raptoreum'
+dowland_wallet_link: 'https://github.com/Raptor3um/raptoreum/releases'
 update_file: 'Обновите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 run_file: 'Запустите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 profit: 'ПРИБЫЛЬ!'

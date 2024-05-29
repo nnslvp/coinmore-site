@@ -32,19 +32,39 @@ profit_per_gh_label: 'Profit per GH'
 blocks_24h_label: '24h Blocks'
 latest_block_label: 'Latest Block at'
 workers_online_label: 'Workers Online'
+
 table_headers:
-  region: 'region'
-  address: 'address'
-  port: 'Port'
-  ssl_port: 'SSL Port'
-  ping: 'Ping'
+  - "Region"
+  - "Address"
+  - "Port"
+  - "SSL Port"
 
 table_body:
-  region_auto: 'Region auto detection'
-  region_europe: 'Europe'
-  region_russian: 'Russia'
-  region_usa: 'US'
-  region_asia: 'Asia'
+  - region: "Region auto detection"
+    address: "detect-my-region.alephium-pool.com"
+    port: 20032
+    ssl_port: 20033
+    icon: 'globe-icon'
+  - region: "Europe"
+    address: "eu1.alephium-pool.com"
+    port: 20032
+    ssl_port: 20033
+    icon: 'europa-flag-icon'
+  - region: "Russia"
+    address: "ru1.alephium-pool.host.com"
+    port: 20032
+    ssl_port: 20033
+    icon: 'russian-flag-icon'
+  - region: "US"
+    address: "us1.alephium-pool.com"
+    port: 20032
+    ssl_port: 20033
+    icon: 'usa-flag-icon'
+  - region: "Asia"
+    address: "asia1.alephium-pool.com"
+    port: 20032
+    ssl_port: 20033
+    icon: 'asia-flag-icon'
 
 chart_headers:
   hashrate: 'Pool hashrate'

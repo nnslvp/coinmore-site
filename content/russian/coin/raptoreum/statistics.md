@@ -1,12 +1,11 @@
 ---
-coin_name: 'alephium'
 layout: 'statistics'
 headless: true
 title: 'Моя статистика'
 search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'
 section_title: 'Кошелек Alephium'
-mining_calculator_button: 'Калькулятор майнинга'
+edit_min_payouts_button: 'Отредактировать мою мин. выплату'
 stat_labels:
   balance: 'Ваш баланс:'
   hashrate_1h: 'Ваш хешрейт за 1 час:'
@@ -24,7 +23,7 @@ table_statistics_payouts_labels:
 workers_table_headers:
   worker: 'Работник'
   hashrate: 'Хешрейт 1ч/24ч'
-  history: 'История 7 дней'
+  history: 'История за 24ч'
   valid_shares: 'Действительные доли 1ч/24ч'
   last_share_at: 'Последняя доля'
 

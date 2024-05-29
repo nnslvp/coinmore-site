@@ -52,7 +52,7 @@ function showChartPoolHashrate({
 	});
 }
 
-function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay }) {
+function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay, units }) {
 	const profitChart = initializeChart(
 		CHART_PROFIT,
 		getChartOptions({
@@ -66,7 +66,7 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 			options: {
 				plugins: {
 					title: {
-						text: 'ALPH',
+						text: units,
 					},
 				},
 			},
@@ -122,24 +122,26 @@ function showChartWorkersActivity({
 }
 
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-	const labelsWeek = poolHistoryWeek.map(item => formatDate(item.bucket));
-	const labelsDay = poolHistoryDay.map(item => formatDate(item.bucket));
-	const dataPoolHashrateWeek = poolHistoryWeek.map(
+	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
+	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
+	const dataPoolHashrateWeek = profitHistoryWeek.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
-	const dataPoolHashrateDay = poolHistoryDay.map(
+	const dataPoolHashrateDay = profitHistoryDay.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
 
-	const dataWorkersActivityDay = poolHistoryDay.map(
+	const dataWorkersActivityDay = profitHistoryDay.map(
 		item => item.unique_wallets
 	);
 
-	const dataWorkersActivityWeek = poolHistoryWeek.map(
+	const dataWorkersActivityWeek = profitHistoryWeek.map(
 		item => item.unique_wallets
 	);
 
-	const { units } = shortenHm(poolHistoryWeek[1].hashrate);
+	const { units } = profitHistoryWeek[1]?.hashrate
+		? shortenHm(profitHistoryWeek[1]?.hashrate)
+		: { units: '' };
 
 	showChartPoolHashrate({
 		labelsWeek,
@@ -172,6 +174,7 @@ function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
 		dataWeek,
 		labelsDay,
 		dataDay,
+		units: COIN_SYMBOL,
 	});
 }
 
@@ -200,7 +203,7 @@ function init(coin) {
 	const fetchCurrencyInfoPromise = fetchCurrencyInfo(coin);
 
 	fetchPoolProfitPromise.then(({ profit }) => {
-		showPoolProfit(profit, 'pool_profit', COIN_SYMBOl);
+		showPoolProfit(profit, 'pool_profit', COIN_SYMBOL);
 		fetchCurrencyInfoPromise.then(({ rate: { value } }) =>
 			showPoolProfitUSD(profit, value)
 		);
@@ -216,7 +219,9 @@ function init(coin) {
 
 	fetchPoolBlocksPromise.then(({ count, last_block_at }) => {
 		showPool24hBlocks(count);
-		showPoolLatestBlockAt(last_block_at);
+		if (last_block_at) {
+			showPoolLatestBlockAt(last_block_at);
+		}
 	});
 
 	fetchHistoryWeekPromise
@@ -227,7 +232,7 @@ function init(coin) {
 		.then(historyDay => (poolHistoryDay = historyDay.pool_history))
 		.then(() => drawPoolHistoryData(poolHistoryDay, poolHistoryWeek))
 		.catch(err => {
-			console.error('Error fetching poolHistory:', err);
+			console.info('Error fetching poolHistory:', err);
 		});
 
 	fetchHistoryProfitWeekPromise
@@ -240,7 +245,7 @@ function init(coin) {
 		})
 		.then(() => drawProfitHistoryData(profitHistoryWeek, profitHistoryDay))
 		.catch(err => {
-			console.error('Error fetching profitHistory:', err);
+			console.info('Error fetching profitHistory:', err);
 		});
 }
 

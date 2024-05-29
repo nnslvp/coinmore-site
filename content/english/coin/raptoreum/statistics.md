@@ -1,13 +1,11 @@
 ---
-coin_name: 'raptoreum'
 layout: 'statistics'
-show_card: false
 headless: true
 title: 'My statistics'
 search_placeholder: 'Wallet'
 view_statistic_button: 'View personal statistic'
 section_title: 'Alephium wallet'
-mining_calculator_button: 'Mining calculator'
+edit_min_payouts_button: 'Edit my min. payout'
 stat_labels:
   balance: 'Your balance:'
   hashrate_1h: 'Your hashrate 1h:'
@@ -25,7 +23,7 @@ table_statistics_payouts_labels:
 workers_table_headers:
   worker: 'Worker'
   hashrate: 'Hashrate 1h/24h'
-  history: '7 day history'
+  history: 'history 24h'
   valid_shares: 'Valid Shares 1h/24h'
   last_share_at: 'Last Share At'
 

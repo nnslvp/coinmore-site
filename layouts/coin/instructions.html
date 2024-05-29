@@ -1,3 +1,5 @@
+{{ $currentDir := .File.Dir }}
+{{ $pageCoin := .Site.GetPage $currentDir }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,11 +59,11 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}" class="currency-link">{{
-            .Params.coin_name }}</a></li>
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">{{
+            $pageCoin.Params.coin_name }}</a></li>
         <li class="separator">/</li>
         <li class="navigation-item">
-          <a href="{{ $.Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions" class="statistics-link">{{
+          <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}/instructions" class="statistics-link">{{
             .Params.title }}</a>
         </li>
       </ul>
@@ -74,15 +76,14 @@
               <h1 class="heading-h1">{{ .Params.title }}</h1>
               <p class="subtitle instructions__subtitle">
                 {{ .Params.subtitle_text_1 }}
-
                 <a class="link" href="#faq">
                   <strong>{{ .Params.faq_title}}</strong>
                 </a>
                 <span>
                   {{ .Params.subtitle_text_2 }}
-                  <a class="link" href="#">
+                  <a class="link" href="{{.Params.dowland_wallet_link}}">
                     <strong>
-                      {{ .Params.alephium_wallet }}.
+                      {{ .Params.wallet }}.
                     </strong>
                   </a>
                 </span>
@@ -95,7 +96,6 @@
           <div class="container">
             <div class="section__inner">
               <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
-              {{partial "table-servers.html" .}}
             </div>
           </div>
         </section>
@@ -103,6 +103,7 @@
           <div class="container">
             <div class="section__inner">
               <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
+              {{partial "table-servers.html" $pageCoin}}
               <p class="subtitle">{{ .Params.can_use }}:</p>
               <div class="miners-list-about-other-container">
                 <ul class="miners-list">
