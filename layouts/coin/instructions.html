@@ -96,14 +96,13 @@
           <div class="container">
             <div class="section__inner">
               <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
+                {{partial "table-servers.html" $pageCoin}}
             </div>
           </div>
         </section>
         <section class="section-miners">
           <div class="container">
-            <div class="section__inner">
-              <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
-              {{partial "table-servers.html" $pageCoin}}
+            <div class="section__inner">           
               <p class="subtitle">{{ .Params.can_use }}:</p>
               <div class="miners-list-about-other-container">
                 <ul class="miners-list">
