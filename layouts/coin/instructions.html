@@ -59,7 +59,8 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">{{
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}"
+            class="currency-link">{{
             $pageCoin.Params.coin_name }}</a></li>
         <li class="separator">/</li>
         <li class="navigation-item">
@@ -96,34 +97,24 @@
           <div class="container">
             <div class="section__inner">
               <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
-                {{partial "table-servers.html" $pageCoin}}
+              {{partial "table-servers.html" $pageCoin}}
             </div>
           </div>
         </section>
         <section class="section-miners">
           <div class="container">
-            <div class="section__inner">           
+            <div class="section__inner">
+              <h2 class="heading-h2">{{ .Params.miners_title }}</h2>
               <p class="subtitle">{{ .Params.can_use }}:</p>
               <div class="miners-list-about-other-container">
                 <ul class="miners-list">
+                  {{ range .Params.miners_list }}
                   <li class="miners-item">
-                    <a href="https://github.com/doktor83/SRBMiner-Multi/releases" class="link">SRBMiner</a>
+                    <a href="{{ .link }}" class="link">
+                      {{ .miner }}
+                    </a>
                   </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/Lolliedieb/lolMiner-releases/releases" class="link">IolMiner</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/bzminer/bzminer/releases" class="link">BzMiner</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/trexminer/T-Rex/releases" class="link">T-Rex</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/rigelminer/rigel/releases" class="link">Rigel</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/andru-kun/wildrig-multi/releases" class="link">WildRig Multi</a>
-                  </li>
+                  {{ end }}
                 </ul>
                 <p class="subtitle">{{ .Params.ask_in_telegram }} <a class="link subtitle"
                     href="https://t.me/alephium_pool">{{

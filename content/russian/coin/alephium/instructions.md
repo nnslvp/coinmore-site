@@ -6,7 +6,7 @@ subtitle_text_1: 'Если у вас есть вопросы, воспользу
 subtitle_text_2: 'Начните с загрузки'
 telegram_community: 'телеграмм сообщество'
 pool_servers: 'Серверы пула'
-miners: 'Майнеры'
+miners_title: 'Майнеры'
 windows_examples: 'Примеры для Windows'
 faq_title: 'Вопросы и ответы'
 faq_subtitle: 'Часто задаваемые вопросы для Alephium Pool'
@@ -23,6 +23,21 @@ dowland_wallet_link: 'https://github.com/alephium/desktop-wallet/releases'
 update_file: 'Обновите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 run_file: 'Запустите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 profit: 'ПРИБЫЛЬ!'
+
+
+miners_list:
+  - miner: 'SRBMiner'
+    link: 'https://github.com/doktor83/SRBMiner-Multi/releases'
+  - miner: 'IolMiner'
+    link: 'https://github.com/Lolliedieb/lolMiner-releases/releases'
+  - miner: 'BzMiner'
+    link: 'https://github.com/bzminer/bzminer/releases'
+  - miner: 'T-Rex'
+    link: 'https://github.com/trexminer/T-Rex/releases'
+  - miner: 'Rigel'
+    link: 'https://github.com/rigelminer/rigel/releases'
+  - miner: 'WildRig Multi'
+    link: 'https://github.com/andru-kun/wildrig-multi/releases'
 
 faq:
   - question: 'Вопрос 1'
