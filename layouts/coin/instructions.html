@@ -59,9 +59,11 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}"
-            class="currency-link">{{
-            $pageCoin.Params.coin_name }}</a></li>
+        <li class="navigation-item">
+          <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">
+            {{title $pageCoin.Params.coin_name }}
+          </a>
+        </li>
         <li class="separator">/</li>
         <li class="navigation-item">
           <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}/instructions" class="statistics-link">{{
