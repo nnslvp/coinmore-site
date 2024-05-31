@@ -153,7 +153,7 @@ function drawData(coin, wallet) {
 				const dataDay = historyWalletDay.map(
 					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
-        const units = shortenHm(historyWalletWeek[0]?.hashrate, 2);
+				const units = shortenHm(historyWalletWeek[0]?.hashrate, 2);
 				const workers1h = hashrate1hResults.workers;
 				const workers24h = hashrate24hResults.workers;
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
