@@ -59,7 +59,8 @@
           </a>
         </li>
         <li class="separator">/</li>
-        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">{{
+        <li class="navigation-item"><a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}"
+            class="currency-link">{{
             $pageCoin.Params.coin_name }}</a></li>
         <li class="separator">/</li>
         <li class="navigation-item">
@@ -96,35 +97,24 @@
           <div class="container">
             <div class="section__inner">
               <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
+              {{partial "table-servers.html" $pageCoin}}
             </div>
           </div>
         </section>
         <section class="section-miners">
           <div class="container">
             <div class="section__inner">
-              <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
-              {{partial "table-servers.html" $pageCoin}}
+              <h2 class="heading-h2">{{ .Params.miners_title }}</h2>
               <p class="subtitle">{{ .Params.can_use }}:</p>
               <div class="miners-list-about-other-container">
                 <ul class="miners-list">
+                  {{ range .Params.miners_list }}
                   <li class="miners-item">
-                    <a href="https://github.com/doktor83/SRBMiner-Multi/releases" class="link">SRBMiner</a>
+                    <a href="{{ .link }}" class="link">
+                      {{ .miner }}
+                    </a>
                   </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/Lolliedieb/lolMiner-releases/releases" class="link">IolMiner</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/bzminer/bzminer/releases" class="link">BzMiner</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/trexminer/T-Rex/releases" class="link">T-Rex</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/rigelminer/rigel/releases" class="link">Rigel</a>
-                  </li>
-                  <li class="miners-item">
-                    <a href="https://github.com/andru-kun/wildrig-multi/releases" class="link">WildRig Multi</a>
-                  </li>
+                  {{ end }}
                 </ul>
                 <p class="subtitle">{{ .Params.ask_in_telegram }} <a class="link subtitle"
                     href="https://t.me/alephium_pool">{{
@@ -136,62 +126,23 @@
         <section class="section-windows-examples">
           <div class="container">
             <div class="section__inner">
-              <h2 class="heading-h2">{{ .Params.windows_examples }}</h2>
+              <h2 class="heading-h2">{{ .Params.windows_examples_title }}</h2>
               <ul class="tabs-miners-list">
-                <li data-target="guide-iolminer"
-                  class="tab tabs-miners-item tab-border-radius-around-left  tabs-miners-item active">
-                  IolMiner
+                {{ range $index, $element := .Params.windowsExamples }}
+                <li data-target="guide-{{ $element.tab }}"
+                  class="tab tabs-miners-item tabs-miners-item
+                      {{ if eq $index 0 }}tab-border-radius-around-left active {{ end }} 
+                      {{ if eq $index (sub (len $.Params.windowsExamples) 1) }}tab-border-radius-around-right {{ end }} ">
+                  {{ $element.tab }}
                 </li>
-                <li data-target="guide-trex" class="tab tabs-miners-item">
-                  T-Rex
-                </li>
-                <li data-target="guide-srbminer"
-                  class="tab tabs-miners-item tab-border-radius-around-right  tabs-miners-item">
-                  SRBMiner
-                </li>
+                {{ end }}
               </ul>
-
-              <div id="guide-iolminer" class="guide active">
-                <h1 class="heading-h2">lolMiner</h1>
-                <ol class="steps-list">
-                  <li>
-                    {{ .Params.download_word}}
-                    <a class="link" href="https://github.com/Lolliedieb/lolMiner-releases/releases">
-                      {{ .Params.download_lolminer_phrase}}</a>
-                    {{ .Params.unzip_phrase}}
-                  </li>
-                  <li>
-                    {{ .Params.update_file_phrase | safeHTML}}
-                    <strong>dual_mine_eth_aleph.bat</strong>
-                    <div class="code-wrapper">
-                      <button class="btn  btn-copy copy-code-btn ">
-                        <i class="icon copy-icon"></i>
-                      </button>
-                      <pre class="code-container">
-                                        <code>
-                                          set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
-                                          set "ALEPHWALLET=your_wallet"
-                                          </code>
-                                      </pre>
-                    </div>
-                  </li>
-                  <li>
-                    <span>{{ .Params.run_alph_file_phrase | safeHTML}} <strong>dual_mine_eth_aleph.bat</strong>
-                    </span>
-                  </li>
-                  <li>
-                    <strong class="profit">{{ .Params.profit}} </strong>
-                  </li>
-                </ol>
+              {{ range $index, $element := .Params.windowsExamples }}
+              <div id="guide-{{ $element.tab }}" class="guide {{ if eq $index 0 }} active {{ end }} ">
+                {{ $element.instruction | markdownify }}
               </div>
-              <div id="guide-trex" class="guide">
-                Контент гайда для T-Rex
-              </div>
-              <div id="guide-srbminer" class="guide">
-                Контент гайда для SRBMiner
-              </div>
+              {{ end }}
             </div>
-          </div>
         </section>
         <section id="faq" class="section-faq">
           <div class="container">
