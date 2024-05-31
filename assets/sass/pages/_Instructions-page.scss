@@ -72,56 +72,57 @@
 
 .guide {
 	display: none;
+	a {
+		color: var(--color-primary);
+	}
+
+	ul,
+	ol {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		list-style-type: space-counter;
+		list-style-position: inside;
+		font-size: 1.125rem;
+		font-weight: 400;
+		line-height: 2.025rem;
+	}
+
+	.copy-code-btn {
+		position: absolute;
+		right: 0.625rem;
+		top: 0.625rem;
+	}
+
+	.code-container {
+		border-radius: 0.625rem;
+	}
+
+	pre {
+    line-height: initial;
+		margin: 0.75rem;
+		position: relative;
+		background-color: var(--color-primary-hover-0-05-opacity);
+		border-left: 0.25rem solid var(--color-primary);
+		overflow-y: hidden;
+	}
+
+	pre > code {
+		display: block;
+		padding: 1rem 2rem;
+	}
+
+	code {
+		white-space: pre-line;
+		font-size: var(--font-size-14);
+		line-height: var(--line-height-21);
+	}
 }
 
 .guide.active {
 	display: flex;
 	flex-direction: column;
 	gap: 0.75rem;
-}
-
-.steps-list {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
-	list-style-type: space-counter;
-	list-style-position: inside;
-	font-size: 1.125rem;
-	font-weight: 400;
-	line-height: 2.025rem;
-}
-
-.code-wrapper {
-	line-height: initial;
-	margin: 0.75rem;
-	position: relative;
-}
-
-.copy-code-btn {
-	position: absolute;
-	right: 0.625rem;
-	top: 0.625rem;
-}
-
-.code-container {
-	border-radius: 0.625rem;
-}
-
-pre {
-	background-color: var(--color-primary-hover-0-05-opacity);
-	border-left: 0.25rem solid var(--color-primary);
-	overflow-y: hidden;
-}
-
-pre > code {
-	display: block;
-	padding: 16px 24px;
-}
-
-code {
-	white-space: pre-line;
-	font-size: var(--font-size-14);
-	line-height: var(--line-height-21);
 }
 
 .section-faq {

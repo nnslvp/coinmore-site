@@ -3,17 +3,27 @@ const COPY_BUTTONS_INSIDE_CODE_WRAPPER = document.querySelectorAll(
 );
 const TABS = document.querySelectorAll('.tabs-miners-item');
 const GUIDES = document.querySelectorAll('.guide');
+const CODE_WRAPPERS = document.querySelectorAll('.guide pre')
 
-COPY_BUTTONS_INSIDE_CODE_WRAPPER.forEach(btn => {
-	btn.addEventListener('click', event => {
-		const copyText = btn.closest('.code-wrapper').querySelector('code')
-			.textContent;
-
-		try {
-			navigator.clipboard.writeText(copyText);
-		} catch (err) {}
-	});
+CODE_WRAPPERS.forEach(codeWrapper => {
+  const button = document.createElement('button');
+	button.className = 'btn btn-copy copy-code-btn';
+	button.innerHTML = '<i class="icon copy-icon"></i>';
+	codeWrapper.appendChild(button);
+  button.addEventListener('click', function (event) {
+			copyCodeToClipboard(button);
+		});
 });
+
+
+function copyCodeToClipboard(button) {
+	const copyText = button.closest('pre').querySelector('code').textContent;
+	try {
+		navigator.clipboard.writeText(copyText);
+	} catch (err) {
+		console.info('Failed to copy text:', err);
+	}
+}
 
 TABS.forEach(tab => {
 	tab.addEventListener('click', event => {
