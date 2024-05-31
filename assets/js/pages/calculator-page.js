@@ -38,9 +38,9 @@ function addValue(tr, cell, value, currencyValue = '', sign = '') {
 
 function addValuesRow(period, reward, income, costs, profit, coinSymbol) {
 	addValue(period, 'reward-value', reward, coinSymbol);
-	addValue(period, 'income-value', income, coinSymbol);
-	addValue(period, 'electricity-costs__value', costs, coinSymbol, '-');
-	addValue(period, 'profit-value', profit, coinSymbol);
+	addValue(period, 'income-value', income, 'USD');
+	addValue(period, 'electricity-costs__value', costs, 'USD', '-');
+	addValue(period, 'profit-value', profit, 'USD');
 }
 
 function generateTable(calculatorForm) {
