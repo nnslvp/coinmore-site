@@ -201,6 +201,11 @@ function init(coin) {
 	const fetchMinersOnlinePromise = fetchMinersOnline(coin);
 	const fetchPoolBlocksPromise = fetchPoolBlocks(coin, PERIOD_DAY);
 	const fetchCurrencyInfoPromise = fetchCurrencyInfo(coin);
+	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
+
+	poolValueMinPayoutsPromise.then(minPayouts => {
+		showPoolMinPayout(minPayouts.value, 'pool_min_payout', COIN_SYMBOL);
+	});
 
 	fetchPoolProfitPromise.then(({ profit }) => {
 		showPoolProfit(profit, 'pool_profit', COIN_SYMBOL);
