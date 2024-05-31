@@ -174,10 +174,18 @@ function getChartOptions(newOptions) {
 	return deepMerge(CHART_BASE_OPTIONS, newOptions);
 }
 
-function updateChartData(chart, newData, labels) {
+function updateChartData(chart, newData, labels, title) {
 	if (labels) {
 		chart.data.labels = labels;
 	}
-	chart.data.datasets[0].data = newData;
+
+	if (title) {
+		chart.options.plugins.title.text = title;
+	}
+
+	if (newData) {
+		chart.data.datasets[0].data = newData;
+	}
+
 	chart.update();
 }

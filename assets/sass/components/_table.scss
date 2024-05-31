@@ -45,6 +45,10 @@
 	td:nth-child(odd) {
 		border-top: none;
 	}
+
+	td:last-child {
+		border-left: none;
+	}
 }
 
 @media (max-width: $breakpoint-lg) {

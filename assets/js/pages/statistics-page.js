@@ -153,6 +153,7 @@ function drawData(coin, wallet) {
 				const dataDay = historyWalletDay.map(
 					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
+				const units = shortenHm(historyWalletWeek[0]?.hashrate, 2);
 				const workers1h = hashrate1hResults.workers;
 				const workers24h = hashrate24hResults.workers;
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
@@ -174,7 +175,13 @@ function drawData(coin, wallet) {
 				showSelectPayouts(payouts24h, payoutsWeek);
 				showMyBalance(balance, 'balance', COIN_SYMBOL);
 				showMyBalanceUSD(balance, rate);
-				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+				showChartYourHashrate({
+					labelsWeek,
+					dataWeek,
+					labelsDay,
+					dataDay,
+					units,
+				});
 				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
 				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
 				showWorkersTable(workers24h, workers1h, workersHistoryDay);
@@ -377,10 +384,24 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
-function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
+function showChartYourHashrate({
+	labelsWeek,
+	dataWeek,
+	labelsDay,
+	dataDay,
+	units,
+}) {
 	const hashRateChart = initializeChart(
 		CHART_HASH_RATE,
-		getChartOptions(),
+		getChartOptions({
+			options: {
+				plugins: {
+					title: {
+						text: units.units,
+					},
+				},
+			},
+		}),
 		dataWeek,
 		labelsWeek
 	);
