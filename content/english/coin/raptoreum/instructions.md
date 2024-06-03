@@ -38,7 +38,6 @@ miners_list:
     link: 'https://raptoreum.com/sample-page/downloads/'
 
 windows_examples_title: 'Windows examples'
-
 windowsExamples:
   - tab: 'WyvernTKC'
     instruction: |
