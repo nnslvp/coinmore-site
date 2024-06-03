@@ -40,7 +40,7 @@ windows_examples_title: 'Windows examples'
 windowsExamples:
   - tab: 'WyvernTKC'
     instruction: |
-      1. Download [last release of lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases) and unzip the files.
+      1. Download [last release of WyvernTKC](https://github.com/Lolliedieb/lolMiner-releases/releases) and unzip the files.
       2. Update **alph** file, for example: **dual_mine_eth_aleph.bat**
       ```
       set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
@@ -50,16 +50,16 @@ windowsExamples:
       4. PROFIT !
   - tab: 'XMRig'
     instruction: |
-      1. Download [last release of SRBMiner](https://github.com/doktor83/SRBMiner-Multi/releases) and unzip the files.
+      1. Download [last release of XMRig](https://github.com/doktor83/SRBMiner-Multi/releases) and unzip the files.
       2. Update file to
       ```
-      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool detect-my-region.alephium-pool.com:20032 --wallet your_wallet_address
+      xmrig.exe -o auto-geo.raptoreum.coinmore.io:3002 -u your_wallet_address -p x
       ```
       3. Run **alph** file
       4. PROFIT !
   - tab: 'xmrigCC'
     instruction: |
-      1. Download [last release of T-Rex](https://github.com/trexminer/T-Rex/releases) and unzip the files.
+      1. Download [last release of xmrigCC](https://github.com/trexminer/T-Rex/releases) and unzip the files.
       2. Update file to
       ```
       t-rex.exe -a blake3 -o stratum+tcp://detect-my-region.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
@@ -68,7 +68,7 @@ windowsExamples:
       4. PROFIT !
   - tab: 'WildRig'
     instruction: |
-      1. Download [last release of BzMiner](https://github.com/bzminer/bzminer/releases) and unzip the files.
+      1. Download [last release of WildRig](https://github.com/bzminer/bzminer/releases) and unzip the files.
       2. Update file to
       ```
       bzminer -a alph -w your_wallet_address -p stratum+tcp://detect-my-region.alephium-pool.com:20032
