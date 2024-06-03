@@ -24,6 +24,17 @@ update_file: 'Обновите файл `alph`, например: `dual_mine_eth
 run_file: 'Запустите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 profit: 'ПРИБЫЛЬ!'
 
+miners_title: 'Шахтеры'
+miners_list:
+  - miner: 'WyvernTKC'
+    link: 'https://github.com/WyvernTKC/cpuminer-gr-avx2/releases'
+  - miner: 'XMRig'
+    link: 'https://github.com/xmrig/xmrig'
+  - miner: 'xmrigCC'
+    link: 'https://github.com/Bendr0id/xmrigCC/releases'
+  - miner: 'WildRig'
+    link: 'https://github.com/andru-kun/wildrig-multi/releases'
+
 faq:
   - question: 'Вопрос 1'
     answer: 'Майнинговый пул Alephium настроен таким образом, что каждый майнер работает независимо от других. Награда за блок идет только тому майнеру, который его нашел, другие ничего не получают. Время поиска блока зависит от вашего хешрейта и удачи.'

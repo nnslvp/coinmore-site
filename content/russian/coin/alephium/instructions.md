@@ -23,7 +23,7 @@ update_file: 'Обновите файл `alph`, например: `dual_mine_eth
 run_file: 'Запустите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 profit: 'ПРИБЫЛЬ!'
 
-
+miners_title: 'Шахтеры'
 miners_list:
   - miner: 'SRBMiner'
     link: 'https://github.com/doktor83/SRBMiner-Multi/releases'
