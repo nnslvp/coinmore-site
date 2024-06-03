@@ -38,7 +38,7 @@ miners_list:
 windows_examples_title: 'Windows examples'
 
 windowsExamples:
-  - tab: 'IolMiner'
+  - tab: 'WyvernTKC'
     instruction: |
       1. Download [last release of lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases) and unzip the files.
       2. Update **alph** file, for example: **dual_mine_eth_aleph.bat**
@@ -48,7 +48,7 @@ windowsExamples:
       ```
       3. Run **alph** file, for example: **dual_mine_eth_aleph.bat**.
       4. PROFIT !
-  - tab: 'SRBMiner'
+  - tab: 'XMRig'
     instruction: |
       1. Download [last release of SRBMiner](https://github.com/doktor83/SRBMiner-Multi/releases) and unzip the files.
       2. Update file to
@@ -57,7 +57,7 @@ windowsExamples:
       ```
       3. Run **alph** file
       4. PROFIT !
-  - tab: 'T-Rex'
+  - tab: 'xmrigCC'
     instruction: |
       1. Download [last release of T-Rex](https://github.com/trexminer/T-Rex/releases) and unzip the files.
       2. Update file to
@@ -66,7 +66,7 @@ windowsExamples:
       ```
       3. Run **alph** file
       4. PROFIT !
-  - tab: 'Bzminer'
+  - tab: 'WildRig'
     instruction: |
       1. Download [last release of BzMiner](https://github.com/bzminer/bzminer/releases) and unzip the files.
       2. Update file to
