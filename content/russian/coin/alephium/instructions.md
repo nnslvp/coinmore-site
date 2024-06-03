@@ -23,7 +23,7 @@ update_file: 'Обновите файл `alph`, например: `dual_mine_eth
 run_file: 'Запустите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 profit: 'ПРИБЫЛЬ!'
 
-miners_title: 'Шахтеры'
+miners_title: 'Майнеры'
 miners_list:
   - miner: 'SRBMiner'
     link: 'https://github.com/doktor83/SRBMiner-Multi/releases'
@@ -37,6 +37,8 @@ miners_list:
     link: 'https://github.com/rigelminer/rigel/releases'
   - miner: 'WildRig Multi'
     link: 'https://github.com/andru-kun/wildrig-multi/releases'
+  - miner: 'Другие майнеры'
+    link: 'https://github.com/alephium/awesome-alephium?tab=readme-ov-file#mining-software'
 
 windows_examples_title: 'Примеры для Windows'
 windowsExamples:

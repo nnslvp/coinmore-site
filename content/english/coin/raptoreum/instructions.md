@@ -34,6 +34,8 @@ miners_list:
     link: 'https://github.com/Bendr0id/xmrigCC/releases'
   - miner: 'WildRig'
     link: 'https://github.com/andru-kun/wildrig-multi/releases'
+  - miner: 'Other miners'
+    link: 'https://raptoreum.com/sample-page/downloads/'
 
 windows_examples_title: 'Windows examples'
 

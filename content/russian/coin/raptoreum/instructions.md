@@ -24,7 +24,7 @@ update_file: 'Обновите файл `alph`, например: `dual_mine_eth
 run_file: 'Запустите файл `alph`, например: `dual_mine_eth_aleph.bat`.'
 profit: 'ПРИБЫЛЬ!'
 
-miners_title: 'Шахтеры'
+miners_title: 'Майнеры'
 miners_list:
   - miner: 'WyvernTKC'
     link: 'https://github.com/WyvernTKC/cpuminer-gr-avx2/releases'
@@ -34,6 +34,8 @@ miners_list:
     link: 'https://github.com/Bendr0id/xmrigCC/releases'
   - miner: 'WildRig'
     link: 'https://github.com/andru-kun/wildrig-multi/releases'
+  - miner: 'Другие майнеры'
+    link: 'https://raptoreum.com/sample-page/downloads/'
 
 faq:
   - question: 'Вопрос 1'

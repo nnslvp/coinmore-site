@@ -36,6 +36,8 @@ miners_list:
     link: 'https://github.com/rigelminer/rigel/releases'
   - miner: 'WildRig Multi'
     link: 'https://github.com/andru-kun/wildrig-multi/releases'
+  - miner: 'Other miners'
+    link: 'https://github.com/alephium/awesome-alephium?tab=readme-ov-file#mining-software'
 
 windows_examples_title: 'Windows examples'
 windowsExamples:
