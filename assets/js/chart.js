@@ -1,8 +1,7 @@
 const CHART_PERIOD = {
-  day: 'day',
-  week:'week'
-}
-
+	day: 'day',
+	week: 'week',
+};
 
 function initializeChart(
 	chartElement,
