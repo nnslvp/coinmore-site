@@ -1,3 +1,9 @@
+const CHART_PERIOD = {
+  day: 'day',
+  week:'week'
+}
+
+
 function initializeChart(
 	chartElement,
 	chartOptions,
@@ -76,6 +82,7 @@ function getChartOptions(newOptions) {
 			datasets: [
 				{
 					label: 'Hashrate',
+					period: CHART_PERIOD.week,
 					data: [],
 					backgroundColor: 'rgba(155, 77, 202, 0.24)',
 					borderColor: '#9B4DCA',
@@ -99,9 +106,8 @@ function getChartOptions(newOptions) {
 			},
 			scales: {
 				y: {
-					beginAtZero: false,	
-					ticks: {
-					},
+					beginAtZero: false,
+					ticks: {},
 					grid: {
 						display: true,
 						drawTicks: false,
@@ -109,6 +115,11 @@ function getChartOptions(newOptions) {
 					},
 				},
 				x: {
+					ticks: {
+						callback: function (value) {
+							return formatDate(this.getLabelForValue(value));
+						},
+					},
 					grid: {
 						display: false,
 					},
@@ -139,14 +150,24 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-							const date = tooltipItems[0].label.split(' ')[0];
-							const time = tooltipItems[0].label.split(' ')[1];
-							return `${date}  11:11:11`;
+							const period = tooltipItems[0].dataset.period;
+							const tooltipDate = new Date(tooltipItems[0].label);
+							const date = tooltipDate.toISOString().split('T')[0];
+							const time = tooltipDate
+								.toISOString()
+								.split('T')[1]
+								.split('.')[0];
+
+							if (period === 'week') {
+								return date;
+							} else {
+								return `${date} ${time}`;
+							}
 						},
 						label: function (tooltipItem) {
 							const label = tooltipItem.dataset.label || '';
 							const value = tooltipItem.raw;
-              const titleText = this.chart.options.plugins.title.text;
+							const titleText = this.chart.options.plugins.title.text;
 							return `${label}: ${value} ${titleText}`;
 						},
 					},
@@ -174,17 +195,21 @@ function getChartOptions(newOptions) {
 	return deepMerge(CHART_BASE_OPTIONS, newOptions);
 }
 
-function updateChartData(chart, newData, labels, title) {
+function updateChartData(chart, newData, labels, period, label) {
 	if (labels) {
 		chart.data.labels = labels;
 	}
 
-	if (title) {
-		chart.options.plugins.title.text = title;
-	}
-
 	if (newData) {
 		chart.data.datasets[0].data = newData;
+	}
+
+	if (label) {
+		chart.data.datasets[0].label = label;
+	}
+
+	if (period) {
+		chart.data.datasets[0].period = period;
 	}
 
 	chart.update();

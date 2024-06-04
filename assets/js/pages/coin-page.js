@@ -44,11 +44,11 @@ function showChartPoolHashrate({
 	);
 
 	TAB_POOL_HASHRATE_DAY.addEventListener('click', e => {
-		updateChartData(hashRateChart, dataDay, labelsDay);
+		updateChartData(hashRateChart, dataDay, labelsDay, CHART_PERIOD.day);
 	});
 
 	TAB_POOL_HASHRATE_WEEK.addEventListener('click', e => {
-		updateChartData(hashRateChart, dataWeek, labelsWeek);
+		updateChartData(hashRateChart, dataWeek, labelsWeek, CHART_PERIOD.week);
 	});
 }
 
@@ -76,11 +76,11 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay, units }) {
 	);
 
 	TAB_PROFIT_DAY.addEventListener('click', e => {
-		updateChartData(profitChart, dataDay, labelsDay);
+		updateChartData(profitChart, dataDay, labelsDay, CHART_PERIOD.day);
 	});
 
 	TAB_PROFIT_WEEK.addEventListener('click', e => {
-		updateChartData(profitChart, dataWeek, labelsWeek);
+		updateChartData(profitChart, dataWeek, labelsWeek, CHART_PERIOD.week);
 	});
 }
 
@@ -113,17 +113,17 @@ function showChartWorkersActivity({
 	);
 
 	TAB_WORKERS_DAY.addEventListener('click', e => {
-		updateChartData(workersActivityChart, dataDay, labelsDay);
+		updateChartData(workersActivityChart, dataDay, labelsDay, CHART_PERIOD.day);
 	});
 
 	TAB_WORKERS_WEEK.addEventListener('click', e => {
-		updateChartData(workersActivityChart, dataWeek, labelsWeek);
+		updateChartData(workersActivityChart, dataWeek, labelsWeek, CHART_PERIOD.week);
 	});
 }
 
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
-	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
+	const labelsWeek = profitHistoryWeek.map(item => item.bucket);
+	const labelsDay = profitHistoryDay.map(item => item.bucket);
 	const dataPoolHashrateWeek = profitHistoryWeek.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
@@ -160,8 +160,8 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 }
 
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
-	const labelsWeek = profitHistoryWeek.map(item => formatDate(item.bucket));
-	const labelsDay = profitHistoryDay.map(item => formatDate(item.bucket));
+	const labelsWeek = profitHistoryWeek.map(item => item.bucket);
+	const labelsDay = profitHistoryDay.map(item => item.bucket);
 	const dataDay = profitHistoryDay.map(item =>
 		parseFloat(item.profit).toFixed(4)
 	);
