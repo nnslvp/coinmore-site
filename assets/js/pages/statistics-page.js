@@ -143,16 +143,14 @@ function drawData(coin, wallet) {
 				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
 				const historyWalletWeek = historyWalletWeekResult.wallet_history;
 				const historyWalletDay = historyWalletDayResult.wallet_history;
-				const labelsWeek = historyWalletWeek.map(item =>
-					item.bucket
-				);
+				const labelsWeek = historyWalletWeek.map(item => item.bucket).reverse();
 				const dataWeek = historyWalletWeek.map(
 					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
 				const labelsDay = historyWalletDay.map(item => item.bucket);
-				const dataDay = historyWalletDay.map(
-					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
-				);
+				const dataDay = historyWalletDay
+					.map(item => shortenHm(parseFloat(item.hashrate), 2).hashrate)
+					.reverse();
 				const units = shortenHm(historyWalletWeek[0]?.hashrate, 2);
 				const workers1h = hashrate1hResults.workers;
 				const workers24h = hashrate24hResults.workers;
