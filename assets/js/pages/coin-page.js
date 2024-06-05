@@ -122,8 +122,8 @@ function showChartWorkersActivity({
 }
 
 function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
-	const labelsWeek = profitHistoryWeek.map(item => item.bucket).reverse();
-	const labelsDay = profitHistoryDay.map(item => item.bucket).reverse();
+	const labelsWeek = profitHistoryWeek.map(item => item.bucket);
+	const labelsDay = profitHistoryDay.map(item => item.bucket);
 	const dataPoolHashrateWeek = profitHistoryWeek.map(
 		item => shortenHm(item.hashrate, 2).hashrate
 	);
@@ -184,8 +184,8 @@ let profitHistoryWeek = [];
 let profitHistoryDay = [];
 
 function init(coin) {
-	const fetchHistoryWeekPromise = fetchHistoryPool(coin);
-	const fetchHistoryDayPromise = fetchHistoryPool(
+	const fetchHistoryPoolWeekPromise = fetchHistoryPool(coin);
+	const fetchHistoryPoolDayPromise = fetchHistoryPool(
 		coin,
 		PERIOD_DAY,
 		GROUP_BY.hour
@@ -229,13 +229,13 @@ function init(coin) {
 		}
 	});
 
-	fetchHistoryWeekPromise
+	fetchHistoryPoolWeekPromise
 		.then(historyWeek => {
 			poolHistoryWeek = historyWeek.pool_history;
-			return fetchHistoryDayPromise;
+			return fetchHistoryPoolDayPromise;
 		})
 		.then(historyDay => (poolHistoryDay = historyDay.pool_history))
-		.then(() => drawPoolHistoryData(poolHistoryDay, poolHistoryWeek))
+		.then(() => drawPoolHistoryData(poolHistoryWeek, poolHistoryDay))
 		.catch(err => {
 			console.info('Error fetching poolHistory:', err);
 		});
