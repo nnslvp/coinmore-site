@@ -24,18 +24,20 @@
 		padding: 0.625rem 0.75rem;
 	}
 
-	&:has(th:nth-child(3)) th:nth-child(2) {
+	&:has(th:nth-child(3)) th:nth-child(even) {
 		border-left: none;
 		border-right: none;
 	}
 
-	&:has(td:nth-child(3)) td:nth-child(2) {
+	&:has(td:nth-child(3)) td:nth-child(even) {
 		border-right: none;
+		border-left: none;
 	}
 
 	th:nth-child(even) {
 		border-left: none;
 	}
+
 
 	td:nth-child(even) {
 		border-left: none;
@@ -46,9 +48,6 @@
 		border-top: none;
 	}
 
-	td:last-child {
-		border-left: none;
-	}
 }
 
 @media (max-width: $breakpoint-lg) {

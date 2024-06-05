@@ -143,16 +143,13 @@ function drawData(coin, wallet) {
 				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
 				const historyWalletWeek = historyWalletWeekResult.wallet_history;
 				const historyWalletDay = historyWalletDayResult.wallet_history;
-				const labelsWeek = historyWalletWeek.map(item =>
-					formatDate(item.bucket)
-				);
+				const labelsWeek = historyWalletWeek.map(item => item.bucket);
 				const dataWeek = historyWalletWeek.map(
 					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 				);
-				const labelsDay = historyWalletDay.map(item => formatDate(item.bucket));
-				const dataDay = historyWalletDay.map(
-					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
-				);
+				const labelsDay = historyWalletDay.map(item => item.bucket);
+				const dataDay = historyWalletDay
+					.map(item => shortenHm(parseFloat(item.hashrate), 2).hashrate);
 				const units = shortenHm(historyWalletWeek[0]?.hashrate, 2);
 				const workers1h = hashrate1hResults.workers;
 				const workers24h = hashrate24hResults.workers;
@@ -345,7 +342,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
 	const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('.history-сhart');
 	CHARTS_HISTORY_CELL_TABLE.forEach(chart => {
 		const workerHistory = workersByGroupe[chart.id];
-		const chartLabels = workerHistory.map(item => formatDate(item.bucket));
+		const chartLabels = workerHistory.map(item => item.bucket);
 		const chartData = workerHistory.map(
 			item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 		);
@@ -407,11 +404,11 @@ function showChartYourHashrate({
 	);
 
 	tabDayChartHashrate.addEventListener('click', function (e) {
-		updateChartData(hashRateChart, dataDay, labelsDay);
+		updateChartData(hashRateChart, dataDay, labelsDay, CHART_PERIOD.day);
 	});
 
 	tabWeekButtonChartHashrate.addEventListener('click', function (e) {
-		updateChartData(hashRateChart, dataWeek, labelsWeek);
+		updateChartData(hashRateChart, dataWeek, labelsWeek, CHART_PERIOD.week);
 	});
 }
 
