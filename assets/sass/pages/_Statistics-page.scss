@@ -13,6 +13,7 @@
 :has(.tab-workers.active) .statistics-workers-table {
 	display: grid;
 }
+
 .statistics-page__container {
 	height: 100%;
 }
@@ -311,7 +312,7 @@
 		}
 	}
 
-	.statistics-workers-table.history-cell {
+	.statistics-workers-table .history-cell {
 		height: 3.75rem;
 	}
 
@@ -320,7 +321,7 @@
 	}
 
 	.statistics-workers-table td::before {
-		content: attr(data) ':';
+		content: attr(data);
 		display: block;
 		font-weight: initial;
 		margin-bottom: 0.25rem;
