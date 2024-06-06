@@ -205,6 +205,7 @@
             </div>
           </div>
         </main>
+        {{partial "footer.html" .}}
         {{ $coins := slice }}
         {{ range where .Site.Pages "Type" "coin" }}
         {{ if not .Params.headless }}
