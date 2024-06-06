@@ -18,6 +18,19 @@ function initializeChart(
 		chartOptions.data.datasets[0].data = initialData;
 	}
 
+	const minY = Math.min(...initialData);
+	const maxY = Math.max(...initialData);
+	const range = maxY - minY;
+	const padding = range * 2 ; 
+
+	const minYWithPadding = Math.max(0, minY - padding);
+	const maxYWithPadding = maxY + padding;
+
+	const stepSize = (range + padding * 2) / 6; 
+  chartOptions.options.scales.y.min = minYWithPadding;
+  chartOptions.options.scales.y.max = maxYWithPadding
+  chartOptions.options.scales.y.ticks.stepSize = stepSize;
+
 	if (initialLabels) {
 		chartOptions.data.labels = initialLabels;
 	}
