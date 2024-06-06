@@ -21,7 +21,7 @@ function initializeChart(
 	const minY = Math.min(...initialData);
 	const maxY = Math.max(...initialData);
 	const range = maxY - minY;
-	const padding = range * 2 ; 
+	const padding = range; 
 
 	const minYWithPadding = Math.max(0, minY - padding);
 	const maxYWithPadding = maxY + padding;

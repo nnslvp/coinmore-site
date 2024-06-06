@@ -311,7 +311,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
                       ${shortHashRateDay.units}
                       </span>
                     </td>
-                    <td class="history-cell" data="7 day history">
+                    <td class="history-cell">
                       <canvas id="${workerDay.worker}" class="history-сhart">
 
                       </canvas>
@@ -346,7 +346,6 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
 		const chartData = workerHistory.map(
 			item => shortenHm(parseFloat(item.hashrate), 2).hashrate
 		);
-
 		initializeChart(
 			chart,
 			getChartOptions(CHART_HISTORY_CELL_TABLE_OPTIONS),
