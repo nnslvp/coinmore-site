@@ -14,22 +14,13 @@ function initializeChart(
 	gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
 	gradient.addColorStop(1, 'rgba(155, 77, 202, 0)');
 
-	if (initialData) {
+	if (initialData && initialData.length) {
+		const { minY, maxY, stepSize } = calculateYAxisSettings(initialData);
+		chartOptions.options.scales.y.min = minY;
+		chartOptions.options.scales.y.max = maxY;
+		chartOptions.options.scales.y.ticks.stepSize = stepSize;
 		chartOptions.data.datasets[0].data = initialData;
 	}
-
-	const minY = Math.min(...initialData);
-	const maxY = Math.max(...initialData);
-	const range = maxY - minY;
-	const padding = range; 
-
-	const minYWithPadding = Math.max(0, minY - padding);
-	const maxYWithPadding = maxY + padding;
-
-	const stepSize = (range + padding * 2) / 6; 
-  chartOptions.options.scales.y.min = minYWithPadding;
-  chartOptions.options.scales.y.max = maxYWithPadding
-  chartOptions.options.scales.y.ticks.stepSize = stepSize;
 
 	if (initialLabels) {
 		chartOptions.data.labels = initialLabels;
@@ -212,7 +203,11 @@ function updateChartData(chart, newData, labels, period, label) {
 		chart.data.labels = labels;
 	}
 
-	if (newData) {
+	if (newData && newData.length) {
+		const { minY, maxY, stepSize } = calculateYAxisSettings(newData);
+		chart.options.scales.y.min = minY;
+		chart.options.scales.y.max = maxY;
+		chart.options.scales.y.ticks.stepSize = stepSize;
 		chart.data.datasets[0].data = newData;
 	}
 
@@ -225,4 +220,30 @@ function updateChartData(chart, newData, labels, period, label) {
 	}
 
 	chart.update();
+}
+
+function calculateYAxisSettings(data) {
+	const minY = Math.min(...data);
+	const maxY = Math.max(...data);
+
+  if (minY === 0 && maxY === 0) {
+		return {
+			minY: 0,
+			maxY: 1,
+			stepSize: 0.1, 
+		};
+	}
+
+	const range = maxY - minY;
+	const padding = range;
+	const minYWithPadding = Math.max(0, minY - padding);
+	const maxYWithPadding = maxY + padding;
+	const stepSize = (range + padding * 2) / 6;
+
+
+	return {
+		minY: minYWithPadding,
+		maxY: maxYWithPadding,
+		stepSize: stepSize,
+	};
 }
