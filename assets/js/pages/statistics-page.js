@@ -356,9 +356,6 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
 }
 
 function showPayoutsTable(payouts) {
-  console.log('====================================');
-  console.log(payouts);
-  console.log('====================================');
 	const tableBody = document
 		.getElementById('statistics-payouts-table')
 		.getElementsByTagName('tbody')[0];
