@@ -168,7 +168,7 @@ function drawData(coin, wallet) {
 				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
 				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
-				showPayoutsTable(payouts1h);
+				showPayoutsTable(payouts24h);
 				showSelectPayouts(payouts24h, payoutsWeek);
 				showMyBalance(balance, 'balance', COIN_SYMBOL);
 				showMyBalanceUSD(balance, rate);
