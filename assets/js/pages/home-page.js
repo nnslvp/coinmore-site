@@ -35,8 +35,8 @@ function init(coin, symbol) {
 		showNetworkHashrate(network_hashrate.hashrate, `network_hashrate_${coin}`);
 	});
 
-	minersOnlinePromise.then(({ workers_online }) => {
-		showMinersOnline(workers_online, `miners_${coin}`);
+	minersOnlinePromise.then(({ wallets_online }) => {
+		showMinersOnline(wallets_online, `miners_${coin}`);
 	});
 
   poolValueFeePromise.then(({ value }) => {
