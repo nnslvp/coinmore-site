@@ -1,5 +1,10 @@
 :has(.tab-payouts.active) .select-interval-payouts {
 	visibility: visible;
+  pointer-events: initial;
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 :has(.tab-payouts.active) .statistics-payouts-table {
@@ -117,7 +122,11 @@
 
 .select-interval-payouts {
 	visibility: hidden;
+  position:absolute;
+  pointer-events: none;
 	flex-basis: 17.25rem;
+  opacity: 0;
+  transform: translateY(-0.625rem);
 }
 
 .statistics-payouts-table {
