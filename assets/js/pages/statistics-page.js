@@ -278,6 +278,7 @@ MODAL.addEventListener('click', e => {
 
 function showMinPayouts(minPayoutsValue) {
 	STAT_MIN_PAYOUTS_VALUE.textContent = minPayoutsValue;
+  INPUT_MIN_PAYOUTS.value = minPayoutsValue;
 }
 
 function showWorkersTable(workersDay, workersHour, workersHistory) {
