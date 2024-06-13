@@ -84,7 +84,7 @@
                 </a>  */}}
                 <span>
                   {{ .Params.subtitle_text_2 }}
-                  <a class="link" href="{{.Params.dowland_wallet_link}}">
+                  <a class="link" target="_blank" href="{{.Params.dowland_wallet_link}}">
                     <strong>
                       {{ .Params.wallet }}.
                     </strong>
@@ -112,15 +112,17 @@
                 <ul class="miners-list">
                   {{ range .Params.miners_list }}
                   <li class="miners-item">
-                    <a href="{{ .link }}" class="link">
+                    <a href="{{ .link }}" target="_blank" class="link">
                       {{ .miner }}
                     </a>
                   </li>
                   {{ end }}
                 </ul>
-                <p class="subtitle">{{ .Params.ask_in_telegram }} <a class="link subtitle"
-                    href="https://t.me/alephium_pool">{{
-                    .Params.telegram_community }}</a></p>
+                <p class="subtitle">{{ .Params.ask_in_telegram }} 
+                  <a class="link subtitle" target="_blank" href="https://t.me/alephium_pool">
+                    {{.Params.telegram_community }}
+                  </a>
+                </p>
               </div>
             </div>
           </div>
