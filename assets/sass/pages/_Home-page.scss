@@ -25,16 +25,6 @@
 	gap: 0.75rem;
 }
 
-// .coins-list__item{
-//   position: relative;
-// }
-
-// .link-card-coin{
-//   display: block;
-//   position: absolute;
-//   bottom: 0;
-// }
-
 @media (max-width: $breakpoint-xl) {
 	.coins-list {
 		grid-template-columns: repeat(3, 21.125rem);
