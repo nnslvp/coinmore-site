@@ -15,6 +15,10 @@ activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
 activateTabsOnClick('.chart-interval__pool-hashrate');
 
+document.addEventListener('DOMContentLoaded', () => {
+	localStorage.setItem('pageCoin', COIN);
+});
+
 WALLET_INPUT.addEventListener('invalid', e => {
 	e.preventDefault();
 	const errorElement = e.currentTarget.nextElementSibling;
