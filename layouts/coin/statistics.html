@@ -54,19 +54,19 @@
     <nav class="nav-page__container container">
       <ul class="navigation-list">
         <li class="navigation-item">
-          <a href="{{.Site.BaseURL}}" class="home-link">
+          <a href="{{relLangURL "/" }}" class="home-link">
             <i class="icon home-icon"></i>
           </a>
         </li>
         <li class="separator">/</li>
         <li class="navigation-item">
-          <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}" class="currency-link">
+          <a href="{{ relLangURL (printf "/coin/%s/" $pageCoin.Params.coin_name) }}" class="currency-link">
             {{title $pageCoin.Params.coin_name }}
           </a>
         </li>
         <li class="separator">/</li>
         <li class="navigation-item">
-          <a href="{{ $.Site.BaseURL }}/coin/{{ $pageCoin.Params.coin_name }}/statistics" class="statistics-link">{{ .Title
+          <a href="{{ relLangURL (printf "/coin/%s/statistics" $pageCoin.Params.coin_name) }}" class="statistics-link">{{ .Title
             }}</a>
         </li>
       </ul>

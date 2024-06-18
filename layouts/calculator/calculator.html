@@ -51,13 +51,13 @@
         <nav class="nav-page__container container">
           <ul class="navigation-list">
             <li class="navigation-item">
-              <a href="{{.Site.BaseURL}}" class="home-link">
+              <a href="{{relLangURL "/" }}" class="home-link">
                 <i class="icon home-icon"></i>
               </a>
             </li>
             <li class="separator">/</li>
             <li class="navigation-item"><a
-                href="{{ $.Site.BaseURL }}/calculator" class="currency-link">{{
+                href="{{relLangURL "calculator" }}" class="currency-link">{{
                 .Title }}</a>
             </li>
           </ul>
