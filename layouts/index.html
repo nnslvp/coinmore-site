@@ -76,11 +76,12 @@
               {{ if not .Params.headless }}
               {{ $coins = $coins | append (dict "name" .Params.coin_name "symbol" .Params.coin_symbol) }}
               <li class="coins-list__item">
-                {{ partial "coin-card.html" . }}
+                <a href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/" class="link-card-coin">
+                  {{ partial "coin-card.html" . }}
+                </a>
               </li>
               {{ end }}
               {{ end }}
-            </ul>
             </ul>
           </div>
         </div>
