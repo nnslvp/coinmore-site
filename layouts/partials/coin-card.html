@@ -7,9 +7,10 @@
         <span class="card-coin__info-symbol">{{ .Params.coin_symbol }}</span>
       </div>
     </div>
-      <button class="btn btn-outline-primary card-coin__btn">
-        {{.Params.start_mining }}
-      </button>
+    <button href="{{ relLangURL (printf " /coin/%s/" .Params.coin_name) }}"
+      class="btn btn-outline-primary card-coin__btn">{{
+      .Params.start_mining }}
+    </button>
   </header>
   <hr class="horizontal-line card-coin__horizontal-line">
   <ul class="card-coin__stats">

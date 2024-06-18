@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <div class="header__inner">
-      <a href="{{ .Site.BaseURL }}" class="header__logo">
+      <a href="{{ relLangURL "/"}}"  class="header__logo">
         <img src="/icons/logo.svg" alt="logo">
       </a>
       <nav class="header__main-nav">
@@ -14,19 +14,19 @@
           {{ $calculatorUrl := "/calculator" }}
           {{ if eq .Type "coin" }}
           <li class="header__main-nav-item">
-            <a href="{{ $.Site.BaseURL }}{{ $coinStatisticsUrl }}"
+            <a href="{{ relLangURL  $coinStatisticsUrl }}"
               class="link header__main-nav-link  {{ if strings.Contains $currentPage $coinStatisticsUrl }}active{{ end }}">
               {{ i18n "my" | title}} 
               {{ i18n "statistics"}}</a>
           </li>
           <li class="header__main-nav-item ">
-            <a href="{{ $.Site.BaseURL }}{{ $coinInstructionsUrl }}"
+            <a href="{{ relLangURL $coinInstructionsUrl }}"
               class="link header__main-nav-link {{ if strings.Contains $currentPage $coinInstructionsUrl }}active{{ end }}">{{ i18n "instructions" | title}} </a>
           </li>
           {{ end }}
 
           <li class="header__main-nav-item ">
-            <a href="{{ $.Site.BaseURL }}{{ $calculatorUrl }}"
+            <a href="{{ relLangURL $calculatorUrl }}"
               class="link header__main-nav-link {{ if strings.Contains $currentPage $calculatorUrl }}active{{ end }}">{{ i18n "calculator" | title}} </a>
           </li>
         </ul>

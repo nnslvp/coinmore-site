@@ -121,14 +121,14 @@
             </h2>
             <p class="subtitle section-coin__subtitle">
               {{ .Params.instruction_text }}
-              <a href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions/" class="link">
+              <a href="{{ relLangURL (printf "/coin/%s/instructions" .Params.coin_name) }}" class="link">
                 <strong>{{ .Params.instruction_link_text }}</strong>
               </a>
-              <span>{{ .Params.faq_text }}
+              {{/*  <span>{{ .Params.faq_text }}
                 <a href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/instructions/#faq" class="link">
                   <strong>{{ .Params.faq_link_text }}</strong>
                 </a>
-              </span>
+              </span>  */}}
             </p>
             <div class="table-container">
               {{partial "table-servers.html" .}}
