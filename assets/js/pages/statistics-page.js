@@ -8,6 +8,7 @@ const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 	'#stat-min-payouts-value'
 );
 const WALLET_FORM = document.querySelector('#wallet-form');
+const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
 const INPUT_ERROR_ELEMENT = document.querySelector('.error-message');
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
@@ -228,23 +229,20 @@ function getWalletParam() {
 }
 
 function setWalletForm(wallet) {
-	const walletInput = document.getElementById('wallet-input');
-	walletInput.value = wallet;
+	WALLET_INPUT.value = wallet;
 }
 
 function assignFormListener() {
 	function processForm(e) {
 		if (e.preventDefault) e.preventDefault();
-		const walletInput = document.getElementById('wallet-input');
-		if (walletInput.value) setWalletParam(walletInput.value);
+		if (WALLET_INPUT.value) setWalletParam(walletInput.value);
 		return false;
 	}
 
-	const form = document.getElementById('wallet-form');
-	if (form.attachEvent) {
-		form.attachEvent('submit', processForm);
+	if (WALLET_FORM.attachEvent) {
+		WALLET_FORM.attachEvent('submit', processForm);
 	} else {
-		form.addEventListener('submit', processForm);
+		WALLET_FORM.addEventListener('submit', processForm);
 	}
 }
 
