@@ -67,7 +67,7 @@ function detectBrowserAndSetInputType() {
 
 function init() {
 	assignFormListener();
-  detectBrowserAndSetInputType();
+	detectBrowserAndSetInputType();
 	activateTabsOnClick('.tabs__chart-hashrate');
 	activateTabsOnClick('.tabs-tables__workers-payouts');
 	const walletFromParams = getWalletParam();
