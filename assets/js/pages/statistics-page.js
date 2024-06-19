@@ -7,6 +7,8 @@ const INPUT_MIN_PAYOUTS = FORM_MIN_PAYOUTS.querySelector('#input-min-payouts');
 const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 	'#stat-min-payouts-value'
 );
+const ERROR_MESSAGE_ELEMENT = document.getElementById('error-message');
+const FORM_MIN_PAYOUTS_SUBMIT_BTN = MODAL.querySelector('.submit-btn');
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
@@ -53,7 +55,6 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 		},
 	},
 });
-const ERROR_MESSAGE_ELEMENT = document.getElementById('error-message');
 
 function detectBrowserAndSetInputType() {
 	const userAgent = navigator.userAgent;
@@ -64,15 +65,11 @@ function detectBrowserAndSetInputType() {
 	}
 }
 
-detectBrowserAndSetInputType()
-
-
-activateTabsOnClick('.tabs__chart-hashrate');
-activateTabsOnClick('.tabs-tables__workers-payouts');
-
 function init() {
 	assignFormListener();
-
+  detectBrowserAndSetInputType();
+	activateTabsOnClick('.tabs__chart-hashrate');
+	activateTabsOnClick('.tabs-tables__workers-payouts');
 	const walletFromParams = getWalletParam();
 
 	if (walletFromParams) {
@@ -252,18 +249,58 @@ function assignFormListener() {
 }
 
 function assignFormListenerMinPayoutsForm(wallet) {
-	FORM_MIN_PAYOUTS.addEventListener('submit', e => {
-		e.preventDefault();
-		const value = INPUT_MIN_PAYOUTS.value;
-		createUserValue(COIN, wallet, 'min_payout', value)
-			.then(() => {
-				STAT_MIN_PAYOUTS_VALUE.textContent = value;
-				MODAL.close();
-			})
-			.catch(error => {
-				console.info('Error submitting form:', error);
-			});
-	});
+	FORM_MIN_PAYOUTS.addEventListener(
+		'submit',(e) => {
+      formMinPayoutsHandleSubmit(wallet,e);
+    }
+	);
+}
+
+function formMinPayoutsHandleSubmit(wallet, e) {
+	e.preventDefault();
+	const newValue = INPUT_MIN_PAYOUTS.value;
+
+	formMinPayoutsDisableSubmitButton();
+
+	createUserValue(COIN, wallet, 'min_payout', newValue)
+		.then(formMinPayoutsHandleSuccess)
+		.catch(formMinPayoutsHandleError)
+		.finally(formMinPayoutsResetSubmitButton);
+}
+
+function formMinPayoutsDisableSubmitButton() {
+	FORM_MIN_PAYOUTS_SUBMIT_BTN.disabled = true;
+	FORM_MIN_PAYOUTS_SUBMIT_BTN.classList.add('loading');
+	FORM_MIN_PAYOUTS_SUBMIT_BTN.textContent = 'Saving...';
+}
+
+function formMinPayoutsResetSubmitButton() {
+	FORM_MIN_PAYOUTS_SUBMIT_BTN.disabled = false;
+	FORM_MIN_PAYOUTS_SUBMIT_BTN.textContent = 'Save Changes';
+	FORM_MIN_PAYOUTS_SUBMIT_BTN.classList.remove('loading');
+}
+
+function formMinPayoutsHandleSuccess(res) {
+	showMinPayouts(res.value);
+	ERROR_MESSAGE_ELEMENT.textContent =
+		'The minimum payout was successfully updated.';
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+	INPUT_MIN_PAYOUTS.classList.add('success');
+	setTimeout(() => {
+		INPUT_MIN_PAYOUTS.classList.remove('success');
+		ERROR_MESSAGE_ELEMENT.textContent = ``;
+		MODAL.close();
+	}, 1000);
+}
+
+function formMinPayoutsHandleError(error) {
+	const errorMessage = error.message || error;
+	const sanitizedMessage = errorMessage.replace(
+		/because Kind is "min_payout".*/,
+		''
+	);
+	INPUT_MIN_PAYOUTS.classList.add('invalid');
+	ERROR_MESSAGE_ELEMENT.textContent = `Error: ${sanitizedMessage}`;
 }
 
 OPEN_MODAL_BTNS.forEach(btn => {
@@ -425,7 +462,7 @@ function showChartYourHashrate({
 }
 
 function showSelectPayouts(payoutsDay, payoutsWeek) {
-	const selectPayouts = ItcCustomSelect.create('#select-payouts', {
+	ItcCustomSelect.create('#select-payouts', {
 		name: 'interval',
 		targetValue: 'day',
 		options: [
@@ -440,54 +477,4 @@ function showSelectPayouts(payoutsDay, payoutsWeek) {
 			}
 		},
 	});
-}
-function assignFormListenerMinPayoutsForm(wallet) {
-	FORM_MIN_PAYOUTS.addEventListener('submit', handleSubmit.bind(null, wallet));
-}
-
-function handleSubmit(wallet, e) {
-	e.preventDefault();
-	const newValue = INPUT_MIN_PAYOUTS.value;
-
-	disableSubmitButton();
-
-	createUserValue(wallet, 'min_payout', newValue)
-		.then(handleSuccess)
-		.catch(handleError)
-		.finally(resetSubmitButton);
-}
-
-function disableSubmitButton() {
-	FORM_SUBMIT_BTN.disabled = true;
-	FORM_SUBMIT_BTN.classList.add('loading');
-	FORM_SUBMIT_BTN.textContent = 'Saving...';
-}
-
-function resetSubmitButton() {
-	FORM_SUBMIT_BTN.disabled = false;
-	FORM_SUBMIT_BTN.textContent = 'Save Changes';
-	FORM_SUBMIT_BTN.classList.remove('loading');
-}
-
-function handleSuccess(res) {
-	showMinPayouts(res.value);
-	ERROR_MESSAGE_ELEMENT.textContent =
-		'The minimum payout was successfully updated.';
-	INPUT_MIN_PAYOUTS.classList.remove('invalid');
-	INPUT_MIN_PAYOUTS.classList.add('success');
-	setTimeout(() => {
-		INPUT_MIN_PAYOUTS.classList.remove('success');
-		ERROR_MESSAGE_ELEMENT.textContent = ``;
-		MODAL.close();
-	}, 1000);
-}
-
-function handleError(error) {
-	const errorMessage = error.message || error;
-	const sanitizedMessage = errorMessage.replace(
-		/because Kind is "min_payout".*/,
-		''
-	);
-	INPUT_MIN_PAYOUTS.classList.add('invalid');
-	ERROR_MESSAGE_ELEMENT.textContent = `Error: ${sanitizedMessage}`;
 }

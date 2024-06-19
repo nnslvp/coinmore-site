@@ -230,7 +230,7 @@
   <dialog class="modal modal-dit-min-payouts">
     <div class="modal__inner">
       <h2 class="heading-h2">{{ .Params.modal.title }}</h2>
-      <form id="form-min-payouts" class="form__dit-min-payouts" action="">
+      <form id="form-min-payouts" class="form__edit-min-payouts" action="">
         <div class="input-container">
           <label class="label" for="min-payout">{{ .Params.modal.label }}</label>
           <input id="input-min-payouts" class="input" name="min-payout" placeholder="{{ .Params.modal.placeholder }}" type="number" value="0.1"  step="any"  
@@ -239,7 +239,7 @@
         </div>
         <div class="form-action">
           <button type="button" class="btn btn-outline-primary close-modal-btn">{{ .Params.modal.cancel_button }}</button>
-          <button type="submit" class="btn btn-filled-primary">{{ .Params.modal.save_button }}</button>
+          <button type="submit" class="btn btn-filled-primary submit-btn">{{ .Params.modal.save_button }}</button>
         </div>
       </form>
     </div>

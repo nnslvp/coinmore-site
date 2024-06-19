@@ -179,7 +179,7 @@
 		text-align: center;
 	}
 
-	.form__dit-min-payouts {
+	.form__edit-min-payouts {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
@@ -194,6 +194,46 @@
 	.form-action button {
 		flex: 1;
 	}
+  
+  .input[name='min-payout'] {
+    margin: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .input[name='min-payout'].invalid {
+    border-color: red;
+  }
+
+  .input[name='min-payout'].success {
+    border-color: #79ea86;
+  }
+
+  .input[name='min-payout'].invalid+.error-message {
+    color: red;
+  }
+
+  .input[name='min-payout'].success+.error-message {
+    color: #79ea86;
+  }
+
+  .input[name='min-payout'].success {
+    border-color: #79ea86;
+  }
+
+  .input[name='min-payout'].invalid+.error-message,
+  .input[name='min-payout'].success+.error-message {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .error-message {
+    font-size: .875rem;
+    display: inline-block;
+    height: 1.1875rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
 
 	@media (max-width: $breakpoint-md) {
 		width: 27.6875rem;
