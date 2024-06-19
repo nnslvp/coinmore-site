@@ -26,7 +26,6 @@ function showChartPoolHashrate({
 	dataWeek,
 	labelsDay,
 	dataDay,
-	units,
 }) {
 	const hashRateChart = initializeChart(
 		CHART_POOL_HASH_RATE,
@@ -34,7 +33,16 @@ function showChartPoolHashrate({
 			options: {
 				plugins: {
 					title: {
-						text: units,
+						text: 'HASHRATE',
+					},
+					tooltip: {
+						callbacks: {
+							label: (tooltipItem) => {
+								const label = tooltipItem.dataset.label || '';
+								const { hashrate, units } = shortenHm(tooltipItem.raw);
+								return `${label}: ${hashrate} ${units}`;
+							},
+						},
 					},
 				},
 			},
@@ -96,14 +104,14 @@ function showChartWorkersActivity({
 			data: {
 				datasets: [
 					{
-						label: 'Wallets',
+						label: 'WALLETS',
 					},
 				],
 			},
 			options: {
 				plugins: {
 					title: {
-						text: 'Wallets',
+						text: 'WALLETS',
 					},
 				},
 			},
@@ -125,10 +133,10 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 	const labelsWeek = profitHistoryWeek.map(item => item.bucket);
 	const labelsDay = profitHistoryDay.map(item => item.bucket);
 	const dataPoolHashrateWeek = profitHistoryWeek.map(
-		item => shortenHm(item.hashrate, 2).hashrate
+		item => item.hashrate
 	);
 	const dataPoolHashrateDay = profitHistoryDay.map(
-		item => shortenHm(item.hashrate, 2).hashrate
+		item => item.hashrate
 	);
 
 	const dataWorkersActivityDay = profitHistoryDay.map(
@@ -139,16 +147,11 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 		item => item.unique_wallets
 	);
 
-	const { units } = profitHistoryWeek[1]?.hashrate
-		? shortenHm(profitHistoryWeek[1]?.hashrate)
-		: { units: '' };
-
 	showChartPoolHashrate({
 		labelsWeek,
 		dataWeek: dataPoolHashrateWeek,
 		labelsDay,
 		dataDay: dataPoolHashrateDay,
-		units,
 	});
 
 	showChartWorkersActivity({
