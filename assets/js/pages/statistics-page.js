@@ -379,12 +379,7 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
-function showChartYourHashrate({
-	labelsWeek,
-	dataWeek,
-	labelsDay,
-	dataDay,
-}) {
+function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 	const hashRateChart = initializeChart(
 		CHART_HASH_RATE,
 		getChartOptions({

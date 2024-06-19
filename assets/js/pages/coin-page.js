@@ -21,12 +21,7 @@ WALLET_INPUT.addEventListener('invalid', e => {
 	errorElement.classList.add('show');
 });
 
-function showChartPoolHashrate({
-	labelsWeek,
-	dataWeek,
-	labelsDay,
-	dataDay,
-}) {
+function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 	const hashRateChart = initializeChart(
 		CHART_POOL_HASH_RATE,
 		getChartOptions({
@@ -37,7 +32,7 @@ function showChartPoolHashrate({
 					},
 					tooltip: {
 						callbacks: {
-							label: (tooltipItem) => {
+							label: tooltipItem => {
 								const label = tooltipItem.dataset.label || '';
 								const { hashrate, units } = shortenHm(tooltipItem.raw);
 								return `${label}: ${hashrate} ${units}`;
