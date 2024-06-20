@@ -9,7 +9,6 @@ const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 );
 const WALLET_FORM = document.querySelector('#wallet-form');
 const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
-const INPUT_ERROR_ELEMENT = document.querySelector('.error-message');
 const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
 	'.tabs__chart-hashrate'
 );
@@ -57,15 +56,6 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
-WALLET_FORM.addEventListener('submit', e => {
-	e.preventDefault();
-	if (e.target.checkValidity()) {
-		INPUT_ERROR_ELEMENT.classList.remove('show');
-		e.target.submit();
-	} else {
-		INPUT_ERROR_ELEMENT.classList.add('show');
-	}
-});
 
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
