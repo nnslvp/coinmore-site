@@ -1,7 +1,8 @@
 const API_URL = 'https://api.coinmore.io';
 const CALCULATE_BTN = document.getElementById('calculate-btn');
 const CALCULATOR_FORM = document.forms.calculator_form;
-const COIN = window.location.search.split('=').at(1);
+const url = new URL(window.location.href);
+const COIN = url.searchParams.get('coin');
 
 const selectCurrency = ItcCustomSelect.create('#select-currency', {
 	name: 'interval',
