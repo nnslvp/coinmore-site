@@ -1,13 +1,11 @@
 const API_URL = 'https://api.coinmore.io';
 const CALCULATE_BTN = document.getElementById('calculate-btn');
 const CALCULATOR_FORM = document.forms.calculator_form;
-const url = new URL(window.location.href);
-const COIN = url.searchParams.get('coin');
 
 const selectCurrency = ItcCustomSelect.create('#select-currency', {
 	name: 'interval',
 	placeholder: 'Select coin',
-	targetValue: COIN,
+	targetValue: 'alephium',
 	options: COINS.map(coin => [coin.name, coin.symbol]),
 });
 
@@ -137,9 +135,7 @@ function clearError(input) {
 }
 
 function init(calculatorForm) {
-	if (selectCurrency.value) {
-		generateTable(calculatorForm);
-	}
+	generateTable(calculatorForm);
 }
 
 init(CALCULATOR_FORM);

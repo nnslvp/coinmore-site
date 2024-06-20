@@ -12,9 +12,6 @@
           {{ $coinStatisticsUrl := print "/coin/" $pageCoin.Params.coin_name "/statistics" }}
           {{ $coinInstructionsUrl := print "/coin/" $pageCoin.Params.coin_name "/instructions" }}
           {{ $calculatorUrl := "/calculator" }}
-          {{ with $pageCoin.Params.coin_name }}
-          {{ $calculatorUrl = printf "%s?coin=%s" $calculatorUrl . }}
-          {{ end }}
           {{ if eq .Type "coin" }}
           <li class="header__main-nav-item">
             <a href="{{ relLangURL  $coinStatisticsUrl }}"
