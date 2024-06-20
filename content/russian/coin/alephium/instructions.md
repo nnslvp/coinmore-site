@@ -44,7 +44,7 @@ windowsExamples:
       set "ALEPHWALLET=your_wallet"
       ```
       3. Запустите файл **alph**, например: **mine_aleph**.
-      4. ПРИБЫЛЬ!
+      4. PROFIT!
   - tab: 'SRBMiner'
     instruction: |
       1. Скачайте [последнюю версию SRBMiner](https://github.com/doktor83/SRBMiner-Multi/releases) и распакуйте файлы.
