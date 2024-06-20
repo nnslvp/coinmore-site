@@ -38,19 +38,19 @@ windowsExamples:
   - tab: 'IolMiner'
     instruction: |
       1. Скачайте [последнюю версию lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases) и распакуйте файлы.
-      2. Обновите файл **alph**, например: **dual_mine_eth_aleph.bat**
+      2. Обновите файл **alph**, например: **mine_aleph**
       ```
-      set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
+      set "ALEPHPOOL=eu1.alephium-pool.com:20032"
       set "ALEPHWALLET=your_wallet"
       ```
-      3. Запустите файл **alph**, например: **dual_mine_eth_aleph.bat**.
-      4. PROFIT!
+      3. Запустите файл **alph**, например: **mine_aleph**.
+      4. ПРИБЫЛЬ!
   - tab: 'SRBMiner'
     instruction: |
       1. Скачайте [последнюю версию SRBMiner](https://github.com/doktor83/SRBMiner-Multi/releases) и распакуйте файлы.
       2. Обновите файл на
       ```
-      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool detect-my-region.alephium-pool.com:20032 --wallet your_wallet_address
+      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool eu1.alephium-pool.com:20032 --wallet your_wallet_address
       ```
       3. Запустите файл **alph**
       4. PROFIT!
@@ -59,7 +59,7 @@ windowsExamples:
       1. Скачайте [последнюю версию T-Rex](https://github.com/trexminer/T-Rex/releases) и распакуйте файлы.
       2. Обновите файл на
       ```
-      t-rex.exe -a blake3 -o stratum+tcp://detect-my-region.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
+      t-rex.exe -a blake3 -o stratum+tcp://eu1-region.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
       ```
       3. Запустите файл **alph**
       4. PROFIT!
@@ -68,7 +68,7 @@ windowsExamples:
       1. Скачайте [последнюю версию BzMiner](https://github.com/bzminer/bzminer/releases) и распакуйте файлы.
       2. Обновите файл на
       ```
-      bzminer -a alph -w your_wallet_address -p stratum+tcp://detect-my-region.alephium-pool.com:20032
+      bzminer -a alph -w your_wallet_address -p stratum+tcp://eu1.alephium-pool.com:20032
       ```
       3. Запустите файл **alph**
       4. PROFIT!

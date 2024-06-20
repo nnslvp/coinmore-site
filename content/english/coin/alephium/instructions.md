@@ -36,19 +36,19 @@ windowsExamples:
   - tab: 'IolMiner'
     instruction: |
       1. Download [last release of lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases) and unzip the files.
-      2. Update **alph** file, for example: **dual_mine_eth_aleph.bat**
+      2. Update **alph** file, for example: **mine_aleph**
       ```
-      set "ALEPHPOOL=detect-my-region.alephium-pool.com:20032"
+      set "ALEPHPOOL=eu1.alephium-pool.com:20032"
       set "ALEPHWALLET=your_wallet"
       ```
-      3. Run **alph** file, for example: **dual_mine_eth_aleph.bat**.
+      3. Run **alph** file, for example: **mine_aleph**.
       4. PROFIT !
   - tab: 'SRBMiner'
     instruction: |
       1. Download [last release of SRBMiner](https://github.com/doktor83/SRBMiner-Multi/releases) and unzip the files.
       2. Update file to
       ```
-      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool detect-my-region.alephium-pool.com:20032 --wallet your_wallet_address
+      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool eu1.alephium-pool.com:20032 --wallet your_wallet_address
       ```
       3. Run **alph** file
       4. PROFIT !
@@ -57,7 +57,7 @@ windowsExamples:
       1. Download [last release of T-Rex](https://github.com/trexminer/T-Rex/releases) and unzip the files.
       2. Update file to
       ```
-      t-rex.exe -a blake3 -o stratum+tcp://detect-my-region.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
+      t-rex.exe -a blake3 -o stratum+tcp://eu1.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
       ```
       3. Run **alph** file
       4. PROFIT !
@@ -66,7 +66,7 @@ windowsExamples:
       1. Download [last release of BzMiner](https://github.com/bzminer/bzminer/releases) and unzip the files.
       2. Update file to
       ```
-      bzminer -a alph -w your_wallet_address -p stratum+tcp://detect-my-region.alephium-pool.com:20032
+      bzminer -a alph -w your_wallet_address -p stratum+tcp://eu1.alephium-pool.com:20032
       ```
       3. Run **alph**  file
       4. PROFIT !
