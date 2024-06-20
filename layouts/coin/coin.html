@@ -92,7 +92,7 @@
               {{.Params.quick_start_subtitle}}
             </p>
             <search class="section-start__search">
-              <form action="/coin/{{.Params.coin_name}}/statistics/" novalidate id="wallet-form"
+              <form action="/coin/{{.Params.coin_name}}/statistics/" id="wallet-form"
                 class="section-start__search-form">
                 <div class="input-container">
                   <input type="text"
@@ -102,7 +102,6 @@
                     placeholder="Wallet"
                     required
                     >
-                    <span class="error-message">Field cannot be empty</span>
                 </div>
                 <button class="btn btn-filled-primary submit-btn">
                   {{.Params.button_view_statistic_text }}
