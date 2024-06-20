@@ -10,7 +10,6 @@ const [TAB_PROFIT_DAY, TAB_PROFIT_WEEK] = getTabs('.chart-interval__profit');
 const [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs(
 	'.chart-interval__pool-hashrate'
 );
-const INPUT_ERROR_ELEMENT = document.querySelector('.error-message');
 
 activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
