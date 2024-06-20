@@ -145,12 +145,11 @@ function drawData(coin, wallet) {
 				const historyWalletDay = historyWalletDayResult.wallet_history;
 				const labelsWeek = historyWalletWeek.map(item => item.bucket);
 				const dataWeek = historyWalletWeek.map(
-					item => shortenHm(parseFloat(item.hashrate), 2).hashrate
+					item => item.hashrate
 				);
 				const labelsDay = historyWalletDay.map(item => item.bucket);
 				const dataDay = historyWalletDay
-					.map(item => shortenHm(parseFloat(item.hashrate), 2).hashrate);
-				const units = shortenHm(historyWalletWeek[0]?.hashrate, 2);
+					.map(item => shortenHm(item.hashrate));
 				const workers1h = hashrate1hResults.workers;
 				const workers24h = hashrate24hResults.workers;
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
@@ -177,7 +176,6 @@ function drawData(coin, wallet) {
 					dataWeek,
 					labelsDay,
 					dataDay,
-					units,
 				});
 				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
 				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
@@ -381,20 +379,23 @@ function showPayoutsTable(payouts) {
 	tableBody.innerHTML = rowsHtml;
 }
 
-function showChartYourHashrate({
-	labelsWeek,
-	dataWeek,
-	labelsDay,
-	dataDay,
-	units,
-}) {
+function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 	const hashRateChart = initializeChart(
 		CHART_HASH_RATE,
 		getChartOptions({
 			options: {
 				plugins: {
 					title: {
-						text: units.units,
+						text: 'HASHRATE',
+					},
+					tooltip: {
+						callbacks: {
+							label: tooltipItem => {
+								const label = tooltipItem.dataset.label || '';
+								const { hashrate, units } = shortenHm(tooltipItem.raw);
+								return `${label}: ${hashrate} ${units}`;
+							},
+						},
 					},
 				},
 			},
