@@ -41,7 +41,7 @@ windowsExamples:
       set "ALEPHPOOL=eu1.alephium-pool.com:20032"
       set "ALEPHWALLET=your_wallet"
       ```
-      3. Run **alph** file, for example: **mine_aleph**.
+      3. Run **mine_aleph**.
       4. PROFIT !
   - tab: 'SRBMiner'
     instruction: |
