@@ -65,9 +65,10 @@
 	flex-basis: 50rem;
 	display: flex;
 	gap: 1.25rem;
+	align-items: baseline;
 }
 
-.statistics__search-form .input {
+.statistics__search-form .input-container {
 	flex: 1;
 }
 

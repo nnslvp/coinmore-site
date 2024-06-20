@@ -1,8 +1,6 @@
 const CHART_POOL_HASH_RATE = document.querySelector('#poolHashrateChart');
 const CHART_PROFIT = document.querySelector('#profitChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
-const WALLET_FORM = document.querySelector('#wallet-form');
-const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
 const [TAB_WORKERS_DAY, TAB_WORKERS_WEEK] = getTabs(
 	'.chart-interval__workers-activity'
 );
@@ -14,12 +12,6 @@ const [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs(
 activateTabsOnClick('.chart-interval__workers-activity');
 activateTabsOnClick('.chart-interval__profit');
 activateTabsOnClick('.chart-interval__pool-hashrate');
-
-WALLET_INPUT.addEventListener('invalid', e => {
-	e.preventDefault();
-	const errorElement = e.currentTarget.nextElementSibling;
-	errorElement.classList.add('show');
-});
 
 function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 	const hashRateChart = initializeChart(
