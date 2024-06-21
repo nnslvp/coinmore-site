@@ -2,7 +2,7 @@ const CHART_PERIOD = {
 	day: 'day',
 	week: 'week',
 };
-
+let chartPeriod = CHART_PERIOD.week;
 function initializeChart(
 	chartElement,
 	chartOptions,
@@ -85,7 +85,6 @@ function getChartOptions(newOptions) {
 			datasets: [
 				{
 					label: 'Hashrate',
-					period: CHART_PERIOD.week,
 					data: [],
 					backgroundColor: 'rgba(155, 77, 202, 0.24)',
 					borderColor: '#9B4DCA',
@@ -120,7 +119,12 @@ function getChartOptions(newOptions) {
 				x: {
 					ticks: {
 						callback: function (value) {
-							return formatDate(this.getLabelForValue(value));
+              const valueAxis = this.getLabelForValue(value)
+              if (chartPeriod === 'week') {
+							return formatDate(valueAxis);
+							} else {
+								return valueAxis.split('T')[1].split('.')[0];
+							}
 						},
 					},
 					grid: {
@@ -153,15 +157,10 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-							const period = tooltipItems[0].dataset.period;
-							const tooltipDate = new Date(tooltipItems[0].label);
-							const date = tooltipDate.toISOString().split('T')[0];
-							const time = tooltipDate
-								.toISOString()
-								.split('T')[1]
-								.split('.')[0];
-
-							if (period === 'week') {
+              const label = tooltipItems[0].label
+							const date = label.split('T')[0];
+							const time = label.split('T')[1].split('.')[0];
+							if (chartPeriod === 'week') {
 								return date;
 							} else {
 								return `${date} ${time}`;
@@ -216,7 +215,7 @@ function updateChartData(chart, newData, labels, period, label) {
 	}
 
 	if (period) {
-		chart.data.datasets[0].period = period;
+		chartPeriod = period;
 	}
 
 	chart.update();
