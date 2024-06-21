@@ -3,6 +3,7 @@ const CHART_PERIOD = {
 	week: 'week',
 };
 let chartPeriod = CHART_PERIOD.week;
+
 function initializeChart(
 	chartElement,
 	chartOptions,
