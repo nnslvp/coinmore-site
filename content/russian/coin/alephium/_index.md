@@ -46,11 +46,6 @@ table_headers:
   - "SSL Порт"
 
 table_body:
-  - region: "Автоопределение региона"
-    address: "detect-my-region.alephium-pool.com"
-    port: 20032
-    ssl_port: 20033
-    icon: "globe-icon"
   - region: "Европа"
     address: "eu1.alephium-pool.com"
     port: 20032
