@@ -20,7 +20,7 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 			options: {
 				plugins: {
 					title: {
-						text: 'HASHRATE',
+						text: 'H/S',
 					},
 					tooltip: {
 						callbacks: {
