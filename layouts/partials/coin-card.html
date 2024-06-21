@@ -15,34 +15,34 @@
   <hr class="horizontal-line card-coin__horizontal-line">
   <ul class="card-coin__stats">
     <li class="card-coin__stat">{{ .Params.pool_hashrate }}
-      <span id="pool_hashrate_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+      <span id="pool_hashrate_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
     </li>
     <li class="card-coin__stat">{{ .Params.network_hashrate }}
-      <span id="network_hashrate_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+      <span id="network_hashrate_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
     </li>
     <li class="card-coin__stat">{{ .Params.coin_price }}
-      <span id="coin-price_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+      <span id="coin-price_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
     </li>
     <li class="card-coin__stat">
       {{ .Params.daily_revenue }}
       <div>
-        <span id="pool_profit_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+        <span id="pool_profit_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
         ~
-        <span id="pool_profit_usd_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+        <span id="pool_profit_usd_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
       </div>
     </li>
     <li class="card-coin__stat">{{ .Params.fee }}
-      <span id="pool_fee_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+      <span id="pool_fee_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
     </li>
     <li class="card-coin__stat">{{ .Params.active_miners }}
-      <span id="miners_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+      <span id="miners_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
     </li>
     <li class="card-coin__stat">
       {{ .Params.min_payout }}
       <div>
-        <span id="pool_min_payout_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+        <span id="pool_min_payout_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
         ~
-        <span id="pool_min_payout_usd_{{.Params.coin_name}}" class="card-coin__stat-value">0</span>
+        <span id="pool_min_payout_usd_{{.Params.coin_name}}" class="card-coin__stat-value">-</span>
       </div>
     </li>
   </ul>
