@@ -124,7 +124,7 @@ function getChartOptions(newOptions) {
 							if (chartPeriod === 'week') {
 								return formatDate(valueAxis);
 							} else {
-								return valueAxis.split('T')[1].split('.')[0];
+								return valueAxis.split('T')[1].split(':', 2).join(':');
 							}
 						},
 					},
