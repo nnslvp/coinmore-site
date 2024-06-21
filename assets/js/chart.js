@@ -120,9 +120,9 @@ function getChartOptions(newOptions) {
 				x: {
 					ticks: {
 						callback: function (value) {
-              const valueAxis = this.getLabelForValue(value)
-              if (chartPeriod === 'week') {
-							return formatDate(valueAxis);
+							const valueAxis = this.getLabelForValue(value);
+							if (chartPeriod === 'week') {
+								return formatDate(valueAxis);
 							} else {
 								return valueAxis.split('T')[1].split('.')[0];
 							}
@@ -158,7 +158,7 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-              const label = tooltipItems[0].label
+							const label = tooltipItems[0].label;
 							const date = label.split('T')[0];
 							const time = label.split('T')[1].split('.')[0];
 							if (chartPeriod === 'week') {
