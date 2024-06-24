@@ -54,7 +54,7 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay, units }) {
 			data: {
 				datasets: [
 					{
-						label: 'Profit',
+						label: CHART_TITLE.profit,
 					},
 				],
 			},
@@ -91,14 +91,14 @@ function showChartWorkersActivity({
 			data: {
 				datasets: [
 					{
-						label: 'WALLETS',
+						label: CHART_TITLE.wallet,
 					},
 				],
 			},
 			options: {
 				plugins: {
 					title: {
-						text: 'WALLETS',
+						text: CHART_TITLE.wallet,
 					},
 				},
 			},

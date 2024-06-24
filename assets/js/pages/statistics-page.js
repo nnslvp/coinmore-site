@@ -383,9 +383,6 @@ function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 		getChartOptions({
 			options: {
 				plugins: {
-					title: {
-						text: 'HASHRATE',
-					},
 					tooltip: {
 						callbacks: {
 							label: tooltipItem => {

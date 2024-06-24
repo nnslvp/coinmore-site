@@ -3,6 +3,12 @@ const CHART_PERIOD = {
 	week: 'week',
 };
 
+const CHART_TITLE = {
+	hashrate: 'HASHRATE',
+	profit: 'PROFIT',
+	wallet: 'WALLETS',
+};
+
 function initializeChart(
 	chartElement,
 	chartOptions,
@@ -84,8 +90,8 @@ function getChartOptions(newOptions) {
 			labels: [],
 			datasets: [
 				{
-          period: CHART_PERIOD.week,
-					label: 'Hashrate',
+					period: CHART_PERIOD.week,
+					label: CHART_TITLE.hashrate,
 					data: [],
 					backgroundColor: 'rgba(155, 77, 202, 0.24)',
 					borderColor: '#9B4DCA',
@@ -112,13 +118,13 @@ function getChartOptions(newOptions) {
 					beginAtZero: false,
 					ticks: {
 						callback: function (value) {
-              const label = this.chart.options.plugins.title.text;
+							const label = this.chart.options.plugins.title.text;
 							const valueAxis = this.getLabelForValue(value);
 							if (label === 'HASHRATE') {
-                const {_, units } = shortenHm(parseFloat(valueAxis), 2);
+								const { _, units } = shortenHm(parseFloat(valueAxis), 2);
 								return `${valueAxis} ${units}/s`;
 							}
-              return  valueAxis;
+							return valueAxis;
 						},
 					},
 					grid: {
@@ -130,9 +136,9 @@ function getChartOptions(newOptions) {
 				x: {
 					ticks: {
 						callback: function (value) {
-              const period = this.chart.data.datasets[0].period;
+							const period = this.chart.data.datasets[0].period;
 							const valueAxis = this.getLabelForValue(value);
-							if (period === 'week') {
+							if (period === CHART_PERIOD.week) {
 								return formatDate(valueAxis);
 							} else {
 								return valueAxis.split('T')[1].split(':', 2).join(':');
@@ -169,7 +175,7 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
-              const period = this.chart.data.datasets[0].period;
+							const period = this.chart.data.datasets[0].period;
 							const label = tooltipItems[0].label;
 							const date = label.split('T')[0];
 							const time = label.split('T')[1].split('.')[0];
@@ -189,7 +195,7 @@ function getChartOptions(newOptions) {
 				},
 				title: {
 					display: true,
-					text: 'EH/s',
+					text: CHART_TITLE.hashrate,
 					font: {
 						size: 14,
 					},
