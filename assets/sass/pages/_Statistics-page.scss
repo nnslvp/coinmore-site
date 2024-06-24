@@ -206,20 +206,12 @@
     border-color: #EB5757;
   }
 
-  .input[name='min-payout'].success {
-    border-color: #79ea86;
-  }
-
   .input[name='min-payout'].invalid+.error-message {
     color: #EB5757;
   }
 
   .input[name='min-payout'].success+.error-message {
     color: #79ea86;
-  }
-
-  .input[name='min-payout'].success {
-    border-color: #79ea86;
   }
 
   .input[name='min-payout'].invalid+.error-message,
