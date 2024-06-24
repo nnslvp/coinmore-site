@@ -22,9 +22,6 @@
 @import './pages/Instructions-page';
 @import './pages/Administration-dashboard-page';
 
-
-
-
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -38,6 +35,3 @@
 .fade-in-animation {
 	animation: fadeIn 0.5s ease-in-out forwards;
 }
-
-
-
