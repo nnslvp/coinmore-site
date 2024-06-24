@@ -132,10 +132,6 @@ function getChartOptions(newOptions) {
 						callback: function (value) {
               const period = this.chart.data.datasets[0].period;
 							const valueAxis = this.getLabelForValue(value);
-              console.log(this.chart.data.datasets[0].period);
-              console.log('====================================');
-              console.log(period);
-              console.log('====================================');
 							if (period === 'week') {
 								return formatDate(valueAxis);
 							} else {
