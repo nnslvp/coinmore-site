@@ -234,12 +234,13 @@
       <form id="form-min-payouts" class="form__dit-min-payouts" action="">
         <div class="input-container">
           <label class="label" for="min-payout">{{ .Params.modal.label }}</label>
-          <input id="input-min-payouts" class="input" name="min-payout" placeholder="{{ .Params.modal.placeholder }}" type="number" value="0.1"  step="any"
+          <input id="input-min-payouts" class="input" name="min-payout" placeholder="0.1" inputmode="numeric" type="number" value="0.1"  step="any"
             >
+            <span id="error-message" class="error-message"></span>
         </div>
         <div class="form-action">
           <button type="button" class="btn btn-outline-primary close-modal-btn">{{ .Params.modal.cancel_button }}</button>
-          <button type="submit" class="btn btn-filled-primary">{{ .Params.modal.save_button }}</button>
+          <button type="submit" class="btn btn-filled-primary submit-btn">{{ .Params.modal.save_button }}</button>
         </div>
       </form>
     </div>

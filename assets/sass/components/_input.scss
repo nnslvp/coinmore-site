@@ -7,7 +7,7 @@
 	line-height: var(--line-height-21);
 	transition: border-color 0.3s ease-in;
 	&:has(~ .error-message.show) {
-		border-color: red;
+		border-color: var(--color-error);
 	}
 	&::placeholder {
 		color: var(--color-text-light-grey);
@@ -22,10 +22,13 @@
 }
 
 .error-message {
+  display: inline-block;
+  font-size: .75rem;
+  height: 1rem;
 	visibility: hidden;
 	opacity: 0;
 	padding-left: 1.5rem;
-	color: red;
+	color: var(--color-error);
 	transition: opacity 0.3s ease-in;
 	&.show {
 		visibility: visible;

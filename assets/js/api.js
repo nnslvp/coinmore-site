@@ -23,9 +23,13 @@ function statsApiCall(action) {
 function statsApiPost(action) {
 	return fetch(`${statsApiUrl}${action}`, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	}).then(response => {
+		if (!response.ok) {
+			return response.json().then(err => {
+				throw new Error(err.errors[0]);
+			});
+		}
+		return response.json();
 	});
 }
 

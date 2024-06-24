@@ -56,11 +56,24 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
+const ERROR_MESSAGE_ELEMENT = document.getElementById('error-message');
+const FORM_SUBMIT_BTN = MODAL.querySelector('.submit-btn');
+function detectBrowserAndSetInputType() {
+	const userAgent = navigator.userAgent;
+	if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
+		INPUT_MIN_PAYOUTS.setAttribute('type', 'text');
+	} else {
+		INPUT_MIN_PAYOUTS.setAttribute('type', 'number');
+	}
+}
+
+
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
 function init() {
 	assignFormListener();
+  detectBrowserAndSetInputType();
 
 	const walletFromParams = getWalletParam();
 
@@ -69,6 +82,7 @@ function init() {
 		setWalletForm(walletFromParams);
 		drawData(COIN, walletFromParams);
 		assignFormListenerMinPayoutsForm(walletFromParams);
+    assignFormListenerMinPayoutsForm(walletFromParams);
 	} else {
 		const walletFromCookies = getCookie('wallet');
 		if (walletFromCookies) {
@@ -235,21 +249,85 @@ function assignFormListener() {
 	}
 }
 
-function assignFormListenerMinPayoutsForm(wallet) {
-	FORM_MIN_PAYOUTS.addEventListener('submit', e => {
-		e.preventDefault();
-		const value = INPUT_MIN_PAYOUTS.value;
-		createUserValue(COIN, wallet, 'min_payout', value)
-			.then(() => {
-				STAT_MIN_PAYOUTS_VALUE.textContent = value;
-				MODAL.close();
-			})
-			.catch(error => {
-				console.info('Error submitting form:', error);
-			});
-	});
+function validationInput(value) {
+	const isNumeric = num => /^\d*[.,]?\d+$/.test(num);
+	const isNegativeNumeric = num => /^-\d*\.?\d+$/.test(num);
+
+	if (!value.trim().length) {
+		INPUT_MIN_PAYOUTS.classList.add('invalid');
+		ERROR_MESSAGE_ELEMENT.textContent = "Value can't be blank";
+		return false;
+	}
+
+	if (isNegativeNumeric(value)) {
+		INPUT_MIN_PAYOUTS.classList.add('invalid');
+		ERROR_MESSAGE_ELEMENT.textContent = 'Value should be positive number';
+		return false;
+	}
+
+	if (!isNumeric(value)) {
+		INPUT_MIN_PAYOUTS.classList.add('invalid');
+		ERROR_MESSAGE_ELEMENT.textContent = 'Value should be number';
+		return false;
+	}
+
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+	ERROR_MESSAGE_ELEMENT.textContent = '';
+	return true;
 }
 
+function assignFormListenerMinPayoutsForm(wallet) {
+	FORM_MIN_PAYOUTS.addEventListener('submit', handleSubmit.bind(null, wallet));
+}
+
+MODAL.addEventListener('close', () => {
+	INPUT_MIN_PAYOUTS.value = STAT_MIN_PAYOUTS_VALUE.textContent;
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+});
+
+function handleSubmit(wallet, e) {
+	e.preventDefault();
+	const newValue = INPUT_MIN_PAYOUTS.value.trim();
+	const validInput = validationInput(newValue);
+	if (validInput) {
+		disableSubmitButton();
+
+		createUserValue(COIN, wallet, 'min_payout', newValue.replace(',', '.'))
+			.then(handleSuccess)
+			.catch(handleError)
+			.finally(resetSubmitButton);
+	}
+}
+
+function disableSubmitButton() {
+	FORM_SUBMIT_BTN.disabled = true;
+	FORM_SUBMIT_BTN.classList.add('loading');
+	FORM_SUBMIT_BTN.textContent = 'Saving...';
+}
+
+function resetSubmitButton() {
+	FORM_SUBMIT_BTN.disabled = false;
+	FORM_SUBMIT_BTN.textContent = 'Save Changes';
+	FORM_SUBMIT_BTN.classList.remove('loading');
+}
+
+function handleSuccess(res) {
+	showMinPayouts(res.value);
+	ERROR_MESSAGE_ELEMENT.textContent =
+		'The minimum payout was successfully updated.';
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+	MODAL.close();
+}
+
+function handleError(error) {
+	const errorMessage = error.message || error;
+	const sanitizedMessage = errorMessage.replace(
+		/because Kind is "min_payout".*/,
+		''
+	);
+	INPUT_MIN_PAYOUTS.classList.add('invalid');
+	ERROR_MESSAGE_ELEMENT.textContent = sanitizedMessage;
+}
 OPEN_MODAL_BTNS.forEach(btn => {
 	btn.addEventListener('click', () => {
 		MODAL.showModal();
