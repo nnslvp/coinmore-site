@@ -20,11 +20,11 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 			options: {
 				plugins: {
 					title: {
-						text: 'H/s',
+						text: 'HASHRATE',
 					},
 					tooltip: {
 						callbacks: {
-							label: tooltipItem => {
+							label:function (tooltipItem)  {
 								const label = tooltipItem.dataset.label || '';
 								const { hashrate, units } = shortenHm(tooltipItem.raw);
 								return `${label}: ${hashrate} ${units}`;

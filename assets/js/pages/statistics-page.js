@@ -224,7 +224,7 @@ function setWalletForm(wallet) {
 function assignFormListener() {
 	function processForm(e) {
 		if (e.preventDefault) e.preventDefault();
-		if (WALLET_INPUT.value) setWalletParam(walletInput.value);
+		if (WALLET_INPUT.value) setWalletParam(WALLET_INPUT.value);
 		return false;
 	}
 

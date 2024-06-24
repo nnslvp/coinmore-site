@@ -2,7 +2,6 @@ const CHART_PERIOD = {
 	day: 'day',
 	week: 'week',
 };
-let chartPeriod = CHART_PERIOD.week;
 
 function initializeChart(
 	chartElement,
@@ -85,6 +84,7 @@ function getChartOptions(newOptions) {
 			labels: [],
 			datasets: [
 				{
+          period: CHART_PERIOD.week,
 					label: 'Hashrate',
 					data: [],
 					backgroundColor: 'rgba(155, 77, 202, 0.24)',
@@ -110,7 +110,17 @@ function getChartOptions(newOptions) {
 			scales: {
 				y: {
 					beginAtZero: false,
-					ticks: {},
+					ticks: {
+						callback: function (value) {
+              const label = this.chart.options.plugins.title.text;
+							const valueAxis = this.getLabelForValue(value);
+							if (label === 'HASHRATE') {
+                const {_, units } = shortenHm(parseFloat(valueAxis), 2);
+								return `${valueAxis} ${units}/s`;
+							}
+              return  valueAxis;
+						},
+					},
 					grid: {
 						display: true,
 						drawTicks: false,
@@ -120,8 +130,13 @@ function getChartOptions(newOptions) {
 				x: {
 					ticks: {
 						callback: function (value) {
+              const period = this.chart.data.datasets[0].period;
 							const valueAxis = this.getLabelForValue(value);
-							if (chartPeriod === 'week') {
+              console.log(this.chart.data.datasets[0].period);
+              console.log('====================================');
+              console.log(period);
+              console.log('====================================');
+							if (period === 'week') {
 								return formatDate(valueAxis);
 							} else {
 								return valueAxis.split('T')[1].split(':', 2).join(':');
@@ -158,10 +173,11 @@ function getChartOptions(newOptions) {
 					yAlign: 'top',
 					callbacks: {
 						title: function (tooltipItems) {
+              const period = this.chart.data.datasets[0].period;
 							const label = tooltipItems[0].label;
 							const date = label.split('T')[0];
 							const time = label.split('T')[1].split('.')[0];
-							if (chartPeriod === 'week') {
+							if (period === 'week') {
 								return date;
 							} else {
 								return `${date} ${time}`;
@@ -216,7 +232,7 @@ function updateChartData(chart, newData, labels, period, label) {
 	}
 
 	if (period) {
-		chartPeriod = period;
+		chart.data.datasets[0].period = period;
 	}
 
 	chart.update();
