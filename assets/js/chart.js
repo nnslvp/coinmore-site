@@ -121,8 +121,8 @@ function getChartOptions(newOptions) {
 							const label = this.chart.options.plugins.title.text;
 							const valueAxis = this.getLabelForValue(value);
 							if (label === 'HASHRATE') {
-								const { _, units } = shortenHm(parseFloat(valueAxis), 2);
-								return `${valueAxis} ${units}/s`;
+								const { hashrate, units } = shortenHm(value, 2);
+								return `${hashrate} ${units}/s`;
 							}
 							return valueAxis;
 						},
@@ -248,7 +248,7 @@ function calculateYAxisSettings(data) {
 		return {
 			minY: 0,
 			maxY: 1,
-			stepSize: 0.1, 
+			stepSize: 0.1,
 		};
 	}
 

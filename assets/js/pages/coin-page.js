@@ -26,7 +26,7 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 						callbacks: {
 							label:function (tooltipItem)  {
 								const label = tooltipItem.dataset.label || '';
-								const { hashrate, units } = shortenHm(tooltipItem.raw);
+								const { hashrate, units } = shortenHm(tooltipItem.raw, 2);
 								return `${label}: ${hashrate} ${units}`;
 							},
 						},
