@@ -100,9 +100,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.balance }}</p>
                   <strong class="stat-item__value">
-                    <span id="balance"></span>
+                    <span id="balance">0</span>
                     ~
-                    <span id="balance_usd"></span>
+                    <span id="balance_usd">0 USD</span>
                   </strong>
                 </div>
               </li>
@@ -245,6 +245,11 @@
       </form>
     </div>
   </dialog>
+  <div class="toast">
+    <i class="icon warning-icon"></i>
+    <p class="toast-text">Oops, Wrong email or password!</p>
+    <i class="icon close-icon"></i>
+  </div>
   <script>
     const COIN = {{$pageCoin.Params.coin_name }}
     const COIN_SYMBOL = {{$pageCoin.Params.coin_symbol }}

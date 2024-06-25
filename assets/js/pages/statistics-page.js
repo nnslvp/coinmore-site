@@ -58,6 +58,22 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 
 const ERROR_MESSAGE_ELEMENT = document.getElementById('error-message');
 const FORM_SUBMIT_BTN = MODAL.querySelector('.submit-btn');
+const TOAST = document.querySelector('.toast');
+const TOAST_CLOSE_BTN = TOAST.querySelector('.close-icon');
+const TOAST_TEXT = TOAST.querySelector('.toast-text');
+
+
+function showToast(params) {
+  TOAST.classList.add('active');
+  setTimeout(() => {
+    TOAST.classList.remove('active');
+  }, 5000);
+};
+
+TOAST_CLOSE_BTN.addEventListener('click', () => {
+		TOAST_CLOSE_BTN.classList.remove('active');
+});
+
 function detectBrowserAndSetInputType() {
 	const userAgent = navigator.userAgent;
 	if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
@@ -82,7 +98,6 @@ function init() {
 		setWalletForm(walletFromParams);
 		drawData(COIN, walletFromParams);
 		assignFormListenerMinPayoutsForm(walletFromParams);
-    assignFormListenerMinPayoutsForm(walletFromParams);
 	} else {
 		const walletFromCookies = getCookie('wallet');
 		if (walletFromCookies) {
@@ -102,107 +117,176 @@ function drawData(coin, wallet) {
 	const payoutsWeekPromise = fetchMyPayouts(coin, wallet, PERIOD_WEEK);
 	const hashrate1hPromise = fetchMyHashrate(coin, wallet);
 	const hashrate24hPromise = fetchMyHashrate(coin, wallet, PERIOD_DAY);
-	const balancePromise = fetchMyBalance(coin, wallet);
+	const balancePromise = fetchMyBalance(coin, '');
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
 	const historyWorkersDayPromise = fetchHistoryWorkers(coin, wallet);
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
 	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
+	let workers1h = [];
+  let workers24h = [];
+  let rate = null;
 
-	userValueMinPayoutsPromise
-		.then(({ value }) => showMinPayouts(value))
-		.catch(error => {
-			if (error.status === 404) {
-				poolValueMinPayoutsPromise.then(defaultValue => {
-					showMinPayouts(defaultValue.value);
-				});
-			} else {
-				console.info('Error:', error);
-			}
-		});
-
-	Promise.all([
+	Promise.allSettled([
 		currencyInfoPromise,
 		payouts1hPromise,
 		payouts24hPromise,
+		balancePromise,
 		payoutsWeekPromise,
 		hashrate1hPromise,
 		hashrate24hPromise,
-		balancePromise,
 		historyWalletWeekPromise,
 		historyWalletDayPromise,
 		historyWorkersDayPromise,
 		poolValueFeePromise,
+		userValueMinPayoutsPromise.catch(error => {
+			if (error.status === 404) {
+				return poolValueMinPayoutsPromise;
+			} else {
+				throw error;
+			}
+		}),
 	])
-		.then(
-			([
-				currencyInfo,
+		.then(results => {
+			const [
+				currencyInfoResult,
 				payouts1hResult,
 				payouts24hResult,
+				balanceResults,
 				payoutsWeekResult,
 				hashrate1hResults,
 				hashrate24hResults,
-				balanceResults,
 				historyWalletWeekResult,
 				historyWalletDayResult,
 				historyWorkersDayResult,
 				feeResult,
-			]) => {
-				const rate = currencyInfo.rate.value;
-				const balance = balanceResults;
-				const payouts1h = payouts1hResult.payouts;
-				const payouts24h = payouts24hResult.payouts;
-				const payoutsWeek = payoutsWeekResult.payouts;
-				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
-				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
-				const historyWalletWeek = historyWalletWeekResult.wallet_history;
-				const historyWalletDay = historyWalletDayResult.wallet_history;
-				const labelsWeek = historyWalletWeek.map(item => item.bucket);
-				const dataWeek = historyWalletWeek.map(
-					item => item.hashrate
-				);
-				const labelsDay = historyWalletDay.map(item => item.bucket);
-				const dataDay = historyWalletDay
-					.map(item => shortenHm(item.hashrate, 2));
-				const workers1h = hashrate1hResults.workers;
-				const workers24h = hashrate24hResults.workers;
-				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
-				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
-				const fee = feeResult.value;
-				const workersHistory = historyWorkersDayResult.workers_history;
+				minPayoutsResult,
+			] = results.map(result =>
+				result.status === 'fulfilled' ? result.value : result.reason
+			);
 
+			if (currencyInfoResult.value) {
+				rate = currencyInfoResult.rate.value;
+			} else {
+				console.info(
+					'Error in currencyInfoPromise:',
+					currencyInfoResult.message
+				);
+			}
+
+      console.log(results);
+
+			if (payouts1hResult.value) {
+				const payouts1h = payouts1hResult.payouts;
+				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
+				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
+				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
+			} else {
+				console.info('Error in payouts1hPromise:', payouts1hResult.message);
+			}
+
+			if (balanceResults.value) {
+				showMyBalance(balanceResults, 'balance', COIN_SYMBOL);
+				showMyBalanceUSD(balanceResults, rate);
+			} else  {
+				console.info('Error in balancePromise:', balanceResults.message);
+			}
+
+			if (payouts24hResult.value) {
+				const payouts24h = payouts24hResult.payouts;
+				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
+				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
+				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
+				showPayoutsTable(payouts24h);
+
+				if (payoutsWeekResult.value) {
+					const payoutsWeek = payoutsWeekResult.payouts;
+					showSelectPayouts(payouts24h, payoutsWeek);
+				} else {
+					console.info(
+						'Error in payoutsWeekPromise:',
+						payoutsWeekResult.message
+					);
+				}
+			} else {
+				console.info('Error in payouts24hPromise:', payouts24hResult.message);
+			}
+
+			if (hashrate1hResults.value) {
+				workers1h = hashrate1hResults.workers;
+				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
+				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
+			} else {
+				console.info('Error in hashrate1hPromise:', hashrate1hResults.message);
+			}
+
+			if (hashrate24hResults.value) {
+				workers24h = hashrate24hResults.workers;
+				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
+				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
+			} else {
+				console.info('Error in hashrate24hPromise:', hashrate24hResults.message);
+			}
+
+			if (historyWorkersDayResult.value) {
+				const workersHistory = historyWorkersDayResult.workers_history;
 				const workersHistoryDay = workersHistory.filter(({ bucket }) => {
 					const lastDayStart = new Date().setHours(0, 0, 0, 0);
 					return new Date(bucket) >= lastDayStart;
 				});
-
-				showPoolFee(fee);
-				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
-				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
-				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
-				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
-				showPayoutsTable(payouts24h);
-				showSelectPayouts(payouts24h, payoutsWeek);
-				showMyBalance(balance, 'balance', COIN_SYMBOL);
-				showMyBalanceUSD(balance, rate);
-				showChartYourHashrate({
-					labelsWeek,
-					dataWeek,
-					labelsDay,
-					dataDay,
-				});
-				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
-				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
 				showWorkersTable(workers24h, workers1h, workersHistoryDay);
-				showStats();
-				enableButton();
+			} else {
+				console.info(
+					'Error in historyWorkersDayPromise:',
+					historyWorkersDayResult.message
+				);
 			}
-		)
+
+			if (historyWalletWeekResult.value && historyWalletDayResult.value) {
+				const historyWalletWeek = historyWalletWeekResult.wallet_history;
+				const historyWalletDay = historyWalletDayResult.wallet_history;
+				const labelsWeek = historyWalletWeek.map(item => item.bucket);
+				const dataWeek = historyWalletWeek.map(item => item.hashrate);
+				const labelsDay = historyWalletDay.map(item => item.bucket);
+				const dataDay = historyWalletDay.map(item => shortenHm(item.hashrate));
+				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+			} else {
+				if (historyWalletWeekResult.message) {
+					console.info(
+						'Error in historyWalletWeekPromise:',
+						historyWalletWeekResult.message
+					);
+				}
+				if (historyWalletDayResult.message) {
+					console.info(
+						'Error in historyWalletDayPromise:',
+						historyWalletDayResult.message
+					);
+				}
+			}
+
+			if (feeResult.value) {
+				showPoolFee(feeResult.value);
+			} else {
+				console.info('Error in poolValueFeePromise:', feeResult.message);
+			}
+
+			if (minPayoutsResult.value) {
+				showMinPayouts(minPayoutsResult.value);
+			} else  {
+				console.info(
+					'Error in userValueMinPayoutsPromise or poolValueMinPayoutsPromise:',
+					minPayoutsResult.message
+				);
+			}
+
+			showStats();
+		})
 		.catch(error => {
-			console.info('Error in drawData', error);
-			enableButton();
-		});
+			console.info('Error draw data', error);
+		})
+		.finally(() => enableButton());
 }
 
 function showStats() {
@@ -237,8 +321,14 @@ function setWalletForm(wallet) {
 
 function assignFormListener() {
 	function processForm(e) {
-		if (e.preventDefault) e.preventDefault();
-		if (WALLET_INPUT.value) setWalletParam(WALLET_INPUT.value);
+		if (e.preventDefault){
+      e.preventDefault();
+    }
+
+		if (WALLET_INPUT.value){
+      setWalletParam(WALLET_INPUT.value);
+    }
+
 		return false;
 	}
 
@@ -325,9 +415,10 @@ function handleError(error) {
 		/because Kind is "min_payout".*/,
 		''
 	);
-	INPUT_MIN_PAYOUTS.classList.add('invalid');
-	ERROR_MESSAGE_ELEMENT.textContent = sanitizedMessage;
+  TOAST_TEXT.textContent = sanitizedMessage;
+  showToast()
 }
+
 OPEN_MODAL_BTNS.forEach(btn => {
 	btn.addEventListener('click', () => {
 		MODAL.showModal();

@@ -1,0 +1,44 @@
+.toast {
+  position: fixed;
+  z-index: 999999;
+  top: 1.5625rem;
+  left: 50%;
+  transform: translate(-50%, calc(-100% - 1.5625rem));
+  width: 22.25rem;
+  color: var(--color-white);
+  background: var(--color-error);
+  padding: .875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  border-radius: .625rem;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35)
+}
+
+.toast.active {
+  transform: translate(-50%, 0);
+}
+
+.toast i:first-child {
+  color: red;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.toast-text {
+  flex: 1;
+  font-size: .8125rem;
+}
+
+.toast i:last-child {
+  color: #ccc;
+  cursor: pointer;
+  transition: 350ms;
+}
+
+.toast i:last-child:hover {
+  color: #333;
+}
