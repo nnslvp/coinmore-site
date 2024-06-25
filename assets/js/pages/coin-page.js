@@ -24,9 +24,9 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 					},
 					tooltip: {
 						callbacks: {
-							label: tooltipItem => {
+							label:function (tooltipItem)  {
 								const label = tooltipItem.dataset.label || '';
-								const { hashrate, units } = shortenHm(tooltipItem.raw);
+								const { hashrate, units } = shortenHm(tooltipItem.raw, 2);
 								return `${label}: ${hashrate} ${units}`;
 							},
 						},
@@ -54,7 +54,7 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay, units }) {
 			data: {
 				datasets: [
 					{
-						label: 'Profit',
+						label: CHART_TITLE.profit,
 					},
 				],
 			},
@@ -91,14 +91,14 @@ function showChartWorkersActivity({
 			data: {
 				datasets: [
 					{
-						label: 'WALLETS',
+						label: CHART_TITLE.wallet,
 					},
 				],
 			},
 			options: {
 				plugins: {
 					title: {
-						text: 'WALLETS',
+						text: CHART_TITLE.wallet,
 					},
 				},
 			},
