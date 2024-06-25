@@ -69,7 +69,8 @@
 }
 
 .statistics__search-form .input-container {
-	flex: 1;
+	width: 100%;
+  flex: 1;
 }
 
 .section-statistics {
@@ -274,6 +275,10 @@
 	.statistics__search-form {
 		flex-direction: column;
 	}
+  
+  .statistics__search-form button[type='submit'] {
+    width: 100%;
+  }
 
 	.statistics__stats-container {
 		grid-template-columns: repeat(2, 1fr);
