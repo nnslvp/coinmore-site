@@ -195,7 +195,6 @@ function getChartOptions(newOptions) {
 				},
 				title: {
 					display: true,
-					text: '',
 					font: {
 						size: 14,
 					},
