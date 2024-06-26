@@ -133,8 +133,10 @@ function drawData(coin, wallet) {
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
 	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
+	let workers1h = [];
+	let	workers24h=[];
+	let rate  = null;
 
-	let workers1h, workers24h, rate;
 	Promise.allSettled([
 		currencyInfoPromise,
 		payouts1hPromise,

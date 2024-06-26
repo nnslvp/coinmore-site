@@ -2,6 +2,7 @@
   position: fixed;
   z-index: 999999;
   top: 1.5625rem;
+  font-size: .8125rem;
   left: 50%;
   transform: translate(-50%, calc(-100% - 1.5625rem));
   width: fit-content;
@@ -14,9 +15,12 @@
   gap: .75rem;
   border-radius: .625rem;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35)
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  @media (max-width: $breakpoint-md) {
+    width: 23rem;
+    font-size: 0.7rem;
+  }
 }
-
 .toast.active {
   transform: translate(-50%, 0);
 }
@@ -27,7 +31,6 @@
 
 .toast-text {
   flex: 1;
-  font-size: .8125rem;
 }
 
 .toast i:last-child:hover {
