@@ -80,7 +80,7 @@ function showToast(status) {
 }
 
 TOAST_CLOSE_BTN.addEventListener('click', () => {
-		TOAST_CLOSE_BTN.classList.remove('active');
+	TOAST.classList.remove('active');
 });
 
 function detectBrowserAndSetInputType() {
