@@ -195,7 +195,7 @@ function getChartOptions(newOptions) {
 				},
 				title: {
 					display: true,
-					text: CHART_TITLE.hashrate,
+					text: '',
 					font: {
 						size: 14,
 					},
