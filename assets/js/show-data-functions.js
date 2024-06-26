@@ -61,10 +61,6 @@ function showMyPayouts(amount, id = 'my_payouts_1h', symbol) {
 }
 
 function showMyPayoutsUSD(amount, currencyRate, id = 'my_payouts_1h_usd') {
-	console.log(amountUSD(
-		amount,
-		currencyRate
-	));
 	document.getElementById(id).textContent = `${amountUSD(
 		amount,
 		currencyRate

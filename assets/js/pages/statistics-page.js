@@ -124,10 +124,8 @@ function drawData(coin, wallet) {
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
 	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
-	let workers1h = [];
-  let workers24h = [];
-  let rate = null;
 
+	let workers1h, workers24h, rate;
 	Promise.allSettled([
 		currencyInfoPromise,
 		payouts1hPromise,
@@ -162,36 +160,28 @@ function drawData(coin, wallet) {
 				historyWorkersDayResult,
 				feeResult,
 				minPayoutsResult,
-			] = results.map(result =>
-				result.status === 'fulfilled' ? result.value : result.reason
-			);
+			] = results.map(result => (result.status === 'fulfilled' ? result.value : null));
 
 			if (currencyInfoResult) {
 				rate = currencyInfoResult.rate.value;
-			} else {
-				console.info(
-					'Error in currencyInfoPromise:',
-					currencyInfoResult.message
-				);
+			} else if (results[0].status === 'rejected') {
+				console.info('Error in currencyInfoPromise:', results[0].reason);
 			}
-
-      console.log(results);
 
 			if (payouts1hResult) {
 				const payouts1h = payouts1hResult.payouts;
 				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
 				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
-			} else {
-				console.info('Error in payouts1hPromise:', payouts1hResult.message);
+			} else if (results[1].status === 'rejected') {
+				console.info('Error in payouts1hPromise:', results[1].reason);
 			}
 
 			if (balanceResults) {
-				console.log(balanceResults)
 				showMyBalance(balanceResults, 'balance', COIN_SYMBOL);
 				showMyBalanceUSD(balanceResults, rate);
-			} else  {
-				console.info('Error in balancePromise:', balanceResults.message);
+			} else if (results[3].status === 'rejected') {
+				console.info('Error in balancePromise:', results[3].reason);
 			}
 
 			if (payouts24hResult) {
@@ -204,30 +194,27 @@ function drawData(coin, wallet) {
 				if (payoutsWeekResult) {
 					const payoutsWeek = payoutsWeekResult.payouts;
 					showSelectPayouts(payouts24h, payoutsWeek);
-				} else {
-					console.info(
-						'Error in payoutsWeekPromise:',
-						payoutsWeekResult.message
-					);
+				} else if (results[4].status === 'rejected') {
+					console.info('Error in payoutsWeekPromise:', results[4].reason);
 				}
-			} else {
-				console.info('Error in payouts24hPromise:', payouts24hResult.message);
+			} else if (results[2].status === 'rejected') {
+				console.info('Error in payouts24hPromise:', results[2].reason);
 			}
 
 			if (hashrate1hResults) {
 				workers1h = hashrate1hResults.workers;
 				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
 				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
-			} else {
-				console.info('Error in hashrate1hPromise:', hashrate1hResults.message);
+			} else if (results[5].status === 'rejected') {
+				console.info('Error in hashrate1hPromise:', results[5].reason);
 			}
 
 			if (hashrate24hResults) {
 				workers24h = hashrate24hResults.workers;
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
 				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
-			} else {
-				console.info('Error in hashrate24hPromise:', hashrate24hResults.message);
+			} else if (results[6].status === 'rejected') {
+				console.info('Error in hashrate24hPromise:', results[6].reason);
 			}
 
 			if (historyWorkersDayResult) {
@@ -237,11 +224,8 @@ function drawData(coin, wallet) {
 					return new Date(bucket) >= lastDayStart;
 				});
 				showWorkersTable(workers24h, workers1h, workersHistoryDay);
-			} else {
-				console.info(
-					'Error in historyWorkersDayPromise:',
-					historyWorkersDayResult.message
-				);
+			} else if (results[9].status === 'rejected') {
+				console.info('Error in historyWorkersDayPromise:', results[9].reason);
 			}
 
 			if (historyWalletWeekResult && historyWalletDayResult) {
@@ -253,33 +237,24 @@ function drawData(coin, wallet) {
 				const dataDay = historyWalletDay.map(item => shortenHm(item.hashrate));
 				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
 			} else {
-				if (historyWalletWeekResult.message) {
-					console.info(
-						'Error in historyWalletWeekPromise:',
-						historyWalletWeekResult.message
-					);
+				if (results[7].status === 'rejected') {
+					console.info('Error in historyWalletWeekPromise:', results[7].reason);
 				}
-				if (historyWalletDayResult.message) {
-					console.info(
-						'Error in historyWalletDayPromise:',
-						historyWalletDayResult.message
-					);
+				if (results[8].status === 'rejected') {
+					console.info('Error in historyWalletDayPromise:', results[8].reason);
 				}
 			}
 
 			if (feeResult) {
 				showPoolFee(feeResult.value);
-			} else {
-				console.info('Error in poolValueFeePromise:', feeResult.message);
+			} else if (results[10].status === 'rejected') {
+				console.info('Error in poolValueFeePromise:', results[10].reason);
 			}
 
 			if (minPayoutsResult) {
 				showMinPayouts(minPayoutsResult.value);
-			} else  {
-				console.info(
-					'Error in userValueMinPayoutsPromise or poolValueMinPayoutsPromise:',
-					minPayoutsResult.message
-				);
+			} else if (results[11].status === 'rejected') {
+				console.info('Error in userValueMinPayoutsPromise or poolValueMinPayoutsPromise:', results[11].reason);
 			}
 
 			showStats();
@@ -289,7 +264,6 @@ function drawData(coin, wallet) {
 		})
 		.finally(() => enableButton());
 }
-
 function showStats() {
 	document.getElementById('stats').classList.remove('empty-statistics');
 }
