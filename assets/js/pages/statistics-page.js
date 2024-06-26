@@ -98,7 +98,7 @@ activateTabsOnClick('.tabs-tables__workers-payouts');
 
 function init() {
 	assignFormListener();
-  detectBrowserAndSetInputType();
+	detectBrowserAndSetInputType();
 
 	const walletFromParams = getWalletParam();
 
