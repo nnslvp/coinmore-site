@@ -117,7 +117,7 @@ function drawData(coin, wallet) {
 	const payoutsWeekPromise = fetchMyPayouts(coin, wallet, PERIOD_WEEK);
 	const hashrate1hPromise = fetchMyHashrate(coin, wallet);
 	const hashrate24hPromise = fetchMyHashrate(coin, wallet, PERIOD_DAY);
-	const balancePromise = fetchMyBalance(coin, '');
+	const balancePromise = fetchMyBalance(coin, wallet);
 	const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
 	const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
 	const historyWorkersDayPromise = fetchHistoryWorkers(coin, wallet);
@@ -166,7 +166,7 @@ function drawData(coin, wallet) {
 				result.status === 'fulfilled' ? result.value : result.reason
 			);
 
-			if (currencyInfoResult.value) {
+			if (currencyInfoResult) {
 				rate = currencyInfoResult.rate.value;
 			} else {
 				console.info(
@@ -177,7 +177,7 @@ function drawData(coin, wallet) {
 
       console.log(results);
 
-			if (payouts1hResult.value) {
+			if (payouts1hResult) {
 				const payouts1h = payouts1hResult.payouts;
 				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
 				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
@@ -186,21 +186,22 @@ function drawData(coin, wallet) {
 				console.info('Error in payouts1hPromise:', payouts1hResult.message);
 			}
 
-			if (balanceResults.value) {
+			if (balanceResults) {
+				console.log(balanceResults)
 				showMyBalance(balanceResults, 'balance', COIN_SYMBOL);
 				showMyBalanceUSD(balanceResults, rate);
 			} else  {
 				console.info('Error in balancePromise:', balanceResults.message);
 			}
 
-			if (payouts24hResult.value) {
+			if (payouts24hResult) {
 				const payouts24h = payouts24hResult.payouts;
 				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
 				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
 				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
 				showPayoutsTable(payouts24h);
 
-				if (payoutsWeekResult.value) {
+				if (payoutsWeekResult) {
 					const payoutsWeek = payoutsWeekResult.payouts;
 					showSelectPayouts(payouts24h, payoutsWeek);
 				} else {
@@ -213,7 +214,7 @@ function drawData(coin, wallet) {
 				console.info('Error in payouts24hPromise:', payouts24hResult.message);
 			}
 
-			if (hashrate1hResults.value) {
+			if (hashrate1hResults) {
 				workers1h = hashrate1hResults.workers;
 				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
 				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
@@ -221,7 +222,7 @@ function drawData(coin, wallet) {
 				console.info('Error in hashrate1hPromise:', hashrate1hResults.message);
 			}
 
-			if (hashrate24hResults.value) {
+			if (hashrate24hResults) {
 				workers24h = hashrate24hResults.workers;
 				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
 				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
@@ -229,7 +230,7 @@ function drawData(coin, wallet) {
 				console.info('Error in hashrate24hPromise:', hashrate24hResults.message);
 			}
 
-			if (historyWorkersDayResult.value) {
+			if (historyWorkersDayResult) {
 				const workersHistory = historyWorkersDayResult.workers_history;
 				const workersHistoryDay = workersHistory.filter(({ bucket }) => {
 					const lastDayStart = new Date().setHours(0, 0, 0, 0);
@@ -243,7 +244,7 @@ function drawData(coin, wallet) {
 				);
 			}
 
-			if (historyWalletWeekResult.value && historyWalletDayResult.value) {
+			if (historyWalletWeekResult && historyWalletDayResult) {
 				const historyWalletWeek = historyWalletWeekResult.wallet_history;
 				const historyWalletDay = historyWalletDayResult.wallet_history;
 				const labelsWeek = historyWalletWeek.map(item => item.bucket);
@@ -266,13 +267,13 @@ function drawData(coin, wallet) {
 				}
 			}
 
-			if (feeResult.value) {
+			if (feeResult) {
 				showPoolFee(feeResult.value);
 			} else {
 				console.info('Error in poolValueFeePromise:', feeResult.message);
 			}
 
-			if (minPayoutsResult.value) {
+			if (minPayoutsResult) {
 				showMinPayouts(minPayoutsResult.value);
 			} else  {
 				console.info(
