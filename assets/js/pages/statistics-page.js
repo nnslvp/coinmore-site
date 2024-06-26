@@ -9,7 +9,7 @@ const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 );
 const WALLET_FORM = document.querySelector('#wallet-form');
 const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
-const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
+const [TAB_DAY_CHART_HASHRATE, TAB_WEEK_CHART_HASHRATE] = getTabs(
 	'.tabs__chart-hashrate'
 );
 const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
@@ -61,14 +61,23 @@ const FORM_SUBMIT_BTN = MODAL.querySelector('.submit-btn');
 const TOAST = document.querySelector('.toast');
 const TOAST_CLOSE_BTN = TOAST.querySelector('.close-icon');
 const TOAST_TEXT = TOAST.querySelector('.toast-text');
+const TOAST_ICON = TOAST.querySelector('.toast-icon');
 
+function showToast(status) {
+	TOAST.classList.add('active', status);
+	TOAST_ICON.className = 'icon toast-icon';
+	if (status.includes('success')) {
+		TOAST_ICON.classList.add('success-icon')
+	}
 
-function showToast(params) {
-  TOAST.classList.add('active');
-  setTimeout(() => {
-    TOAST.classList.remove('active');
-  }, 5000);
-};
+	if (status.includes('error')) {
+		TOAST_ICON.classList.add('warning-icon')
+	}
+
+	setTimeout(() => {
+		TOAST.classList.remove('active');
+	}, 5000);
+}
 
 TOAST_CLOSE_BTN.addEventListener('click', () => {
 		TOAST_CLOSE_BTN.classList.remove('active');
@@ -377,21 +386,21 @@ function resetSubmitButton() {
 }
 
 function handleSuccess(res) {
-	showMinPayouts(res.value);
-	ERROR_MESSAGE_ELEMENT.textContent =
-		'The minimum payout was successfully updated.';
+	showMinPayouts(res.value)
 	INPUT_MIN_PAYOUTS.classList.remove('invalid');
 	MODAL.close();
+	TOAST_TEXT.textContent = 'The minimum payout was successfully updated.'
+	showToast('success')
 }
 
 function handleError(error) {
+	MODAL.close();
 	const errorMessage = error.message || error;
-	const sanitizedMessage = errorMessage.replace(
+	TOAST_TEXT.textContent = errorMessage.replace(
 		/because Kind is "min_payout".*/,
 		''
 	);
-  TOAST_TEXT.textContent = sanitizedMessage;
-  showToast()
+	showToast('error')
 }
 
 OPEN_MODAL_BTNS.forEach(btn => {
@@ -543,11 +552,11 @@ function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 		labelsWeek
 	);
 
-	tabDayChartHashrate.addEventListener('click', function (e) {
+	TAB_DAY_CHART_HASHRATE.addEventListener('click', function (e) {
 		updateChartData(hashRateChart, dataDay, labelsDay, CHART_PERIOD.day);
 	});
 
-	tabWeekButtonChartHashrate.addEventListener('click', function (e) {
+	TAB_WEEK_CHART_HASHRATE.addEventListener('click', function (e) {
 		updateChartData(hashRateChart, dataWeek, labelsWeek, CHART_PERIOD.week);
 	});
 }
