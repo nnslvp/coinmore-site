@@ -197,10 +197,10 @@
 		flex: 1;
 	}
 
-  .input[name='min-payout'] {
-    margin: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
+	.input[name='min-payout'] {
+		margin: 0;
+		transition: opacity 0.3s ease-in-out;
+	}
 
   .input[name='min-payout'].invalid {
     border-color: var(--color-error);
@@ -299,9 +299,9 @@
 		flex-direction: column;
 	}
 
-  .statistics__search-form button[type='submit'] {
-    width: 100%;
-  }
+	.statistics__search-form button[type='submit'] {
+		width: 100%;
+	}
 
 	.statistics__search-form button[type='submit'] {
 		width: 100%;
