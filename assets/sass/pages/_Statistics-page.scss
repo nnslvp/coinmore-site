@@ -202,23 +202,23 @@
 		transition: opacity 0.3s ease-in-out;
 	}
 
-  .input[name='min-payout'].invalid {
-    border-color: var(--color-error);
-  }
+	.input[name='min-payout'].invalid {
+		border-color: var(--color-error);
+	}
 
-  .input[name='min-payout'].invalid+.error-message {
-    color:var(--color-error);
-  }
+	.input[name='min-payout'].invalid + .error-message {
+		color: var(--color-error);
+	}
 
-  .input[name='min-payout'].invalid+.error-message,
-  .input[name='min-payout'].success+.error-message {
-    visibility: visible;
-    opacity: 1;
-  }
+	.input[name='min-payout'].invalid + .error-message,
+	.input[name='min-payout'].success + .error-message {
+		visibility: visible;
+		opacity: 1;
+	}
 
-  .submit-btn{
-    flex-basis: initial;
-  }
+	.submit-btn {
+		flex-basis: initial;
+	}
 
 	@media (max-width: $breakpoint-md) {
 		width: 27.6875rem;
