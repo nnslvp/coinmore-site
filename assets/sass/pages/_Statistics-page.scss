@@ -37,7 +37,7 @@
 
 .section-statistics.empty-statistics > * {
 	visibility: hidden;
-	height: 0px;
+	height: 0;
 	opacity: 0;
 }
 
@@ -197,28 +197,28 @@
 		flex: 1;
 	}
 
-	.input[name='min-payout'] {
-		margin: 0;
-		transition: opacity 0.3s ease-in-out;
-	}
+    .input[name='min-payout'] {
+      margin: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
 
-	.input[name='min-payout'].invalid {
-		border-color: var(--color-error);
-	}
+    .input[name='min-payout'].invalid {
+      border-color: var(--color-error);
+    }
 
-	.input[name='min-payout'].invalid + .error-message {
-		color: var(--color-error);
-	}
+    .input[name='min-payout'].invalid + .error-message {
+      color: var(--color-error);
+    }
 
-	.input[name='min-payout'].invalid + .error-message,
-	.input[name='min-payout'].success + .error-message {
-		visibility: visible;
-		opacity: 1;
-	}
+    .input[name='min-payout'].invalid + .error-message,
+    .input[name='min-payout'].success + .error-message {
+      visibility: visible;
+      opacity: 1;
+    }
 
-	.submit-btn {
-		flex-basis: initial;
-	}
+    .submit-btn {
+      flex-basis: initial;
+    }
 
 	@media (max-width: $breakpoint-md) {
 		width: 27.6875rem;
@@ -299,13 +299,9 @@
 		flex-direction: column;
 	}
 
-	.statistics__search-form button[type='submit'] {
-		width: 100%;
-	}
-
-	.statistics__search-form button[type='submit'] {
-		width: 100%;
-	}
+    .statistics__search-form button[type='submit'] {
+      width: 100%;
+    }
 
 	.statistics__stats-container {
 		grid-template-columns: repeat(2, 1fr);
