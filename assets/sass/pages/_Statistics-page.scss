@@ -201,6 +201,10 @@
         margin: 0;
         transition: opacity 0.3s ease-in-out;
     }
+	.input[name='min-payout'] {
+		margin: 0;
+		transition: opacity 0.3s ease-in-out;
+	}
 
     .input[name='min-payout'].invalid {
         border-color: var(--color-error);
