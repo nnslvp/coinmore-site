@@ -1,37 +1,37 @@
 .input {
-	border: 0.0625rem solid rgb(175, 184, 191);
-	border-radius: 3.125rem;
-	padding: 0.9063rem 1.25rem 0.9063rem 1.25rem;
-	color: var(--color-text-body);
-	line-height: var(--line-height-21);
-	transition: border-color 0.3s ease-in;
-	&:has(~ .error-message.show) {
-		border-color: var(--color-error);
-	}
-	&::placeholder {
-		color: var(--color-text-light-grey);
-	}
-	&:hover {
-		border: 0.0625rem solid rgb(96, 108, 118);
-	}
-	&:focus {
-		border: 0.0625rem solid rgb(148, 28, 224);
-		box-shadow: 0 0 0.25rem 0.25rem var(--light-blue-semi-transparent);
-	}
+    border: 0.0625rem solid rgb(175, 184, 191);
+    border-radius: 3.125rem;
+    padding: 0.9063rem 1.25rem 0.9063rem 1.25rem;
+    color: var(--color-text-body);
+    line-height: var(--line-height-21);
+    transition: border-color 0.3s ease-in;
+    &:has(~ .error-message.show) {
+        border-color: var(--color-error);
+    }
+    &::placeholder {
+        color: var(--color-text-light-grey);
+    }
+  &:hover {
+      border: 0.0625rem solid rgb(96, 108, 118);
+  }
+  &:focus {
+      border: 0.0625rem solid rgb(148, 28, 224);
+      box-shadow: 0 0 0.25rem 0.25rem var(--light-blue-semi-transparent);
+  }
 }
 
 .error-message {
-	display: inline-block;
-	font-size: .75rem;
-	height: 1rem;
-	visibility: hidden;
-	opacity: 0;
-	padding-left: 1.5rem;
-	color: var(--color-error);
-	transition: opacity 0.3s ease-in;
+    display: inline-block;
+    font-size: .75rem;
+    height: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    padding-left: 1.5rem;
+    color: var(--color-error);
+    transition: opacity 0.3s ease-in;
 
-	&.show {
-		visibility: visible;
-		opacity: 1;
-	}
+    &.show {
+        visibility: visible;
+        opacity: 1;
+    }
 }
