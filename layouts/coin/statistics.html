@@ -100,9 +100,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.balance }}</p>
                   <strong class="stat-item__value">
-                    <span id="balance">0</span>
+                    <span id="balance">-</span>
                     ~
-                    <span id="balance_usd">0 USD</span>
+                    <span id="balance_usd">-</span>
                   </strong>
                 </div>
               </li>
@@ -125,8 +125,8 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_1h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_payouts_1h">0.00000000</span> ~
-                    <span id="my_payouts_1h_usd">0.00 USD</span>
+                    <span id="my_payouts_1h">-</span> ~
+                    <span id="my_payouts_1h_usd">-</span>
                   </strong>
                 </div>
               </li>
@@ -135,9 +135,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_24h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_payouts_24h">0.0 ALPH</span>
+                    <span id="my_payouts_24h">-</span>
                     ~
-                    <span id="my_payouts_24h_usd">0.0 USD</span>
+                    <span id="my_payouts_24h_usd">-</span>
                   </strong>
                 </div>
               </li>
@@ -162,7 +162,7 @@
                 <i class="icon fee-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.pool_fee}}</p>
-                  <strong id="pool_fee" class="stat-item__value">0</strong>
+                  <strong id="pool_fee" class="stat-item__value">-</strong>
                 </div>
               </li>
             </ul>
@@ -247,7 +247,7 @@
   </dialog>
   <div class="toast">
     <i class="icon toast-icon"></i>
-    <p class="toast-text ">Oops, Wrong email or password!</p>
+    <p class="toast-text "></p>
     <i class="icon close-icon"></i>
   </div>
   <script>

@@ -149,13 +149,8 @@ function drawData(coin, wallet) {
 		historyWalletDayPromise,
 		historyWorkersDayPromise,
 		poolValueFeePromise,
-		userValueMinPayoutsPromise.catch(error => {
-			if (error.status === 404) {
-				return poolValueMinPayoutsPromise;
-			} else {
-				throw error;
-			}
-		}),
+		userValueMinPayoutsPromise,
+		poolValueMinPayoutsPromise
 	])
 		.then(results => {
 			const [
@@ -171,8 +166,9 @@ function drawData(coin, wallet) {
 				historyWorkersDayResult,
 				feeResult,
 				minPayoutsResult,
+				poolValueMinPayoutsRests,
 			] = results.map(result => (result.status === 'fulfilled' ? result.value : null));
-
+			console.log(results)
 			if (currencyInfoResult) {
 				rate = currencyInfoResult.rate.value;
 			} else if (results[0].status === 'rejected') {
@@ -265,7 +261,12 @@ function drawData(coin, wallet) {
 			if (minPayoutsResult) {
 				showMinPayouts(minPayoutsResult.value);
 			} else if (results[11].status === 'rejected') {
-				console.info('Error in userValueMinPayoutsPromise or poolValueMinPayoutsPromise:', results[11].reason);
+				if (results[11].reason.message.includes('404')) {
+					showMinPayouts(poolValueMinPayoutsRests.value);
+				} else {
+					console.info('Error in userValueMinPayoutsPromise or poolValueMinPayoutsPromise:', results[11].reason);
+				}
+
 			}
 
 			showStats();

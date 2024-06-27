@@ -14,7 +14,7 @@ const KIND = {
 function statsApiCall(action) {
 	return fetch(`${statsApiUrl}${action}`).then(response => {
 		if (!response.ok) {
-			throw new Error('Network response was not ok ' + response.statusText);
+			throw new Error(`Network response was not ok ${response.statusText} ${response.status}`);
 		}
 		return response.json();
 	});
