@@ -95,13 +95,6 @@ function showChartWorkersActivity({
 					},
 				],
 			},
-			options: {
-				plugins: {
-					title: {
-						text: CHART_TITLE.wallet,
-					},
-				},
-			},
 		}),
 		dataWeek,
 		labelsWeek
