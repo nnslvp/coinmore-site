@@ -5,37 +5,47 @@
   {{ with hugo.IsProduction }}
 
   {{ end }}
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{.Params.SEO.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
 
-  <title></title>
+  <meta name="description" content="{{ .Params.SEO.description | default .Site.Params.description }}">
+  <meta name="keywords" content="{{ .Params.SEO.keywords | default .Site.Params.keywords }}">
+  <meta name="author" content="{{ .Params.SEO.author | default .Site.Params.author}}">
 
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
+  {{ $imagePath := .Params.image }}
+  {{ $widthImage := 1200 }}
+  {{ $heightImage := 672 }}
+
+  {{ if not $imagePath }}
+  {{ $imagePath = "images/logo_black.png" }}
+  {{ end }}
+
+  {{ if eq .Type "cases" }}
+  {{ $widthImage = 620 }}
+  {{ $heightImage = 405 }}
+  {{ end }}
+
+  {{ if eq .Type "blog" }}
+  {{ $widthImage = 900 }}
+  {{ $heightImage = 400 }}
+  {{ end }}
 
 
-
-  <meta property="og:site_name" content="Lazy Bison">
-  <meta property="og:title" content="" />
-  <meta property="og:description" content="" />
-  <meta property="og:image" content="" />
-  <meta name="twitter:image:width" content="">
-  <meta name="twitter:image:height" content="">
-  <meta property="og:url" content="" />
+  <meta property="og:site_name" content="CoinMore">
+  <meta property="og:title" content="{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}" />
+  <meta property="og:description" content="{{ .Params.SEO.description | default .Site.Params.description  }}" />
+  <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
+  <meta name="twitter:image:width" content="{{ $widthImage }}">
+  <meta name="twitter:image:height" content="{{ $heightImage }}">
+  <meta property="og:url" content="{{ .Permalink }}" />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="" />
-  <meta name="twitter:title" content="" />
-  <meta name="twitter:description" content="" />
-  <meta name="twitter:image" content="">
-  <meta name="twitter:image:width" content="">
-  <meta name="twitter:image:height" content="">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="">
-  <link rel="icon" type="image/png" sizes="32x32" href="">
-  <link rel="icon" type="image/png" sizes="16x16" href="">
-  <link rel="manifest" href="">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}" />
+  <meta name="twitter:description" content="{{ .Params.SEO.description | default .Site.Params.description  }}" />
+  <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}">
+  <meta name="twitter:image:width" content="{{ $widthImage }}">
+  <meta name="twitter:image:height" content="{{ $heightImage }}">
 
 
   {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
