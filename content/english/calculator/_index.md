@@ -14,4 +14,8 @@ est_profit_header: 'Est. profit'
 days: 'days'
 hour: 'hour'
 hour_24: 'hour'
+SEO:
+  description: 'Use the CoinMore Calculator to optimize your multi-coin mining profitability. Our advanced and reliable mining calculator helps you maximize your earnings.'
+  keywords: 'mining calculator, mining profitability, CoinMore Pool, multi-coin mining, cryptocurrency mining, blockchain, Bitcoin mining, Ethereum mining, Litecoin mining, Alephium mining, Raptoreum mining, crypto mining, digital currency mining, decentralized mining, altcoin mining, secure mining, profitable mining, mining software, mining hardware'
+  author: 'Yahor Bukhta'
 ---

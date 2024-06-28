@@ -5,10 +5,10 @@
   {{ with hugo.IsProduction }}
 
   {{ end }}
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{.Params.SEO.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="{{ .Params.SEO.description | default .Site.Params.description }}">
   <meta name="keywords" content="{{ .Params.SEO.keywords | default .Site.Params.keywords }}">
   <meta name="author" content="{{ .Params.SEO.author | default .Site.Params.author}}">
