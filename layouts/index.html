@@ -9,7 +9,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{{ .Params.SEO.description | default .Site.Params.description }}">
+  <meta name="description" content="{{ .Params.SEO.description }}">
   <meta name="keywords" content="{{ .Params.SEO.keywords | default .Site.Params.keywords }}">
   <meta name="author" content="{{ .Params.SEO.author | default .Site.Params.author}}">
 
@@ -32,17 +32,17 @@
   {{ end }}
 
 
-  <meta property="og:site_name" content="CoinMore">
-  <meta property="og:title" content="{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}" />
-  <meta property="og:description" content="{{ .Params.SEO.description | default .Site.Params.description  }}" />
+  <meta property="og:site_name" content="{{.Site.Params.siteName}}">
+  <meta property="og:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
+  <meta property="og:description" content="{{ .Params.SEO.description  }}" />
   <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
   <meta name="twitter:image:width" content="{{ $widthImage }}">
   <meta name="twitter:image:height" content="{{ $heightImage }}">
   <meta property="og:url" content="{{ .Permalink }}" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}" />
-  <meta name="twitter:description" content="{{ .Params.SEO.description | default .Site.Params.description  }}" />
+  <meta name="twitter:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
+  <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
   <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}">
   <meta name="twitter:image:width" content="{{ $widthImage }}">
   <meta name="twitter:image:height" content="{{ $heightImage }}">

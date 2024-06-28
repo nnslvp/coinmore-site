@@ -2,6 +2,7 @@ baseURL = 'https://coinmore.io/'
 languageCode = 'en-us'
 [params]
   hugoVersion = "0.121.0"
+  siteName = 'CoinMore'
 
 defaultContentLanguage = 'en'
 [languages]
