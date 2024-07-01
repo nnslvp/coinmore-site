@@ -14,8 +14,11 @@ ask_in_discord: 'О других решениях вы можете спроси
 download_lolminer_phrase: 'последнюю версию lolMiner'
 wallet: 'Кошелек Alephium'
 dowland_wallet_link: 'https://github.com/alephium/desktop-wallet/releases'
+SEO:
+  description: 'Получите пошаговые инструкции по настройке и использованию CoinMore Pool для майнинга Alephium. Наши подробные руководства помогут вам начать майнинг этой криптовалюты быстро и легко.'
+  keywords: 'инструкции по майнингу Alephium, CoinMore Pool, руководство по майнингу, настройка майнинга, майнинг Alephium, майнинг криптовалют, блокчейн, крипто майнинг, цифровой майнинг, децентрализованный майнинг, безопасный майнинг, прибыльный майнинг, майнинг софт, майнинг оборудование'
+  author: 'Егор Бухта'
 
-miners_title: 'Майнеры'
 miners_list:
   - miner: 'SRBMiner'
     link: 'https://github.com/doktor83/SRBMiner-Multi/releases'
