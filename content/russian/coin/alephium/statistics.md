@@ -42,7 +42,6 @@ select_labels:
 modal:
   title: 'Установить минимальную выплату'
   label: 'Минимальная выплата'
-  placeholder: '100'
   cancel_button: 'Отмена'
   save_button: 'Сохранить изменения'
 ---

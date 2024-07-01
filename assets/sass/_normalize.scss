@@ -168,6 +168,10 @@ textarea {
 	margin: 0; /* 2 */
 }
 
+dialog {
+	color: inherit;
+}
+
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
 	-webkit-appearance: none;
@@ -336,7 +340,7 @@ textarea {
    */
 
 details {
-	display: block;
+    display: block;
 }
 
 /*

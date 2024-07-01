@@ -42,7 +42,6 @@ select_labels:
 modal:
   title: 'Set my minimum payout'
   label: 'Minimum payout'
-  placeholder: '100'
   cancel_button: 'Cancel'
   save_button: 'Save changes'
 ---
