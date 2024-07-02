@@ -167,7 +167,6 @@ function drawData(coin, wallet) {
 				minPayoutsResult,
 				poolValueMinPayoutsRests,
 			] = results.map(result => (result.status === 'fulfilled' ? result.value : null));
-			console.log(results)
 			if (currencyInfoResult) {
 				rate = currencyInfoResult.rate.value;
 			} else if (results[0].status === 'rejected') {
@@ -398,10 +397,8 @@ function handleSuccess(res) {
 function handleError(error) {
 	MODAL.close();
 	const errorMessage = error.message || error;
-	TOAST_TEXT.textContent = errorMessage.replace(
-		/because Kind is "min_payout".*/,
-		''
-	);
+	const cleanedMessage = errorMessage.replace(/because Kind is "min_payout".*/g, '');
+	TOAST_TEXT.textContent = cleanedMessage
 	showToast('error')
 }
 

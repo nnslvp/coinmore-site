@@ -26,7 +26,7 @@ function statsApiPost(action) {
 	}).then(response => {
 		if (!response.ok) {
 			return response.json().then(err => {
-				throw new Error(err.errors[0]);
+				throw new Error(err.errors);
 			});
 		}
 		return response.json();
