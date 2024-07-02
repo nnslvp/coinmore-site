@@ -6,6 +6,7 @@ SEO:
   author: 'Егор Бухта'
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
+image: '/images/alephium-pool.png'
 coin_logo: '/images/alephium-logo-light.svg'
 start_mining: 'Начать майнинг'
 pool_hashrate: 'Хешрейт пула:'

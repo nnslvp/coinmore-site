@@ -15,21 +15,11 @@
   <meta name="author" content="{{ .Params.SEO.author }}">
 
   {{ $imagePath := .Params.image }}
-  {{ $widthImage := 1200 }}
-  {{ $heightImage := 672 }}
+  {{ $widthImage := 1420 }}
+  {{ $heightImage := 880 }}
 
   {{ if not $imagePath }}
   {{ $imagePath = "images/logo_black.png" }}
-  {{ end }}
-
-  {{ if eq .Type "cases" }}
-  {{ $widthImage = 620 }}
-  {{ $heightImage = 405 }}
-  {{ end }}
-
-  {{ if eq .Type "blog" }}
-  {{ $widthImage = 900 }}
-  {{ $heightImage = 400 }}
   {{ end }}
 
 

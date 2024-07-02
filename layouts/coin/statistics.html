@@ -24,17 +24,6 @@
   {{ $imagePath = "images/logo_black.png" }}
   {{ end }}
 
-  {{ if eq .Type "cases" }}
-  {{ $widthImage = 620 }}
-  {{ $heightImage = 405 }}
-  {{ end }}
-
-  {{ if eq .Type "blog" }}
-  {{ $widthImage = 900 }}
-  {{ $heightImage = 400 }}
-  {{ end }}
-
-
   <meta property="og:site_name" content="{{.Site.Params.siteName}}">
   <meta property="og:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
   <meta property="og:description" content="{{ .Params.SEO.description  }}" />
