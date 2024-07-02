@@ -1,11 +1,11 @@
 ---
 layout: 'statistics'
 headless: true
-title: 'Моя статистика'
 SEO:
   description: 'Просматривайте полную статистику майнинга Alephium на CoinMore Pool. Отслеживайте производительность и прибыльность вашего майнинга с помощью наших продвинутых инструментов.'
   keywords: 'Статистика Alephium, статистика майнинга, CoinMore Pool, майнинг Alephium, майнинг криптовалют, блокчейн, крипто майнинг, производительность майнинга, прибыльность майнинга'
   author: 'Eгор Бухта'
+title: 'Моя статистика'
 search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'
 section_title: 'Кошелек Alephium'

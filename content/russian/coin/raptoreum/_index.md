@@ -1,12 +1,12 @@
 ---
-layout: 'coin'
-coin_name: 'raptoreum'
-coin_symbol: 'RTM'
-coin_logo: '/images/raptoreum-logo-light.svg'
 SEO:
   description: 'Исследуйте майнинг Raptoreum с CoinMore Pool. Наш продвинутый и надежный майнинг-пул обеспечивает высокую прибыльность и стабильность для майнеров Raptoreum.'
   keywords: 'Майнинг Raptoreum, CoinMore Pool, майнинг криптовалют, блокчейн, Raptoreum, крипто майнинг, майнинг цифровой валюты, децентрализованный майнинг, безопасный майнинг, прибыльный майнинг, майнинг софт, майнинг оборудование'
   author: 'Егор Бухта'
+layout: 'coin'
+coin_name: 'raptoreum'
+coin_symbol: 'RTM'
+coin_logo: '/images/raptoreum-logo-light.svg'
 start_mining: 'Начать майнинг'
 pool_hashrate: 'Хешрейт пула:'
 network_hashrate: 'Хешрейт сети:'

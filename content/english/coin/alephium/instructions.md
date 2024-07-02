@@ -1,6 +1,10 @@
 ---
 layout: 'instructions'
 headless: true
+SEO:
+  description: 'Get step-by-step instructions on setting up and using CoinMore Pool for mining Alephium. Our detailed guides will help you start mining this cryptocurrency quickly and easily.'
+  keywords: 'Alephium mining instructions, CoinMore Pool, mining guide, mining setup, Alephium mining, cryptocurrency mining, blockchain, crypto mining, digital mining, decentralized mining, secure mining, profitable mining, mining software, mining hardware'
+  author: 'Yahor Bukhta'
 title: 'Instructions'
 subtitle_text_1: 'If you have any questions, please use the'
 subtitle_text_2: 'Start by downloading'
@@ -12,10 +16,6 @@ start_downloading: 'Start by downloading'
 ask_in_discord: 'About other solutions you can ask in'
 wallet: 'Alephium Wallet'
 dowland_wallet_link: 'https://github.com/alephium/desktop-wallet/releases'
-SEO:
-  description: 'Get step-by-step instructions on setting up and using CoinMore Pool for mining Alephium. Our detailed guides will help you start mining this cryptocurrency quickly and easily.'
-  keywords: 'Alephium mining instructions, CoinMore Pool, mining guide, mining setup, Alephium mining, cryptocurrency mining, blockchain, crypto mining, digital mining, decentralized mining, secure mining, profitable mining, mining software, mining hardware'
-  author: 'Yahor Bukhta'
   
 miners_title: 'Miners'
 miners_list:

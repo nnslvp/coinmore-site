@@ -1,11 +1,11 @@
 ---
 layout: 'statistics'
 headless: true
-title: 'My statistics'
 SEO:
   description: 'View comprehensive statistics for Alephium mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools.'
   keywords: 'Alephium statistics, mining statistics, CoinMore Pool, Alephium mining, cryptocurrency mining, blockchain, crypto mining, mining performance, mining profitability'
   author: 'Yahor Bukhta'
+title: 'My statistics'
 search_placeholder: 'Wallet'
 view_statistic_button: 'View personal statistic'
 section_title: 'Alephium wallet'

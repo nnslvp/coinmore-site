@@ -1,11 +1,11 @@
 ---
 layout: 'coin'
-coin_name: 'alephium'
-coin_symbol: 'ALPH'
 SEO:
   description: 'Explore Alephium mining with CoinMore Pool. Our advanced and reliable mining pool ensures high profitability and stability for Alephium miners.'
   keywords: 'Alephium mining, CoinMore Pool, cryptocurrency mining, blockchain, Alephium, crypto mining, digital currency mining, decentralized mining, secure mining, profitable mining, mining software, mining hardware'
   author: 'Yahor Bukhta'
+coin_name: 'alephium'
+coin_symbol: 'ALPH'
 coin_logo: '/images/alephium-logo-light.svg'
 start_mining: 'Start mining'
 pool_hashrate: 'Pool hashrate:'
