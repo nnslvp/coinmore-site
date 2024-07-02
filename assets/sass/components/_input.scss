@@ -11,18 +11,18 @@
     &::placeholder {
         color: var(--color-text-light-grey);
     }
-  &:hover {
-      border: 0.0625rem solid rgb(96, 108, 118);
-  }
-  &:focus {
-      border: 0.0625rem solid rgb(148, 28, 224);
-      box-shadow: 0 0 0.25rem 0.25rem var(--light-blue-semi-transparent);
-  }
+    &:hover {
+        border: 0.0625rem solid rgb(96, 108, 118);
+    }
+    &:focus {
+        border: 0.0625rem solid rgb(148, 28, 224);
+        box-shadow: 0 0 0.25rem 0.25rem var(--light-blue-semi-transparent);
+    }
 }
 
 .error-message {
     display: inline-block;
-    font-size: .75rem;
+    font-size: 0.75rem;
     height: 1rem;
     visibility: hidden;
     opacity: 0;
