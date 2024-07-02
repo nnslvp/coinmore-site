@@ -92,7 +92,6 @@ function detectBrowserAndSetInputType() {
 	}
 }
 
-
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
