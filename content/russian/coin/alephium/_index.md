@@ -3,7 +3,7 @@ layout: 'coin'
 SEO:
   description: 'Исследуйте майнинг Alephium с CoinMore Pool. Наш продвинутый и надежный майнинг-пул обеспечивает высокую прибыльность и стабильность для майнеров Alephium.'
   keywords: 'Майнинг Alephium, CoinMore Pool, майнинг криптовалют, блокчейн, Alephium, крипто майнинг, майнинг цифровой валюты, децентрализованный майнинг, безопасный майнинг, прибыльный майнинг, майнинг софт, майнинг оборудование'
-  author: 'Егор Бухта'
+  
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
 image: '/images/alephium-pool.png'

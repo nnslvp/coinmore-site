@@ -2,7 +2,7 @@
 SEO:
   description: 'Use the CoinMore Calculator to optimize your multi-coin mining profitability. Our advanced and reliable mining calculator helps you maximize your earnings.'
   keywords: 'mining calculator, mining profitability, CoinMore Pool, multi-coin mining, cryptocurrency mining, blockchain, Bitcoin mining, Ethereum mining, Litecoin mining, Alephium mining, Raptoreum mining, crypto mining, digital currency mining, decentralized mining, altcoin mining, secure mining, profitable mining, mining software, mining hardware'
-  author: 'Yahor Bukhta'
+
 title: 'Calculator'
 subtitle: 'Alephium is the first mineable live layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.'
 select_label: 'Coin'

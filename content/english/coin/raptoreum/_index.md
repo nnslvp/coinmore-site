@@ -3,7 +3,7 @@ layout: 'coin'
 SEO:
   description: 'Explore Raptoreum mining with CoinMore Pool. Our advanced and reliable mining pool ensures high profitability and stability for Raptoreum miners.'
   keywords: 'Raptoreum mining, CoinMore Pool, cryptocurrency mining, blockchain, Raptoreum, crypto mining, digital currency mining, decentralized mining, secure mining, profitable mining, mining software, mining hardware'
-  author: 'Yahor Bukhta'
+
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
 coin_logo: '/images/raptoreum-logo-light.svg'
