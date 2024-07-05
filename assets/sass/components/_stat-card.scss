@@ -1,29 +1,29 @@
 .stat-item {
-	position: relative;
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	padding: 0.75rem;
-	border: 0.0625rem solid var(--color-text-light-grey);
-	border-radius: 0.625rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border: 0.0625rem solid var(--color-text-light-grey);
+  border-radius: 0.625rem;
 }
 
 .stat-item__content {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-	line-height: var(--line-height-21);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  line-height: var(--line-height-21);
 }
 
 @media (max-width: $breakpoint-lg) {
-	.stat-item {
-		flex-direction: column;
-		padding: 1.4063rem 0.6875rem 1.4063rem 0.6875rem;
-	}
+  .stat-item {
+    flex-direction: column;
+    padding: 1.4063rem 0.6875rem 1.4063rem 0.6875rem;
+  }
 
-	.stat-item__content {
-		text-align: center;
-	}
+  .stat-item__content {
+    text-align: center;
+  }
 }
 
 @media (max-width: $breakpoint-md) {

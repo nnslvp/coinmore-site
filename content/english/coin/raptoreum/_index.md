@@ -44,14 +44,14 @@ chart_intervals:
   week: 'Week'
 
 table_headers:
-  - "Region"
-  - "Address"
-  - "Port"
-  - "SSL Port"
+  - 'Region'
+  - 'Address'
+  - 'Port'
+  - 'SSL Port'
 
 table_body:
-  - region: "Region auto detection"
-    address: "auto-geo.raptoreum.coinmore.io:3002"
+  - region: 'Region auto detection'
+    address: 'auto-geo.raptoreum.coinmore.io:3002'
     port: 20032
     ssl_port: 20033
     icon: 'globe-icon'

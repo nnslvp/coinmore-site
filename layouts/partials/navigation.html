@@ -1,10 +1,12 @@
 <nav class="header__main-nav">
   <ul class="header__main-nav-list text--medium">
-    {{ $currentPage := path.BaseName .Permalink }}
-    {{ range .Site.Menus.main }}
+    {{ $currentPage := path.BaseName .Permalink }} {{ range .Site.Menus.main }}
     <li class="header__main-nav-item">
-      <a href="{{ .URL }}"
-        class="header__main-nav-link {{ if eq .Name $currentPage }} active{{ end }}">{{strings.FirstUpper .Name }}</a>
+      <a
+        href="{{ .URL }}"
+        class="header__main-nav-link {{ if eq .Name $currentPage }} active{{ end }}"
+        >{{strings.FirstUpper .Name }}</a
+      >
     </li>
     {{ end }}
   </ul>

@@ -1,25 +1,25 @@
 .footer__inner {
-	padding: 20px 0rem;
-	display: flex;
-	align-items: center;
-	gap: 40px;
+  padding: 20px 0rem;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 
-	.language-switcher {
-		margin-left: auto;
-	}
+  .language-switcher {
+    margin-left: auto;
+  }
 }
 
 .footer__links .link {
-	color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 @media (max-width: $breakpoint-md) {
-	.footer__inner {
-		padding: 0.75rem 0rem;
-		gap: 20px;
-	}
+  .footer__inner {
+    padding: 0.75rem 0rem;
+    gap: 20px;
+  }
 
-	.footer .link {
-		font-size: 0.875rem;
-	}
+  .footer .link {
+    font-size: 0.875rem;
+  }
 }

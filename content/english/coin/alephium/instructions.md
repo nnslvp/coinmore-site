@@ -16,7 +16,7 @@ start_downloading: 'Start by downloading'
 ask_in_discord: 'About other solutions you can ask in'
 wallet: 'Alephium Wallet'
 dowland_wallet_link: 'https://github.com/alephium/desktop-wallet/releases'
-  
+
 miners_title: 'Miners'
 miners_list:
   - miner: 'SRBMiner'

@@ -3,7 +3,7 @@ layout: 'coin'
 SEO:
   description: 'Исследуйте майнинг Alephium с CoinMore Pool. Наш продвинутый и надежный майнинг-пул обеспечивает высокую прибыльность и стабильность для майнеров Alephium.'
   keywords: 'Майнинг Alephium, CoinMore Pool, майнинг криптовалют, блокчейн, Alephium, крипто майнинг, майнинг цифровой валюты, децентрализованный майнинг, безопасный майнинг, прибыльный майнинг, майнинг софт, майнинг оборудование'
-  
+
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
 image: '/images/alephium-pool.png'
@@ -45,30 +45,30 @@ chart_intervals:
   week: 'Неделя'
 
 table_headers:
-  - "Регион"
-  - "Адрес"
-  - "Порт"
-  - "SSL Порт"
+  - 'Регион'
+  - 'Адрес'
+  - 'Порт'
+  - 'SSL Порт'
 
 table_body:
-  - region: "Европа"
-    address: "eu1.alephium-pool.com"
+  - region: 'Европа'
+    address: 'eu1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
-    icon: "europa-flag-icon"
-  - region: "Россия"
-    address: "ru1.alephium-pool.host.com"
+    icon: 'europa-flag-icon'
+  - region: 'Россия'
+    address: 'ru1.alephium-pool.host.com'
     port: 20032
     ssl_port: 20033
-    icon: "russian-flag-icon"
-  - region: "США"
-    address: "us1.alephium-pool.com"
+    icon: 'russian-flag-icon'
+  - region: 'США'
+    address: 'us1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
-    icon: "usa-flag-icon"
-  - region: "Азия"
-    address: "asia1.alephium-pool.com"
+    icon: 'usa-flag-icon'
+  - region: 'Азия'
+    address: 'asia1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
-    icon: "asia-flag-icon"
+    icon: 'asia-flag-icon'
 ---

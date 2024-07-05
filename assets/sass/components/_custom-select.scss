@@ -1,104 +1,104 @@
 .itc-select {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	position: relative;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .itc-select__toggle {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	padding: 0.9063rem 1.25rem;
-	font-size: 1rem;
-	line-height: var(--line-height-21);
-	background-color: var(--color-white);
-	color: var(--color-text-body);
-	border: 0.0625rem solid var(--color-text-light-grey);
-	border-radius: 3.125rem;
-	cursor: pointer;
-	user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.9063rem 1.25rem;
+  font-size: 1rem;
+  line-height: var(--line-height-21);
+  background-color: var(--color-white);
+  color: var(--color-text-body);
+  border: 0.0625rem solid var(--color-text-light-grey);
+  border-radius: 3.125rem;
+  cursor: pointer;
+  user-select: none;
 
-	&[data-index='-1'] {
-		color: var(--color-text-light-grey);
-	}
+  &[data-index='-1'] {
+    color: var(--color-text-light-grey);
+  }
 
-	&:hover {
-		border: 0.0625rem solid rgb(96, 108, 118);
-	}
-	&:focus {
-		border: 0.0625rem solid var(--color-primary);
-		box-shadow: 0rem 0rem 0.25rem 0.25rem var(--light-blue-semi-transparent);
-	}
+  &:hover {
+    border: 0.0625rem solid rgb(96, 108, 118);
+  }
+  &:focus {
+    border: 0.0625rem solid var(--color-primary);
+    box-shadow: 0rem 0rem 0.25rem 0.25rem var(--light-blue-semi-transparent);
+  }
 }
 
 .itc-select__toggle::after {
-	flex-shrink: 0;
-	width: 0.625rem;
-	height: 0.625rem;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'   width='10' height='10' fill='none'%3E%3Cpath fill='%23606C76' d='M9 6.5a1 1 0 0 1-.71-.29L5 2.9 1.7 6.08A1 1 0 1 1 .29 4.66l4-3.86a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.42A1 1 0 0 1 9 6.5Z'/%3E%3C/svg%3E");
-	transform: rotate(180deg);
-	background-size: cover;
-	content: '';
+  flex-shrink: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'   width='10' height='10' fill='none'%3E%3Cpath fill='%23606C76' d='M9 6.5a1 1 0 0 1-.71-.29L5 2.9 1.7 6.08A1 1 0 1 1 .29 4.66l4-3.86a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.42A1 1 0 0 1 9 6.5Z'/%3E%3C/svg%3E");
+  transform: rotate(180deg);
+  background-size: cover;
+  content: '';
 }
 
 .itc-select__toggle:focus {
-	outline: none;
+  outline: none;
 }
 
 .itc-select_show .itc-select__toggle::after {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .itc-select__dropdown {
-	position: absolute;
-	top: 0.25rem;
-	right: 1.0625rem;
-	left: 0;
-	z-index: 2;
-	display: none;
-	padding: 0.5rem 0;
-	width: 100%;
-	max-height: 10rem;
-	overflow-y: auto;
-	background-color: var(--color-white);
-	box-shadow: 0rem 0.25rem 1rem 0rem #00000066;
-	font-size: 1rem;
-	line-height: var(--line-height-21);
-	border-radius: 0.625rem;
+  position: absolute;
+  top: 0.25rem;
+  right: 1.0625rem;
+  left: 0;
+  z-index: 2;
+  display: none;
+  padding: 0.5rem 0;
+  width: 100%;
+  max-height: 10rem;
+  overflow-y: auto;
+  background-color: var(--color-white);
+  box-shadow: 0rem 0.25rem 1rem 0rem #00000066;
+  font-size: 1rem;
+  line-height: var(--line-height-21);
+  border-radius: 0.625rem;
 }
 
 .itc-select_show .itc-select__dropdown {
-	display: block;
+  display: block;
 }
 
 .itc-select_show .itc-select__backdrop {
-	display: block;
+  display: block;
 }
 
 .itc-select__options {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .itc-select__option {
-	padding: 0.5938rem 0.625rem 0.5938rem 1.25rem;
+  padding: 0.5938rem 0.625rem 0.5938rem 1.25rem;
 }
 
 .itc-select__option_selected {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
 }
 
 .itc-select__option_selected::after {
 }
 
 .itc-select__option:hover {
-	background-color: #f5f5f5;
-	cursor: pointer;
-	transition: 0.2s background-color ease-in-out;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transition: 0.2s background-color ease-in-out;
 }

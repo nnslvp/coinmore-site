@@ -38,29 +38,29 @@ latest_block_label: 'Latest Block at'
 workers_online_label: 'Workers Online'
 
 table_headers:
-  - "Region"
-  - "Address"
-  - "Port"
-  - "SSL Port"
+  - 'Region'
+  - 'Address'
+  - 'Port'
+  - 'SSL Port'
 
 table_body:
-  - region: "Europe"
-    address: "eu1.alephium-pool.com"
+  - region: 'Europe'
+    address: 'eu1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
     icon: 'europa-flag-icon'
-  - region: "Russia"
-    address: "ru1.alephium-pool.host.com"
+  - region: 'Russia'
+    address: 'ru1.alephium-pool.host.com'
     port: 20032
     ssl_port: 20033
     icon: 'russian-flag-icon'
-  - region: "US"
-    address: "us1.alephium-pool.com"
+  - region: 'US'
+    address: 'us1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
     icon: 'usa-flag-icon'
-  - region: "Asia"
-    address: "asia1.alephium-pool.com"
+  - region: 'Asia'
+    address: 'asia1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
     icon: 'asia-flag-icon'

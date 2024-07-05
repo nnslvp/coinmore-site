@@ -1,29 +1,22 @@
 <div class="language-switcher">
-    {{ $iconFlag := "" }}
-    {{ if eq .Language.LanguageName "Russian" }}
-    {{ $iconFlag = "russian-flag-icon" }}
-    {{else }}
-    {{ $iconFlag = "usa-flag-icon" }}
-    {{ end }}
+  {{ $iconFlag := "" }} {{ if eq .Language.LanguageName "Russian" }} {{
+  $iconFlag = "russian-flag-icon" }} {{else }} {{ $iconFlag = "usa-flag-icon" }}
+  {{ end }}
   <div class="language-switcher__lang">
     <i class="icon  {{$iconFlag}}"></i>
     <span class="language-name"></span>
     <i class="icon chevron-icon-bottom"></i>
   </div>
-  
+
   <div class="dropdown">
-    {{ range .Page.AllTranslations }}
-    {{ $iconFlag := "" }}
-    {{ $languageName := "" }}
-    {{ if eq .Language.LanguageName "Russian" }}
-    {{$languageName = i18n "russian"}}
-    {{ $iconFlag = "russian-flag-icon" }}
-    {{else }}
-    {{ $iconFlag = "usa-flag-icon" }}
-    {{$languageName = i18n "english"}} 
-    {{ end }}
-    <a class="dropdown__item {{ if eq .Language.LanguageName $.Site.Language.LanguageName }}active{{ end }}"
-      href="{{ .Permalink | absLangURL }}">
+    {{ range .Page.AllTranslations }} {{ $iconFlag := "" }} {{ $languageName :=
+    "" }} {{ if eq .Language.LanguageName "Russian" }} {{$languageName = i18n
+    "russian"}} {{ $iconFlag = "russian-flag-icon" }} {{else }} {{ $iconFlag =
+    "usa-flag-icon" }} {{$languageName = i18n "english"}} {{ end }}
+    <a
+      class="dropdown__item {{ if eq .Language.LanguageName $.Site.Language.LanguageName }}active{{ end }}"
+      href="{{ .Permalink | absLangURL }}"
+    >
       <i class="icon  {{$iconFlag}}"></i>
       <span>{{ title $languageName}}</span>
     </a>

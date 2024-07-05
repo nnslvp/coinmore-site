@@ -1,183 +1,203 @@
-{{ $currentDir := .File.Dir }}
-{{ $pageCoin := .Site.GetPage $currentDir }}
-<!DOCTYPE html>
+{{ $currentDir := .File.Dir }} {{ $pageCoin := .Site.GetPage $currentDir }}
+<!doctype html>
 <html lang="en">
+  <head>
+    {{ with hugo.IsProduction }} {{ end }}
 
-<head>
-  {{ with hugo.IsProduction }}
+    <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
 
-  {{ end }}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ .Params.SEO.description }}" />
+    <meta name="keywords" content="{{ .Params.SEO.keywords }}" />
 
-  <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
+    {{ $imagePath := .Params.image }} {{ $widthImage := 1200 }} {{ $heightImage
+    := 672 }} {{ if not $imagePath }} {{ $imagePath = "images/logo_black.png" }}
+    {{ end }}
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{{ .Params.SEO.description }}">
-  <meta name="keywords" content="{{ .Params.SEO.keywords }}">
-  
+    <meta property="og:site_name" content="{{.Site.Params.siteName}}" />
+    <meta
+      property="og:title"
+      content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
+    />
+    <meta property="og:description" content="{{ .Params.SEO.description  }}" />
+    <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
+    <meta name="twitter:image:width" content="{{ $widthImage }}" />
+    <meta name="twitter:image:height" content="{{ $heightImage }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
+    />
+    <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
+    <meta name="twitter:image:width" content="{{ $widthImage }}" />
+    <meta name="twitter:image:height" content="{{ $heightImage }}" />
 
-  {{ $imagePath := .Params.image }}
-  {{ $widthImage := 1200 }}
-  {{ $heightImage := 672 }}
+    {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }} {{
+    with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+    <link
+      rel="stylesheet"
+      href="{{ .RelPermalink }}"
+      integrity="{{ .Data.Integrity }}"
+      crossorigin="anonymous"
+    />
+    {{ end }}
+  </head>
 
-  {{ if not $imagePath }}
-  {{ $imagePath = "images/logo_black.png" }}
-  {{ end }}
-
-
-  <meta property="og:site_name" content="{{.Site.Params.siteName}}">
-  <meta property="og:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
-  <meta property="og:description" content="{{ .Params.SEO.description  }}" />
-  <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
-  <meta name="twitter:image:width" content="{{ $widthImage }}">
-  <meta name="twitter:image:height" content="{{ $heightImage }}">
-  <meta property="og:url" content="{{ .Permalink }}" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
-  <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
-  <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}">
-  <meta name="twitter:image:width" content="{{ $widthImage }}">
-  <meta name="twitter:image:height" content="{{ $heightImage }}">
-
-  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
-  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-  {{ end }}
-
-<body>
-  {{ with hugo.IsProduction }}
-
-  {{ end }}
-  <div class="wrapper">
-    {{partial "header.html" .}}
-    <nav class="nav-page__container container">
-      <ul class="navigation-list">
-        <li class="navigation-item">
-          <a href="{{relLangURL "/" }}" class="home-link">
-            <i class="icon home-icon"></i>
-          </a>
-        </li>
-        <li class="separator">/</li>
-        <li class="navigation-item">
-          <a href="{{ relLangURL (printf "/coin/%s/" $pageCoin.Params.coin_name) }}" class="currency-link">
-            {{title $pageCoin.Params.coin_name }}
-          </a>
-        </li>
-        <li class="separator">/</li>
-        <li class="navigation-item">
-          <a href="{{ relLangURL (printf "/coin/%s/instructions" $pageCoin.Params.coin_name) }}" class="statistics-link">{{
-            .Params.title }}</a>
-        </li>
-      </ul>
-    </nav>
-    <main>
-      <div class="instructions__inner">
-        <header class="instructions-header">
-          <div class="container">
-            <div class="instructions-header__inner">
-              <h1 class="heading-h1">{{ .Params.title }}</h1>
-              <p class="subtitle instructions__subtitle">
-                {{/*  {{ .Params.subtitle_text_1 }}
-                <a class="link" href="#faq">
-                  <strong>{{ .Params.faq_title}}</strong>
-                </a>  */}}
-                <span>
-                  {{ .Params.subtitle_text_2 }}
-                  <a class="link" target="_blank" href="{{.Params.dowland_wallet_link}}">
-                    <strong>
-                      {{ .Params.wallet }}.
-                    </strong>
+  <body>
+    {{ with hugo.IsProduction }} {{ end }}
+    <div class="wrapper">
+      {{partial "header.html" .}}
+      <nav class="nav-page__container container">
+        <ul class="navigation-list">
+          {{$homeLink := relLangURL "/"}} {{ $statisticsLink := relLangURL
+          (printf " /coin/%s/instructions" $pageCoin.Params.coin_name) }} {{
+          $coinLink := relLangURL (printf " /coin/%s/"
+          $pageCoin.Params.coin_name) }}
+          <li class="navigation-item">
+            <a href="{{ $homeLink }}" class="home-link">
+              <i class="icon home-icon"></i>
+            </a>
+          </li>
+          <li class="separator">/</li>
+          <li class="navigation-item">
+            <a href="{{ $coinLink }}" class="currency-link">
+              {{title $pageCoin.Params.coin_name }}
+            </a>
+          </li>
+          <li class="separator">/</li>
+          <li class="navigation-item">
+            <a href="{{ $statisticsLink }}" class="statistics-link"
+              >{{ .Params.title }}</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <div class="instructions__inner">
+          <header class="instructions-header">
+            <div class="container">
+              <div class="instructions-header__inner">
+                <h1 class="heading-h1">{{ .Params.title }}</h1>
+                <p class="subtitle instructions__subtitle">
+                  {{/* {{ .Params.subtitle_text_1 }}
+                  <a class="link" href="#faq">
+                    <strong>{{ .Params.faq_title}}</strong>
                   </a>
-                </span>
-              </p>
-            </div>
-          </div>
-        </header>
-
-        <section class="section section-pool-servers">
-          <div class="container">
-            <div class="section__inner">
-              <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
-              {{partial "table-servers.html" $pageCoin}}
-            </div>
-          </div>
-        </section>
-        <section class="section-miners">
-          <div class="container">
-            <div class="section__inner">
-              <h2 class="heading-h2">{{ .Params.miners_title }}</h2>
-              <p class="subtitle">{{ .Params.can_use }}:</p>
-              <div class="miners-list-about-other-container">
-                <ul class="miners-list">
-                  {{ range .Params.miners_list }}
-                  <li class="miners-item">
-                    <a href="{{ .link }}" target="_blank" class="link">
-                      {{ .miner }}
+                  */}}
+                  <span>
+                    {{ .Params.subtitle_text_2 }}
+                    <a
+                      class="link"
+                      target="_blank"
+                      href="{{.Params.dowland_wallet_link}}"
+                    >
+                      <strong> {{ .Params.wallet }}. </strong>
                     </a>
-                  </li>
-                  {{ end }}
-                </ul>
-                <p class="subtitle">{{ .Params.ask_in_discord }} 
-                  <a class="link subtitle" target="_blank" href="https://discord.com/invite/FSXWEUGmEK">
-                    {{ i18n "discord" }} {{ i18n "community" }}
-                  </a>
+                  </span>
                 </p>
               </div>
             </div>
-          </div>
-        </section>
-        <section class="section-windows-examples">
-          <div class="container">
-            <div class="section__inner">
-              <h2 class="heading-h2">{{ .Params.windows_examples_title }}</h2>
-              <ul class="tabs-miners-list">
-                {{ range $index, $element := .Params.windowsExamples }}
-                <li data-target="guide-{{ $element.tab }}"
-                  class="tab tabs-miners-item tabs-miners-item
-                      {{ if eq $index 0 }}tab-border-radius-around-left active {{ end }} 
-                      {{ if eq $index (sub (len $.Params.windowsExamples) 1) }}tab-border-radius-around-right {{ end }} ">
-                  {{ $element.tab }}
-                </li>
-                {{ end }}
-              </ul>
-              {{ range $index, $element := .Params.windowsExamples }}
-              <div id="guide-{{ $element.tab }}" class="guide {{ if eq $index 0 }} active {{ end }} ">
-                {{ $element.instruction | markdownify }}
+          </header>
+
+          <section class="section section-pool-servers">
+            <div class="container">
+              <div class="section__inner">
+                <h2 class="heading-h2">{{ .Params.pool_servers }}</h2>
+                {{partial "table-servers.html" $pageCoin}}
               </div>
-              {{ end }}
             </div>
-        </section>
-        {{/*  <section id="faq" class="section-faq">
-          <div class="container">
-            <div class="section__inner">
-              <header class="section-faq__header">
-                <h2 class="heading-h1">{{ .Params.faq_title }}</h2>
-                <p class="subtitle">{{ .Params.faq_subtitle }}</p>
-              </header>
-              <div class="questions">
-                <div class="questions">
-                  {{ range .Params.faq }}
-                  <details class="question">
-                    <summary class="question-title">{{ .question }}</summary>
-                    <p class="answer">{{ .answer }}</p>
-                  </details>
-                  {{ end }}
+          </section>
+          <section class="section-miners">
+            <div class="container">
+              <div class="section__inner">
+                <h2 class="heading-h2">{{ .Params.miners_title }}</h2>
+                <p class="subtitle">{{ .Params.can_use }}:</p>
+                <div class="miners-list-about-other-container">
+                  <ul class="miners-list">
+                    {{ range .Params.miners_list }}
+                    <li class="miners-item">
+                      <a href="{{ .link }}" target="_blank" class="link">
+                        {{ .miner }}
+                      </a>
+                    </li>
+                    {{ end }}
+                  </ul>
+                  <p class="subtitle">
+                    {{ .Params.ask_in_discord }}
+                    <a
+                      class="link subtitle"
+                      target="_blank"
+                      href="https://discord.com/invite/FSXWEUGmEK"
+                    >
+                      {{ i18n "discord" }} {{ i18n "community" }}
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
-        </section>  */}}
-      </div>
-    </main>
-    {{partial "footer.html" .}}
-  </div>
-  {{ $customSelect:= resources.Get "js/custom-select.js" }}
-  {{ $tableServers:= resources.Get "js/table-servers.js" }}
-  {{ $page := resources.Get "js/pages/instructions-page.js" }}
-  {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $global $customSelect $tableServers $page | resources.Concat "js/build/instructions-page-build.js" |
-  resources.Minify }}
-  <script type="module" src="{{ $js.Permalink }}"></script>
-</body>
-
+          </section>
+          <section class="section-windows-examples">
+            <div class="container">
+              <div class="section__inner">
+                <h2 class="heading-h2">{{ .Params.windows_examples_title }}</h2>
+                <ul class="tabs-miners-list">
+                  {{ range $index, $element := .Params.windowsExamples }}
+                  <li
+                    data-target="guide-{{ $element.tab }}"
+                    class="tab tabs-miners-item tabs-miners-item
+                      {{ if eq $index 0 }}tab-border-radius-around-left active {{ end }} 
+                      {{ if eq $index (sub (len $.Params.windowsExamples) 1) }}tab-border-radius-around-right {{ end }} "
+                  >
+                    {{ $element.tab }}
+                  </li>
+                  {{ end }}
+                </ul>
+                {{ range $index, $element := .Params.windowsExamples }}
+                <div
+                  id="guide-{{ $element.tab }}"
+                  class="guide {{ if eq $index 0 }} active {{ end }} "
+                >
+                  {{ $element.instruction | markdownify }}
+                </div>
+                {{ end }}
+              </div>
+            </div>
+          </section>
+          {{/*
+          <section id="faq" class="section-faq">
+            <div class="container">
+              <div class="section__inner">
+                <header class="section-faq__header">
+                  <h2 class="heading-h1">{{ .Params.faq_title }}</h2>
+                  <p class="subtitle">{{ .Params.faq_subtitle }}</p>
+                </header>
+                <div class="questions">
+                  <div class="questions">
+                    {{ range .Params.faq }}
+                    <details class="question">
+                      <summary class="question-title">{{ .question }}</summary>
+                      <p class="answer">{{ .answer }}</p>
+                    </details>
+                    {{ end }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          */}}
+        </div>
+      </main>
+      {{partial "footer.html" .}}
+    </div>
+    {{ $customSelect:= resources.Get "js/custom-select.js" }} {{ $tableServers:=
+    resources.Get "js/table-servers.js" }} {{ $page := resources.Get
+    "js/pages/instructions-page.js" }} {{ $global:= resources.Get "js/main.js"
+    }} {{ $js := slice $global $customSelect $tableServers $page |
+    resources.Concat "js/build/instructions-page-build.js" | resources.Minify }}
+    <script type="module" src="{{ $js.Permalink }}"></script>
+  </body>
 </html>

@@ -1,104 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    {{ with hugo.IsProduction }} {{ end }}
+    <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
 
-<head>
-  {{ with hugo.IsProduction }}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ .Params.SEO.description }}" />
+    <meta name="keywords" content="{{ .Params.SEO.keywords }}" />
 
-  {{ end }}
-  <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
+    {{ $imagePath := .Params.image }} {{ $widthImage := 1200 }} {{ $heightImage
+    := 672 }} {{ if not $imagePath }} {{ $imagePath = "images/logo_black.png" }}
+    {{ end }}
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{{ .Params.SEO.description }}">
-  <meta name="keywords" content="{{ .Params.SEO.keywords }}">
-  
+    <meta property="og:site_name" content="{{.Site.Params.siteName}}" />
+    <meta
+      property="og:title"
+      content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
+    />
+    <meta property="og:description" content="{{ .Params.SEO.description  }}" />
+    <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
+    <meta name="twitter:image:width" content="{{ $widthImage }}" />
+    <meta name="twitter:image:height" content="{{ $heightImage }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
+    />
+    <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
+    <meta name="twitter:image:width" content="{{ $widthImage }}" />
+    <meta name="twitter:image:height" content="{{ $heightImage }}" />
 
-  {{ $imagePath := .Params.image }}
-  {{ $widthImage := 1200 }}
-  {{ $heightImage := 672 }}
+    {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }} {{
+    with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+    <link
+      rel="stylesheet"
+      href="{{ .RelPermalink }}"
+      integrity="{{ .Data.Integrity }}"
+      crossorigin="anonymous"
+    />
+    {{ end }}
+  </head>
 
-  {{ if not $imagePath }}
-  {{ $imagePath = "images/logo_black.png" }}
-  {{ end }}
-
-  <meta property="og:site_name" content="{{.Site.Params.siteName}}">
-  <meta property="og:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
-  <meta property="og:description" content="{{ .Params.SEO.description  }}" />
-  <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
-  <meta name="twitter:image:width" content="{{ $widthImage }}">
-  <meta name="twitter:image:height" content="{{ $heightImage }}">
-  <meta property="og:url" content="{{ .Permalink }}" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}" />
-  <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
-  <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}">
-  <meta name="twitter:image:width" content="{{ $widthImage }}">
-  <meta name="twitter:image:height" content="{{ $heightImage }}">
-
-
-  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }}
-  {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-  {{ end }}
-
-<body>
-  {{ with hugo.IsProduction }}
-
-  {{ end }}
-  <div class="wrapper">
-    {{partial "header.html" .}}
-    <main class="main-home-page">
-      <section class="section-welcome section-welcome__page-home">
-        <div class="container">
-          <div class="section-welcome__inner">
-            <h1 class="heading-h1">{{ .Params.welcome_heading }}</h1>
-            <p class="subtitle section-welcome__subtitle ">
-              {{ .Params.welcome_text }}
-            </p>
+  <body>
+    {{ with hugo.IsProduction }} {{ end }}
+    <div class="wrapper">
+      {{partial "header.html" .}}
+      <main class="main-home-page">
+        <section class="section-welcome section-welcome__page-home">
+          <div class="container">
+            <div class="section-welcome__inner">
+              <h1 class="heading-h1">{{ .Params.welcome_heading }}</h1>
+              <p class="subtitle section-welcome__subtitle">
+                {{ .Params.welcome_text }}
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-      <section class="section-start-mining">
-        <div class="container">
-          <div class="section-start-mining__inner">
-            <header class="section-start-mining__header">
-              <h2 class="heading-h1">{{ .Params.mining_heading }}</h2>
-              <a href="{{ relLangURL "calculator" }}" class="btn btn-outline-primary">
-                <i class="icon calculator-icon-primary"></i>
-                {{ .Params.mining_calculator_text }}
-              </a>
-            </header>
-            {{ $coins := slice }}
-            <ul class="coins-list">
-              {{ range where .Site.Pages "Type" "coin" }}
-              {{ if not .Params.headless }}
-              {{ $coins = $coins | append (dict "name" .Params.coin_name "symbol" .Params.coin_symbol) }}
-              <li class="coins-list__item">
-                <a href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/" class="link-card-coin">
-                  {{ partial "coin-card.html" . }}
+        </section>
+        <section class="section-start-mining">
+          <div class="container">
+            <div class="section-start-mining__inner">
+              <header class="section-start-mining__header">
+                {{$calculatorLink := relLangURL "calculator"}}
+                <h2 class="heading-h1">{{ .Params.mining_heading }}</h2>
+                <a
+                  href="{{ $calculatorLink  }}"
+                  class="btn btn-outline-primary"
+                >
+                  <i class="icon calculator-icon-primary"></i>
+                  {{ .Params.mining_calculator_text }}
                 </a>
-              </li>
-              {{ end }}
-              {{ end }}
-            </ul>
+              </header>
+              {{ $coins := slice }}
+              <ul class="coins-list">
+                {{ range where .Site.Pages "Type" "coin" }} {{ if not
+                .Params.headless }} {{ $coins = $coins | append (dict "name"
+                .Params.coin_name "symbol" .Params.coin_symbol) }}
+                <li class="coins-list__item">
+                  <a
+                    href="{{ .Site.BaseURL }}/coin/{{ .Params.coin_name }}/"
+                    class="link-card-coin"
+                  >
+                    {{ partial "coin-card.html" . }}
+                  </a>
+                </li>
+                {{ end }} {{ end }}
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
-    {{partial "footer.html" .}}
-  </div>
+        </section>
+      </main>
+      {{partial "footer.html" .}}
+    </div>
     <script>
-          const COINS = {{ $coins }};
+      const COINS = {{ $coins }};
     </script>
-  {{ $homePage := resources.Get "js/pages/home-page.js" }}
-  {{ $showDataFunctions:= resources.Get "js/show-data-functions.js" }}
-  {{ $api := resources.Get "js/api.js" }}
-  {{ $helpers := resources.Get "js/helpers.js" }}
-  {{ $global:= resources.Get "js/main.js" }}
-  {{ $js := slice $api $showDataFunctions $helpers $global $homePage | resources.Concat
-  "js/build/home-page-build.js" }}
-  <script type="module" src="{{ $js.Permalink }}"></script>{{ $js := resources.Get "js/main.js" | resources.Minify }}
-</body>
-
+    {{ $homePage := resources.Get "js/pages/home-page.js" }} {{
+    $showDataFunctions:= resources.Get "js/show-data-functions.js" }} {{ $api :=
+    resources.Get "js/api.js" }} {{ $helpers := resources.Get "js/helpers.js" }}
+    {{ $global:= resources.Get "js/main.js" }} {{ $js := slice $api
+    $showDataFunctions $helpers $global $homePage | resources.Concat
+    "js/build/home-page-build.js" }}
+    <script type="module" src="{{ $js.Permalink }}"></script>
+    {{ $js := resources.Get "js/main.js" | resources.Minify }}
+  </body>
 </html>
