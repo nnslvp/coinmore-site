@@ -100,9 +100,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.balance }}</p>
                   <strong class="stat-item__value">
-                    <span id="balance"></span>
+                    <span id="balance">-</span>
                     ~
-                    <span id="balance_usd"></span>
+                    <span id="balance_usd">-</span>
                   </strong>
                 </div>
               </li>
@@ -125,8 +125,8 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_1h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_payouts_1h">0.00000000</span> ~
-                    <span id="my_payouts_1h_usd">0.00 USD</span>
+                    <span id="my_payouts_1h">-</span> ~
+                    <span id="my_payouts_1h_usd">-</span>
                   </strong>
                 </div>
               </li>
@@ -135,9 +135,9 @@
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.payouts_24h}}</p>
                   <strong class="stat-item__value">
-                    <span id="my_payouts_24h">0.0 ALPH</span>
+                    <span id="my_payouts_24h">-</span>
                     ~
-                    <span id="my_payouts_24h_usd">0.0 USD</span>
+                    <span id="my_payouts_24h_usd">-</span>
                   </strong>
                 </div>
               </li>
@@ -162,7 +162,7 @@
                 <i class="icon fee-icon"></i>
                 <div class="stat-item__content">
                   <p class="stat-item__lable">{{.Params.stat_labels.pool_fee}}</p>
-                  <strong id="pool_fee" class="stat-item__value">0</strong>
+                  <strong id="pool_fee" class="stat-item__value">-</strong>
                 </div>
               </li>
             </ul>
@@ -234,16 +234,22 @@
       <form id="form-min-payouts" class="form__dit-min-payouts" action="">
         <div class="input-container">
           <label class="label" for="min-payout">{{ .Params.modal.label }}</label>
-          <input id="input-min-payouts" class="input" name="min-payout" placeholder="{{ .Params.modal.placeholder }}" type="number" value="0.1"  step="any"
+          <input id="input-min-payouts" class="input" name="min-payout" placeholder="0.1" inputmode="numeric" type="number" value="0.1"  step="any"
             >
+            <span id="error-message" class="error-message"></span>
         </div>
         <div class="form-action">
           <button type="button" class="btn btn-outline-primary close-modal-btn">{{ .Params.modal.cancel_button }}</button>
-          <button type="submit" class="btn btn-filled-primary">{{ .Params.modal.save_button }}</button>
+          <button type="submit" class="btn btn-filled-primary submit-btn">{{ .Params.modal.save_button }}</button>
         </div>
       </form>
     </div>
   </dialog>
+  <div class="toast">
+    <i class="icon toast-icon"></i>
+    <p class="toast-text "></p>
+    <i class="icon close-icon"></i>
+  </div>
   <script>
     const COIN = {{$pageCoin.Params.coin_name }}
     const COIN_SYMBOL = {{$pageCoin.Params.coin_symbol }}

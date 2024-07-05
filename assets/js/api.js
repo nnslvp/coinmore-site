@@ -14,7 +14,7 @@ const KIND = {
 function statsApiCall(action) {
 	return fetch(`${statsApiUrl}${action}`).then(response => {
 		if (!response.ok) {
-			throw new Error('Network response was not ok ' + response.statusText);
+			throw new Error(`Network response was not ok ${response.statusText} ${response.status}`);
 		}
 		return response.json();
 	});
@@ -23,9 +23,13 @@ function statsApiCall(action) {
 function statsApiPost(action) {
 	return fetch(`${statsApiUrl}${action}`, {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	}).then(response => {
+		if (!response.ok) {
+			return response.json().then(err => {
+				throw new Error(err.errors);
+			});
+		}
+		return response.json();
 	});
 }
 

@@ -9,7 +9,7 @@ const STAT_MIN_PAYOUTS_VALUE = document.querySelector(
 );
 const WALLET_FORM = document.querySelector('#wallet-form');
 const WALLET_INPUT = WALLET_FORM.querySelector('#wallet-input');
-const [tabDayChartHashrate, tabWeekButtonChartHashrate] = getTabs(
+const [TAB_DAY_CHART_HASHRATE, TAB_WEEK_CHART_HASHRATE] = getTabs(
 	'.tabs__chart-hashrate'
 );
 const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
@@ -56,11 +56,48 @@ const CHART_HISTORY_CELL_TABLE_OPTIONS = getChartOptions({
 	},
 });
 
+const ERROR_MESSAGE_ELEMENT = document.getElementById('error-message');
+const FORM_SUBMIT_BTN = MODAL.querySelector('.submit-btn');
+const TOAST = document.querySelector('.toast');
+const TOAST_CLOSE_BTN = TOAST.querySelector('.close-icon');
+const TOAST_TEXT = TOAST.querySelector('.toast-text');
+const TOAST_ICON = TOAST.querySelector('.toast-icon');
+
+function showToast(status) {
+	TOAST.classList.add('active', status);
+	TOAST_ICON.className = 'icon toast-icon';
+	if (status.includes('success')) {
+		TOAST_ICON.classList.add('success-icon')
+	}
+
+	if (status.includes('error')) {
+		TOAST_ICON.classList.add('warning-icon')
+	}
+
+	setTimeout(() => {
+		TOAST.classList.remove('active');
+	}, 5000);
+}
+
+TOAST_CLOSE_BTN.addEventListener('click', () => {
+	TOAST.classList.remove('active');
+});
+
+function detectBrowserAndSetInputType() {
+	const userAgent = navigator.userAgent;
+	if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
+		INPUT_MIN_PAYOUTS.setAttribute('type', 'text');
+	} else {
+		INPUT_MIN_PAYOUTS.setAttribute('type', 'number');
+	}
+}
+
 activateTabsOnClick('.tabs__chart-hashrate');
 activateTabsOnClick('.tabs-tables__workers-payouts');
 
 function init() {
 	assignFormListener();
+	detectBrowserAndSetInputType();
 
 	const walletFromParams = getWalletParam();
 
@@ -95,102 +132,162 @@ function drawData(coin, wallet) {
 	const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
 	const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
 	const poolValueFeePromise = fetchPoolValue(coin, KIND.fee);
+	let workers1h = [];
+	let workers24h = [];
+	let rate = null;
 
-	userValueMinPayoutsPromise
-		.then(({ value }) => showMinPayouts(value))
-		.catch(error => {
-			if (error.status === 404) {
-				poolValueMinPayoutsPromise.then(defaultValue => {
-					showMinPayouts(defaultValue.value);
-				});
-			} else {
-				console.info('Error:', error);
-			}
-		});
-
-	Promise.all([
+	Promise.allSettled([
 		currencyInfoPromise,
 		payouts1hPromise,
 		payouts24hPromise,
+		balancePromise,
 		payoutsWeekPromise,
 		hashrate1hPromise,
 		hashrate24hPromise,
-		balancePromise,
 		historyWalletWeekPromise,
 		historyWalletDayPromise,
 		historyWorkersDayPromise,
 		poolValueFeePromise,
+		userValueMinPayoutsPromise,
+		poolValueMinPayoutsPromise
 	])
-		.then(
-			([
-				currencyInfo,
+		.then(results => {
+			const [
+				currencyInfoResult,
 				payouts1hResult,
 				payouts24hResult,
+				balanceResults,
 				payoutsWeekResult,
 				hashrate1hResults,
 				hashrate24hResults,
-				balanceResults,
 				historyWalletWeekResult,
 				historyWalletDayResult,
 				historyWorkersDayResult,
 				feeResult,
-			]) => {
-				const rate = currencyInfo.rate.value;
-				const balance = balanceResults;
-				const payouts1h = payouts1hResult.payouts;
-				const payouts24h = payouts24hResult.payouts;
-				const payoutsWeek = payoutsWeekResult.payouts;
-				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
-				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
-				const historyWalletWeek = historyWalletWeekResult.wallet_history;
-				const historyWalletDay = historyWalletDayResult.wallet_history;
-				const labelsWeek = historyWalletWeek.map(item => item.bucket);
-				const dataWeek = historyWalletWeek.map(
-					item => item.hashrate
-				);
-				const labelsDay = historyWalletDay.map(item => item.bucket);
-				const dataDay = historyWalletDay
-					.map(item => shortenHm(item.hashrate, 2));
-				const workers1h = hashrate1hResults.workers;
-				const workers24h = hashrate24hResults.workers;
-				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
-				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
-				const fee = feeResult.value;
-				const workersHistory = historyWorkersDayResult.workers_history;
+				minPayoutsResult,
+				poolValueMinPayoutsRests,
+			] = results.map(result => (result.status === 'fulfilled' ? result.value : null));
+			const [
+				currencyInfo,
+				payouts1h,
+				payouts24h,
+				balance,
+				payoutsWeek,
+				hashrate1h,
+				hashrate24h,
+				historyWalletWeek,
+				historyWalletDay,
+				historyWorkersDay,
+				fee,
+				poolValueMinPayouts] = results;
 
+			if (currencyInfoResult) {
+				rate = currencyInfoResult.rate.value;
+			} else if (currencyInfo.status === 'rejected') {
+				console.info('Error in currencyInfoPromise:', currencyInfo.reason);
+			}
+
+			if (payouts1hResult) {
+				const payouts1h = payouts1hResult.payouts;
+				const payoutsAmount1h = calculateTotalByKey(payouts1h, 'amount');
+				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
+				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
+			} else if (payouts1h.status === 'rejected') {
+				console.info('Error in payouts1hPromise:', payouts1h.reason);
+			}
+
+			if (balanceResults) {
+				showMyBalance(balanceResults, 'balance', COIN_SYMBOL);
+				showMyBalanceUSD(balanceResults, rate);
+			} else if (balance.status === 'rejected') {
+				console.info('Error in balancePromise:', balance.reason);
+			}
+
+			if (payouts24hResult) {
+				const payouts24h = payouts24hResult.payouts;
+				const payoutsAmount24h = calculateTotalByKey(payouts24h, 'amount');
+				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
+				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
+				showPayoutsTable(payouts24h);
+
+				if (payoutsWeekResult) {
+					const payoutsWeek = payoutsWeekResult.payouts;
+					showSelectPayouts(payouts24h, payoutsWeek);
+				} else if (payoutsWeek.status === 'rejected') {
+					console.info('Error in payoutsWeekPromise:', payoutsWeek.reason);
+				}
+			} else if (payouts24h.status === 'rejected') {
+				console.info('Error in payouts24hPromise:', payouts24h.reason);
+			}
+
+			if (hashrate1hResults) {
+				workers1h = hashrate1hResults.workers;
+				const hashrate1h = calculateTotalByKey(workers1h, 'hashrate');
+				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
+			} else if (hashrate1h.status === 'rejected') {
+				console.info('Error in hashrate1hPromise:', hashrate1h.reason);
+			}
+
+			if (hashrate24hResults) {
+				workers24h = hashrate24hResults.workers;
+				const hashrate24h = calculateTotalByKey(workers24h, 'hashrate');
+				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
+			} else if (hashrate24h.status === 'rejected') {
+				console.info('Error in hashrate24hPromise:', hashrate24h.reason);
+			}
+
+			if (historyWorkersDayResult) {
+				const workersHistory = historyWorkersDayResult.workers_history;
 				const workersHistoryDay = workersHistory.filter(({ bucket }) => {
 					const lastDayStart = new Date().setHours(0, 0, 0, 0);
 					return new Date(bucket) >= lastDayStart;
 				});
-
-				showPoolFee(fee);
-				showMyPayouts(payoutsAmount1h, 'my_payouts_1h', COIN_SYMBOL);
-				showMyPayoutsUSD(payoutsAmount1h, rate, 'my_payouts_1h_usd');
-				showMyPayouts(payoutsAmount24h, 'my_payouts_24h', COIN_SYMBOL);
-				showMyPayoutsUSD(payoutsAmount24h, rate, 'my_payouts_24h_usd');
-				showPayoutsTable(payouts24h);
-				showSelectPayouts(payouts24h, payoutsWeek);
-				showMyBalance(balance, 'balance', COIN_SYMBOL);
-				showMyBalanceUSD(balance, rate);
-				showChartYourHashrate({
-					labelsWeek,
-					dataWeek,
-					labelsDay,
-					dataDay,
-				});
-				showPoolHashrate(hashrate1h, 'my_hashrate_1h');
-				showPoolHashrate(hashrate24h, 'my_hashrate_24h');
 				showWorkersTable(workers24h, workers1h, workersHistoryDay);
-				showStats();
-				enableButton();
+			} else if (historyWorkersDay.status === 'rejected') {
+				console.info('Error in historyWorkersDayPromise:', historyWorkersDay.reason);
 			}
-		)
-		.catch(error => {
-			console.info('Error in drawData', error);
-			enableButton();
-		});
-}
 
+			if (historyWalletWeekResult && historyWalletDayResult) {
+				const historyWalletWeek = historyWalletWeekResult.wallet_history;
+				const historyWalletDay = historyWalletDayResult.wallet_history;
+				const labelsWeek = historyWalletWeek.map(item => item.bucket);
+				const dataWeek = historyWalletWeek.map(item => item.hashrate);
+				const labelsDay = historyWalletDay.map(item => item.bucket);
+				const dataDay = historyWalletDay.map(item => shortenHm(item.hashrate));
+				showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
+			} else {
+				if (historyWalletWeek.status === 'rejected') {
+					console.info('Error in historyWalletWeekPromise:', historyWalletWeek.reason);
+				}
+				if (historyWalletDay.status === 'rejected') {
+					console.info('Error in historyWalletDayPromise:', historyWalletDay.reason);
+				}
+			}
+
+			if (feeResult) {
+				showPoolFee(feeResult.value);
+			} else if (fee.status === 'rejected') {
+				console.info('Error in poolValueFeePromise:', fee.reason);
+			}
+
+			if (minPayoutsResult) {
+				showMinPayouts(minPayoutsResult.value);
+			} else if (poolValueMinPayouts.status === 'rejected') {
+				if (poolValueMinPayouts.reason.message.includes('404')) {
+					showMinPayouts(poolValueMinPayoutsRests.value);
+				} else {
+					console.info('Error in userValueMinPayoutsPromise or poolValueMinPayoutsPromise:', poolValueMinPayouts.reason);
+				}
+
+			}
+
+			showStats();
+		})
+		.catch(error => {
+			console.info('Error draw data', error);
+		})
+		.finally(() => enableButton());
+}
 function showStats() {
 	document.getElementById('stats').classList.remove('empty-statistics');
 }
@@ -223,8 +320,14 @@ function setWalletForm(wallet) {
 
 function assignFormListener() {
 	function processForm(e) {
-		if (e.preventDefault) e.preventDefault();
-		if (WALLET_INPUT.value) setWalletParam(WALLET_INPUT.value);
+		if (e.preventDefault) {
+			e.preventDefault();
+		}
+
+		if (WALLET_INPUT.value) {
+			setWalletParam(WALLET_INPUT.value);
+		}
+
 		return false;
 	}
 
@@ -235,19 +338,82 @@ function assignFormListener() {
 	}
 }
 
+function validationInput(value) {
+	const isNumeric = num => /^\d*[.,]?\d+$/.test(num);
+	const isNegativeNumeric = num => /^-\d*\.?\d+$/.test(num);
+
+	if (!value.trim().length) {
+		INPUT_MIN_PAYOUTS.classList.add('invalid');
+		ERROR_MESSAGE_ELEMENT.textContent = "Value can't be blank";
+		return false;
+	}
+
+	if (isNegativeNumeric(value)) {
+		INPUT_MIN_PAYOUTS.classList.add('invalid');
+		ERROR_MESSAGE_ELEMENT.textContent = 'Value should be positive number';
+		return false;
+	}
+
+	if (!isNumeric(value)) {
+		INPUT_MIN_PAYOUTS.classList.add('invalid');
+		ERROR_MESSAGE_ELEMENT.textContent = 'Value should be number';
+		return false;
+	}
+
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+	ERROR_MESSAGE_ELEMENT.textContent = '';
+	return true;
+}
+
 function assignFormListenerMinPayoutsForm(wallet) {
-	FORM_MIN_PAYOUTS.addEventListener('submit', e => {
-		e.preventDefault();
-		const value = INPUT_MIN_PAYOUTS.value;
-		createUserValue(COIN, wallet, 'min_payout', value)
-			.then(() => {
-				STAT_MIN_PAYOUTS_VALUE.textContent = value;
-				MODAL.close();
-			})
-			.catch(error => {
-				console.info('Error submitting form:', error);
-			});
-	});
+	FORM_MIN_PAYOUTS.addEventListener('submit', handleSubmit.bind(null, wallet));
+}
+
+MODAL.addEventListener('close', () => {
+	INPUT_MIN_PAYOUTS.value = STAT_MIN_PAYOUTS_VALUE.textContent;
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+});
+
+function handleSubmit(wallet, e) {
+	e.preventDefault();
+	const newValue = INPUT_MIN_PAYOUTS.value.trim();
+	const validInput = validationInput(newValue);
+	if (validInput) {
+		disableSubmitButton();
+
+		createUserValue(COIN, wallet, 'min_payout', newValue.replace(',', '.'))
+			.then(handleSuccess)
+			.catch(handleError)
+			.finally(resetSubmitButton);
+	}
+}
+
+function disableSubmitButton() {
+	FORM_SUBMIT_BTN.disabled = true;
+	FORM_SUBMIT_BTN.classList.add('loading');
+	FORM_SUBMIT_BTN.textContent = 'Saving...';
+}
+
+function resetSubmitButton() {
+	FORM_SUBMIT_BTN.disabled = false;
+	FORM_SUBMIT_BTN.textContent = 'Save Changes';
+	FORM_SUBMIT_BTN.classList.remove('loading');
+}
+
+function handleSuccess(res) {
+	showMinPayouts(res.value)
+	INPUT_MIN_PAYOUTS.classList.remove('invalid');
+	MODAL.close();
+	TOAST_TEXT.textContent = 'The minimum payout was successfully updated.'
+	showToast('success')
+}
+
+function handleError(error) {
+	MODAL.close();
+	const errorMessage = error.message || error;
+	const cleanedMessage = errorMessage.replace(/because Kind is "min_payout".*/g, '');
+	TOAST_TEXT.textContent = cleanedMessage
+	showToast('error')
 }
 
 OPEN_MODAL_BTNS.forEach(btn => {
@@ -402,11 +568,11 @@ function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
 		labelsWeek
 	);
 
-	tabDayChartHashrate.addEventListener('click', function (e) {
+	TAB_DAY_CHART_HASHRATE.addEventListener('click', function (e) {
 		updateChartData(hashRateChart, dataDay, labelsDay, CHART_PERIOD.day);
 	});
 
-	tabWeekButtonChartHashrate.addEventListener('click', function (e) {
+	TAB_WEEK_CHART_HASHRATE.addEventListener('click', function (e) {
 		updateChartData(hashRateChart, dataWeek, labelsWeek, CHART_PERIOD.week);
 	});
 }
