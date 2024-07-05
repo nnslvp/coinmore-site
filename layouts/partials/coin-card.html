@@ -9,11 +9,7 @@
         <span class="card-coin__info-symbol">{{ .Params.coin_symbol }}</span>
       </div>
     </div>
-    {{ $startMiningLink := relLangURL (printf " /coin/%s/" .Params.coin_name) }}
-    <button
-      href="{{ $startMiningLink  }}"
-      class="btn btn-outline-primary card-coin__btn"
-    >
+    <button class="btn btn-outline-primary card-coin__btn">
       {{ .Params.start_mining }}
     </button>
   </header>

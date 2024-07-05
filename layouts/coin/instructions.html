@@ -54,8 +54,8 @@
       <nav class="nav-page__container container">
         <ul class="navigation-list">
           {{$homeLink := relLangURL "/"}} {{ $statisticsLink := relLangURL
-          (printf " /coin/%s/instructions" $pageCoin.Params.coin_name) }} {{
-          $coinLink := relLangURL (printf " /coin/%s/"
+          (printf "/coin/%s/instructions" $pageCoin.Params.coin_name) }} {{
+          $coinLink := relLangURL (printf "/coin/%s/"
           $pageCoin.Params.coin_name) }}
           <li class="navigation-item">
             <a href="{{ $homeLink }}" class="home-link">

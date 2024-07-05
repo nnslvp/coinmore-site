@@ -46,15 +46,14 @@
     />
     {{ end }}
   </head>
-
   <body>
     {{ with hugo.IsProduction }} {{ end }}
     <div class="wrapper">
       {{partial "header.html" .}}
       <nav class="nav-page__container container">
         <ul class="navigation-list">
-          {{$homeLink := relLangURL "/"}} {{ $coinLink := relLangURL (printf "
-          /coin/%s/" $pageCoin.Params.coin_name) }} {{ $statisticsLink :=
+          {{ $homeLink := relLangURL "/" }} {{ $coinLink := relLangURL (printf
+          "/coin/%s/" $pageCoin.Params.coin_name) }} {{ $statisticsLink :=
           relLangURL (printf "/coin/%s/statistics" $pageCoin.Params.coin_name)
           }}
           <li class="navigation-item">

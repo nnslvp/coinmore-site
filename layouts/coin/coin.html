@@ -100,8 +100,10 @@
                 {{.Params.quick_start_subtitle}}
               </p>
               <search class="section-start__search">
+                {{$coinStatisticsUrl := relLangURL (print "/coin/"
+                .Params.coin_name "/statistics") }}
                 <form
-                  action="/coin/{{.Params.coin_name}}/statistics/"
+                  action="{{ $coinStatisticsUrl }}"
                   id="wallet-form"
                   class="section-start__search-form"
                 >
