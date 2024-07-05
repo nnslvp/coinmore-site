@@ -1,7 +1,12 @@
 ---
 layout: 'coin'
+SEO:
+  description: 'Исследуйте майнинг Alephium с CoinMore Pool. Наш продвинутый и надежный майнинг-пул обеспечивает высокую прибыльность и стабильность для майнеров Alephium.'
+  keywords: 'Майнинг Alephium, CoinMore Pool, майнинг криптовалют, блокчейн, Alephium, крипто майнинг, майнинг цифровой валюты, децентрализованный майнинг, безопасный майнинг, прибыльный майнинг, майнинг софт, майнинг оборудование'
+  
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
+image: '/images/alephium-pool.png'
 coin_logo: '/images/alephium-logo-light.svg'
 start_mining: 'Начать майнинг'
 pool_hashrate: 'Хешрейт пула:'
@@ -21,7 +26,7 @@ benefit3_title: 'Мин. выплата'
 quick_start_title: 'Быстрый старт'
 quick_start_subtitle: 'Alephium — первая майнинговая шардированная блокчейн-платформа первого уровня, которая масштабирует и улучшает основные технологии Bitcoin, Proof of Work и UTXO. Она обеспечивает высокопроизводительную, безопасную платформу для DeFi и децентрализованных приложений с повышенной энергоэффективностью.'
 button_view_statistic_text: 'Просмотреть личную статистику'
-pool_title: 'Alephium pool'
+title: 'Alephium pool'
 instruction_text: 'Пожалуйста, используйте подробные'
 instruction_link_text: 'инструкции по подключению.'
 faq_text: 'Если у вас есть вопросы, пожалуйста, обратитесь в'

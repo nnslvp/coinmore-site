@@ -1,5 +1,9 @@
 ---
 layout: 'coin'
+SEO:
+  description: 'Explore Raptoreum mining with CoinMore Pool. Our advanced and reliable mining pool ensures high profitability and stability for Raptoreum miners.'
+  keywords: 'Raptoreum mining, CoinMore Pool, cryptocurrency mining, blockchain, Raptoreum, crypto mining, digital currency mining, decentralized mining, secure mining, profitable mining, mining software, mining hardware'
+
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
 coin_logo: '/images/raptoreum-logo-light.svg'
@@ -11,7 +15,7 @@ daily_revenue: 'Daily Revenue:'
 fee: 'Fee:'
 active_miners: 'Active miners:'
 min_payout: 'Min. payout:'
-pool_title: 'Raptoreum pool'
+title: 'Raptoreum pool'
 instruction_text: 'Please use detailed'
 instruction_link_text: 'connection instructions.'
 faq_text: 'If you have any questions, please use the'

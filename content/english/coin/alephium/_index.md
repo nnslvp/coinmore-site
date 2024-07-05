@@ -1,5 +1,10 @@
 ---
 layout: 'coin'
+SEO:
+  description: 'Explore Alephium mining with CoinMore Pool. Our advanced and reliable mining pool ensures high profitability and stability for Alephium miners.'
+  keywords: 'Alephium mining, CoinMore Pool, cryptocurrency mining, blockchain, Alephium, crypto mining, digital currency mining, decentralized mining, secure mining, profitable mining, mining software, mining hardware'
+
+image: '/images/alephium-pool.png'
 coin_name: 'alephium'
 coin_symbol: 'ALPH'
 coin_logo: '/images/alephium-logo-light.svg'
@@ -11,7 +16,7 @@ daily_revenue: 'Daily Revenue:'
 fee: 'Fee:'
 active_miners: 'Active miners:'
 min_payout: 'Min. payout:'
-pool_title: 'Alephium pool'
+title: 'Alephium pool'
 instruction_text: 'Please use detailed'
 instruction_link_text: 'connection instructions.'
 faq_text: 'If you have any questions, please use the'
