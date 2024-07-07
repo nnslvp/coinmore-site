@@ -1,79 +1,79 @@
 .language-switcher {
-	z-index: 2;
-	position: relative;
-	display: inline-block;
-	background: transparent;
-	border: none;
-	cursor: pointer;
+  z-index: 2;
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .language-switcher__lang {
-	display: flex;
-	align-items: center;
-	gap: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .dropdown {
-	width: 10.125rem;
-	display: none;
-	position: absolute;
-	background-color: var(--color-white);
-	box-shadow: 0 0.5rem 1rem 0 var(--semi-transparent-black-light);
-	z-index: 1;
-	right: 0;
-	top: 1.875rem;
-	border-radius: 0.375rem;
-	overflow: hidden;
-	padding: 0.5rem 0;
+  width: 10.125rem;
+  display: none;
+  position: absolute;
+  background-color: var(--color-white);
+  box-shadow: 0 0.5rem 1rem 0 var(--semi-transparent-black-light);
+  z-index: 1;
+  right: 0;
+  top: 1.875rem;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  padding: 0.5rem 0;
 }
 
 :where(.footer .language-switcher) .dropdown {
-	top: initial;
-	bottom: 1.875rem;
+  top: initial;
+  bottom: 1.875rem;
 }
 
 .language-switcher .dropdown__item.active {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 :where(.language-switcher) .dropdown__item,
 .language-switcher__lang {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown__item {
-  gap: .75rem;
-	padding: 0.625rem 1.25rem;
-	&:hover {
-		font-weight: var(--font-weight-bold);
-		color: var(--color-primary);
-		background-color: var(--color-primary-hover-0-05-opacity);
-	}
+  gap: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  &:hover {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--color-primary-hover-0-05-opacity);
+  }
 }
 
 .dropdown .dropdown__item:last-child {
-	border-bottom: none;
+  border-bottom: none;
 }
 
 .language-switcher.open .dropdown {
-	display: block;
+  display: block;
 }
 
 .language-switcher .chevron-icon-bottom {
-	transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .language-switcher.open .chevron-icon-bottom {
-	transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .flag-icon {
-	width: 1.5rem;
-	height: auto;
-	margin-right: 0.3125rem;
+  width: 1.5rem;
+  height: auto;
+  margin-right: 0.3125rem;
 }
 
 .language-name {
-	vertical-align: middle;
+  vertical-align: middle;
 }

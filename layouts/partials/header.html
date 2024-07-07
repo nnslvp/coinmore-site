@@ -1,36 +1,41 @@
+{{$homeLink := relLangURL "/"}} {{ $currentDir := .File.Dir }} {{ $pageCoin :=
+.Site.GetPage $currentDir }} {{ $currentPage := .RelPermalink }} {{
+$coinStatisticsUrl := print "/coin/" $pageCoin.Params.coin_name "/statistics" }}
+{{ $coinInstructionsUrl := print "/coin/" $pageCoin.Params.coin_name
+"/instructions" }} {{ $calculatorUrl := "/calculator" }}
 <header class="header">
   <div class="container">
     <div class="header__inner">
-      <a href="{{ relLangURL "/"}}"  class="header__logo">
-        <img src="/icons/logo.svg" alt="logo">
+      <a href="{{ $homeLink }}" class="header__logo">
+        <img src="/icons/logo.svg" alt="logo" />
       </a>
       <nav class="header__main-nav">
         <ul class="header__main-nav-list text--medium">
-          {{ $currentDir := .File.Dir }}
-          {{ $pageCoin := .Site.GetPage $currentDir }}
-          {{ $currentPage := .RelPermalink }}
-          {{ $coinStatisticsUrl := print "/coin/" $pageCoin.Params.coin_name "/statistics" }}
-          {{ $coinInstructionsUrl := print "/coin/" $pageCoin.Params.coin_name "/instructions" }}
-          {{ $calculatorUrl := "/calculator" }}
-          {{ with $pageCoin.Params.coin_name }}
-          {{ $calculatorUrl = printf "%s?coin=%s" $calculatorUrl . }}
-          {{ end }}
-          {{ if eq .Type "coin" }}
+          {{ with $pageCoin.Params.coin_name }} {{ $calculatorUrl = printf
+          "%s?coin=%s" $calculatorUrl . }} {{ end }} {{ if eq .Type "coin" }}
           <li class="header__main-nav-item">
-            <a href="{{ relLangURL  $coinStatisticsUrl }}"
-              class="link header__main-nav-link  {{ if strings.Contains $currentPage $coinStatisticsUrl }}active{{ end }}">
-              {{ i18n "my" | title}} 
-              {{ i18n "statistics"}}</a>
+            <a
+              href="{{ relLangURL  $coinStatisticsUrl }}"
+              class="link header__main-nav-link  {{ if strings.Contains $currentPage $coinStatisticsUrl }}active{{ end }}"
+            >
+              {{ i18n "my" | title}} {{ i18n "statistics"}}</a
+            >
           </li>
-          <li class="header__main-nav-item ">
-            <a href="{{ relLangURL $coinInstructionsUrl }}"
-              class="link header__main-nav-link {{ if strings.Contains $currentPage $coinInstructionsUrl }}active{{ end }}">{{ i18n "instructions" | title}} </a>
+          <li class="header__main-nav-item">
+            <a
+              href="{{ relLangURL $coinInstructionsUrl }}"
+              class="link header__main-nav-link {{ if strings.Contains $currentPage $coinInstructionsUrl }}active{{ end }}"
+              >{{ i18n "instructions" | title}}
+            </a>
           </li>
           {{ end }}
 
-          <li class="header__main-nav-item ">
-            <a href="{{ relLangURL $calculatorUrl }}"
-              class="link header__main-nav-link {{ if strings.Contains $currentPage $calculatorUrl }}active{{ end }}">{{ i18n "calculator" | title}} </a>
+          <li class="header__main-nav-item">
+            <a
+              href="{{ relLangURL $calculatorUrl }}"
+              class="link header__main-nav-link {{ if strings.Contains $currentPage $calculatorUrl }}active{{ end }}"
+              >{{ i18n "calculator" | title}}
+            </a>
           </li>
         </ul>
       </nav>
@@ -43,5 +48,4 @@
       </div>
     </div>
   </div>
-
 </header>

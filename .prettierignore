@@ -1,0 +1,6 @@
+node_modules
+/public/
+/resources/
+/cache/
+/resources/_gen/
+/tmp/

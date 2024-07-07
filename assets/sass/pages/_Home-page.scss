@@ -1,73 +1,73 @@
 .main-home-page section {
-	margin-bottom: 5rem;
+  margin-bottom: 5rem;
 }
 
 .section-welcome__page-home .section-welcome__inner {
-	background-image: url('/images/bg-top-section-home-page.svg');
-	background-size: 32.6875rem 32.6875rem;
+  background-image: url('/images/bg-top-section-home-page.svg');
+  background-size: 32.6875rem 32.6875rem;
 }
 
 .section-start-mining__inner {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .section-start-mining__header {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .coins-list {
-	display: grid;
-	grid-template-columns: repeat(4, 21.375rem);
-	gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, 21.375rem);
+  gap: 0.75rem;
 }
 
 @media (max-width: $breakpoint-xl) {
-	.coins-list {
-		grid-template-columns: repeat(3, 21.125rem);
-	}
+  .coins-list {
+    grid-template-columns: repeat(3, 21.125rem);
+  }
 }
 
 @media (max-width: $breakpoint-lg) {
-	.main-home-page section {
-		margin-bottom: 2.5rem;
-	}
+  .main-home-page section {
+    margin-bottom: 2.5rem;
+  }
 
-	.section-welcome__page-home {
-		background: var(--linear-gradient-primary);
-	}
+  .section-welcome__page-home {
+    background: var(--linear-gradient-primary);
+  }
 
-	.section-welcome__page-home .section-welcome__inner {
-		background: none;
-	}
+  .section-welcome__page-home .section-welcome__inner {
+    background: none;
+  }
 
-	.section-welcome__page-home.section-welcome {
-		flex-basis: 25rem;
-	}
+  .section-welcome__page-home.section-welcome {
+    flex-basis: 25rem;
+  }
 
-	.coins-list {
-		grid-template-columns: repeat(2, 21.125rem);
-	}
+  .coins-list {
+    grid-template-columns: repeat(2, 21.125rem);
+  }
 }
 
 @media (max-width: $breakpoint-md) {
-	.main-home-page section:last-child {
-		margin-bottom: 1.25rem;
-	}
+  .main-home-page section:last-child {
+    margin-bottom: 1.25rem;
+  }
 
-	.section-welcome {
-		flex-basis: 19.0625rem;
-	}
+  .section-welcome {
+    flex-basis: 19.0625rem;
+  }
 
-	.section-start-mining__header {
-		gap: 1.25rem;
-		justify-content: center;
-	}
+  .section-start-mining__header {
+    gap: 1.25rem;
+    justify-content: center;
+  }
 
-	.coins-list {
-		grid-template-columns: repeat(1, 1fr);
-	}
+  .coins-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -5,136 +5,136 @@ $breakpoint-xl: 1024px;
 $breakpoint-xxl: 1440px;
 
 :root {
-	--container-width: 83.75rem;
-	--container-width-1024: 59rem;
-	--container-width-768: 43rem;
-	--container-width-375: 21.4375rem;
-	--container-padding: 0.625rem;
+  --container-width: 83.75rem;
+  --container-width-1024: 59rem;
+  --container-width-768: 43rem;
+  --container-width-375: 21.4375rem;
+  --container-padding: 0.625rem;
 
-	/* Основные цвета */
-	--color-primary: #9b4dca;
-	--color-error: #EB5757;
-	--color-success: #1d8217;
-	--color-primary-hover: #61148f;
-	--color-primary-hover-0-05-opacity: rgba(155, 77, 202, 0.05);
-	--color-box-shadow-card-coin: rgba(0, 0, 0, 0.25);
-	--color-box-shadow-card-coin-hover: rgba(0, 0, 0, 0.4);
-	--light-blue-semi-transparent: var(--light-blue-semi-transparent);
-	--semi-transparent-black-light: rgba(0, 0, 0, 0.2);
+  /* Основные цвета */
+  --color-primary: #9b4dca;
+  --color-error: #eb5757;
+  --color-success: #1d8217;
+  --color-primary-hover: #61148f;
+  --color-primary-hover-0-05-opacity: rgba(155, 77, 202, 0.05);
+  --color-box-shadow-card-coin: rgba(0, 0, 0, 0.25);
+  --color-box-shadow-card-coin-hover: rgba(0, 0, 0, 0.4);
+  --light-blue-semi-transparent: var(--light-blue-semi-transparent);
+  --semi-transparent-black-light: rgba(0, 0, 0, 0.2);
 
-	/* Стили текста и фона */
-	--color-white: #ffffff;
-	--color-black: #000000;
+  /* Стили текста и фона */
+  --color-white: #ffffff;
+  --color-black: #000000;
 
-	/* Цвета текста */
-	--color-text-body: #41464a;
-	--color-text-grey: #606c76;
-	--color-text-light-grey: #afb8bf;
+  /* Цвета текста */
+  --color-text-body: #41464a;
+  --color-text-grey: #606c76;
+  --color-text-light-grey: #afb8bf;
 
-	/* Градиенты */
-	--linear-gradient-primary: linear-gradient(
-		104.07deg,
-		#a40dff 16.94%,
-		#8e3cc0 39.99%,
-		#9339c9 65.72%,
-		#723199 86.29%,
-		#4b106e 100%
-	);
+  /* Градиенты */
+  --linear-gradient-primary: linear-gradient(
+    104.07deg,
+    #a40dff 16.94%,
+    #8e3cc0 39.99%,
+    #9339c9 65.72%,
+    #723199 86.29%,
+    #4b106e 100%
+  );
 
-	--font-family: 'Poppins', sans-serif;
-	--second-family: 'Roboto Mono', sans-serif;
+  --font-family: 'Poppins', sans-serif;
+  --second-family: 'Roboto Mono', sans-serif;
 
-	/* Размеры шрифтов */
-	--font-size-32: 2rem;
-	--font-size-24: 1.5rem;
-	--font-size-20: 1.25rem;
-	--font-size-18: 1.125rem;
-	--font-size-16: 1rem;
-	--font-size-14: 0.875rem;
-	--font-size-12: 0.75rem;
+  /* Размеры шрифтов */
+  --font-size-32: 2rem;
+  --font-size-24: 1.5rem;
+  --font-size-20: 1.25rem;
+  --font-size-18: 1.125rem;
+  --font-size-16: 1rem;
+  --font-size-14: 0.875rem;
+  --font-size-12: 0.75rem;
 
-	/* Жирность шрифтов */
-	--font-weight-bold: 700;
-	--font-weight-semibold: 600;
-	--font-weight-medium: 500;
-	--font-weight-regular: 400;
+  /* Жирность шрифтов */
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
 
-	/* Межстрочные интервалы */
-	--line-height-auto: auto;
-	--line-height-1-5: 1.5;
-	--line-height-1-8: 1.8;
-	--line-height-21: 1.3125rem;
+  /* Межстрочные интервалы */
+  --line-height-auto: auto;
+  --line-height-1-5: 1.5;
+  --line-height-1-8: 1.8;
+  --line-height-21: 1.3125rem;
 }
 
 /* Примеры использования переменных */
 .text-32-bold {
-	font-size: var(--font-size-32);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-auto);
 }
 
 .text-24-bold {
-	font-size: var(--font-size-24);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-auto);
 }
 
 .text-20-bold {
-	font-size: var(--font-size-20);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-auto);
 }
 
 .text-18-semibold {
-	font-size: var(--font-size-18);
-	font-weight: var(--font-weight-semibold);
-	line-height: var(--line-height-1-5);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-1-5);
 }
 
 .text-18-regular {
-	font-size: var(--font-size-18);
-	font-weight: var(--font-weight-regular);
-	line-height: var(--line-height-1-8);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-1-8);
 }
 
 .text-16-bold {
-	font-size: var(--font-size-16);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-1-5);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-1-5);
 }
 
 .text-16-semibold {
-	font-size: var(--font-size-16);
-	font-weight: var(--font-weight-semibold);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-auto);
 }
 
 .text-16-regular {
-	font-size: var(--font-size-16);
-	font-weight: var(--font-weight-regular);
-	line-height: var(--line-height-1-5);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-1-5);
 }
 
 .text-14-bold {
-	font-size: var(--font-size-14);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-auto);
 }
 
 .text-14-medium {
-	font-size: var(--font-size-14);
-	font-weight: var(--font-weight-medium);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-auto);
 }
 
 .text-14-regular {
-	font-size: var(--font-size-14);
-	font-weight: var(--font-weight-regular);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-auto);
 }
 
 .text-12-regular {
-	font-size: var(--font-size-12);
-	font-weight: var(--font-weight-regular);
-	line-height: var(--line-height-auto);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-auto);
 }

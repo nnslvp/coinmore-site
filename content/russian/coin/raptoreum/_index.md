@@ -2,7 +2,7 @@
 SEO:
   description: 'Исследуйте майнинг Raptoreum с CoinMore Pool. Наш продвинутый и надежный майнинг-пул обеспечивает высокую прибыльность и стабильность для майнеров Raptoreum.'
   keywords: 'Майнинг Raptoreum, CoinMore Pool, майнинг криптовалют, блокчейн, Raptoreum, крипто майнинг, майнинг цифровой валюты, децентрализованный майнинг, безопасный майнинг, прибыльный майнинг, майнинг софт, майнинг оборудование'
-  
+
 layout: 'coin'
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
@@ -44,15 +44,15 @@ chart_intervals:
   week: 'Неделя'
 
 table_headers:
-  - "Регион"
-  - "Адрес"
-  - "Порт"
-  - "SSL Порт"
+  - 'Регион'
+  - 'Адрес'
+  - 'Порт'
+  - 'SSL Порт'
 
 table_body:
-  - region: "Автоопределение региона"
-    address: "auto-geo.raptoreum.coinmore.io:3002"
+  - region: 'Автоопределение региона'
+    address: 'auto-geo.raptoreum.coinmore.io:3002'
     port: 20032
     ssl_port: 20033
-    icon: "globe-icon"
+    icon: 'globe-icon'
 ---
