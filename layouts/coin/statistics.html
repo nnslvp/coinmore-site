@@ -327,11 +327,11 @@
     </div>
     <script>
       const COIN = {{ $pageCoin.Params.coin_name }}
-      const COIN_SYMBOL = {{ $pageCoin.Params.coin_symbol }}
-      const SELECT_PAYOUTS_NAME_OPTIONS = {
-        day: {{ i18n "day" | title }},
-      week: { { i18n "week" | title } }
-      }
+        const COIN_SYMBOL = {{ $pageCoin.Params.coin_symbol }}
+        const SELECT_PAYOUTS_NAME_OPTIONS = {
+          day: {{ i18n "day" | title }},
+          week: {{ i18n "week" | title }}
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {{ $customSelect:= resources.Get "js/custom-select.js" }} {{ $api :=
