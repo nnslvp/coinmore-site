@@ -34,8 +34,8 @@ function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
         },
       },
     }),
-    dataWeek,
-    labelsWeek,
+    dataDay,
+    labelsDay,
   );
 
   TAB_POOL_HASHRATE_DAY.addEventListener('click', (e) => {
@@ -66,8 +66,8 @@ function showChartProfit({ labelsWeek, dataWeek, labelsDay, dataDay, units }) {
         },
       },
     }),
-    dataWeek,
-    labelsWeek,
+    dataDay,
+    labelsDay,
   );
 
   TAB_PROFIT_DAY.addEventListener('click', (e) => {
@@ -96,8 +96,8 @@ function showChartWorkersActivity({
         ],
       },
     }),
-    dataWeek,
-    labelsWeek,
+    dataDay,
+    labelsDay,
   );
 
   TAB_WORKERS_DAY.addEventListener('click', (e) => {

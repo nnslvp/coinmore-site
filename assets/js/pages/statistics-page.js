@@ -583,8 +583,8 @@ function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
         },
       },
     }),
-    dataWeek,
-    labelsWeek,
+    labelsDay,
+    dataDay,
   );
 
   TAB_DAY_CHART_HASHRATE.addEventListener('click', function (e) {

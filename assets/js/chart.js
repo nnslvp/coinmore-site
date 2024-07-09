@@ -90,7 +90,7 @@ function getChartOptions(newOptions) {
       labels: [],
       datasets: [
         {
-          period: CHART_PERIOD.week,
+          period: CHART_PERIOD.day,
           label: CHART_TITLE.hashrate,
           data: [],
           backgroundColor: 'rgba(155, 77, 202, 0.24)',

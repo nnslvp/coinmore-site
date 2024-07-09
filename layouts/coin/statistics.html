@@ -209,14 +209,10 @@
                     {{ .Params.chart_titles.hashrate }}
                   </h2>
                   <div class="chart-interval tabs__chart-hashrate">
-                    <button
-                      class="tab tab-border-radius-around-left hourButton"
-                    >
+                    <button class="tab tab-border-radius-around-left active">
                       {{ .Params.chart_intervals.one_day }}
                     </button>
-                    <button
-                      class="tab tab-border-radius-around-right active dayButton"
-                    >
+                    <button class="tab tab-border-radius-around-right">
                       {{ .Params.chart_intervals.week }}
                     </button>
                   </div>
