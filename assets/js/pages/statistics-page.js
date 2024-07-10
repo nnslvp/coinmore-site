@@ -477,7 +477,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
     const shortHashRateDay = workerDay.hashrate
       ? shortenHm(workerDay.hashrate, 2)
       : { hashrate: 'N/A', units: '' };
-    const workersChart = workerDay.worker
+    const workerChart = workerDay.worker
       ? `<canvas id="${workerDay.worker}" class="history-сhart"></canvas>`
       : 'N/A';
     rowsHtml += `
@@ -496,7 +496,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
                       </span>
                     </td>
                     <td class="history-cell">
-                    ${workersChart}
+                    ${workerChart}
                     </td>
                     <td class="valid-shares-cell" data="Valid Shares 1h/24h">
                       <span class="electricity-costs__value">
