@@ -265,11 +265,22 @@
                 >
                   <thead>
                     <tr>
-                      <th>{{ .Params.workers_table_headers.worker }}</th>
-                      <th>{{ .Params.workers_table_headers.hashrate }}</th>
-                      <th>{{ .Params.workers_table_headers.history }}</th>
-                      <th>{{ .Params.workers_table_headers.valid_shares }}</th>
-                      <th>{{ .Params.workers_table_headers.last_share_at }}</th>
+                      <th>
+                        {{ .Params.workers_table_headers.worker | title }}
+                      </th>
+                      <th>
+                        {{ .Params.workers_table_headers.hashrate | title }}
+                      </th>
+                      <th>
+                        {{ .Params.workers_table_headers.history | title }}
+                      </th>
+                      <th>
+                        {{ .Params.workers_table_headers.valid_shares | title }}
+                      </th>
+                      <th>
+                        {{ .Params.workers_table_headers.last_share_at | title
+                        }}
+                      </th>
                     </tr>
                   </thead>
                   <tbody></tbody>
