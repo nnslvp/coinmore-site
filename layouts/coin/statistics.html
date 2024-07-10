@@ -336,7 +336,8 @@
     resources.Get "js/show-data-functions.js" }} {{ $page := resources.Get
     "js/pages/statistics-page.js" }} {{ $global:= resources.Get "js/main.js" }}
     {{ $js := slice $api $showDataFunctions $helpers $chart $customSelect
-    $global $page | resources.Concat "js/build/statistics-page-build.js"  }}
+    $global $page | resources.Concat "js/build/statistics-page-build.js" |
+    resources.Minify }}
     <script type="module" src="{{ $js.Permalink }}"></script>
   </body>
 </html>
