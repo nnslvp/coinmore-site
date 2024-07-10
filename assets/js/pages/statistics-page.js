@@ -477,7 +477,9 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
     const shortHashRateDay = workerDay.hashrate
       ? shortenHm(workerDay.hashrate, 2)
       : { hashrate: 'N/A', units: '' };
-    const workersChart = workerDay.worker ? `<canvas id="${workerDay.worker}" class="history-сhart"></canvas>` : 'N/A'
+    const workersChart = workerDay.worker
+      ? `<canvas id="${workerDay.worker}" class="history-сhart"></canvas>`
+      : 'N/A';
     rowsHtml += `
                   <tr>
                     <td class="worker-cell" data="worker">
