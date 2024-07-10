@@ -20,7 +20,7 @@ function initializeChart(
   gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
   gradient.addColorStop(1, 'rgba(155, 77, 202, 0)');
 
-  if (initialData && initialData.length) {
+  if (initialData && initialData.length > 1) {
     const { minY, maxY, stepSize } = calculateYAxisSettings(initialData);
     chartOptions.options.scales.y.min = minY;
     chartOptions.options.scales.y.max = maxY;
@@ -220,7 +220,7 @@ function updateChartData(chart, newData, labels, period, label) {
     chart.data.labels = labels;
   }
 
-  if (newData && newData.length) {
+  if (newData && newData.length > 1) {
     const { minY, maxY, stepSize } = calculateYAxisSettings(newData);
     chart.options.scales.y.min = minY;
     chart.options.scales.y.max = maxY;
