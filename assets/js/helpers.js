@@ -107,3 +107,17 @@ function formatDate(dateString) {
   const year = String(date.getUTCFullYear()).slice(-2);
   return `${day}.${month}.${year}`;
 }
+
+const groupBy = (values, keyFinder) => {
+  return values.reduce((a, b) => {
+    const key = typeof keyFinder === 'function' ? keyFinder(b) : b[keyFinder];
+
+    if (!a[key]) {
+      a[key] = [b];
+    } else {
+      a[key] = [...a[key], b];
+    }
+
+    return a;
+  }, {});
+};
