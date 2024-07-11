@@ -60,15 +60,16 @@
               </p>
               <ul class="benefits-container">
                 {{ range $index, $element := .Params.benefits }}
-                  <li class="benefit-item">
-                    <p class="benefit-item__text">
-                      <strong class="stat-item__value">{{ $element.title }}</strong>
-                      {{ $element.text }}
-                      {{ if eq $index 2 }}
-                        <span id="pool_min_payout"></span>
-                      {{ end }}
-                    </p>
-                  </li>
+                <li class="benefit-item">
+                  <p class="benefit-item__text">
+                    <strong class="stat-item__value"
+                      >{{ $element.title }}</strong
+                    >
+                    {{ $element.text }} {{ if eq $index 2 }}
+                    <span id="pool_min_payout"></span>
+                    {{ end }}
+                  </p>
+                </li>
                 {{ end }}
               </ul>
               <img
