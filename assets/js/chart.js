@@ -226,6 +226,11 @@ function updateChartData(chart, newData, labels, period, label) {
     chart.options.scales.y.max = maxY;
     chart.options.scales.y.ticks.stepSize = stepSize;
     chart.data.datasets[0].data = newData;
+  } else {
+    chart.options.scales.y.min = null;
+    chart.options.scales.y.max = null;
+    chart.options.scales.y.ticks.stepSize = null;
+    chart.data.datasets[0].data = [];
   }
 
   if (label) {
