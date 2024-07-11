@@ -53,7 +53,7 @@ windowsExamples:
       ```
       SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool eu1.alephium-pool.com:20032 --wallet your_wallet_address
       ```
-      3. Запустите **alph**.
+      3. Запустите файл **alph**.
       4. PROFIT!
   - tab: 'T-Rex'
     instruction: |
