@@ -62,7 +62,7 @@ windowsExamples:
       ```
       t-rex.exe -a blake3 -o stratum+tcp://eu1.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
       ```
-      3. Запустите **alph**.
+      3. Запустите файл **alph**.
       4. PROFIT!
   - tab: 'BzMiner'
     instruction: |
