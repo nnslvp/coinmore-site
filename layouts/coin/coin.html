@@ -131,7 +131,7 @@
               <h2 class="heading-h1 section-coin__h1">{{ .Params.title }}</h2>
               <p class="subtitle section-coin__subtitle">
                 {{ .Params.instruction_text }} {{ $instructionLink := relLangURL
-                (printf " /coin/%s/instructions" .Params.coin_name)}}
+                (printf "/coin/%s/instructions" .Params.coin_name)}}
                 <a href="{{$instructionLink}}" class="link">
                   <strong>{{ .Params.instruction_link_text }}</strong>
                 </a>
