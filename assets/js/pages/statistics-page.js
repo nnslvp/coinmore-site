@@ -517,10 +517,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
 
   tableBody.innerHTML = rowsHtml;
 
-  const workersByGroupe = groupBy(
-    workersHistory,
-    ({ worker }) => worker,
-  );
+  const workersByGroupe = groupBy(workersHistory, ({ worker }) => worker);
 
   const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('.history-сhart');
   CHARTS_HISTORY_CELL_TABLE.forEach((chart) => {
