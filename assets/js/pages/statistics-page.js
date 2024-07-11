@@ -477,7 +477,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
     const shortHashRateDay = workerDay.hashrate
       ? shortenHm(workerDay.hashrate, 2)
       : { hashrate: 'N/A', units: '' };
-    const workerChart = workerDay.worker
+    const workerChart = workerDay.hashrate
       ? `<canvas id="${workerDay.worker}" class="history-сhart"></canvas>`
       : 'N/A';
     rowsHtml += `
@@ -516,7 +516,8 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
   });
 
   tableBody.innerHTML = rowsHtml;
-  const workersByGroupe = Object.groupBy(
+
+  const workersByGroupe = groupBy(
     workersHistory,
     ({ worker }) => worker,
   );
