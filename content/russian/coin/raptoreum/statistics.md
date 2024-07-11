@@ -8,7 +8,7 @@ headless: true
 title: 'Моя статистика'
 search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'
-section_title: 'Кошелек Alephium'
+section_title: 'Кошелек Raptoreum'
 edit_min_payouts_button: 'Отредактировать мою мин. выплату'
 stat_labels:
   balance: 'Ваш баланс:'
