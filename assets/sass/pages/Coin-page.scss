@@ -42,6 +42,7 @@
   text-align: center;
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-21);
+
   strong {
     display: block;
   }
@@ -83,8 +84,9 @@
   gap: 1.25rem;
 }
 
-.section-start__search-form .input {
-  width: 50rem;
+.section-start__search-form {
+  max-width: 50rem;
+  margin: 0 auto;
 }
 
 .section-start__search-form .submit-btn {
@@ -105,6 +107,7 @@
 .section-coin__subtitle {
   margin: 0 auto;
   margin-bottom: 2rem;
+
   span {
     display: block;
   }
@@ -134,10 +137,11 @@
   margin-bottom: 2.5rem;
 }
 
+.input-container {
+  flex: 1;
+}
+
 @media (max-width: $breakpoint-xl) {
-  .section-start__search-form .input {
-    width: 35.8125rem;
-  }
 
   .chart-workers,
   .chart-profit {
@@ -174,10 +178,6 @@
 
   .section-start {
     padding: 2.5rem 0;
-  }
-
-  .section-start__search-form .input {
-    width: 28.8125rem;
   }
 
   .section-coin__inner {
