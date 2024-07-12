@@ -1,3 +1,12 @@
+@import '../main.scss';
+@import '../components/input';
+@import '../components/table';
+@import '../components/tab';
+@import '../components/chart';
+@import '../components/stat-card';
+@import '../components/toast';
+@import '../components/custom-select';
+
 :has(.tab-payouts.active) .select-interval-payouts {
   visibility: visible;
   pointer-events: initial;
