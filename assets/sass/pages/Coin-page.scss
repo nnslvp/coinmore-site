@@ -1,3 +1,11 @@
+@import '../main.scss';
+@import '../components/input';
+@import '../components/table';
+@import '../components/table-servers';
+@import '../components/tab';
+@import '../components/chart';
+@import '../components/stat-card';
+
 .section-welcome__page-coin .section-welcome__inner {
   background-image: url('/images/loupe.svg');
   background-size: 34.8125rem 36.625rem;
