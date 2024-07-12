@@ -127,7 +127,12 @@ function drawData(coin, wallet) {
   const hashrate24hPromise = fetchMyHashrate(coin, wallet, PERIOD_DAY);
   const balancePromise = fetchMyBalance(coin, wallet);
   const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
-  const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
+  const historyWalletDayPromise = fetchHistoryWallet(
+    coin,
+    wallet,
+    PERIOD_DAY,
+    GROUP_BY.hour,
+  );
   const historyWorkersDayPromise = fetchHistoryWorkers(coin, wallet);
   const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
   const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
@@ -259,9 +264,8 @@ function drawData(coin, wallet) {
         const labelsWeek = historyWalletWeek.map((item) => item.bucket);
         const dataWeek = historyWalletWeek.map((item) => item.hashrate);
         const labelsDay = historyWalletDay.map((item) => item.bucket);
-        const dataDay = historyWalletDay.map((item) =>
-          shortenHm(item.hashrate),
-        );
+        const dataDay = historyWalletDay.map((item) => item.hashrate);
+
         showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
       } else {
         if (historyWalletWeek.status === 'rejected') {
@@ -580,8 +584,8 @@ function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
         },
       },
     }),
-    labelsDay,
     dataDay,
+    labelsDay,
   );
 
   TAB_DAY_CHART_HASHRATE.addEventListener('click', function (e) {
