@@ -246,11 +246,7 @@ function drawData(coin, wallet) {
 
       if (historyWorkersDayResult) {
         const workersHistory = historyWorkersDayResult.workers_history;
-        const workersHistoryDay = workersHistory.filter(({ bucket }) => {
-          const lastDayStart = new Date().setHours(0, 0, 0, 0);
-          return new Date(bucket) >= lastDayStart;
-        });
-        showWorkersTable(workers24h, workers1h, workersHistoryDay);
+        showWorkersTable(workers24h, workers1h, workersHistory);
       } else if (historyWorkersDay.status === 'rejected') {
         console.info(
           'Error in historyWorkersDayPromise:',

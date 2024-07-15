@@ -77,7 +77,7 @@ function fetchHistoryWallet(
 function fetchHistoryWorkers(
   coin,
   wallet,
-  period = PERIOD_WEEK,
+  period = PERIOD_DAY,
   groupeBy = GROUP_BY.hour,
 ) {
   return statsApiCall(
