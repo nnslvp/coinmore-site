@@ -1,3 +1,8 @@
+@import '../main.scss';
+@import '../components/input';
+@import '../components/table';
+@import '../components/custom-select';
+
 .calculator__inner {
   display: flex;
   flex-direction: column;
@@ -30,12 +35,6 @@
 
 .calculator_form .input-container {
   flex-basis: 24.375rem;
-}
-
-.label {
-  margin-left: 1.5rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-grey);
 }
 
 .calculate-btn {

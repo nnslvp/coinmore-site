@@ -1,3 +1,11 @@
+@import '../main.scss';
+@import '../components/input';
+@import '../components/table';
+@import '../components/table-servers';
+@import '../components/tab';
+@import '../components/chart';
+@import '../components/stat-card';
+
 .section-welcome__page-coin .section-welcome__inner {
   background-image: url('/images/loupe.svg');
   background-size: 34.8125rem 36.625rem;
@@ -34,6 +42,7 @@
   text-align: center;
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-21);
+
   strong {
     display: block;
   }
@@ -75,8 +84,9 @@
   gap: 1.25rem;
 }
 
-.section-start__search-form .input {
-  width: 50rem;
+.section-start__search-form {
+  max-width: 50rem;
+  margin: 0 auto;
 }
 
 .section-start__search-form .submit-btn {
@@ -97,6 +107,7 @@
 .section-coin__subtitle {
   margin: 0 auto;
   margin-bottom: 2rem;
+
   span {
     display: block;
   }
@@ -126,11 +137,11 @@
   margin-bottom: 2.5rem;
 }
 
-@media (max-width: $breakpoint-xl) {
-  .section-start__search-form .input {
-    width: 35.8125rem;
-  }
+.input-container {
+  flex: 1;
+}
 
+@media (max-width: $breakpoint-xl) {
   .chart-workers,
   .chart-profit {
     display: block;
@@ -168,10 +179,6 @@
     padding: 2.5rem 0;
   }
 
-  .section-start__search-form .input {
-    width: 28.8125rem;
-  }
-
   .section-coin__inner {
     padding: 2.5rem 0 2.5rem;
   }
@@ -207,9 +214,6 @@
 
   .section-start__search-form {
     flex-direction: column;
-    .input {
-      width: 100%;
-    }
   }
 
   .section-start__inner {

@@ -34,8 +34,9 @@
     <meta name="twitter:image:width" content="{{ $widthImage }}" />
     <meta name="twitter:image:height" content="{{ $heightImage }}" />
 
-    {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" }} {{
-    with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+    {{ $opts := dict "transpiler" "libsass" "targetPath"
+    "css/Calculator-page.css" }} {{ with resources.Get
+    "sass/pages/Calculator-page.scss" | toCSS $opts | minify | fingerprint }}
     <link
       rel="stylesheet"
       href="{{ .RelPermalink }}"
