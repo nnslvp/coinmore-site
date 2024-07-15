@@ -127,7 +127,12 @@ function drawData(coin, wallet) {
   const hashrate24hPromise = fetchMyHashrate(coin, wallet, PERIOD_DAY);
   const balancePromise = fetchMyBalance(coin, wallet);
   const historyWalletWeekPromise = fetchHistoryWallet(coin, wallet);
-  const historyWalletDayPromise = fetchHistoryWallet(coin, wallet, PERIOD_DAY);
+  const historyWalletDayPromise = fetchHistoryWallet(
+    coin,
+    wallet,
+    PERIOD_DAY,
+    GROUP_BY.hour,
+  );
   const historyWorkersDayPromise = fetchHistoryWorkers(coin, wallet);
   const userValueMinPayoutsPromise = fetchUserValue(coin, wallet);
   const poolValueMinPayoutsPromise = fetchPoolValue(coin, KIND.minPayout);
@@ -241,11 +246,7 @@ function drawData(coin, wallet) {
 
       if (historyWorkersDayResult) {
         const workersHistory = historyWorkersDayResult.workers_history;
-        const workersHistoryDay = workersHistory.filter(({ bucket }) => {
-          const lastDayStart = new Date().setHours(0, 0, 0, 0);
-          return new Date(bucket) >= lastDayStart;
-        });
-        showWorkersTable(workers24h, workers1h, workersHistoryDay);
+        showWorkersTable(workers24h, workers1h, workersHistory);
       } else if (historyWorkersDay.status === 'rejected') {
         console.info(
           'Error in historyWorkersDayPromise:',
@@ -259,9 +260,8 @@ function drawData(coin, wallet) {
         const labelsWeek = historyWalletWeek.map((item) => item.bucket);
         const dataWeek = historyWalletWeek.map((item) => item.hashrate);
         const labelsDay = historyWalletDay.map((item) => item.bucket);
-        const dataDay = historyWalletDay.map((item) =>
-          shortenHm(item.hashrate),
-        );
+        const dataDay = historyWalletDay.map((item) => item.hashrate);
+
         showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay });
       } else {
         if (historyWalletWeek.status === 'rejected') {
@@ -477,7 +477,7 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
     const shortHashRateDay = workerDay.hashrate
       ? shortenHm(workerDay.hashrate, 2)
       : { hashrate: 'N/A', units: '' };
-    const workerChart = workerDay.hashrate
+    const workerChart = workersHistory.length
       ? `<canvas id="${workerDay.worker}" class="history-сhart"></canvas>`
       : 'N/A';
     rowsHtml += `
@@ -518,7 +518,6 @@ function showWorkersTable(workersDay, workersHour, workersHistory) {
   tableBody.innerHTML = rowsHtml;
 
   const workersByGroupe = groupBy(workersHistory, ({ worker }) => worker);
-
   const CHARTS_HISTORY_CELL_TABLE = document.querySelectorAll('.history-сhart');
   CHARTS_HISTORY_CELL_TABLE.forEach((chart) => {
     const workerHistory = workersByGroupe[chart.id];
@@ -581,8 +580,8 @@ function showChartYourHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
         },
       },
     }),
-    labelsDay,
     dataDay,
+    labelsDay,
   );
 
   TAB_DAY_CHART_HASHRATE.addEventListener('click', function (e) {

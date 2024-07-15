@@ -63,16 +63,21 @@ function fetchHistoryProfit(
   );
 }
 
-function fetchHistoryWallet(coin, wallet, period = PERIOD_WEEK) {
+function fetchHistoryWallet(
+  coin,
+  wallet,
+  period = PERIOD_WEEK,
+  groupBy = GROUP_BY.day,
+) {
   return statsApiCall(
-    `/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}`,
+    `/wallet_history?coin=${coin}&wallet=${wallet}&period=${period}&group_by=${groupBy}`,
   );
 }
 
 function fetchHistoryWorkers(
   coin,
   wallet,
-  period = PERIOD_WEEK,
+  period = PERIOD_DAY,
   groupeBy = GROUP_BY.hour,
 ) {
   return statsApiCall(
