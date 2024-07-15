@@ -100,12 +100,14 @@ function eraseCookie(name) {
   document.cookie = name + '=; Max-Age=-99999999;';
 }
 
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-  const year = String(date.getUTCFullYear()).slice(-2);
-  return `${day}.${month}.${year}`;
+function formatDateTime(date) {
+  const optionsDate = { day: '2-digit', month: '2-digit', year: '2-digit' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit' };
+
+  const localDate = date.toLocaleDateString(undefined, optionsDate);
+  const localTime = date.toLocaleTimeString(undefined, optionsTime);
+
+  return { localDate, localTime };
 }
 
 const groupBy = (values, keyFinder) => {

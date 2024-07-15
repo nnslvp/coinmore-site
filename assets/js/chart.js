@@ -138,10 +138,13 @@ function getChartOptions(newOptions) {
             callback: function (value) {
               const period = this.chart.data.datasets[0].period;
               const valueAxis = this.getLabelForValue(value);
+              const date = new Date(valueAxis);
+              const { localDate, localTime } = formatDateTime(date);
+
               if (period === CHART_PERIOD.week) {
-                return formatDate(valueAxis);
+                return localDate;
               } else {
-                return valueAxis.split('T')[1].split(':', 2).join(':');
+                return localTime;
               }
             },
           },
@@ -177,12 +180,12 @@ function getChartOptions(newOptions) {
             title: function (tooltipItems) {
               const period = this.chart.data.datasets[0].period;
               const label = tooltipItems[0].label;
-              const date = label.split('T')[0];
-              const time = label.split('T')[1].split('.')[0];
+              const date = new Date(label);
+              const { localDate, localTime } = formatDateTime(date);
               if (period === 'week') {
-                return date;
+                return localDate;
               } else {
-                return `${date} ${time}`;
+                return `${localDate} ${localTime}`;
               }
             },
             label: function (tooltipItem) {
