@@ -23,22 +23,22 @@ document.body.addEventListener('click', () => {
   HAMBURGER_MENU_BTN.classList.remove('active');
 });
 
-let currentPath = window.location.pathname;
-let userLang = localStorage.getItem('userLang');
+const currentPath = window.location.pathname;
+const userLang = localStorage.getItem('userLang');
 
 if (!userLang) {
-  let systemLang = navigator.language || navigator.userLanguage;
-  let lang = systemLang.startsWith('ru') ? 'ru' : 'en';
+  const systemLang = navigator.language || navigator.userLanguage;
+  const lang = systemLang.startsWith('ru') ? 'ru' : 'en';
 
   if (!currentPath.includes(lang)) {
-    let newPath = `/${lang}/${currentPath}`;
+    const newPath = `/${lang}/${currentPath}`;
     window.location.href = newPath;
   }
 }
 
 function setUserLanguage(lang) {
   localStorage.setItem('userLang', lang);
-  let newPath = `/${lang}/${currentPath}`;
+  const newPath = `/${lang}/${currentPath}`;
   window.location.href = newPath;
 }
 
