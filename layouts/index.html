@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ .Site.Language.Lang }}">
   <head>
     {{ with hugo.IsProduction }}
     <!-- Google Tag Manager -->
@@ -57,7 +57,10 @@
       integrity="{{ .Data.Integrity }}"
       crossorigin="anonymous"
     />
+    {{ end }} {{ range .Translations }}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
     {{ end }}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
   </head>
 
   <body>
