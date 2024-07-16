@@ -66,7 +66,8 @@
                     <strong class="stat-item__value"
                       >{{ $element.title }}</strong
                     >
-                    {{ $element.text }} {{ if eq $index 2 }}
+                    {{ $element.text }} {{ if eq $element.title "Minimum Payout"
+                    }}
                     <span id="pool_min_payout"></span>
                     {{ end }}
                   </p>
