@@ -69,8 +69,9 @@
                     <strong class="stat-item__value"
                       >{{ $element.title }}</strong
                     >
-                    {{ $element.text }} {{ if eq $element.title "Minimum Payout"
-                    }}
+                    {{ $element.text }} {{ $isMinPayout := or (eq $element.title
+                    "Minimum Payout") (eq $element.title "Мин. выплата") }} {{
+                    if $isMinPayout }}
                     <span id="pool_min_payout"></span>
                     {{ end }}
                   </p>
