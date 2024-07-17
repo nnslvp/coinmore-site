@@ -50,9 +50,9 @@ table_headers:
   - 'SSL Port'
 
 table_body:
-  - region: 'Auto Detection'
-    address: 'auto-geo.raptoreum.coinmore.io:3002'
-    port: 20032
-    ssl_port: 20033
-    icon: 'globe-icon'
+  - region: 'RU'
+    address: 'ru1.raptoreum.coinmore.io'
+    port: '3002'
+    ssl_port: '3003'
+    icon: 'russian-flag-icon'
 ---
