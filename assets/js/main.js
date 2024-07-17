@@ -32,7 +32,7 @@ if (!userLang) {
   const langDocument = document.documentElement.lang;
 
   if (langSystem !== langDocument) {
-    setUserLanguage(lang);
+    setUserLanguage(langSystem);
   }
 }
 
