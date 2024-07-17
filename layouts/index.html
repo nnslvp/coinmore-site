@@ -128,7 +128,7 @@
     resources.Get "js/api.js" }} {{ $helpers := resources.Get "js/helpers.js" }}
     {{ $global:= resources.Get "js/main.js" }} {{ $js := slice $api
     $showDataFunctions $helpers $global $homePage | resources.Concat
-    "js/build/home-page-build.js" }}
+    "js/build/home-page-build.js" | resources.Minify}}
     <script type="module" src="{{ $js.Permalink }}"></script>
   </body>
 </html>
