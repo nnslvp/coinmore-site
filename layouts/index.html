@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ .Site.Language.Lang }}">
+<html lang="en">
   <head>
     {{ with hugo.IsProduction }}
     <!-- Google Tag Manager -->
@@ -57,10 +57,7 @@
       integrity="{{ .Data.Integrity }}"
       crossorigin="anonymous"
     />
-    {{ end }} {{ range .Translations }}
-    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
     {{ end }}
-    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
   </head>
 
   <body>
@@ -131,7 +128,7 @@
     resources.Get "js/api.js" }} {{ $helpers := resources.Get "js/helpers.js" }}
     {{ $global:= resources.Get "js/main.js" }} {{ $js := slice $api
     $showDataFunctions $helpers $global $homePage | resources.Concat
-    "js/build/home-page-build.js" | resources.Minify}}
+    "js/build/home-page-build.js" }}
     <script type="module" src="{{ $js.Permalink }}"></script>
   </body>
 </html>

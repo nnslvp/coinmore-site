@@ -26,7 +26,11 @@ document.body.addEventListener('click', () => {
 const currentPath = window.location.pathname;
 const userLang = localStorage.getItem('userLang');
 const systemLang = navigator.language || navigator.userLanguage;
-const langSystem = systemLang.startsWith('ru') ? 'ru' : 'en';
+const supportedLangs = ['ru', 'en'];
+const defaultLang = 'en';
+const langSystem = supportedLangs.includes(systemLang)
+  ? systemLang
+  : defaultLang;
 const langDocument = document.documentElement.lang;
 
 if (!userLang) {
@@ -45,11 +49,22 @@ function setUserLanguage(lang) {
 }
 
 function redirectOnPageLang(lang) {
-  let newPath;
-  if (lang === 'ru') {
-    newPath = `/ru${currentPath.replace('/ru/', '/')}`;
+  let newPath = currentPath;
+
+  for (const lang of supportedLangs) {
+    if (currentPath.startsWith(`/${lang}/`)) {
+      newPath = currentPath.replace(`/${lang}/`, '/');
+      break;
+    }
   }
-  window.location.href = newPath;
+
+  if (lang !== defaultLang) {
+    newPath = `/${lang}${newPath}`;
+  }
+
+  if (newPath !== currentPath) {
+    window.location.href = newPath;
+  }
 }
 
 LINK_SET_LANG_EN.addEventListener('click', () => {
