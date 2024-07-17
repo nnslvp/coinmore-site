@@ -25,20 +25,30 @@ document.body.addEventListener('click', () => {
 
 const currentPath = window.location.pathname;
 const userLang = localStorage.getItem('userLang');
+const systemLang = navigator.language || navigator.userLanguage;
+const langSystem = systemLang.startsWith('ru') ? 'ru' : 'en';
+const langDocument = document.documentElement.lang;
 
 if (!userLang) {
-  const systemLang = navigator.language || navigator.userLanguage;
-  const langSystem = systemLang.startsWith('ru') ? 'ru' : 'en';
-  const langDocument = document.documentElement.lang;
-
   if (langSystem !== langDocument) {
     setUserLanguage(langSystem);
+    redirectOnPageLang(langSystem);
+  }
+} else {
+  if (userLang !== langDocument) {
+    redirectOnPageLang(userLang);
   }
 }
 
 function setUserLanguage(lang) {
   localStorage.setItem('userLang', lang);
-  const newPath = `/${lang}/${currentPath}`;
+}
+
+function redirectOnPageLang(lang) {
+  let newPath;
+  if (lang === 'ru') {
+    newPath = `/ru${currentPath.replace('/ru/', '/')}`;
+  }
   window.location.href = newPath;
 }
 
