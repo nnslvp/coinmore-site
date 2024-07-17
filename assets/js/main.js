@@ -28,11 +28,11 @@ const userLang = localStorage.getItem('userLang');
 
 if (!userLang) {
   const systemLang = navigator.language || navigator.userLanguage;
-  const lang = systemLang.startsWith('ru') ? 'ru' : 'en';
+  const langSystem = systemLang.startsWith('ru') ? 'ru' : 'en';
+  const langDocument = document.documentElement.lang;
 
-  if (!currentPath.includes(lang)) {
-    const newPath = `/${lang}/${currentPath}`;
-    window.location.href = newPath;
+  if (langSystem !== langDocument) {
+    setUserLanguage(lang);
   }
 }
 
