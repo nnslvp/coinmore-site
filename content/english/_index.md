@@ -2,7 +2,7 @@
 title: 'Mining pools from CoinMore.io'
 welcome_heading: 'Welcome to CoinMore.io'
 welcome_text: 'Mining made simple and profitable! Looking for a reliable pool with low fees? Want stability and transparent statistics? You’ve found it! CoinMore.io offers everything for efficient mining, with a supportive community and tech support ready to help. Earn more with lower costs.'
-mining_heading: 'Start Mining with Us'
+mining_heading: 'Start mining with us'
 mining_calculator_text: 'Mining Calculator'
 
 SEO:
