@@ -1,9 +1,10 @@
 ---
-layout: 'coin'
+date: 2023-01-01T9:00:00Z
 SEO:
   description: 'Mine Raptoreum with CoinMore Pool. Our advanced pool offers high profitability and stability.'
   keywords: 'Raptoreum mining, CoinMore Pool, cryptocurrency mining, blockchain, Raptoreum, crypto mining, digital currency mining, decentralized mining, secure mining, profitable mining'
 
+layout: 'coin'
 coin_name: 'raptoreum'
 coin_symbol: 'RTM'
 coin_logo: '/images/raptoreum-logo-light.svg'
