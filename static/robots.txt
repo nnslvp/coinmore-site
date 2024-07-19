@@ -2,4 +2,5 @@ User-agent: *
 Disallow: 
 
 Sitemap: https://coinmore.io/en/sitemap.xml
-Sitemap: https://coinmore.io/ru/sitemap.xml 
+Sitemap: https://coinmore.io/ru/sitemap.xml
+ 
