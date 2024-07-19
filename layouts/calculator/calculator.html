@@ -222,6 +222,7 @@
     </div>
     <script>
       const COINS = {{ $coins }};
+      const placeholderSelect = {{.Params.placeholder_select}}
     </script>
     {{ $customSelect:= resources.Get "js/custom-select.js" }} {{ $api :=
     resources.Get "js/api.js" }} {{ $statisticsPage := resources.Get
