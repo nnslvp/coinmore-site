@@ -1,8 +1,4 @@
 ---
-build:
-  list: never
-  publishResources: false
-  render: never
 title: 'Administration Dashboard'
 search_placeholder: 'Wallet'
 clear_filters: 'Clear Filters'
