@@ -6,7 +6,7 @@ const COIN = url.searchParams.get('coin');
 
 const selectCurrency = ItcCustomSelect.create('#select-currency', {
   name: 'interval',
-  placeholder: 'Select coin',
+  placeholder: placeholderSelect,
   targetValue: COIN,
   options: COINS.map((coin) => [coin.name, coin.symbol]),
 });
