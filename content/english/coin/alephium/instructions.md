@@ -41,7 +41,7 @@ windowsExamples:
       1. Download [latest release of lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases) and unzip the files.
       2. Update **mine_aleph** file:
       ```
-      set "ALEPHPOOL=eu1.alephium-pool.com:20032"
+      set "ALEPHPOOL=eu1.alephium.coinmore.io:20032"
       set "ALEPHWALLET=your_wallet_address"
       ```
       3. Run **mine_aleph**.
@@ -51,7 +51,7 @@ windowsExamples:
       1. Download [latest release of SRBMiner](https://github.com/doktor83/SRBMiner-Multi/releases) and unzip the files.
       2. Update file to:
       ```
-      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool eu1.alephium-pool.com:20032 --wallet your_wallet_address
+      SRBMiner-MULTI.exe --disable-cpu --algorithm blake3_alephium --pool eu1.alephium.coinmore.io:20032 --wallet your_wallet_address
       ```
       3. Run **alph** file.
       4. PROFIT!
@@ -60,7 +60,7 @@ windowsExamples:
       1. Download [latest release of T-Rex](https://github.com/trexminer/T-Rex/releases) and unzip the files.
       2. Update file to:
       ```
-      t-rex.exe -a blake3 -o stratum+tcp://eu1.alephium-pool.com:20032 -u your_wallet_address -p x -w rig0
+      t-rex.exe -a blake3 -o stratum+tcp://eu1.alephium.coinmore.io:20032 -u your_wallet_address -p x -w rig0
       ```
       3. Run **alph** file.
       4. PROFIT!
@@ -69,7 +69,7 @@ windowsExamples:
       1. Download [latest release of BzMiner](https://github.com/bzminer/bzminer/releases) and unzip the files.
       2. Update file to:
       ```
-      bzminer -a alph -w your_wallet_address -p stratum+tcp://eu1.alephium-pool.com:20032
+      bzminer -a alph -w your_wallet_address -p stratum+tcp://eu1.alephium.coinmore.io:20032
       ```
       3. Run **alph** file.
       4. PROFIT!
