@@ -60,7 +60,7 @@ table_body:
     ssl_port: 20033
     icon: 'europa-flag-icon'
   - region: 'Россия'
-    address: 'ru1.alephium-pool.host.com'
+    address: 'ru1.alephium-pool.com'
     port: 20032
     ssl_port: 20033
     icon: 'russian-flag-icon'
