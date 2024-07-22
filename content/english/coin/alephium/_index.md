@@ -48,22 +48,22 @@ table_headers:
 
 table_body:
   - region: 'Europe'
-    address: 'eu1.alephium-pool.com'
+    address: 'eu1.alephium.coinmore.io'
     port: 20032
     ssl_port: 20033
     icon: 'europa-flag-icon'
   - region: 'Russia'
-    address: 'ru1.alephium-pool.com'
+    address: 'ru1.alephium.coinmore.io'
     port: 20032
     ssl_port: 20033
     icon: 'russian-flag-icon'
   - region: 'US'
-    address: 'us1.alephium-pool.com'
+    address: 'us1.alephium.coinmore.io'
     port: 20032
     ssl_port: 20033
     icon: 'usa-flag-icon'
   - region: 'Asia'
-    address: 'asia1.alephium-pool.com'
+    address: 'asia1.alephium.coinmore.io'
     port: 20032
     ssl_port: 20033
     icon: 'asia-flag-icon'
