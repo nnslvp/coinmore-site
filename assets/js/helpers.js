@@ -3,7 +3,11 @@ function shortenHm(hashRate, roundPlaces) {
     { d: 1000000000000, unit: 'TH' },
     { d: 1000000000, unit: 'GH' },
     { d: 1000000, unit: 'MH' },
+    { d: 1000, unit: 'KH' },
     { d: 1, unit: 'H' },
+    { d: 0.001, unit: 'mH' },
+    { d: 0.000001, unit: 'μH' },
+    { d: 0.000000001, unit: 'nH' },
   ];
 
   if (isNaN(hashRate)) {
