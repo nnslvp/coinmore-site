@@ -1,18 +1,24 @@
-{{$homeLink := relLangURL "/"}} {{ $currentDir := .File.Dir }} {{ $pageCoin :=
-.Site.GetPage $currentDir }} {{ $currentPage := .RelPermalink }} {{
-$coinStatisticsUrl := print "/coin/" $pageCoin.Params.coin_name "/statistics" }}
-{{ $coinInstructionsUrl := print "/coin/" $pageCoin.Params.coin_name
-"/instructions" }} {{ $calculatorUrl := "/calculator" }}
+{{ $coinName := "" }}
+{{ if and .Parent (isset .Parent.Params "coin_name") }}
+  {{ $coinName = .Parent.Params.coin_name }}
+{{ else }}
+  {{ $coinName = .Params.coin_name }}
+{{ end }}
+{{$homeLink := relLangURL "/"}}
+{{ $currentPage := .RelPermalink }}
+{{ $coinStatisticsUrl := print "/coin/" $coinName "/statistics" }}
+{{ $coinInstructionsUrl := print "/coin/" $coinName "/instructions" }}
+{{ $calculatorUrl := "/calculator" }}
 <header class="header">
-  <div class="container">
+    <div class="container">
     <div class="header__inner">
       <a href="{{ $homeLink }}" class="header__logo">
         <img src="/icons/logo.svg" alt="logo" />
       </a>
       <nav class="header__main-nav">
         <ul class="header__main-nav-list text--medium">
-          {{ with $pageCoin.Params.coin_name }} {{ $calculatorUrl = printf
-          "%s?coin=%s" $calculatorUrl . }} {{ end }} {{ if eq .Type "coin" }}
+          {{ with $coinName }} {{ $calculatorUrl = printf
+          "%s?coin=%s" $calculatorUrl . }} {{ end }} {{ if or (eq .Type "coin") (eq .Type "statistics") (eq .Type "instructions") }}
           <li class="header__main-nav-item">
             <a
               href="{{ relLangURL  $coinStatisticsUrl }}"
