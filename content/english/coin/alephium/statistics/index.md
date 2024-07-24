@@ -1,5 +1,5 @@
 ---
-layout: "statistics"
+layout: 'statistics'
 headless: true
 
 SEO:
