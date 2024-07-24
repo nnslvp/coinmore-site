@@ -1,6 +1,6 @@
 ---
 layout: 'statistics'
-headless: true
+type: 'statistics'
 
 SEO:
   description: 'Просматривайте полную статистику майнинга Raptoreum на CoinMore Pool. Отслеживайте производительность и прибыльность вашего майнинга с помощью наших продвинутых инструментов.'

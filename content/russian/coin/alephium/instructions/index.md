@@ -1,6 +1,6 @@
 ---
 layout: 'instructions'
-headless: true
+type: 'instructions'
 
 SEO:
   description: 'Узнайте, как быстро и легко настроить и использовать CoinMore Pool для майнинга Alephium. Подробные пошаговые инструкции помогут вам начать добычу криптовалюты прямо сейчас.'

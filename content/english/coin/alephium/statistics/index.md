@@ -1,6 +1,6 @@
 ---
 layout: 'statistics'
-headless: true
+type: 'statistics'
 
 SEO:
   description: 'View comprehensive statistics for Alephium mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools.'

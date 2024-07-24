@@ -1,6 +1,6 @@
 ---
 layout: 'instructions'
-headless: true
+type: 'instructions'
 
 SEO:
   description: 'Получите пошаговые инструкции по настройке и использованию CoinMore Pool для майнинга Raptoreum. Наши подробные руководства помогут вам начать майнинг быстро и легко.'

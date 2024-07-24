@@ -1,6 +1,6 @@
 ---
 layout: 'instructions'
-headless: true
+type: 'instructions'
 
 SEO:
   description: 'Get step-by-step instructions on setting up and using CoinMore Pool for mining Alephium. Our detailed guides will help you start mining this cryptocurrency quickly and easily.'

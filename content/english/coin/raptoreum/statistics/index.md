@@ -1,7 +1,6 @@
 ---
 layout: 'statistics'
-headless: true
-
+type: 'statistics'
 SEO:
   description: 'View comprehensive statistics for Raptoreum mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools.'
   keywords: 'Raptoreum statistics, mining statistics, CoinMore Pool, Raptoreum mining, cryptocurrency mining, blockchain, crypto mining, mining performance, mining profitability'

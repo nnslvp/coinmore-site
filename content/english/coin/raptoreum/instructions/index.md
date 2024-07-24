@@ -1,9 +1,11 @@
 ---
 layout: 'instructions'
+type: 'instructions'
+
 SEO:
   description: 'Learn how to mine Raptoreum with CoinMore Pool. Follow our step-by-step guide to start mining efficiently and profitably.'
   keywords: 'Raptoreum mining guide, mine Raptoreum, CoinMore Pool, cryptocurrency mining, blockchain, crypto mining, mining tutorial, mining setup, mining software, mining hardware'
-headless: true
+
 title: 'Instructions'
 subtitle_text_1: 'If you have any questions, please use the'
 subtitle_text_2: 'Start by downloading'
