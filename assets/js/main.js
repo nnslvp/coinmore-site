@@ -71,10 +71,10 @@ LINK_SET_LANG_EN.forEach((linkEl) => {
   linkEl.addEventListener('click', () => {
     setUserLanguage('en');
   });
-})
+});
 
 LINK_SET_LANG_RU.forEach((linkEl) => {
   linkEl.addEventListener('click', () => {
     setUserLanguage('ru');
   });
-})
+});
