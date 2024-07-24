@@ -1,8 +1,8 @@
 const LANGUAGE_SWITCHER_ELEMENTS =
   document.querySelectorAll('.language-switcher');
 const HAMBURGER_MENU_BTN = document.querySelector('.hamburger-menu-btn');
-const LINK_SET_LANG_EN = document.querySelector('.set-lang-english');
-const LINK_SET_LANG_RU = document.querySelector('.set-lang-russian');
+const LINK_SET_LANG_EN = document.querySelectorAll('.set-lang-english');
+const LINK_SET_LANG_RU = document.querySelectorAll('.set-lang-russian');
 
 LANGUAGE_SWITCHER_ELEMENTS.forEach((el) =>
   el.addEventListener('click', (e) => {
@@ -67,10 +67,14 @@ function redirectOnPageLang(lang) {
   }
 }
 
-LINK_SET_LANG_EN.addEventListener('click', () => {
-  setUserLanguage('en');
-});
+LINK_SET_LANG_EN.forEach((linkEl) => {
+  linkEl.addEventListener('click', () => {
+    setUserLanguage('en');
+  });
+})
 
-LINK_SET_LANG_RU.addEventListener('click', () => {
-  setUserLanguage('ru');
-});
+LINK_SET_LANG_RU.forEach((linkEl) => {
+  linkEl.addEventListener('click', () => {
+    setUserLanguage('ru');
+  });
+})
