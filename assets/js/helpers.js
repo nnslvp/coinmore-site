@@ -127,3 +127,21 @@ const groupBy = (values, keyFinder) => {
     return a;
   }, {});
 };
+
+function saveWalletsToLocalStorage(coin, wallet) {
+  let wallets = {};
+  const walletsFromLocalStorage = localStorage.getItem('wallets');
+  if (walletsFromLocalStorage) {
+    wallets = JSON.parse(walletsFromLocalStorage);
+  }
+  wallets[coin] = wallet;
+  localStorage.setItem('wallets', JSON.stringify(wallets));
+}
+
+function getWalletsFromLocalStorage() {
+  const walletsString = localStorage.getItem('wallets');
+  if (walletsString) {
+    return JSON.parse(walletsString);
+  }
+  return null;
+}

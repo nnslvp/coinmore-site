@@ -102,14 +102,15 @@ function init() {
   const walletFromParams = getWalletParam();
 
   if (walletFromParams) {
-    setCookie('wallet', walletFromParams, 365);
+    saveWalletsToLocalStorage(COIN, walletFromParams);
     setWalletForm(walletFromParams);
     drawData(COIN, walletFromParams);
     assignFormListenerMinPayoutsForm(walletFromParams);
   } else {
-    const walletFromCookies = getCookie('wallet');
-    if (walletFromCookies) {
-      setWalletParam(walletFromCookies);
+    const walletsFromLocalStorage = getWalletsFromLocalStorage(COIN);
+    if (walletsFromLocalStorage) {
+      const wallet = walletsFromLocalStorage[COIN];
+      setWalletParam(wallet);
     }
   }
 }
