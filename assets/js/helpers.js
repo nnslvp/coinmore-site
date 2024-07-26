@@ -129,19 +129,13 @@ const groupBy = (values, keyFinder) => {
 };
 
 function saveWalletsToLocalStorage(coin, wallet) {
-  let wallets = {};
-  const walletsFromLocalStorage = localStorage.getItem('wallets');
-  if (walletsFromLocalStorage) {
-    wallets = JSON.parse(walletsFromLocalStorage);
-  }
-  wallets[coin] = wallet;
-  localStorage.setItem('wallets', JSON.stringify(wallets));
+  localStorage.setItem(`wallet_${coin}`,wallet);
 }
 
-function getWalletsFromLocalStorage() {
-  const walletsString = localStorage.getItem('wallets');
-  if (walletsString) {
-    return JSON.parse(walletsString);
+function getWalletsFromLocalStorage(coin) {
+  const wallet = localStorage.getItem(`wallet_${coin}`);
+  if (wallet) {
+    return wallet;
   }
   return null;
 }
