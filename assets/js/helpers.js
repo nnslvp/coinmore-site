@@ -129,7 +129,7 @@ const groupBy = (values, keyFinder) => {
 };
 
 function saveWalletsToLocalStorage(coin, wallet) {
-  localStorage.setItem(`wallet_${coin}`,wallet);
+  localStorage.setItem(`wallet_${coin}`, wallet);
 }
 
 function getWalletsFromLocalStorage(coin) {
