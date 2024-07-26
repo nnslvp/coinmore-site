@@ -102,12 +102,12 @@ function init() {
   const walletFromParams = getWalletParam();
 
   if (walletFromParams) {
-    saveWalletsToLocalStorage(COIN, walletFromParams);
+    saveWalletToLocalStorage(COIN, walletFromParams);
     setWalletForm(walletFromParams);
     drawData(COIN, walletFromParams);
     assignFormListenerMinPayoutsForm(walletFromParams);
   } else {
-    const walletsFromLocalStorage = getWalletsFromLocalStorage(COIN);
+    const walletsFromLocalStorage = getWalletFromLocalStorage(COIN);
     if (walletsFromLocalStorage) {
       const wallet = walletsFromLocalStorage;
       setWalletParam(wallet);

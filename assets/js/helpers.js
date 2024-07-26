@@ -128,10 +128,10 @@ const groupBy = (values, keyFinder) => {
   }, {});
 };
 
-function saveWalletsToLocalStorage(coin, wallet) {
+function saveWalletToLocalStorage(coin, wallet) {
   localStorage.setItem(`wallet_${coin}`, wallet);
 }
 
-function getWalletsFromLocalStorage(coin) {
+function getWalletFromLocalStorage(coin) {
   return localStorage.getItem(`wallet_${coin}`);
 }
