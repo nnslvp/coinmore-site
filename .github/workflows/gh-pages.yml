@@ -48,18 +48,28 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Install Node.js dependencies
-        run: '[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true'
+      # - name: Install Node.js dependencies
+      #   run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
-          TZ: America/Los_Angeles
         run: |
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --baseURL "${{ steps.pages.outputs.base_url }}"
+        continue-on-error: false
+      - name: Verify build
+        run: |
+          if [ ! -d "public" ]; then
+            echo "Hugo build failed - public directory not found"
+            exit 1
+          else
+            echo "Hugo build succeeded - public directory found"
+            echo "Listing files in public directory:"
+            find public
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
