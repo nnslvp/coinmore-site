@@ -1,4 +1,4 @@
-{{ $currentDir := .File.Dir }} {{ $pageCoin := .Site.GetPage $currentDir }}
+{{ $pageCoin := .Parent}}
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
   <head>

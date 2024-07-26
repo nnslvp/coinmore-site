@@ -1,25 +1,25 @@
 ---
 layout: 'instructions'
-headless: true
-SEO:
-  description: 'Learn how to mine Raptoreum with CoinMore Pool. Follow our step-by-step guide to start mining efficiently and profitably.'
-  keywords: 'Raptoreum mining guide, mine Raptoreum, CoinMore Pool, cryptocurrency mining, blockchain, crypto mining, mining tutorial, mining setup, mining software, mining hardware'
+type: 'instructions'
 
-title: 'Instructions'
-subtitle_text_1: 'If you have any questions, please use the'
-subtitle_text_2: 'Start by downloading'
-pool_servers: 'Pool Servers'
-miners: 'Miners'
-windows_examples: 'Windows Examples'
-faq_title: 'FAQ'
-faq_subtitle: 'Frequently Asked Questions for Raptoreum Pool'
-can_use: 'You can use'
-start_downloading: 'Start by downloading'
-ask_in_discord: 'For more help, ask in'
-wallet: 'Raptoreum Wallet'
+SEO:
+  description: 'Получите пошаговые инструкции по настройке и использованию CoinMore Pool для майнинга Raptoreum. Наши подробные руководства помогут вам начать майнинг быстро и легко.'
+  keywords: 'инструкции по майнингу Raptoreum, CoinMore Pool, руководство по майнингу, настройка майнинга, майнинг Raptoreum, майнинг криптовалют, блокчейн, крипто майнинг, цифровой майнинг, безопасный майнинг, прибыльный майнинг'
+title: 'Инструкции'
+subtitle_text_1: 'Если у вас есть вопросы, воспользуйтесь'
+subtitle_text_2: 'Начните с загрузки'
+pool_servers: 'Серверы пула'
+miners: 'Майнеры'
+windows_examples: 'Примеры для Windows'
+faq_title: 'Вопросы и ответы'
+faq_subtitle: 'Часто задаваемые вопросы для Raptoreum Pool'
+can_use: 'Вы можете использовать'
+start_downloading: 'Начните с загрузки'
+ask_in_discord: 'О других решениях вы можете спросить в'
+wallet: 'Кошелека Raptoreum'
 dowland_wallet_link: 'https://github.com/Raptor3um/raptoreum/releases'
 
-miners_title: 'Miners'
+miners_title: 'Майнеры'
 miners_list:
   - miner: 'WyvernTKC'
     link: 'https://github.com/WyvernTKC/cpuminer-gr-avx2/releases'
@@ -29,15 +29,15 @@ miners_list:
     link: 'https://github.com/Bendr0id/xmrigCC/releases'
   - miner: 'WildRig'
     link: 'https://github.com/andru-kun/wildrig-multi/releases'
-  - miner: 'Other miners'
+  - miner: 'Другие майнеры'
     link: 'https://raptoreum.com/sample-page/downloads/'
 
-windows_examples_title: 'Examples'
+windows_examples_title: 'Примеры для Windows'
 windowsExamples:
   - tab: 'WyvernTKC'
     instruction: |
-      1. Download [latest release of WyvernTKC](https://github.com/WyvernTKC/cpuminer-gr-avx2/releases) and unzip the files.
-      2. Update **config.json** file with:
+      1. Скачайте [latest release of WyvernTKC](https://github.com/WyvernTKC/cpuminer-gr-avx2/releases) и распакуйте файлы.
+      2. Обновите **config.json** файл
       ```json
       {
         "_comment1": "Any long-format command line argument ",
@@ -71,12 +71,12 @@ windowsExamples:
         "quiet": false
       }
       ```
-      3. Run the file **cpuminer**.
+      3. Запустите файл**cpuminer**.
       4. PROFIT!
   - tab: 'XMRig'
     instruction: |
-      1. Download [latest release of XMRig](https://github.com/xmrig/xmrig/releases) and unzip the files.
-      2. Update **config.json** file with:
+      1. Скачайте [latest release of XMRig](https://github.com/xmrig/xmrig/releases) и распакуйте файлы.
+      2. Обновите **config.json** файл
       ```json
       {
         "api": {
@@ -183,12 +183,12 @@ windowsExamples:
         "pause-on-active": false
       }     
       ```
-      3. Run the file.
+      3. Запустите файл**xmrig**.
       4. PROFIT!
   - tab: 'xmrigCC'
     instruction: |
-      1. Download [latest release of xmrigCC](https://github.com/Bendr0id/xmrigCC/releases) and unzip the files.
-      2. Update **config.json** file with:
+      1. Скачайте [latest release of xmrigCC](https://github.com/Bendr0id/xmrigCC/releases) и распакуйте файлы.
+      2. Обновите **config.json** файл
       ```json
       {
         "api": {
@@ -313,33 +313,33 @@ windowsExamples:
         "pause-on-active": false
       }
       ```
-      3. Run the file.
+      3. Запустите майнер.
       4. PROFIT!
   - tab: 'WildRig'
     instruction: |
-      1. Download [latest release of WildRig](https://github.com/andru-kun/wildrig-multi/releases) and unzip the files.
-      2. Update **start-Raptoreum** file with:
+      1. Скачайте [latest release of WildRig](https://github.com/andru-kun/wildrig-multi/releases) и распакуйте файлы.
+      2. Обновите **start-Raptoreum** файл:
       ```bash
       wildrig.exe --algo ghostrider --url stratum+tcp://auto-geo.raptoreum.coinmore.io:3002 --user your_wallet_address --pass x
       ```
-      3. Run the file.
+      3. Запустите **start-Raptoreum** файл.
       4. PROFIT!
 
 faq:
-  - question: 'What is the Raptoreum mining pool?'
-    answer: 'Raptoreum mining pool allows miners to work independently. Block rewards go to the miner who finds it. Time to find a block depends on your hashrate and luck.'
-  - question: 'How do I start mining Raptoreum?'
-    answer: 'Download a compatible miner and the Raptoreum wallet. Follow the provided instructions to configure and run your miner.'
-  - question: 'What are the pool fees?'
-    answer: 'Pool fees are specified in the pool settings. Check the CoinMore Pool website for the current fee structure.'
-  - question: 'How often are payouts?'
-    answer: 'Payouts are made every 30 minutes if the minimum payout threshold is met.'
-  - question: 'Can I mine Raptoreum on multiple devices?'
-    answer: 'Yes, you can configure and run the miner on multiple devices using the same wallet address.'
-  - question: 'Where can I get more help?'
-    answer: 'Join the Raptoreum community on Discord for more support from other miners.'
-  - question: 'What is the minimum payout?'
-    answer: 'The minimum payout threshold is specified in the pool settings. Check the CoinMore Pool website for the current value.'
-  - question: 'What hardware do I need to mine Raptoreum?'
-    answer: 'You need a CPU or GPU compatible with the supported mining software. Refer to the mining software documentation for specific hardware requirements.'
+  - question: 'Что такое пул майнинга Raptoreum?'
+    answer: 'Пул майнинга Raptoreum позволяет майнерам работать независимо. Награды за блоки получают только те майнеры, которые их находят. Время поиска блока зависит от вашего хешрейта и удачи.'
+  - question: 'Как начать майнить Raptoreum?'
+    answer: 'Скачайте совместимый майнер и кошелек Raptoreum. Следуйте инструкциям для настройки и запуска майнера.'
+  - question: 'Какие комиссии в пуле?'
+    answer: 'Комиссии пула указаны в настройках пула. Проверьте веб-сайт CoinMore Pool для актуальной информации.'
+  - question: 'Как часто происходят выплаты?'
+    answer: 'Выплаты производятся каждые 30 минут при условии, что достигнут минимальный порог выплаты.'
+  - question: 'Можно ли майнить Raptoreum на нескольких устройствах?'
+    answer: 'Да, вы можете настроить и запустить майнер на нескольких устройствах, используя один и тот же адрес кошелька.'
+  - question: 'Где можно получить дополнительную помощь?'
+    answer: 'Присоединитесь к сообществу Raptoreum в Discord для получения дополнительной помощи и поддержки от других майнеров.'
+  - question: 'Какой минимальный порог выплаты?'
+    answer: 'Минимальный порог выплаты указан в настройках пула. Проверьте веб-сайт CoinMore Pool для актуальной информации.'
+  - question: 'Какое оборудование нужно для майнинга Raptoreum?'
+    answer: 'Вам нужен процессор или видеокарта, совместимые с поддерживаемым программным обеспечением для майнинга. Обратитесь к документации майнингового софта для конкретных требований к оборудованию.'
 ---

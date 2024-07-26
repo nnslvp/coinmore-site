@@ -102,17 +102,16 @@
               </header>
               {{ $coins := slice }}
               <ul class="coins-list">
-                {{ range where .Site.Pages "Type" "coin" }} {{ if not
-                .Params.headless }} {{ $coins = $coins | append (dict "name"
-                .Params.coin_name "symbol" .Params.coin_symbol) }} {{
-                $startMiningLink := relLangURL (print "/coin/"
-                .Params.coin_name) }}
+                {{ range where .Site.Pages "Type" "coin" }} {{ $coins = $coins |
+                append (dict "name" .Params.coin_name "symbol"
+                .Params.coin_symbol) }} {{ $startMiningLink := relLangURL (print
+                "/coin/" .Params.coin_name) }}
                 <li class="coins-list__item">
                   <a href="{{ $startMiningLink }}" class="link-card-coin">
                     {{ partial "coin-card.html" . }}
                   </a>
                 </li>
-                {{ end }} {{ end }}
+                {{ end }}
               </ul>
             </div>
           </div>
