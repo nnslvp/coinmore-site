@@ -133,9 +133,5 @@ function saveWalletsToLocalStorage(coin, wallet) {
 }
 
 function getWalletsFromLocalStorage(coin) {
-  const wallet = localStorage.getItem(`wallet_${coin}`);
-  if (wallet) {
-    return wallet;
-  }
-  return null;
+  return localStorage.getItem(`wallet_${coin}`);
 }
