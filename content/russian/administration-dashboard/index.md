@@ -1,4 +1,8 @@
 ---
+build:
+  list: never
+  publishResources: false
+  render: never
 title: 'Панель управления'
 search_placeholder: 'Кошелек'
 clear_filters: 'Очистить фильтры'
