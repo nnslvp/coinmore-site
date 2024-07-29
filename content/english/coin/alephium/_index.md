@@ -1,5 +1,4 @@
 ---
-date: 2023-01-01T12:00:00Z
 SEO:
   description: 'Mine Alephium efficiently with CoinMore Pool. Our reliable mining pool offers high profitability, stability, and security for Alephium miners.'
   keywords: 'Alephium mining, CoinMore Pool, crypto mining, Alephium, blockchain, cryptocurrency mining, secure mining, profitable mining, mining pool, mining software, mining hardware'

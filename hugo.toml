@@ -1,5 +1,8 @@
 baseURL = 'https://coinmore.io/'
 languageCode = 'en-us'
+disableKinds = ["taxonomy", "taxonomyTerm"]
+enableGitInfo = true
+
 [params]
   hugoVersion = "0.129.0"
   siteName = 'CoinMore'
