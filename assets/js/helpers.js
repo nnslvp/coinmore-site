@@ -127,3 +127,11 @@ const groupBy = (values, keyFinder) => {
     return a;
   }, {});
 };
+
+function saveWalletToLocalStorage(coin, wallet) {
+  localStorage.setItem(`wallet_${coin}`, wallet);
+}
+
+function getWalletFromLocalStorage(coin) {
+  return localStorage.getItem(`wallet_${coin}`);
+}
