@@ -109,8 +109,7 @@ function init() {
   } else {
     const walletsFromLocalStorage = getWalletFromLocalStorage(COIN);
     if (walletsFromLocalStorage) {
-      const wallet = walletsFromLocalStorage;
-      setWalletParam(wallet);
+      setWalletParam(walletsFromLocalStorage);
     }
   }
 }
