@@ -5,7 +5,7 @@ const url = new URL(window.location.href);
 const COIN = url.searchParams.get('coin');
 
 if (COIN) {
-  document.title = `Calculator ${COIN} | CoinMore `;
+  document.title = `Calculator ${COIN} | CoinMore`;
 }
 
 const selectCurrency = ItcCustomSelect.create('#select-currency', {
