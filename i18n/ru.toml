@@ -1,6 +1,9 @@
 [discord]
 other = "дискорд"
 
+[telegram]
+other = "телеграм"
+
 [community]
 other = "комьюнити"
 
