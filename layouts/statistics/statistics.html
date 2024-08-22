@@ -4,7 +4,8 @@
   <head>
     {{ with hugo.IsProduction }} {{ end }}
 
-    <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
+    <title>{{.Params.title }} {{$pageCoin.Params.coin_name}} {{ if not .IsHome
+    }}| CoinMore {{ end }}</title>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
