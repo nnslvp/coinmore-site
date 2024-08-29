@@ -19,13 +19,28 @@ function initializeChart(
   const gradient = ctx.createLinearGradient(0, 0, 0, 400);
   gradient.addColorStop(0, 'rgba(155, 77, 202, 0.24)');
   gradient.addColorStop(1, 'rgba(155, 77, 202, 0)');
+  const chartId = ctx.canvas.id;
 
-  if (initialData && initialData.length > 1) {
+  if (
+    initialData &&
+    initialData.length > 1 &&
+    initialData.every((e) => e !== 1)
+  ) {
     const { minY, maxY, stepSize } = calculateYAxisSettings(initialData);
     chartOptions.options.scales.y.min = minY;
     chartOptions.options.scales.y.max = maxY;
     chartOptions.options.scales.y.ticks.stepSize = stepSize;
     chartOptions.data.datasets[0].data = initialData;
+  } else if (chartId === 'workersActivityChart') {
+    chartOptions.options.scales.y.min = 0;
+    chartOptions.options.scales.y.max = 5;
+    chartOptions.options.scales.y.ticks.stepSize = 1;
+    chartOptions.data.datasets[0].data = initialData;
+  } else {
+    chartOptions.options.scales.y.min = null;
+    chartOptions.options.scales.y.max = null;
+    chartOptions.options.scales.y.ticks.stepSize = null;
+    chartOptions.data.datasets[0].data = [];
   }
 
   if (initialLabels) {
@@ -223,11 +238,18 @@ function updateChartData(chart, newData, labels, period, label) {
     chart.data.labels = labels;
   }
 
-  if (newData && newData.length > 1) {
+  const chartId = chart.canvas.id;
+
+  if (newData && newData.length > 1 && newData.every((e) => e !== 1)) {
     const { minY, maxY, stepSize } = calculateYAxisSettings(newData);
     chart.options.scales.y.min = minY;
     chart.options.scales.y.max = maxY;
     chart.options.scales.y.ticks.stepSize = stepSize;
+    chart.data.datasets[0].data = newData;
+  } else if (chartId === 'workersActivityChart') {
+    chart.options.scales.y.min = 0;
+    chart.options.scales.y.max = 5;
+    chart.options.scales.y.ticks.stepSize = 1;
     chart.data.datasets[0].data = newData;
   } else {
     chart.options.scales.y.min = null;
