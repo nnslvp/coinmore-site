@@ -121,20 +121,19 @@
   margin-bottom: 1.25rem;
 }
 
-.chart-profit {
-  margin-right: 0.9375rem;
-  margin-right: 1.25rem;
+.charts-profit-workers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 2.5rem;
 }
 
 .chart-workers,
 .chart-profit {
-  display: inline-block;
-  margin-right: -0.25rem;
-  width: 41.25rem;
+  flex-basis: 41.25rem;
 }
 
 .chart-workers {
-  margin-bottom: 2.5rem;
 }
 
 .input-container {
@@ -144,17 +143,11 @@
 @media (max-width: $breakpoint-xl) {
   .chart-workers,
   .chart-profit {
-    display: block;
-    width: 100%;
-    margin-right: 0rem;
+    flex: 1;
   }
 
   .chart-workers {
     margin-left: 0rem;
-  }
-
-  .chart-profit {
-    margin-bottom: 1.25rem;
   }
 }
 
@@ -189,13 +182,6 @@
 
   .chart-profit {
     margin-right: 0;
-  }
-
-  .chart-workers,
-  .chart-profit {
-    display: block;
-    width: 100%;
-    margin-bottom: 1.25rem;
   }
 }
 
