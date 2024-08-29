@@ -1,17 +1,29 @@
 const CHART_POOL_HASH_RATE = document.querySelector('#poolHashrateChart');
 const CHART_PROFIT = document.querySelector('#profitChart');
 const CHART_WORKERS = document.querySelector('#workersActivityChart');
-const [TAB_WORKERS_DAY, TAB_WORKERS_WEEK] = getTabs(
-  '.chart-interval__workers-activity',
-);
-const [TAB_PROFIT_DAY, TAB_PROFIT_WEEK] = getTabs('.chart-interval__profit');
-const [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs(
-  '.chart-interval__pool-hashrate',
-);
 
-activateTabsOnClick('.chart-interval__workers-activity');
-activateTabsOnClick('.chart-interval__profit');
-activateTabsOnClick('.chart-interval__pool-hashrate');
+let TAB_WORKERS_DAY, TAB_WORKERS_WEEK;
+let TAB_PROFIT_DAY, TAB_PROFIT_WEEK;
+let TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK;
+
+if (CHART_WORKERS) {
+  [TAB_WORKERS_DAY, TAB_WORKERS_WEEK] = getTabs(
+    '.chart-interval__workers-activity',
+  );
+  activateTabsOnClick('.chart-interval__workers-activity');
+}
+
+if (CHART_PROFIT) {
+  [TAB_PROFIT_DAY, TAB_PROFIT_WEEK] = getTabs('.chart-interval__profit');
+  activateTabsOnClick('.chart-interval__profit');
+}
+
+if (CHART_POOL_HASH_RATE) {
+  [TAB_POOL_HASHRATE_DAY, TAB_POOL_HASHRATE_WEEK] = getTabs(
+    '.chart-interval__pool-hashrate',
+  );
+  activateTabsOnClick('.chart-interval__pool-hashrate');
+}
 
 function showChartPoolHashrate({ labelsWeek, dataWeek, labelsDay, dataDay }) {
   const hashRateChart = initializeChart(
@@ -191,12 +203,14 @@ function init(coin) {
     showPoolMinPayout(minPayouts.value, 'pool_min_payout', COIN_SYMBOL);
   });
 
-  fetchPoolProfitPromise.then(({ profit }) => {
-    showPoolProfit(profit, 'pool_profit', COIN_SYMBOL);
-    fetchCurrencyInfoPromise.then(({ rate: { value } }) =>
-      showPoolProfitUSD(profit, value),
-    );
-  });
+  if (CHART_PROFIT) {
+    fetchPoolProfitPromise.then(({ profit }) => {
+      showPoolProfit(profit, 'pool_profit', COIN_SYMBOL);
+      fetchCurrencyInfoPromise.then(({ rate: { value } }) =>
+        showPoolProfitUSD(profit, value),
+      );
+    });
+  }
 
   fetchPoolHashRatePromise.then(({ hashrate }) => {
     showPoolHashrate(hashrate.hashrate);
@@ -232,7 +246,11 @@ function init(coin) {
     .then((historyDay) => {
       profitHistoryDay = historyDay.profit_history;
     })
-    .then(() => drawProfitHistoryData(profitHistoryWeek, profitHistoryDay))
+    .then(() => {
+      if (CHART_PROFIT) {
+        drawProfitHistoryData(profitHistoryWeek, profitHistoryDay);
+      }
+    })
     .catch((err) => {
       console.info('Error fetching profitHistory:', err);
     });

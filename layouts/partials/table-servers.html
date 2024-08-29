@@ -31,6 +31,7 @@
     </tr>
     {{ end }}
   </tbody>
+  {{ if eq .Params.coin_name "alephium" }}
   <caption>
     <p class="subtitle">
       <strong>Solo mining</strong> (optional): To mine in solo mode, include the
@@ -39,4 +40,5 @@
       <strong>solo:ADDRESS</strong>
     </p>
   </caption>
+  {{end}}
 </table>
