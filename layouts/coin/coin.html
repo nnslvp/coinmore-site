@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
   <head>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag"}} {{ end }}
 
     <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
 
