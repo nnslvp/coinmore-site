@@ -53,7 +53,7 @@
   </head>
 
   <body>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag-noscript"}} {{ end }}
     <div class="wrapper">
       {{partial "header.html" .}}
       <nav class="nav-page__container container">

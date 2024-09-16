@@ -51,7 +51,7 @@
   </head>
 
   <body>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag-noscript"}} {{ end }}
     <div class="wrapper">
       {{partial "header.html" .}}
       <main class="statistics-page">
