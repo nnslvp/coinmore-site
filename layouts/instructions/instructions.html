@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
   <head>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag"}} {{ end }}
     <title>
       {{.Params.title }} {{$pageCoin.Params.coin_name}} {{ if not .IsHome }}|
       CoinMore {{ end }}
@@ -53,7 +53,7 @@
   </head>
 
   <body>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag-noscript"}} {{ end }}
     <div class="wrapper">
       {{partial "header.html" .}}
       <nav class="nav-page__container container">

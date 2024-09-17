@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
   <head>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag"}} {{ end }}
 
     <title>{{.Params.title }} {{ if not .IsHome }}| CoinMore {{ end }}</title>
 
@@ -51,7 +51,7 @@
   </head>
 
   <body>
-    {{ with hugo.IsProduction }} {{ end }}
+    {{ with hugo.IsProduction }} {{ partial "google-tag-noscript"}} {{ end }}
     <div class="wrapper">
       {{partial "header.html" .}}
       <main class="statistics-page">
