@@ -158,12 +158,8 @@ function drawPoolHistoryData(profitHistoryWeek, profitHistoryDay) {
 function drawProfitHistoryData(profitHistoryWeek, profitHistoryDay) {
   const labelsWeek = profitHistoryWeek.map((item) => item.bucket);
   const labelsDay = profitHistoryDay.map((item) => item.bucket);
-  const dataDay = profitHistoryDay.map((item) =>
-    parseFloat(item.profit).toFixed(4),
-  );
-  const dataWeek = profitHistoryWeek.map((item) =>
-    parseFloat(item.profit).toFixed(4),
-  );
+  const dataDay = profitHistoryDay.map((item) => parseFloat(item.profit));
+  const dataWeek = profitHistoryWeek.map((item) => parseFloat(item.profit));
 
   showChartProfit({
     labelsWeek,
