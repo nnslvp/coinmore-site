@@ -124,9 +124,12 @@ function getChartOptions(newOptions) {
               if (label === CHART_TITLE.hashrate) {
                 const { hashrate, units } = shortenHm(value, 2);
                 return `${hashrate} ${units}/s`;
+              } else if (label === CHART_TITLE.profit) {
+                return Number(value.toFixed(6));
               } else if (label === CHART_TITLE.wallet) {
                 return Number.parseInt(value, 10);
               }
+
               return valueAxis;
             },
           },
