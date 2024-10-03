@@ -118,11 +118,14 @@ function getChartOptions(newOptions) {
           beginAtZero: false,
           ticks: {
             callback: function (value) {
-              const label = this.chart.options.plugins.title.text;
+              const label = this.chart.data.datasets[0].label;
               const valueAxis = this.getLabelForValue(value);
-              if (label === 'HASHRATE') {
+
+              if (label === CHART_TITLE.hashrate) {
                 const { hashrate, units } = shortenHm(value, 2);
                 return `${hashrate} ${units}/s`;
+              } else if (label === CHART_TITLE.wallet) {
+                return Number.parseInt(value, 10);
               }
               return valueAxis;
             },
