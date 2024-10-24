@@ -24,7 +24,7 @@ welcome_title: 'Raptoreum Mining Pool'
 welcome_subtitle: 'Join our reliable Raptoreum pool. Enjoy low fees, stable performance, and transparent stats. Earn more with lower costs.'
 benefits:
   - title: 'Payouts Every'
-    text: '30 Minutes'
+    text: '1 Hour'
   - title: 'Minimum Payout'
     text: ''
 quick_start_title: 'Quick Start'

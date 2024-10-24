@@ -334,7 +334,7 @@ faq:
   - question: 'What are the pool fees?'
     answer: 'Pool fees are specified in the pool settings. Check the CoinMore Pool website for the current fee structure.'
   - question: 'How often are payouts?'
-    answer: 'Payouts are made every 30 minutes if the minimum payout threshold is met.'
+    answer: 'Payouts are made every 1 hour if the minimum payout threshold is met.'
   - question: 'Can I mine Raptoreum on multiple devices?'
     answer: 'Yes, you can configure and run the miner on multiple devices using the same wallet address.'
   - question: 'Where can I get more help?'

@@ -27,7 +27,7 @@ benefits:
   - title: 'Instant Block Unlocking'
     text: 'No 500-min delay'
   - title: 'Payouts Every'
-    text: '30 minutes'
+    text: '1 Hour'
   - title: 'Minimum Payout'
     text: ''
 quick_start_title: 'Quick Start'

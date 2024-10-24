@@ -82,7 +82,7 @@ faq:
   - question: 'What are the pool fees?'
     answer: 'The pool fee is specified in the pool settings and may vary. Check the CoinMore Pool website for the current fee structure.'
   - question: 'How often are payouts?'
-    answer: 'Payouts are made every 30 minutes, provided you meet the minimum payout threshold.'
+    answer: 'Payouts are made every 1 hour, provided you meet the minimum payout threshold.'
   - question: 'Can I mine Alephium on multiple devices?'
     answer: 'Yes, you can configure and run the miner on multiple devices using the same wallet address.'
   - question: 'Where can I find more help?'
