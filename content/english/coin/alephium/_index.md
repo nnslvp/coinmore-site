@@ -16,7 +16,7 @@ daily_revenue: 'Daily Revenue:'
 fee: 'Fee:'
 active_miners: 'Active Miners:'
 min_payout: 'Min. Payout:'
-title: 'Alephium Pool'
+title: 'Alephium Pool US/RU servers'
 instruction_text: 'Please use detailed'
 instruction_link_text: 'connection instructions.'
 faq_text: 'If you have any questions, please use the'
@@ -46,26 +46,18 @@ table_headers:
   - 'SSL Port'
 
 table_body:
-  - region: 'Europe'
-    address: 'eu1.alephium.coinmore.io'
-    port: 20032
-    ssl_port: 20033
-    icon: 'europa-flag-icon'
   - region: 'Russia'
     address: 'ru1.alephium.coinmore.io'
     port: 20032
     ssl_port: 20033
     icon: 'russian-flag-icon'
   - region: 'US'
-    address: 'us1.alephium.coinmore.io'
+    address: 'us-west.alephium.coinmore.io'
     port: 20032
     ssl_port: 20033
     icon: 'usa-flag-icon'
   - region: 'Asia'
-    address: 'asia1.alephium.coinmore.io'
-    port: 20032
-    ssl_port: 20033
-    icon: 'asia-flag-icon'
+
 
 chart_headers:
   hashrate: 'Pool Hashrate'
