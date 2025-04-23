@@ -56,7 +56,6 @@ table_body:
     port: 20032
     ssl_port: 20033
     icon: 'usa-flag-icon'
-  - region: 'Asia'
 
 
 chart_headers:
