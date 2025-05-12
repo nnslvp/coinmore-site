@@ -9,6 +9,8 @@ search_placeholder: 'Wallet'
 view_statistic_button: 'View personal statistic'
 section_title: 'Raptoreum wallet'
 edit_min_payouts_button: 'Edit my min. payout'
+labels:
+  download_csv: '📊 Export Payouts CSV'
 stat_labels:
   balance: 'Your balance:'
   hashrate_1h: 'Your hashrate 1h:'

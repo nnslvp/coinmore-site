@@ -98,6 +98,7 @@ activateTabsOnClick('.tabs-tables__workers-payouts');
 function init() {
   assignFormListener();
   detectBrowserAndSetInputType();
+  initializeCsvLink();
 
   const walletFromParams = getWalletParam();
 
@@ -609,4 +610,13 @@ function showSelectPayouts(payoutsDay, payoutsWeek) {
       }
     },
   });
+}
+
+function initializeCsvLink() {
+  const downloadLink = document.getElementById('download-csv-link');
+  if (!downloadLink) return;
+  const wallet = getWalletParam();
+  if (wallet) {
+    downloadLink.href = `https://api.coinmore.io/payouts_csv?coin=${COIN}&wallet=${wallet}`;
+  }
 }

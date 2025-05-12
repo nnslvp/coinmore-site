@@ -10,6 +10,8 @@ search_placeholder: 'Кошелек'
 view_statistic_button: 'Посмотреть личную статистику'
 section_title: 'Кошелек Raptoreum'
 edit_min_payouts_button: 'Отредактировать мою мин. выплату'
+labels:
+  download_csv: '📊 Экспорт выплат CSV'
 stat_labels:
   balance: 'Ваш баланс:'
   hashrate_1h: 'Ваш хешрейт за 1 час:'
