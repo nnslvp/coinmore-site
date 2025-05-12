@@ -1,7 +1,7 @@
 ---
 SEO:
-  description: 'Mine Alephium efficiently with CoinMore Pool. Our reliable mining pool offers high profitability, stability, and security for Alephium miners.'
-  keywords: 'Alephium mining, CoinMore Pool, crypto mining, Alephium, blockchain, cryptocurrency mining, secure mining, profitable mining, mining pool, mining software, mining hardware'
+  description: 'Mine Alephium efficiently with CoinMore Pool. Our reliable mining pool offers high profitability, stability, and security for Alephium miners. Access detailed statistics and download CSV data for tax reporting.'
+  keywords: 'Alephium mining, CoinMore Pool, crypto mining, Alephium, blockchain, cryptocurrency mining, secure mining, profitable mining, mining pool, mining software, mining hardware, CSV export, tax reporting, payout data'
 
 layout: 'coin'
 image: '/images/alephium-pool.png'
@@ -22,7 +22,7 @@ instruction_link_text: 'connection instructions.'
 faq_text: 'If you have any questions, please use the'
 faq_link_text: 'FAQ'
 welcome_title: 'Alephium Mining Pool'
-welcome_subtitle: "Experience the power of Alephium's sharded blockchain technology with CoinMore.io. Benefit from high performance, enhanced security, and energy efficiency. Join us and start mining Alephium today for maximum profitability."
+welcome_subtitle: "Experience the power of Alephium's sharded blockchain technology with CoinMore.io. Benefit from high performance, enhanced security, and energy efficiency. Access detailed mining statistics and easily export CSV data for your tax reporting needs. Join us and start mining Alephium today for maximum profitability."
 benefits:
   - title: 'Instant Block Unlocking'
     text: 'No 500-min delay'
@@ -56,7 +56,6 @@ table_body:
     port: 20032
     ssl_port: 20033
     icon: 'usa-flag-icon'
-
 
 chart_headers:
   hashrate: 'Pool Hashrate'

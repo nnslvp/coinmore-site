@@ -3,8 +3,8 @@ layout: 'statistics'
 type: 'statistics'
 
 SEO:
-  description: 'View comprehensive statistics for Alephium mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools.'
-  keywords: 'Alephium statistics, mining statistics, CoinMore Pool, Alephium mining, cryptocurrency mining, blockchain, crypto mining, mining performance, mining profitability'
+  description: 'View comprehensive statistics for Alephium mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools. Download CSV payouts data for your tax reports.'
+  keywords: 'Alephium statistics, mining statistics, CoinMore Pool, Alephium mining, cryptocurrency mining, blockchain, crypto mining, mining performance, mining profitability, csv export, tax report, payout history, transaction data'
 
 title: 'My statistics'
 search_placeholder: 'Wallet'

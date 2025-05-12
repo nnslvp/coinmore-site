@@ -23,7 +23,7 @@
       property="og:title"
       content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
     />
-    <meta property="og:description" content="{{ .Params.SEO.description  }}" />
+    <meta property="og:description" content="{{ .Params.SEO.description }}" />
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
     <meta name="twitter:image:width" content="{{ $widthImage }}" />
     <meta name="twitter:image:height" content="{{ $heightImage }}" />
@@ -34,7 +34,7 @@
       name="twitter:title"
       content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
     />
-    <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
+    <meta name="twitter:description" content="{{ .Params.SEO.description }}" />
     <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
     <meta name="twitter:image:width" content="{{ $widthImage }}" />
     <meta name="twitter:image:height" content="{{ $heightImage }}" />
