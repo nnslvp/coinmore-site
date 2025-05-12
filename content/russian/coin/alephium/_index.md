@@ -63,4 +63,9 @@ table_body:
     port: 20032
     ssl_port: 20033
     icon: 'usa-flag-icon'
+  - region: 'Гонконг'
+    address: 'hk.alephium.coinmore.io'
+    port: 20032
+    ssl_port: 20033
+    icon: 'hk-flag-icon'
 ---
