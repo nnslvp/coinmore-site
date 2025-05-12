@@ -23,7 +23,7 @@
       property="og:title"
       content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
     />
-    <meta property="og:description" content="{{ .Params.SEO.description  }}" />
+    <meta property="og:description" content="{{ .Params.SEO.description }}" />
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
     <meta name="twitter:image:width" content="{{ $widthImage }}" />
     <meta name="twitter:image:height" content="{{ $heightImage }}" />
@@ -34,7 +34,7 @@
       name="twitter:title"
       content="{{.Params.title }} {{ if not .IsHome }}| {{.Site.Params.siteName}} {{ end }}"
     />
-    <meta name="twitter:description" content="{{ .Params.SEO.description  }}" />
+    <meta name="twitter:description" content="{{ .Params.SEO.description }}" />
     <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $imagePath }}" />
     <meta name="twitter:image:width" content="{{ $widthImage }}" />
     <meta name="twitter:image:height" content="{{ $heightImage }}" />
@@ -210,6 +210,12 @@
                 </li>
               </ul>
 
+              <div class="download-csv-container">
+                <a id="download-csv-link" href="#" class="csv-download-link">
+                  {{.Params.labels.download_csv}}
+                </a>
+              </div>
+
               <div class="chart-container">
                 <div class="chart-header">
                   <h2 class="heading-h2">
@@ -342,7 +348,7 @@
     <script>
       const COIN = {{ $pageCoin.Params.coin_name }}
         const COIN_SYMBOL = {{ $pageCoin.Params.coin_symbol }}
-        const SELECT_PAYOUTS_NAME_OPTIONS = {
+      const SELECT_PAYOUTS_NAME_OPTIONS = {
           day: {{ i18n "day" | title }},
           week: {{ i18n "week" | title }}
         }

@@ -2,13 +2,15 @@
 layout: 'statistics'
 type: 'statistics'
 SEO:
-  description: 'View comprehensive statistics for Raptoreum mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools.'
-  keywords: 'Raptoreum statistics, mining statistics, CoinMore Pool, Raptoreum mining, cryptocurrency mining, blockchain, crypto mining, mining performance, mining profitability'
+  description: 'View comprehensive statistics for Raptoreum mining on CoinMore Pool. Monitor your mining performance and profitability with our advanced tools. Download CSV payouts data for your tax reports.'
+  keywords: 'Raptoreum statistics, mining statistics, CoinMore Pool, Raptoreum mining, cryptocurrency mining, blockchain, crypto mining, mining performance, mining profitability, csv export, tax report, payout history, transaction data'
 title: 'My statistics'
 search_placeholder: 'Wallet'
 view_statistic_button: 'View personal statistic'
 section_title: 'Raptoreum wallet'
 edit_min_payouts_button: 'Edit my min. payout'
+labels:
+  download_csv: '📊 Export Payouts CSV'
 stat_labels:
   balance: 'Your balance:'
   hashrate_1h: 'Your hashrate 1h:'

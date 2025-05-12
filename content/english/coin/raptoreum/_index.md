@@ -1,7 +1,7 @@
 ---
 SEO:
-  description: 'Mine Raptoreum with CoinMore Pool. Our advanced pool offers high profitability and stability.'
-  keywords: 'Raptoreum mining, CoinMore Pool, cryptocurrency mining, blockchain, Raptoreum, crypto mining, digital currency mining, decentralized mining, secure mining, profitable mining'
+  description: 'Mine Raptoreum efficiently with CoinMore Pool. Our reliable mining pool offers high profitability, stability, and security for Raptoreum miners. Access detailed statistics and download CSV data for tax reporting.'
+  keywords: 'Raptoreum mining, CoinMore Pool, crypto mining, Raptoreum, blockchain, cryptocurrency mining, secure mining, profitable mining, mining pool, mining software, mining hardware, CSV export, tax reporting, payout data'
 
 layout: 'coin'
 coin_name: 'raptoreum'
@@ -21,7 +21,7 @@ instruction_link_text: 'connection instructions.'
 faq_text: 'Questions? Check the'
 faq_link_text: 'FAQ'
 welcome_title: 'Raptoreum Mining Pool'
-welcome_subtitle: 'Join our reliable Raptoreum pool. Enjoy low fees, stable performance, and transparent stats. Earn more with lower costs.'
+welcome_subtitle: 'Join our reliable Raptoreum pool. Enjoy low fees, stable performance, and transparent stats. Access detailed mining statistics and easily export CSV data for your tax reporting needs. Earn more with lower costs.'
 benefits:
   - title: 'Payouts Every'
     text: '1 Hour'
